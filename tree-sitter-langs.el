@@ -1,34 +1,31 @@
 ;;; tree-sitter-langs.el --- Grammar bundle for tree-sitter -*- lexical-binding: t; coding: utf-8 -*-
 
-;; Copyright (C) 2020 Tuấn-Anh Nguyễn
+;; Copyright (C) 2021 Tuấn-Anh Nguyễn
 ;;
 ;; Author: Tuấn-Anh Nguyễn <ubolonton@gmail.com>
 ;; Keywords: languages tools parsers tree-sitter
-;; Homepage: https://github.com/ubolonton/emacs-tree-sitter
+;; Homepage: https://github.com/ubolonton/tree-sitter-langs
 ;; Version: 0.9.2
 ;; Package-Requires: ((emacs "25.1") (tree-sitter "0.12.2"))
 ;; License: MIT
 
 ;;; Commentary:
 
-;; This is a convenient bundle of language grammars and queries for
-;; `tree-sitter'. It serves as an interim distribution mechanism, until
-;; `tree-sitter' is widespread enough for language major modes to include these
-;; definitions on their own.
+;; This is a convenient language bundle for the Emacs package `tree-sitter'. It
+;; serves as an interim distribution mechanism, until `tree-sitter' is
+;; widespread enough for language-specific major modes to incorporate its
+;; functionalities.
 ;;
-;; Basically it's a multi-phase adoption process:
+;; For each supported language, this package provides:
 ;;
-;; 1. `tree-sitter-langs' populates global registries of grammars and queries.
-;;    These global registries are defined by `tree-sitter-mode' and other
-;;    `tree-sitter'-based language-agnostic minor modes, to extend existing
-;;    major modes.
+;; 1. Pre-compiled grammar binaries for 3 major platforms: macOS, Linux and
+;;    Windows, on x86_64. In the future, `tree-sitter-langs' may provide tooling
+;;    for major modes to do this on their own.
 ;;
-;; 2. New `tree-sitter'-based language-specific minor modes use these global
-;;    registries to extend existing major modes.
-;;
-;; 3. Major modes adopt new `tree-sitter'-based features, and distribute the
-;;    grammars and queries on their own. They can either put these definitions
-;;    in the global registries, or keep using them only internally.
+;; 2. Optional highlighting patterns. This is mainly intended for major modes
+;;    that are not aware of `tree-sitter'. A language major mode that wants to
+;;    use `tree-sitter' for syntax highlighting should instead provide the query
+;;    patterns on its own, using the mechanisms defined by `tree-sitter-hl'.
 
 ;;; Code:
 
