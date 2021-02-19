@@ -1,6 +1,6 @@
 (package-file "tree-sitter-langs.el")
 
-(source "ublt" "https://elpa.ubolonton.org/packages/")
+(source melpa)
 
 (files "tree-sitter-langs.el"
        "tree-sitter-langs-build.el"
