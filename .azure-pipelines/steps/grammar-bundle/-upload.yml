@@ -1,0 +1,13 @@
+parameters:
+- name: endpoint
+  type: string
+
+steps:
+- task: GitHubRelease@0
+  inputs:
+    gitHubConnection: ${{ parameters.endpoint }}
+    repositoryName: ubolonton/tree-sitter-langs
+    isDraft: true
+    assetUploadMode: replace
+    assets: |
+      $(System.DefaultWorkingDirectory)/tree-sitter-grammars-*.tar.gz

@@ -1,0 +1,10 @@
+parameters:
+  targets: []
+
+steps:
+- ${{ each target in parameters.targets }}:
+  - task: DownloadPipelineArtifact@2
+    displayName: Retrieve tree-sitter-grammars-${{ target }}-$(BUNDLE_VERSION).tar.gz
+    inputs:
+      artifact: tree-sitter-grammars-${{ target }}
+      path: $(System.DefaultWorkingDirectory)
