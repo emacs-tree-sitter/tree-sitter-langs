@@ -238,7 +238,9 @@ current state of the grammar repo, without cleanup."
       ;; Replace underscores with hyphens. Example: c_sharp.
       (let ((default-directory tree-sitter-langs--bin-dir))
         (dolist (file (directory-files default-directory))
-          (when (string-match "_" file)
+          (when (and (string-match "_" file)
+                     (cl-some (lambda (s) (string-suffix-p s file))
+                              tree-sitter-langs--suffixes))
             (let ((new-name (replace-regexp-in-string "_" "-" file)))
               (when (file-exists-p new-name)
                 (delete-file new-name))
