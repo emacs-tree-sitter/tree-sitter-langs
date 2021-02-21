@@ -7,7 +7,7 @@
 ;; Homepage: https://github.com/ubolonton/tree-sitter-langs
 ;; Version: 0.9.2
 ;; Package-Requires: ((emacs "25.1") (tree-sitter "0.12.2"))
-;; License: MIT
+;; SPDX-License-Identifier: MIT
 
 ;;; Commentary:
 
