@@ -1,0 +1,44 @@
+# TODO: Add (smoke) tests: load the grammars and execute the queries.
+# TODO: For a PR, if only grammars/queries change, compile and test only the affected languages.
+trigger:
+- master
+- ci
+
+pr:
+- master
+
+resources:
+  repositories:
+  - repository: emacs-module-rs
+    type: github
+    name: ubolonton/emacs-module-rs
+    ref: azure-pipelines
+    endpoint: ubolonton
+  - repository: emacs-tree-sitter
+    type: github
+    name: ubolonton/emacs-tree-sitter
+    ref: azure-pipelines
+    endpoint: ubolonton
+
+jobs:
+- job: Build
+  pool:
+    vmImage: $(IMAGE_NAME)
+  strategy:
+    matrix:
+      vs2017-win2016:
+        IMAGE_NAME: 'vs2017-win2016'
+        BUNDLE_TARGET: windows
+      macos-10.14-emacs-27.1:
+        IMAGE_NAME: 'macos-10.14'
+        EVM_EMACS: emacs-27.1
+        BUNDLE_TARGET: macos
+      ubuntu-16.04-emacs-27.1:
+        IMAGE_NAME: 'ubuntu-16.04'
+        EVM_EMACS: emacs-27.1
+        BUNDLE_TARGET: linux
+  steps:
+  - template: .azure-pipelines/steps/setup-emacs.yml@emacs-module-rs
+  - template: .azure-pipelines/steps/setup-cask.yml@emacs-module-rs
+  - template: .azure-pipelines/steps/setup-tree-sitter-cli.yml@emacs-tree-sitter
+  - template: steps/grammar-bundle/-create.yml
