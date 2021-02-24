@@ -1,98 +1,98 @@
 # `update = none` makes `git submodule update` a no-op. This prevents wasteful work on e.g. MELPA.
 
-[submodule "repos/tree-sitter-agda"]
-	path = repos/tree-sitter-agda
+[submodule "repos/agda"]
+	path = repos/agda
 	url = https://github.com/tree-sitter/tree-sitter-agda
 	update = none
-[submodule "repos/tree-sitter-bash"]
-	path = repos/tree-sitter-bash
+[submodule "repos/bash"]
+	path = repos/bash
 	url = https://github.com/tree-sitter/tree-sitter-bash
 	update = none
-[submodule "repos/tree-sitter-c"]
-	path = repos/tree-sitter-c
+[submodule "repos/c"]
+	path = repos/c
 	url = https://github.com/tree-sitter/tree-sitter-c
 	update = none
-[submodule "repos/tree-sitter-c-sharp"]
-	path = repos/tree-sitter-c-sharp
+[submodule "repos/c-sharp"]
+	path = repos/c-sharp
 	url = https://github.com/tree-sitter/tree-sitter-c-sharp
 	update = none
-[submodule "repos/tree-sitter-cpp"]
-	path = repos/tree-sitter-cpp
+[submodule "repos/cpp"]
+	path = repos/cpp
 	url = https://github.com/tree-sitter/tree-sitter-cpp
 	update = none
-[submodule "repos/tree-sitter-css"]
-	path = repos/tree-sitter-css
+[submodule "repos/css"]
+	path = repos/css
 	url = https://github.com/tree-sitter/tree-sitter-css
 	update = none
-[submodule "repos/tree-sitter-elm"]
-	path = repos/tree-sitter-elm
+[submodule "repos/elm"]
+	path = repos/elm
 	url = https://github.com/razzeee/tree-sitter-elm
 	update = none
-[submodule "repos/tree-sitter-fluent"]
-	path = repos/tree-sitter-fluent
+[submodule "repos/fluent"]
+	path = repos/fluent
 	url = https://github.com/tree-sitter/tree-sitter-fluent
 	update = none
-[submodule "repos/tree-sitter-go"]
-	path = repos/tree-sitter-go
+[submodule "repos/go"]
+	path = repos/go
 	url = https://github.com/tree-sitter/tree-sitter-go
 	update = none
-[submodule "repos/tree-sitter-html"]
-	path = repos/tree-sitter-html
+[submodule "repos/html"]
+	path = repos/html
 	url = https://github.com/tree-sitter/tree-sitter-html
 	update = none
-[submodule "repos/tree-sitter-janet-simple"]
-	path = repos/tree-sitter-janet-simple
+[submodule "repos/janet-simple"]
+	path = repos/janet-simple
 	url = https://codeberg.org/sogaiu/tree-sitter-janet-simple
 	update = none
-[submodule "repos/tree-sitter-java"]
-	path = repos/tree-sitter-java
+[submodule "repos/java"]
+	path = repos/java
 	url = https://github.com/tree-sitter/tree-sitter-java
 	update = none
-[submodule "repos/tree-sitter-javascript"]
-	path = repos/tree-sitter-javascript
+[submodule "repos/javascript"]
+	path = repos/javascript
 	url = https://github.com/tree-sitter/tree-sitter-javascript
 	update = none
-[submodule "repos/tree-sitter-jsdoc"]
-	path = repos/tree-sitter-jsdoc
+[submodule "repos/jsdoc"]
+	path = repos/jsdoc
 	url = https://github.com/tree-sitter/tree-sitter-jsdoc
 	update = none
-[submodule "repos/tree-sitter-json"]
-	path = repos/tree-sitter-json
+[submodule "repos/json"]
+	path = repos/json
 	url = https://github.com/tree-sitter/tree-sitter-json
 	update = none
-[submodule "repos/tree-sitter-julia"]
-	path = repos/tree-sitter-julia
+[submodule "repos/julia"]
+	path = repos/julia
 	url = https://github.com/tree-sitter/tree-sitter-julia
 	update = none
-[submodule "repos/tree-sitter-ocaml"]
-	path = repos/tree-sitter-ocaml
+[submodule "repos/ocaml"]
+	path = repos/ocaml
 	url = https://github.com/tree-sitter/tree-sitter-ocaml
 	update = none
-[submodule "repos/tree-sitter-php"]
-	path = repos/tree-sitter-php
+[submodule "repos/php"]
+	path = repos/php
 	url = https://github.com/tree-sitter/tree-sitter-php
 	update = none
-[submodule "repos/tree-sitter-python"]
-	path = repos/tree-sitter-python
+[submodule "repos/python"]
+	path = repos/python
 	url = https://github.com/tree-sitter/tree-sitter-python
 	update = none
-[submodule "repos/tree-sitter-ruby"]
-	path = repos/tree-sitter-ruby
+[submodule "repos/ruby"]
+	path = repos/ruby
 	url = https://github.com/tree-sitter/tree-sitter-ruby
 	update = none
-[submodule "repos/tree-sitter-rust"]
-	path = repos/tree-sitter-rust
+[submodule "repos/rust"]
+	path = repos/rust
 	url = https://github.com/tree-sitter/tree-sitter-rust
 	update = none
-[submodule "repos/tree-sitter-scala"]
-	path = repos/tree-sitter-scala
+[submodule "repos/scala"]
+	path = repos/scala
 	url = https://github.com/tree-sitter/tree-sitter-scala
 	update = none
-[submodule "repos/tree-sitter-swift"]
-	path = repos/tree-sitter-swift
+[submodule "repos/swift"]
+	path = repos/swift
 	url = https://github.com/tree-sitter/tree-sitter-swift
 	update = none
-[submodule "repos/tree-sitter-typescript"]
-	path = repos/tree-sitter-typescript
+[submodule "repos/typescript"]
+	path = repos/typescript
 	url = https://github.com/tree-sitter/tree-sitter-typescript
 	update = none

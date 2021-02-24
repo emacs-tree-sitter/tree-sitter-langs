@@ -83,14 +83,6 @@ If VERSION and OS are not specified, use the defaults of
    (concat tree-sitter-langs--dir "repos"))
   "Directory to store grammar repos, for compilation.")
 
-(defun tree-sitter-langs--symbol (name)
-  "Return the languae symbol from the NAME of the repository."
-  (intern (replace-regexp-in-string "tree-sitter-" "" name)))
-
-(defun tree-sitter-langs--repo-name (lang-symbol)
-  "Return the language repository name of LANG-SYMBOL."
-  (format "tree-sitter-%s" lang-symbol))
-
 (defvar tree-sitter-langs--out nil)
 
 (defmacro tree-sitter-langs--with-temp-buffer (&rest body)
@@ -100,27 +92,31 @@ If VERSION and OS are not specified, use the defaults of
      (let* ((tree-sitter-langs--out (current-buffer)))
        ,@body)))
 
+(defconst tree-sitter-langs--langs-with-deps
+  '(cpp typescript)
+  "Languages that depend on another, thus requiring 'npm install'.")
+
 (defun tree-sitter-langs--source (lang-symbol)
   "Return a plist describing the source of the grammar for LANG-SYMBOL."
-  (let* ((name (tree-sitter-langs--repo-name lang-symbol))
+  (let* ((name (symbol-name lang-symbol))
          (dir (concat tree-sitter-langs--repos-dir name))
          (sub-path (format "repos/%s" name)))
     (when (file-directory-p dir)
-      (list
-       :repo (tree-sitter-langs--with-temp-buffer
-               (let ((default-directory tree-sitter-langs--dir))
+      (let ((default-directory tree-sitter-langs--dir))
+        (list
+         :repo (tree-sitter-langs--with-temp-buffer
                  (tree-sitter-langs--call
                   "git" "config" "--file" ".gitmodules"
-                  "--get" (format "submodule.%s.url" sub-path)))
-               (goto-char 1)
-               (buffer-substring-no-properties 1 (line-end-position)))
-       :version (tree-sitter-langs--with-temp-buffer
-                  (tree-sitter-langs--call
-                   "git" "submodule" "status" "--cached" sub-path)
-                  (buffer-substring-no-properties 2 9))
-       :paths (pcase lang-symbol
-                ('typescript '("typescript" "tsx"))
-                (_ '("")))))))
+                  "--get" (format "submodule.%s.url" sub-path))
+                 (goto-char 1)
+                 (buffer-substring-no-properties 1 (line-end-position)))
+         :version (tree-sitter-langs--with-temp-buffer
+                    (tree-sitter-langs--call
+                     "git" "submodule" "status" "--cached" sub-path)
+                    (buffer-substring-no-properties 2 9))
+         :paths (pcase lang-symbol
+                  ('typescript '("typescript" "tsx"))
+                  (_ '(""))))))))
 
 ;;; TODO: Use (maybe make) an async library, with a proper event loop, instead
 ;;; of busy-waiting.
@@ -150,10 +146,10 @@ If BUFFER is nil, `princ' is used to forward its stdout+stderr."
   "Call FN in each of the language repositories."
   (thread-last (directory-files tree-sitter-langs--repos-dir)
     (seq-map (lambda (name)
-               (let ((dir (concat tree-sitter-langs--repos-dir name)))
-                 (when (and (string-prefix-p "tree-sitter-" name)
-                            (file-directory-p dir))
-                   `(,name . ,dir)))))
+               (unless (member name '("." ".."))
+                 (let ((dir (concat tree-sitter-langs--repos-dir name)))
+                  (when (file-directory-p dir)
+                    `(,name . ,dir))))))
     (seq-filter #'identity)
     (seq-map (lambda (d)
                (pcase-let ((`(,name . ,default-directory) d))
@@ -202,7 +198,7 @@ from the current state of the grammar repo, without cleanup."
          (dir (if source
                   (file-name-as-directory
                    (concat tree-sitter-langs--repos-dir
-                           (tree-sitter-langs--repo-name lang-symbol)))
+                           (symbol-name lang-symbol)))
                 (error "Unknown language `%s'" lang-symbol)))
          (repo (plist-get source :repo))
          (paths (plist-get source :paths))
@@ -222,9 +218,8 @@ from the current state of the grammar repo, without cleanup."
       (when clean
         (tree-sitter-langs--call "git" "stash" "push")
         (tree-sitter-langs--call "git" "checkout" version))
-      (tree-sitter-langs--call "npm" "set" "progress=false")
-      ;; TODO: Figure out why we need to skip `npm install' for some repos.
-      (ignore-errors
+      (when (member lang-symbol tree-sitter-langs--langs-with-deps)
+        (tree-sitter-langs--call "npm" "set" "progress=false")
         (tree-sitter-langs--call "npm" "install"))
       ;; A repo can have multiple grammars (e.g. typescript + tsx).
       (dolist (path paths)
@@ -265,13 +260,15 @@ this project (through git submodules), and clean up afterwards. Otherwise,
 compile from the current state of the grammar repos, without cleanup."
   (unless (executable-find "tar")
     (error "Could not find tar executable (needed to bundle compiled grammars)"))
-  (let ((errors (tree-sitter-langs--map-repos
-                 (lambda (name)
-                   (message "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
-                   (let ((lang-symbol (tree-sitter-langs--symbol name)))
-                     (condition-case err
-                         (tree-sitter-langs-compile lang-symbol clean)
-                       (error `[,lang-symbol ,err])))))))
+  (let ((errors (thread-last
+                    (tree-sitter-langs--map-repos
+                     (lambda (name)
+                       (message "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+                       (let ((lang-symbol (intern name)))
+                         (condition-case err
+                             (tree-sitter-langs-compile lang-symbol clean)
+                           (error `[,lang-symbol ,err])))))
+                  (seq-filter #'identity))))
     (message "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
     (unwind-protect
         (let* ((tar-file (concat (file-name-as-directory
@@ -356,7 +353,7 @@ This assumes the repo has already been set up, for example by
 
 If the optional arg FORCE is non-nil, any existing file will be overwritten."
   (let ((src (thread-first tree-sitter-langs--repos-dir
-               (concat (tree-sitter-langs--repo-name lang-symbol))
+               (concat (symbol-name lang-symbol))
                file-name-as-directory (concat "queries")
                file-name-as-directory (concat "highlights.scm"))))
     (when (file-exists-p src)
@@ -378,7 +375,7 @@ This assumes the repos have already been cloned set up, for example by
 `tree-sitter-langs-create-bundle'."
   (tree-sitter-langs--map-repos
    (lambda (name)
-     (tree-sitter-langs--copy-query (tree-sitter-langs--symbol name) :force))))
+     (tree-sitter-langs--copy-query (intern name) :force))))
 
 (provide 'tree-sitter-langs-build)
 ;;; tree-sitter-langs-build.el ends here
