@@ -1,0 +1,72 @@
+[submodule "repos/tree-sitter-agda"]
+	path = repos/tree-sitter-agda
+	url = https://github.com/tree-sitter/tree-sitter-agda
+[submodule "repos/tree-sitter-bash"]
+	path = repos/tree-sitter-bash
+	url = https://github.com/tree-sitter/tree-sitter-bash
+[submodule "repos/tree-sitter-c"]
+	path = repos/tree-sitter-c
+	url = https://github.com/tree-sitter/tree-sitter-c
+[submodule "repos/tree-sitter-c-sharp"]
+	path = repos/tree-sitter-c-sharp
+	url = https://github.com/tree-sitter/tree-sitter-c-sharp
+[submodule "repos/tree-sitter-cpp"]
+	path = repos/tree-sitter-cpp
+	url = https://github.com/tree-sitter/tree-sitter-cpp
+[submodule "repos/tree-sitter-css"]
+	path = repos/tree-sitter-css
+	url = https://github.com/tree-sitter/tree-sitter-css
+[submodule "repos/tree-sitter-elm"]
+	path = repos/tree-sitter-elm
+	url = https://github.com/razzeee/tree-sitter-elm
+[submodule "repos/tree-sitter-fluent"]
+	path = repos/tree-sitter-fluent
+	url = https://github.com/tree-sitter/tree-sitter-fluent
+[submodule "repos/tree-sitter-go"]
+	path = repos/tree-sitter-go
+	url = https://github.com/tree-sitter/tree-sitter-go
+[submodule "repos/tree-sitter-html"]
+	path = repos/tree-sitter-html
+	url = https://github.com/tree-sitter/tree-sitter-html
+[submodule "repos/tree-sitter-janet-simple"]
+	path = repos/tree-sitter-janet-simple
+	url = https://codeberg.org/sogaiu/tree-sitter-janet-simple
+[submodule "repos/tree-sitter-java"]
+	path = repos/tree-sitter-java
+	url = https://github.com/tree-sitter/tree-sitter-java
+[submodule "repos/tree-sitter-javascript"]
+	path = repos/tree-sitter-javascript
+	url = https://github.com/tree-sitter/tree-sitter-javascript
+[submodule "repos/tree-sitter-jsdoc"]
+	path = repos/tree-sitter-jsdoc
+	url = https://github.com/tree-sitter/tree-sitter-jsdoc
+[submodule "repos/tree-sitter-json"]
+	path = repos/tree-sitter-json
+	url = https://github.com/tree-sitter/tree-sitter-json
+[submodule "repos/tree-sitter-julia"]
+	path = repos/tree-sitter-julia
+	url = https://github.com/tree-sitter/tree-sitter-julia
+[submodule "repos/tree-sitter-ocaml"]
+	path = repos/tree-sitter-ocaml
+	url = https://github.com/tree-sitter/tree-sitter-ocaml
+[submodule "repos/tree-sitter-php"]
+	path = repos/tree-sitter-php
+	url = https://github.com/tree-sitter/tree-sitter-php
+[submodule "repos/tree-sitter-python"]
+	path = repos/tree-sitter-python
+	url = https://github.com/tree-sitter/tree-sitter-python
+[submodule "repos/tree-sitter-ruby"]
+	path = repos/tree-sitter-ruby
+	url = https://github.com/tree-sitter/tree-sitter-ruby
+[submodule "repos/tree-sitter-rust"]
+	path = repos/tree-sitter-rust
+	url = https://github.com/tree-sitter/tree-sitter-rust
+[submodule "repos/tree-sitter-scala"]
+	path = repos/tree-sitter-scala
+	url = https://github.com/tree-sitter/tree-sitter-scala
+[submodule "repos/tree-sitter-swift"]
+	path = repos/tree-sitter-swift
+	url = https://github.com/tree-sitter/tree-sitter-swift
+[submodule "repos/tree-sitter-typescript"]
+	path = repos/tree-sitter-typescript
+	url = https://github.com/tree-sitter/tree-sitter-typescript
