@@ -61,7 +61,7 @@ See `tree-sitter-langs-repos'."
       (condition-case nil
           (tree-sitter-require lang-symbol)
         (error
-         (display-warning 'tree-sitter-test
+         (display-warning 'tree-sitter-langs
                           (format "Could not load grammar for `%s', trying to compile it"
                                   lang-symbol))
          (tree-sitter-langs-compile lang-symbol)
