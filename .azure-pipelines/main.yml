@@ -38,6 +38,7 @@ jobs:
         EVM_EMACS: emacs-27.1
         BUNDLE_TARGET: linux
   steps:
+  - template: steps/-checkout-submodules.yml
   - template: .azure-pipelines/steps/setup-emacs.yml@emacs-module-rs
   - template: .azure-pipelines/steps/setup-cask.yml@emacs-module-rs
   - template: .azure-pipelines/steps/setup-tree-sitter-cli.yml@emacs-tree-sitter

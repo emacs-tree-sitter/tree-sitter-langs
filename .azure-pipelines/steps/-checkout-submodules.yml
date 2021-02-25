@@ -1,0 +1,5 @@
+# We don't use `checkout` task because it doesn't specify `--checkout`, which means the submodules
+# will be skipped, since we specify `update = none`.
+steps:
+- script: git submodule update --init --checkout --force
+  displayName: Checkout git submodules
