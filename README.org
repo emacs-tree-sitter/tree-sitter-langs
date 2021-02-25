@@ -22,12 +22,10 @@ It's more convenient to work with this repository as a submodule of [[https://gi
 
 *** Building a single grammar
 #+begin_src bash
-  git submodule update --init --checkout -- repos/rust
   cask eval "(progn (require 'tree-sitter-langs-build) (tree-sitter-langs-compile 'rust))"
 #+end_src
 
 *** Building the whole grammar bundle
 #+begin_src bash
-  git submodule update --init --checkout
   cask eval "(progn (require 'tree-sitter-langs-build) (tree-sitter-langs-create-bundle))"
 #+end_src

@@ -96,28 +96,6 @@ If VERSION and OS are not specified, use the defaults of
   '(cpp typescript)
   "Languages that depend on another, thus requiring 'npm install'.")
 
-(defun tree-sitter-langs--source (lang-symbol)
-  "Return a plist describing the source of the grammar for LANG-SYMBOL."
-  (let* ((name (symbol-name lang-symbol))
-         (dir (concat tree-sitter-langs--repos-dir name))
-         (sub-path (format "repos/%s" name)))
-    (when (file-directory-p dir)
-      (let ((default-directory tree-sitter-langs--dir))
-        (list
-         :repo (tree-sitter-langs--with-temp-buffer
-                 (tree-sitter-langs--call
-                  "git" "config" "--file" ".gitmodules"
-                  "--get" (format "submodule.%s.url" sub-path))
-                 (goto-char 1)
-                 (buffer-substring-no-properties 1 (line-end-position)))
-         :version (tree-sitter-langs--with-temp-buffer
-                    (tree-sitter-langs--call
-                     "git" "submodule" "status" "--cached" sub-path)
-                    (buffer-substring-no-properties 2 9))
-         :paths (pcase lang-symbol
-                  ('typescript '("typescript" "tsx"))
-                  (_ '(""))))))))
-
 ;;; TODO: Use (maybe make) an async library, with a proper event loop, instead
 ;;; of busy-waiting.
 (defun tree-sitter-langs--call (program &rest args)
@@ -141,6 +119,44 @@ If BUFFER is nil, `princ' is used to forward its stdout+stderr."
                       (process-exit-status proc))))
     (unless (= exit-code 0)
       (error "Error calling %s, exit code is %s" command exit-code))))
+
+(defun tree-sitter-langs--source (lang-symbol)
+  "Return a plist describing the source of the grammar for LANG-SYMBOL."
+  (let* ((default-directory tree-sitter-langs--dir)
+         (name (symbol-name lang-symbol))
+         (dir (concat tree-sitter-langs--repos-dir name))
+         (sub-path (format "repos/%s" name)))
+    (when (file-directory-p dir)
+      (list
+       :repo (tree-sitter-langs--with-temp-buffer
+               (let ((inhibit-message t))
+                 (tree-sitter-langs--call
+                  "git" "config" "--file" ".gitmodules"
+                  "--get" (format "submodule.%s.url" sub-path)))
+               (goto-char 1)
+               (buffer-substring-no-properties 1 (line-end-position)))
+       :version (tree-sitter-langs--with-temp-buffer
+                  (let ((inhibit-message t))
+                    (tree-sitter-langs--call
+                     "git" "submodule" "status" "--cached" sub-path))
+                  (buffer-substring-no-properties 2 9))
+       :paths (pcase lang-symbol
+                ('typescript '("typescript" "tsx"))
+                (_ '("")))))))
+
+(defun tree-sitter-langs--repo-status (lang-symbol)
+  "Return the git submodule status for LANG-SYMBOL."
+  (tree-sitter-langs--with-temp-buffer
+    (let ((default-directory tree-sitter-langs--dir)
+          (inhibit-message t))
+      (tree-sitter-langs--call
+       "git" "submodule" "status" "--" (format "repos/%s" lang-symbol)))
+    (pcase (char-after 1)
+      (?- :uninitialized)
+      (?+ :modified)
+      (?U :conflicts)
+      (?  :synchronized)
+      (unknown-status unknown-status))))
 
 (defun tree-sitter-langs--map-repos (fn)
   "Call FN in each of the language repositories."
@@ -200,24 +216,26 @@ from the current state of the grammar repo, without cleanup."
                    (concat tree-sitter-langs--repos-dir
                            (symbol-name lang-symbol)))
                 (error "Unknown language `%s'" lang-symbol)))
-         (repo (plist-get source :repo))
+         (sub-path (format "repos/%s" lang-symbol))
+         (status (tree-sitter-langs--repo-status lang-symbol))
          (paths (plist-get source :paths))
-         (version (plist-get source :version))
          (tree-sitter-langs--out (tree-sitter-langs--buffer
                                   (format "*tree-sitter-langs-compile %s*" lang-symbol))))
-    (if (file-directory-p dir)
-        (let ((default-directory dir))
-          (tree-sitter-langs--call "git" "remote" "-v" "update"))
-      (progn
-        (tree-sitter-langs--call "git" "clone" "-q" repo dir)
-        (let ((default-directory dir))
-          ;; Use the specified version on first build. This makes CI runs more
-          ;; reproducible.
-          (tree-sitter-langs--call "git" "checkout" version))))
+    (let ((default-directory tree-sitter-langs--dir))
+      (pcase status
+        (:uninitialized
+         (tree-sitter-langs--call "git" "submodule" "update" "--init" "--checkout" "--" sub-path))
+        (:modified
+         (when clean
+           (let ((default-directory dir))
+             (tree-sitter-langs--call "git" "stash" "push"))
+           (tree-sitter-langs--call "git" "submodule" "update" "--init" "--checkout" "--force" "--" sub-path)))
+        (:conflicts
+         (error "Unresolved conflicts in %s" dir))
+        (:synchronized nil)
+        (_
+         (error "Weird status from git-submodule '%s'" status))))
     (let ((default-directory dir))
-      (when clean
-        (tree-sitter-langs--call "git" "stash" "push")
-        (tree-sitter-langs--call "git" "checkout" version))
       (when (member lang-symbol tree-sitter-langs--langs-with-deps)
         (tree-sitter-langs--call "npm" "set" "progress=false")
         (tree-sitter-langs--call "npm" "install"))
