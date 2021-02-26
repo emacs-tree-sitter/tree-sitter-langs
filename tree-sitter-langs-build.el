@@ -97,17 +97,40 @@ In batch mode, return nil, so that stdout is used instead."
 ;; ---------------------------------------------------------------------------
 ;;; Managing language submodules.
 
-;;; TODO: Make this a function.
-(defvar tree-sitter-langs--repos-dir
+(declare-function straight--repos-dir "straight" (&rest segments))
+
+(defcustom tree-sitter-langs-git-dir
+  (cond
+   ((featurep 'straight) (straight--repos-dir "tree-sitter-langs"))
+   ((string= (expand-file-name (file-name-as-directory tree-sitter-langs--dir))
+             (ignore-errors
+               (expand-file-name
+                (file-name-as-directory
+                 (tree-sitter-langs--with-temp-buffer
+                   (let ((default-directory tree-sitter-langs--dir))
+                     (tree-sitter-langs--call "git" "rev-parse" "--show-toplevel"))
+                   (goto-char 1)
+                   (buffer-substring-no-properties 1 (line-end-position)))))))
+    (file-name-as-directory tree-sitter-langs--dir)))
+  "The git working directory of the repository `tree-sitter-langs'.
+It needs to be set for grammar-building functionalities to work.
+
+If you use `straight.el', this is automatically set."
+  :group 'tree-sitter-langs
+  :type 'directory)
+
+(defun tree-sitter-langs--repos-dir ()
+  "Return the directory to store grammar repos, for compilation."
+  (unless tree-sitter-langs-git-dir
+    (user-error "Grammar-building functionalities require `tree-sitter-langs-git-dir' to be set"))
   (file-name-as-directory
-   (concat tree-sitter-langs--dir "repos"))
-  "Directory to store grammar repos, for compilation.")
+   (concat tree-sitter-langs-git-dir "repos")))
 
 (defun tree-sitter-langs--source (lang-symbol)
   "Return a plist describing the source of the grammar for LANG-SYMBOL."
-  (let* ((default-directory tree-sitter-langs--dir)
+  (let* ((default-directory tree-sitter-langs-git-dir)
          (name (symbol-name lang-symbol))
-         (dir (concat tree-sitter-langs--repos-dir name))
+         (dir (concat (tree-sitter-langs--repos-dir) name))
          (sub-path (format "repos/%s" name)))
     (when (file-directory-p dir)
       (list
@@ -130,7 +153,7 @@ In batch mode, return nil, so that stdout is used instead."
 (defun tree-sitter-langs--repo-status (lang-symbol)
   "Return the git submodule status for LANG-SYMBOL."
   (tree-sitter-langs--with-temp-buffer
-    (let ((default-directory tree-sitter-langs--dir)
+    (let ((default-directory tree-sitter-langs-git-dir)
           (inhibit-message t))
       (tree-sitter-langs--call
        "git" "submodule" "status" "--" (format "repos/%s" lang-symbol)))
@@ -143,16 +166,17 @@ In batch mode, return nil, so that stdout is used instead."
 
 (defun tree-sitter-langs--map-repos (fn)
   "Call FN in each of the language repositories."
-  (thread-last (directory-files tree-sitter-langs--repos-dir)
-    (seq-map (lambda (name)
-               (unless (member name '("." ".."))
-                 (let ((dir (concat tree-sitter-langs--repos-dir name)))
-                  (when (file-directory-p dir)
-                    `(,name . ,dir))))))
-    (seq-filter #'identity)
-    (seq-map (lambda (d)
-               (pcase-let ((`(,name . ,default-directory) d))
-                 (funcall fn name))))))
+  (let ((repos-dir (tree-sitter-langs--repos-dir)))
+    (thread-last (directory-files repos-dir)
+      (seq-map (lambda (name)
+                 (unless (member name '("." ".."))
+                   (let ((dir (concat repos-dir name)))
+                     (when (file-directory-p dir)
+                       `(,name . ,dir))))))
+      (seq-filter #'identity)
+      (seq-map (lambda (d)
+                 (pcase-let ((`(,name . ,default-directory) d))
+                   (funcall fn name)))))))
 
 (defun tree-sitter-langs--update-repos ()
   "Update lang repos' remotes."
@@ -220,7 +244,7 @@ from the current state of the grammar repo, without cleanup."
   (let* ((source (tree-sitter-langs--source lang-symbol))
          (dir (if source
                   (file-name-as-directory
-                   (concat tree-sitter-langs--repos-dir
+                   (concat (tree-sitter-langs--repos-dir)
                            (symbol-name lang-symbol)))
                 (error "Unknown language `%s'" lang-symbol)))
          (sub-path (format "repos/%s" lang-symbol))
@@ -228,7 +252,7 @@ from the current state of the grammar repo, without cleanup."
          (paths (plist-get source :paths))
          (tree-sitter-langs--out (tree-sitter-langs--buffer
                                   (format "*tree-sitter-langs-compile %s*" lang-symbol))))
-    (let ((default-directory tree-sitter-langs--dir))
+    (let ((default-directory tree-sitter-langs-git-dir))
       (pcase status
         (:uninitialized
          (tree-sitter-langs--call "git" "submodule" "update" "--init" "--checkout" "--" sub-path))
@@ -278,7 +302,7 @@ from the current state of the grammar repo, without cleanup."
 
 (defun tree-sitter-langs-create-bundle (&optional clean)
   "Create a bundle of language grammars.
-The bundle includes all languages under `tree-sitter-langs--repos-dir'.
+The bundle includes all languages tracked in git submodules.
 
 If the optional arg CLEAN is non-nil, compile from the revisions recorded in
 this project (through git submodules), and clean up afterwards. Otherwise,
@@ -392,7 +416,7 @@ This assumes the repo has already been set up, for example by
 `tree-sitter-langs-compile'.
 
 If the optional arg FORCE is non-nil, any existing file will be overwritten."
-  (let ((src (thread-first tree-sitter-langs--repos-dir
+  (let ((src (thread-first (tree-sitter-langs--repos-dir)
                (concat (symbol-name lang-symbol))
                file-name-as-directory (concat "queries")
                file-name-as-directory (concat "highlights.scm"))))
