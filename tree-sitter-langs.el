@@ -123,6 +123,7 @@ Return nil if there are no bundled patterns."
                            (pcase lang-symbol
                              ('cpp '(c))
                              ('typescript '(javascript))
+                             ('tsx '(typescript javascript))
                              (_ nil))))
           (insert-file-contents (tree-sitter-langs--hl-query-path sym))
           (goto-char (point-max))
