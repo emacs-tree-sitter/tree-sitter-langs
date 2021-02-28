@@ -28,25 +28,25 @@
 (declare-function magit-get-current-tag "magit-git" (&optional rev with-distance))
 (declare-function magit-rev-parse "magit-git" (&rest args))
 
-(defvar tree-sitter-langs--dir
-  (file-name-directory (locate-library "tree-sitter-langs.el")))
+(defconst tree-sitter-langs--dir
+  (file-name-directory (locate-library "tree-sitter-langs.el"))
+  "The directory where the library `tree-sitter-langs' is located.")
 
-;;; TODO: Make this a function.
-(defvar tree-sitter-langs--bin-dir nil)
-
+;; TODO: Rename this.
 (defcustom tree-sitter-langs-grammar-dir tree-sitter-langs--dir
-  "Tree-sitter root dir.
+  "The root data directory of `tree-sitter-langs'.
 The 'bin' directory under this directory is used to stored grammar
 binaries (either downloaded, or compiled from source).
 
 This should be set before the grammars are downloaded, e.g. before
 `tree-sitter-langs' is loaded."
   :group 'tree-sitter-langs
-  :type 'directory
-  :set (lambda (sym val)
-         (setq tree-sitter-langs--bin-dir
-               (concat (file-name-as-directory val) "bin/"))
-         (set-default sym val)))
+  :type 'directory)
+
+(defun tree-sitter-langs--bin-dir ()
+  "Return the directory to stored grammar binaries.
+This used for both compilation and downloading."
+  (concat (file-name-as-directory tree-sitter-langs-grammar-dir) "bin/"))
 
 ;; ---------------------------------------------------------------------------
 ;;; Utilities.
@@ -250,6 +250,7 @@ from the current state of the grammar repo, without cleanup."
          (sub-path (format "repos/%s" lang-symbol))
          (status (tree-sitter-langs--repo-status lang-symbol))
          (paths (plist-get source :paths))
+         (bin-dir (tree-sitter-langs--bin-dir))
          (tree-sitter-langs--out (tree-sitter-langs--buffer
                                   (format "*tree-sitter-langs-compile %s*" lang-symbol))))
     (let ((default-directory tree-sitter-langs-git-dir))
@@ -276,7 +277,7 @@ from the current state of the grammar repo, without cleanup."
           (tree-sitter-langs--call "tree-sitter" "generate")
           (tree-sitter-langs--call "tree-sitter" "test")))
       ;; Replace underscores with hyphens. Example: c_sharp.
-      (let ((default-directory tree-sitter-langs--bin-dir))
+      (let ((default-directory bin-dir))
         (dolist (file (directory-files default-directory))
           (when (and (string-match "_" file)
                      (cl-some (lambda (s) (string-suffix-p s file))
@@ -289,7 +290,7 @@ from the current state of the grammar repo, without cleanup."
       ;; bundle.
       (when (eq system-type 'darwin)
         ;; This renames existing ".so" files as well.
-        (let ((default-directory tree-sitter-langs--bin-dir))
+        (let ((default-directory bin-dir))
           (dolist (file (directory-files default-directory))
             (when (string-suffix-p ".so" file)
               (let ((new-name (concat (file-name-base file) ".dylib")))
@@ -323,7 +324,7 @@ compile from the current state of the grammar repos, without cleanup."
         (let* ((tar-file (concat (file-name-as-directory
                                   (expand-file-name default-directory))
                                  (tree-sitter-langs--bundle-file) ".gz"))
-               (default-directory tree-sitter-langs--bin-dir)
+               (default-directory (tree-sitter-langs--bin-dir))
                (tree-sitter-langs--out (tree-sitter-langs--buffer "*tree-sitter-langs-create-bundle*"))
                (files (seq-filter (lambda (file)
                                     (when (seq-some (lambda (ext) (string-suffix-p ext file))
@@ -375,10 +376,11 @@ non-nil."
                 (read-string "Bundle version: " tree-sitter-langs--bundle-version)
                 tree-sitter-langs--os
                 nil))
-  (unless (file-directory-p tree-sitter-langs--bin-dir)
-    (make-directory tree-sitter-langs--bin-dir t))
-  (let* ((version (or version tree-sitter-langs--bundle-version))
-         (default-directory tree-sitter-langs--bin-dir)
+  (let* ((bin-dir (tree-sitter-langs--bin-dir))
+         (_ (unless (unless (file-directory-p bin-dir)
+                      (make-directory bin-dir))))
+         (version (or version tree-sitter-langs--bundle-version))
+         (default-directory bin-dir)
          (bundle-file (tree-sitter-langs--bundle-file ".gz" version os))
          (current-version (when (file-exists-p
                                  tree-sitter-langs--bundle-version-file)
@@ -405,8 +407,8 @@ non-nil."
       (unless keep-bundle
         (delete-file bundle-file 'trash))
       (when (and (called-interactively-p 'any)
-                 (y-or-n-p (format "Show installed grammars in %s? " tree-sitter-langs--bin-dir)))
-        (with-current-buffer (find-file tree-sitter-langs--bin-dir)
+                 (y-or-n-p (format "Show installed grammars in %s? " bin-dir)))
+        (with-current-buffer (find-file bin-dir)
           (when (bound-and-true-p dired-omit-mode)
             (dired-omit-mode -1)))))))
 
