@@ -61,7 +61,7 @@ See `tree-sitter-langs-repos'."
       (condition-case nil
           (tree-sitter-require lang-symbol)
         (error
-         (display-warning 'tree-sitter-test
+         (display-warning 'tree-sitter-langs
                           (format "Could not load grammar for `%s', trying to compile it"
                                   lang-symbol))
          (tree-sitter-langs-compile lang-symbol)
@@ -69,7 +69,7 @@ See `tree-sitter-langs-repos'."
     (tree-sitter-langs--copy-query lang-symbol)))
 
 ;;; Add the bundle directory.
-(cl-pushnew tree-sitter-langs--bin-dir
+(cl-pushnew (tree-sitter-langs--bin-dir)
             tree-sitter-load-path)
 
 ;;; Link known major modes to languages in the bundle.

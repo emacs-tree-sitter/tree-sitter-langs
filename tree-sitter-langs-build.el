@@ -1,6 +1,6 @@
 ;;; tree-sitter-langs-build.el --- Building grammar bundle -*- lexical-binding: t; coding: utf-8 -*-
 
-;; Copyright (C) 2020 Tuấn-Anh Nguyễn
+;; Copyright (C) 2021 Tuấn-Anh Nguyễn
 ;;
 ;; Author: Tuấn-Anh Nguyễn <ubolonton@gmail.com>
 ;; SPDX-License-Identifier: MIT
@@ -8,6 +8,9 @@
 ;;; Commentary:
 
 ;; This file contains utilities to obtain and build `tree-sitter' grammars.
+
+;; TODO: Split this into 2 libraries: one for building, which is to be used only
+;; within a git checkout, and another one for downloading.
 
 ;;; Code:
 
@@ -25,63 +28,28 @@
 (declare-function magit-get-current-tag "magit-git" (&optional rev with-distance))
 (declare-function magit-rev-parse "magit-git" (&rest args))
 
-(defconst tree-sitter-langs--suffixes '(".dylib" ".dll" ".so")
-  "List of suffixes for shared libraries that define tree-sitter languages.")
-
 (defconst tree-sitter-langs--dir
-  (file-name-directory (locate-library "tree-sitter-langs.el")))
+  (file-name-directory (locate-library "tree-sitter-langs.el"))
+  "The directory where the library `tree-sitter-langs' is located.")
 
-(defvar tree-sitter-langs--bin-dir nil)
-
+;; TODO: Rename this.
 (defcustom tree-sitter-langs-grammar-dir tree-sitter-langs--dir
-  "Directory to store grammar binaries."
+  "The root data directory of `tree-sitter-langs'.
+The 'bin' directory under this directory is used to stored grammar
+binaries (either downloaded, or compiled from source).
+
+This should be set before the grammars are downloaded, e.g. before
+`tree-sitter-langs' is loaded."
   :group 'tree-sitter-langs
-  :type 'directory
-  :set (lambda (sym val)
-         (setq tree-sitter-langs--bin-dir
-               (concat (file-name-as-directory val) "bin/"))
-         (set-default sym val)))
+  :type 'directory)
 
-(defconst tree-sitter-langs--queries-dir
-  (file-name-as-directory
-   (concat tree-sitter-langs--dir "queries")))
+(defun tree-sitter-langs--bin-dir ()
+  "Return the directory to stored grammar binaries.
+This used for both compilation and downloading."
+  (concat (file-name-as-directory tree-sitter-langs-grammar-dir) "bin/"))
 
-(defconst tree-sitter-langs--bundle-version "0.9.2"
-  "Version of the grammar bundle.
-This should be bumped whenever a language submodule is updated, which should be
-infrequent (grammar-only changes). It is different from the version of
-`tree-sitter-langs', which can change frequently (when queries change).")
-
-(defconst tree-sitter-langs--bundle-version-file "BUNDLE-VERSION")
-
-(defconst tree-sitter-langs--os
-  (pcase system-type
-    ('darwin "macos")
-    ('gnu/linux "linux")
-    ('windows-nt "windows")
-    (_ (error "Unsupported system-type %s" system-type))))
-
-(defun tree-sitter-langs--bundle-file (&optional ext version os)
-  "Return the grammar bundle file's name, with optional EXT.
-If VERSION and OS are not spcified, use the defaults of
-`tree-sitter-langs--bundle-version' and `tree-sitter-langs--os'."
-  (format "tree-sitter-grammars-%s-%s.tar%s"
-          (or os tree-sitter-langs--os)
-          (or version tree-sitter-langs--bundle-version)
-          (or ext "")))
-
-(defun tree-sitter-langs--bundle-url (&optional version os)
-  "Return the URL to download the grammar bundle.
-If VERSION and OS are not specified, use the defaults of
-`tree-sitter-langs--bundle-version' and `tree-sitter-langs--os'."
-  (format "https://github.com/ubolonton/tree-sitter-langs/releases/download/%s/%s"
-          version
-          (tree-sitter-langs--bundle-file ".gz" version os)))
-
-(defconst tree-sitter-langs--repos-dir
-  (file-name-as-directory
-   (concat tree-sitter-langs--dir "repos"))
-  "Directory to store grammar repos, for compilation.")
+;; ---------------------------------------------------------------------------
+;;; Utilities.
 
 (defvar tree-sitter-langs--out nil)
 
@@ -91,32 +59,6 @@ If VERSION and OS are not specified, use the defaults of
   `(with-temp-buffer
      (let* ((tree-sitter-langs--out (current-buffer)))
        ,@body)))
-
-(defconst tree-sitter-langs--langs-with-deps
-  '(cpp typescript)
-  "Languages that depend on another, thus requiring 'npm install'.")
-
-(defun tree-sitter-langs--source (lang-symbol)
-  "Return a plist describing the source of the grammar for LANG-SYMBOL."
-  (let* ((name (symbol-name lang-symbol))
-         (dir (concat tree-sitter-langs--repos-dir name))
-         (sub-path (format "repos/%s" name)))
-    (when (file-directory-p dir)
-      (let ((default-directory tree-sitter-langs--dir))
-        (list
-         :repo (tree-sitter-langs--with-temp-buffer
-                 (tree-sitter-langs--call
-                  "git" "config" "--file" ".gitmodules"
-                  "--get" (format "submodule.%s.url" sub-path))
-                 (goto-char 1)
-                 (buffer-substring-no-properties 1 (line-end-position)))
-         :version (tree-sitter-langs--with-temp-buffer
-                    (tree-sitter-langs--call
-                     "git" "submodule" "status" "--cached" sub-path)
-                    (buffer-substring-no-properties 2 9))
-         :paths (pcase lang-symbol
-                  ('typescript '("typescript" "tsx"))
-                  (_ '(""))))))))
 
 ;;; TODO: Use (maybe make) an async library, with a proper event loop, instead
 ;;; of busy-waiting.
@@ -142,18 +84,99 @@ If BUFFER is nil, `princ' is used to forward its stdout+stderr."
     (unless (= exit-code 0)
       (error "Error calling %s, exit code is %s" command exit-code))))
 
+(defun tree-sitter-langs--buffer (name)
+  "Return a buffer from NAME, as the DESTINATION of `call-process'.
+In batch mode, return nil, so that stdout is used instead."
+  (unless noninteractive
+    (let ((buf (get-buffer-create name)))
+      (pop-to-buffer buf)
+      (delete-region (point-min) (point-max))
+      (redisplay)
+      buf)))
+
+;; ---------------------------------------------------------------------------
+;;; Managing language submodules.
+
+(declare-function straight--repos-dir "straight" (&rest segments))
+
+(defcustom tree-sitter-langs-git-dir
+  (cond
+   ((featurep 'straight) (straight--repos-dir "tree-sitter-langs"))
+   ((string= (expand-file-name (file-name-as-directory tree-sitter-langs--dir))
+             (ignore-errors
+               (expand-file-name
+                (file-name-as-directory
+                 (tree-sitter-langs--with-temp-buffer
+                   (let ((default-directory tree-sitter-langs--dir))
+                     (tree-sitter-langs--call "git" "rev-parse" "--show-toplevel"))
+                   (goto-char 1)
+                   (buffer-substring-no-properties 1 (line-end-position)))))))
+    (file-name-as-directory tree-sitter-langs--dir)))
+  "The git working directory of the repository `tree-sitter-langs'.
+It needs to be set for grammar-building functionalities to work.
+
+If you use `straight.el', this is automatically set."
+  :group 'tree-sitter-langs
+  :type 'directory)
+
+(defun tree-sitter-langs--repos-dir ()
+  "Return the directory to store grammar repos, for compilation."
+  (unless tree-sitter-langs-git-dir
+    (user-error "Grammar-building functionalities require `tree-sitter-langs-git-dir' to be set"))
+  (file-name-as-directory
+   (concat tree-sitter-langs-git-dir "repos")))
+
+(defun tree-sitter-langs--source (lang-symbol)
+  "Return a plist describing the source of the grammar for LANG-SYMBOL."
+  (let* ((default-directory tree-sitter-langs-git-dir)
+         (name (symbol-name lang-symbol))
+         (dir (concat (tree-sitter-langs--repos-dir) name))
+         (sub-path (format "repos/%s" name)))
+    (when (file-directory-p dir)
+      (list
+       :repo (tree-sitter-langs--with-temp-buffer
+               (let ((inhibit-message t))
+                 (tree-sitter-langs--call
+                  "git" "config" "--file" ".gitmodules"
+                  "--get" (format "submodule.%s.url" sub-path)))
+               (goto-char 1)
+               (buffer-substring-no-properties 1 (line-end-position)))
+       :version (tree-sitter-langs--with-temp-buffer
+                  (let ((inhibit-message t))
+                    (tree-sitter-langs--call
+                     "git" "submodule" "status" "--cached" sub-path))
+                  (buffer-substring-no-properties 2 9))
+       :paths (pcase lang-symbol
+                ('typescript '("typescript" "tsx"))
+                (_ '("")))))))
+
+(defun tree-sitter-langs--repo-status (lang-symbol)
+  "Return the git submodule status for LANG-SYMBOL."
+  (tree-sitter-langs--with-temp-buffer
+    (let ((default-directory tree-sitter-langs-git-dir)
+          (inhibit-message t))
+      (tree-sitter-langs--call
+       "git" "submodule" "status" "--" (format "repos/%s" lang-symbol)))
+    (pcase (char-after 1)
+      (?- :uninitialized)
+      (?+ :modified)
+      (?U :conflicts)
+      (?  :synchronized)
+      (unknown-status unknown-status))))
+
 (defun tree-sitter-langs--map-repos (fn)
   "Call FN in each of the language repositories."
-  (thread-last (directory-files tree-sitter-langs--repos-dir)
-    (seq-map (lambda (name)
-               (unless (member name '("." ".."))
-                 (let ((dir (concat tree-sitter-langs--repos-dir name)))
-                  (when (file-directory-p dir)
-                    `(,name . ,dir))))))
-    (seq-filter #'identity)
-    (seq-map (lambda (d)
-               (pcase-let ((`(,name . ,default-directory) d))
-                 (funcall fn name))))))
+  (let ((repos-dir (tree-sitter-langs--repos-dir)))
+    (thread-last (directory-files repos-dir)
+      (seq-map (lambda (name)
+                 (unless (member name '("." ".."))
+                   (let ((dir (concat repos-dir name)))
+                     (when (file-directory-p dir)
+                       `(,name . ,dir))))))
+      (seq-filter #'identity)
+      (seq-map (lambda (d)
+                 (pcase-let ((`(,name . ,default-directory) d))
+                   (funcall fn name)))))))
 
 (defun tree-sitter-langs--update-repos ()
   "Update lang repos' remotes."
@@ -172,15 +195,39 @@ latest commit."
                 (:tags (or (magit-get-current-tag "origin/master")
                            (magit-rev-parse "--short=7" "origin/master"))))))))
 
-(defun tree-sitter-langs--buffer (name)
-  "Return a buffer from NAME, as the DESTINATION of `call-process'.
-In batch mode, return nil, so that stdout is used instead."
-  (unless noninteractive
-    (let ((buf (get-buffer-create name)))
-      (pop-to-buffer buf)
-      (delete-region (point-min) (point-max))
-      (redisplay)
-      buf)))
+;; ---------------------------------------------------------------------------
+;;; Building language grammars.
+
+(defconst tree-sitter-langs--bundle-version "0.9.2"
+  "Version of the grammar bundle.
+This should be bumped whenever a language submodule is updated, which should be
+infrequent (grammar-only changes). It is different from the version of
+`tree-sitter-langs', which can change frequently (when queries change).")
+
+(defconst tree-sitter-langs--bundle-version-file "BUNDLE-VERSION")
+
+(defconst tree-sitter-langs--os
+  (pcase system-type
+    ('darwin "macos")
+    ('gnu/linux "linux")
+    ('windows-nt "windows")
+    (_ (error "Unsupported system-type %s" system-type))))
+
+(defconst tree-sitter-langs--suffixes '(".dylib" ".dll" ".so")
+  "List of suffixes for shared libraries that define tree-sitter languages.")
+
+(defconst tree-sitter-langs--langs-with-deps
+  '(cpp typescript)
+  "Languages that depend on another, thus requiring 'npm install'.")
+
+(defun tree-sitter-langs--bundle-file (&optional ext version os)
+  "Return the grammar bundle file's name, with optional EXT.
+If VERSION and OS are not spcified, use the defaults of
+`tree-sitter-langs--bundle-version' and `tree-sitter-langs--os'."
+  (format "tree-sitter-grammars-%s-%s.tar%s"
+          (or os tree-sitter-langs--os)
+          (or version tree-sitter-langs--bundle-version)
+          (or ext "")))
 
 (defun tree-sitter-langs-compile (lang-symbol &optional clean)
   "Download and compile the grammar for LANG-SYMBOL.
@@ -197,27 +244,30 @@ from the current state of the grammar repo, without cleanup."
   (let* ((source (tree-sitter-langs--source lang-symbol))
          (dir (if source
                   (file-name-as-directory
-                   (concat tree-sitter-langs--repos-dir
+                   (concat (tree-sitter-langs--repos-dir)
                            (symbol-name lang-symbol)))
                 (error "Unknown language `%s'" lang-symbol)))
-         (repo (plist-get source :repo))
+         (sub-path (format "repos/%s" lang-symbol))
+         (status (tree-sitter-langs--repo-status lang-symbol))
          (paths (plist-get source :paths))
-         (version (plist-get source :version))
+         (bin-dir (tree-sitter-langs--bin-dir))
          (tree-sitter-langs--out (tree-sitter-langs--buffer
                                   (format "*tree-sitter-langs-compile %s*" lang-symbol))))
-    (if (file-directory-p dir)
-        (let ((default-directory dir))
-          (tree-sitter-langs--call "git" "remote" "-v" "update"))
-      (progn
-        (tree-sitter-langs--call "git" "clone" "-q" repo dir)
-        (let ((default-directory dir))
-          ;; Use the specified version on first build. This makes CI runs more
-          ;; reproducible.
-          (tree-sitter-langs--call "git" "checkout" version))))
+    (let ((default-directory tree-sitter-langs-git-dir))
+      (pcase status
+        (:uninitialized
+         (tree-sitter-langs--call "git" "submodule" "update" "--init" "--checkout" "--" sub-path))
+        (:modified
+         (when clean
+           (let ((default-directory dir))
+             (tree-sitter-langs--call "git" "stash" "push"))
+           (tree-sitter-langs--call "git" "submodule" "update" "--init" "--checkout" "--force" "--" sub-path)))
+        (:conflicts
+         (error "Unresolved conflicts in %s" dir))
+        (:synchronized nil)
+        (_
+         (error "Weird status from git-submodule '%s'" status))))
     (let ((default-directory dir))
-      (when clean
-        (tree-sitter-langs--call "git" "stash" "push")
-        (tree-sitter-langs--call "git" "checkout" version))
       (when (member lang-symbol tree-sitter-langs--langs-with-deps)
         (tree-sitter-langs--call "npm" "set" "progress=false")
         (tree-sitter-langs--call "npm" "install"))
@@ -227,7 +277,7 @@ from the current state of the grammar repo, without cleanup."
           (tree-sitter-langs--call "tree-sitter" "generate")
           (tree-sitter-langs--call "tree-sitter" "test")))
       ;; Replace underscores with hyphens. Example: c_sharp.
-      (let ((default-directory tree-sitter-langs--bin-dir))
+      (let ((default-directory bin-dir))
         (dolist (file (directory-files default-directory))
           (when (and (string-match "_" file)
                      (cl-some (lambda (s) (string-suffix-p s file))
@@ -240,7 +290,7 @@ from the current state of the grammar repo, without cleanup."
       ;; bundle.
       (when (eq system-type 'darwin)
         ;; This renames existing ".so" files as well.
-        (let ((default-directory tree-sitter-langs--bin-dir))
+        (let ((default-directory bin-dir))
           (dolist (file (directory-files default-directory))
             (when (string-suffix-p ".so" file)
               (let ((new-name (concat (file-name-base file) ".dylib")))
@@ -253,7 +303,7 @@ from the current state of the grammar repo, without cleanup."
 
 (defun tree-sitter-langs-create-bundle (&optional clean)
   "Create a bundle of language grammars.
-The bundle includes all languages under `tree-sitter-langs--repos-dir'.
+The bundle includes all languages tracked in git submodules.
 
 If the optional arg CLEAN is non-nil, compile from the revisions recorded in
 this project (through git submodules), and clean up afterwards. Otherwise,
@@ -274,7 +324,7 @@ compile from the current state of the grammar repos, without cleanup."
         (let* ((tar-file (concat (file-name-as-directory
                                   (expand-file-name default-directory))
                                  (tree-sitter-langs--bundle-file) ".gz"))
-               (default-directory tree-sitter-langs--bin-dir)
+               (default-directory (tree-sitter-langs--bin-dir))
                (tree-sitter-langs--out (tree-sitter-langs--buffer "*tree-sitter-langs-create-bundle*"))
                (files (seq-filter (lambda (file)
                                     (when (seq-some (lambda (ext) (string-suffix-p ext file))
@@ -292,8 +342,23 @@ compile from the current state of the grammar repos, without cleanup."
               (insert tree-sitter-langs--bundle-version))))
       (when errors
         (message "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
-        (display-warning 'tree-sitter
+        (display-warning 'tree-sitter-langs
                          (format "Could not compile grammars:\n%s" (pp-to-string errors)))))))
+
+;; ---------------------------------------------------------------------------
+;;; Download and installation.
+
+(defconst tree-sitter-langs--queries-dir
+  (file-name-as-directory
+   (concat tree-sitter-langs--dir "queries")))
+
+(defun tree-sitter-langs--bundle-url (&optional version os)
+  "Return the URL to download the grammar bundle.
+If VERSION and OS are not specified, use the defaults of
+`tree-sitter-langs--bundle-version' and `tree-sitter-langs--os'."
+  (format "https://github.com/ubolonton/tree-sitter-langs/releases/download/%s/%s"
+          version
+          (tree-sitter-langs--bundle-file ".gz" version os)))
 
 ;;;###autoload
 (defun tree-sitter-langs-install-grammars (&optional skip-if-installed version os keep-bundle)
@@ -311,10 +376,11 @@ non-nil."
                 (read-string "Bundle version: " tree-sitter-langs--bundle-version)
                 tree-sitter-langs--os
                 nil))
-  (unless (file-directory-p tree-sitter-langs--bin-dir)
-    (make-directory tree-sitter-langs--bin-dir t))
-  (let* ((version (or version tree-sitter-langs--bundle-version))
-         (default-directory tree-sitter-langs--bin-dir)
+  (let* ((bin-dir (tree-sitter-langs--bin-dir))
+         (_ (unless (unless (file-directory-p bin-dir)
+                      (make-directory bin-dir))))
+         (version (or version tree-sitter-langs--bundle-version))
+         (default-directory bin-dir)
          (bundle-file (tree-sitter-langs--bundle-file ".gz" version os))
          (current-version (when (file-exists-p
                                  tree-sitter-langs--bundle-version-file)
@@ -341,8 +407,8 @@ non-nil."
       (unless keep-bundle
         (delete-file bundle-file 'trash))
       (when (and (called-interactively-p 'any)
-                 (y-or-n-p (format "Show installed grammars in %s? " tree-sitter-langs--bin-dir)))
-        (with-current-buffer (find-file tree-sitter-langs--bin-dir)
+                 (y-or-n-p (format "Show installed grammars in %s? " bin-dir)))
+        (with-current-buffer (find-file bin-dir)
           (when (bound-and-true-p dired-omit-mode)
             (dired-omit-mode -1)))))))
 
@@ -352,7 +418,7 @@ This assumes the repo has already been set up, for example by
 `tree-sitter-langs-compile'.
 
 If the optional arg FORCE is non-nil, any existing file will be overwritten."
-  (let ((src (thread-first tree-sitter-langs--repos-dir
+  (let ((src (thread-first (tree-sitter-langs--repos-dir)
                (concat (symbol-name lang-symbol))
                file-name-as-directory (concat "queries")
                file-name-as-directory (concat "highlights.scm"))))

@@ -1,98 +1,153 @@
 # `update = none` makes `git submodule update` a no-op. This prevents wasteful work on e.g. MELPA.
+# Checkouts can be done explicitly with `git submodule update --checkout`.
+
+# `ignore = dirty` makes `git status` ignore untracked files and uncommited changes in submodules.
+# This reduces noises when working on the grammars.
+
+# `branch =` allows using `git submodule update --checkout --remote` to update to the latest
+# revision of a remote branch.
 
 [submodule "repos/agda"]
 	path = repos/agda
 	url = https://github.com/tree-sitter/tree-sitter-agda
 	update = none
+    ignore = dirty
+    branch = master
 [submodule "repos/bash"]
 	path = repos/bash
 	url = https://github.com/tree-sitter/tree-sitter-bash
 	update = none
+    ignore = dirty
+    branch = master
 [submodule "repos/c"]
 	path = repos/c
 	url = https://github.com/tree-sitter/tree-sitter-c
 	update = none
+    ignore = dirty
+    branch = master
 [submodule "repos/c-sharp"]
 	path = repos/c-sharp
 	url = https://github.com/tree-sitter/tree-sitter-c-sharp
 	update = none
+    ignore = dirty
+    branch = master
 [submodule "repos/cpp"]
 	path = repos/cpp
 	url = https://github.com/tree-sitter/tree-sitter-cpp
 	update = none
+    ignore = dirty
+    branch = master
 [submodule "repos/css"]
 	path = repos/css
 	url = https://github.com/tree-sitter/tree-sitter-css
 	update = none
+    ignore = dirty
+    branch = master
 [submodule "repos/elm"]
 	path = repos/elm
 	url = https://github.com/razzeee/tree-sitter-elm
 	update = none
+    ignore = dirty
+    branch = master
 [submodule "repos/fluent"]
 	path = repos/fluent
 	url = https://github.com/tree-sitter/tree-sitter-fluent
 	update = none
+    ignore = dirty
+    branch = master
 [submodule "repos/go"]
 	path = repos/go
 	url = https://github.com/tree-sitter/tree-sitter-go
 	update = none
+    ignore = dirty
+    branch = master
 [submodule "repos/html"]
 	path = repos/html
 	url = https://github.com/tree-sitter/tree-sitter-html
 	update = none
+    ignore = dirty
+    branch = master
 [submodule "repos/janet-simple"]
 	path = repos/janet-simple
 	url = https://codeberg.org/sogaiu/tree-sitter-janet-simple
 	update = none
+    ignore = dirty
+    branch = master
 [submodule "repos/java"]
 	path = repos/java
 	url = https://github.com/tree-sitter/tree-sitter-java
 	update = none
+    ignore = dirty
+    branch = master
 [submodule "repos/javascript"]
 	path = repos/javascript
 	url = https://github.com/tree-sitter/tree-sitter-javascript
 	update = none
+    ignore = dirty
+    branch = master
 [submodule "repos/jsdoc"]
 	path = repos/jsdoc
 	url = https://github.com/tree-sitter/tree-sitter-jsdoc
 	update = none
+    ignore = dirty
+    branch = master
 [submodule "repos/json"]
 	path = repos/json
 	url = https://github.com/tree-sitter/tree-sitter-json
 	update = none
+    ignore = dirty
+    branch = master
 [submodule "repos/julia"]
 	path = repos/julia
 	url = https://github.com/tree-sitter/tree-sitter-julia
 	update = none
+    ignore = dirty
+    branch = master
 [submodule "repos/ocaml"]
 	path = repos/ocaml
 	url = https://github.com/tree-sitter/tree-sitter-ocaml
 	update = none
+    ignore = dirty
+    branch = master
 [submodule "repos/php"]
 	path = repos/php
 	url = https://github.com/tree-sitter/tree-sitter-php
 	update = none
+    ignore = dirty
+    branch = master
 [submodule "repos/python"]
 	path = repos/python
 	url = https://github.com/tree-sitter/tree-sitter-python
 	update = none
+    ignore = dirty
+    branch = master
 [submodule "repos/ruby"]
 	path = repos/ruby
 	url = https://github.com/tree-sitter/tree-sitter-ruby
 	update = none
+    ignore = dirty
+    branch = master
 [submodule "repos/rust"]
 	path = repos/rust
 	url = https://github.com/tree-sitter/tree-sitter-rust
 	update = none
+    ignore = dirty
+    branch = master
 [submodule "repos/scala"]
 	path = repos/scala
 	url = https://github.com/tree-sitter/tree-sitter-scala
 	update = none
+    ignore = dirty
+    branch = master
 [submodule "repos/swift"]
 	path = repos/swift
 	url = https://github.com/tree-sitter/tree-sitter-swift
 	update = none
+    ignore = dirty
+    branch = master
 [submodule "repos/typescript"]
 	path = repos/typescript
 	url = https://github.com/tree-sitter/tree-sitter-typescript
 	update = none
+    ignore = dirty
+    branch = master
