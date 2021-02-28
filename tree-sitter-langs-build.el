@@ -100,22 +100,24 @@ In batch mode, return nil, so that stdout is used instead."
 (declare-function straight--repos-dir "straight" (&rest segments))
 
 (defcustom tree-sitter-langs-git-dir
-  (cond
-   ((featurep 'straight) (straight--repos-dir "tree-sitter-langs"))
-   ((string= (expand-file-name (file-name-as-directory tree-sitter-langs--dir))
-             (ignore-errors
-               (expand-file-name
-                (file-name-as-directory
-                 (tree-sitter-langs--with-temp-buffer
-                   (let ((default-directory tree-sitter-langs--dir))
-                     (tree-sitter-langs--call "git" "rev-parse" "--show-toplevel"))
-                   (goto-char 1)
-                   (buffer-substring-no-properties 1 (line-end-position)))))))
-    (file-name-as-directory tree-sitter-langs--dir)))
+  (if (featurep 'straight)
+      (straight--repos-dir "tree-sitter-langs")
+    (let ((truename (file-truename (file-name-as-directory tree-sitter-langs--dir)))
+          (toplevel (with-demoted-errors "Failed to get git working directory for `tree-sitter-langs': %s"
+                      (file-truename
+                       (file-name-as-directory
+                        (tree-sitter-langs--with-temp-buffer
+                          (let ((default-directory tree-sitter-langs--dir))
+                            (tree-sitter-langs--call "git" "rev-parse" "--show-toplevel"))
+                          (goto-char 1)
+                          (buffer-substring-no-properties 1 (line-end-position))))))))
+      (when (string= truename toplevel)
+        (file-name-as-directory tree-sitter-langs--dir))))
   "The git working directory of the repository `tree-sitter-langs'.
 It needs to be set for grammar-building functionalities to work.
 
-If you use `straight.el', this is automatically set."
+This is automatically set if you are using `straight.el', or are building from a
+git checkout."
   :group 'tree-sitter-langs
   :type 'directory)
 
