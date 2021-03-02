@@ -102,17 +102,21 @@ In batch mode, return nil, so that stdout is used instead."
 (defcustom tree-sitter-langs-git-dir
   (if (featurep 'straight)
       (straight--repos-dir "tree-sitter-langs")
-    (let ((truename (file-truename (file-name-as-directory tree-sitter-langs--dir)))
-          (toplevel (with-demoted-errors "Failed to get git working directory for `tree-sitter-langs': %s"
-                      (file-truename
-                       (file-name-as-directory
-                        (tree-sitter-langs--with-temp-buffer
-                          (let ((default-directory tree-sitter-langs--dir))
-                            (tree-sitter-langs--call "git" "rev-parse" "--show-toplevel"))
-                          (goto-char 1)
-                          (buffer-substring-no-properties 1 (line-end-position))))))))
-      (when (string= truename toplevel)
-        (file-name-as-directory tree-sitter-langs--dir))))
+    (let* ((inhibit-message t)
+           (truename (file-truename (file-name-as-directory tree-sitter-langs--dir)))
+           (toplevel (ignore-errors
+                       (file-truename
+                        (file-name-as-directory
+                         (tree-sitter-langs--with-temp-buffer
+                           (let ((default-directory tree-sitter-langs--dir))
+                             (tree-sitter-langs--call "git" "rev-parse" "--show-toplevel"))
+                           (goto-char 1)
+                           (buffer-substring-no-properties 1 (line-end-position))))))))
+      (if (string= truename toplevel)
+          (file-name-as-directory tree-sitter-langs--dir)
+        (message "The directory %s doesn't seem to be a git working dir. Grammar-building functions will not work."
+                 tree-sitter-langs--dir)
+        nil)))
   "The git working directory of the repository `tree-sitter-langs'.
 It needs to be set for grammar-building functionalities to work.
 
