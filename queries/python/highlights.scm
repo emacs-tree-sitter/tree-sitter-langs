@@ -170,7 +170,7 @@
 
 (comment) @comment
 ((string) @doc
- (.match? @doc "^\"\"\""))
+ (.match? @doc "^(\"\"\"|r\"\"\")"))
 (string) @string
 
 (decorator) @function.special
