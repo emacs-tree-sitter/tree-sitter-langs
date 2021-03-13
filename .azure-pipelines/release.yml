@@ -39,6 +39,8 @@ jobs:
   - template: .azure-pipelines/steps/setup-emacs.yml@emacs-module-rs
   - template: .azure-pipelines/steps/setup-cask.yml@emacs-module-rs
   - template: .azure-pipelines/steps/setup-tree-sitter-cli.yml@emacs-tree-sitter
+    parameters:
+      version: 0.19.3
   - template: steps/grammar-bundle/-create.yml
   - template: steps/grammar-bundle/-save.yml
 
