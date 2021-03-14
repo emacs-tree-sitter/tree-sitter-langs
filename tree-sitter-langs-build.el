@@ -154,6 +154,7 @@ git checkout."
                   (buffer-substring-no-properties 2 9))
        :paths (pcase lang-symbol
                 ('typescript '("typescript" "tsx"))
+                ('ocaml '("ocaml" "interface"))
                 (_ '("")))))))
 
 (defun tree-sitter-langs--repo-status (lang-symbol)
