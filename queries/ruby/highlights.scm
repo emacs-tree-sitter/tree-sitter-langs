@@ -40,11 +40,7 @@
 
 (call
   method: (identifier) @function.method)
-(method_call
-  method: (identifier) @function.method)
 (call
-  method: (constant) @function.method)
-(method_call
   method: (constant) @function.method)
 
 ; Function definitions
@@ -94,7 +90,7 @@
 (subshell) @string
 (heredoc_beginning) @string
 (heredoc_body) @string
-(symbol) @string.special.symbol
+(delimited_symbol) @string.special.symbol
 (regex) @string.special.regex
 (escape_sequence) @escape
 (integer) @number
