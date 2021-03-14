@@ -276,7 +276,8 @@ from the current state of the grammar repo, without cleanup."
     (let ((default-directory dir))
       (when (member lang-symbol tree-sitter-langs--langs-with-deps)
         (tree-sitter-langs--call "npm" "set" "progress=false")
-        (tree-sitter-langs--call "npm" "install"))
+        (with-demoted-errors "Failed to run 'npm install': %s"
+          (tree-sitter-langs--call "npm" "install")))
       ;; A repo can have multiple grammars (e.g. typescript + tsx).
       (dolist (path paths)
         (let ((default-directory (file-name-as-directory (concat dir path))))

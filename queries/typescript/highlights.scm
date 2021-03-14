@@ -60,4 +60,4 @@
  "public"
  "type"
  "!"
- (readonly)] @keyword
+ "readonly"] @keyword
