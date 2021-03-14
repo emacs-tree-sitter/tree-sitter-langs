@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+## 0.10.0 - 2021-03-14
+- Updated most language grammars to the latest version.
+- Upgraded `tree-sitter` CLI version to 0.19.3.
+
 ## 0.9.2 - 2021-02-12
 - Added `janet-simple` grammars.
 - Added minor updates to some other grammars.

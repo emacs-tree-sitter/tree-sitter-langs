@@ -5,8 +5,8 @@
 ;; Author: Tuấn-Anh Nguyễn <ubolonton@gmail.com>
 ;; Keywords: languages tools parsers tree-sitter
 ;; Homepage: https://github.com/ubolonton/tree-sitter-langs
-;; Version: 0.9.2
-;; Package-Requires: ((emacs "25.1") (tree-sitter "0.12.2"))
+;; Version: 0.10.0
+;; Package-Requires: ((emacs "25.1") (tree-sitter "0.15.0"))
 ;; SPDX-License-Identifier: MIT
 
 ;;; Commentary:
@@ -39,6 +39,15 @@
 
 (eval-when-compile
   (require 'pcase))
+
+;; Not everyone uses a package manager that properly checks dependencies. We check it ourselves, and
+;; ask users to upgrade `tree-sitter' if necessary. Otherwise, they would get `tsc-lang-abi-too-new'
+;; errors, without an actionable message.
+(let ((min-version "0.15.0"))
+  (when (version< tsc-dyn--version min-version)
+    (display-warning 'tree-sitter-langs
+                     (format "Please upgrade `tree-sitter'. This bundle requires version %s or later." min-version)
+                     :emergency)))
 
 (defgroup tree-sitter-langs nil
   "Grammar bundle for `tree-sitter'."
