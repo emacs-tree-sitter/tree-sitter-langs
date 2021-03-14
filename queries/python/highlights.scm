@@ -47,8 +47,12 @@
              (list_splat (identifier) @variable.parameter)
              (dictionary_splat (identifier) @variable.parameter)])
 
-(for_statement (variables (identifier) @variable))
-(for_in_clause (variables (identifier) @variable))
+(for_statement
+ left: [(identifier) @variable
+        (tuple_pattern (identifier) @variable)])
+(for_in_clause
+ left: [(identifier) @variable
+        (tuple_pattern (identifier) @variable)])
 
 (named_expression name: (identifier) @variable)
 
