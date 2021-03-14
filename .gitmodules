@@ -48,7 +48,7 @@
 	url = https://github.com/razzeee/tree-sitter-elm
 	update = none
     ignore = dirty
-    branch = master
+    branch = main
 [submodule "repos/fluent"]
 	path = repos/fluent
 	url = https://github.com/tree-sitter/tree-sitter-fluent
