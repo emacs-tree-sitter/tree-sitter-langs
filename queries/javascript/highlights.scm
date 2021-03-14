@@ -58,8 +58,10 @@
 (for_in_statement
  left: (identifier) @variable)
 
-(formal_parameters
- (identifier) @variable.parameter)
+;; FIX: This is disabled because typescript grammar redefines _formal_parameter, but its highlighting
+;; patterns reuse this file.
+;; (formal_parameters
+;;  (identifier) @variable.parameter)
 (arrow_function
  parameter: (identifier) @variable.parameter)
 
