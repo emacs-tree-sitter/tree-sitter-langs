@@ -187,7 +187,7 @@ git checkout."
 (defun tree-sitter-langs--update-repos ()
   "Update lang repos' remotes."
   (tree-sitter-langs--map-repos
-   (lambda (_) (tree-sitter-langs--call "pwd"))))
+   (lambda (_) (tree-sitter-langs--call "git" "remote" "update"))))
 
 (defun tree-sitter-langs--get-latest (type)
   "Return the latest tags/commits of the language repositories.
