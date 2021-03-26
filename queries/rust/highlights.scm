@@ -79,7 +79,7 @@
 ;;; Comments and docstrings.
 
 ((line_comment) @doc
- (.match? @doc "^///"))
+ (.match? @doc "^//[!/]"))
 [(line_comment)
  (block_comment)] @comment
 
@@ -97,11 +97,24 @@
 ;;; Variable bindings
 
 (let_declaration pattern: [(identifier) @variable
-                           (_ (identifier) @variable)])
+                           (_ (identifier) @variable)
+                           (struct_pattern
+                            (field_pattern
+                             (shorthand_field_identifier) @variable))])
 (if_let_expression pattern: [(identifier) @variable
-                             (_ (identifier) @variable)])
+                             (_ (identifier) @variable)
+                             (struct_pattern
+                              (field_pattern
+                               (shorthand_field_identifier) @variable))])
 (for_expression pattern: [(identifier) @variable
-                          (_ (identifier) @variable)])
+                          (_ (identifier) @variable)
+                          (struct_pattern
+                            (field_pattern
+                             (shorthand_field_identifier) @variable))])
+
+(assignment_expression
+ left: [(identifier) @variable
+        (_ (identifier) @variable)])
 
 (parameter (identifier) @variable.parameter)
 
@@ -178,7 +191,8 @@
  "==" "!=" "<=" ">="
  "<<" ">>"
  "+" "-" "*" "/" "%"
- "'" "?" ] @operator
+ "="
+ "'" "?"] @operator
 
 ;; These are not always operators (e.g. can be type/closure param brackets).
 (binary_expression
