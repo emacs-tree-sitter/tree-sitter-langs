@@ -151,3 +151,8 @@
 	update = none
     ignore = dirty
     branch = master
+[submodule "repos/pgn"]
+	path = repos/pgn
+	url = https://github.com/rolandwalker/tree-sitter-pgn.git
+	ignore = dirty
+	branch = master
