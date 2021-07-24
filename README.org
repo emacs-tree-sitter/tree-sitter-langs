@@ -5,6 +5,7 @@ This is a convenient language bundle for the Emacs package [[https://github.com/
 For each supported language, this package provides:
 1. Pre-compiled grammar binaries for 3 major platforms: macOS, Linux and Windows, on x86_64. In the future, ~tree-sitter-langs~ may provide tooling for major modes to do this on their own.
 2. An optional ~highlights.scm~ file that provides highlighting patterns. This is mainly intended for major modes that are not aware of ~tree-sitter~. A language major mode that wants to use ~tree-sitter~ for syntax highlighting should instead provide the query patterns on its own, using the mechanisms defined by [[https://ubolonton.github.io/emacs-tree-sitter/syntax-highlighting/interface-for-modes/][tree-sitter-hl]].
+3. Optional query patterns for other minor modes that provide high-level functionalities on top of ~tree-sitter~, such as code folding, evil text objects... As with highlighting patterns, major modes that are directly aware of ~tree-sitter~ should provide the query patterns on their own.
 
 ** Building grammars from source
 It's more convenient to work with this repository as a submodule of [[https://github.com/ubolonton/tree-sitter-langs][emacs-tree-sitter]]. However, if you want to skip that, below are the steps to build grammars from source using only this repository.
