@@ -99,6 +99,7 @@ See `tree-sitter-langs-repos'."
                 (elm-mode        . elm)
                 (go-mode         . go)
                 (html-mode       . html)
+                (mhtml-mode      . html)
                 (java-mode       . java)
                 (javascript-mode . javascript)
                 (js-mode         . javascript)
