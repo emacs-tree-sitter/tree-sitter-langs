@@ -8,7 +8,7 @@ For each supported language, this package provides:
 3. Optional query patterns for other minor modes that provide high-level functionalities on top of ~tree-sitter~, such as code folding, evil text objects... As with highlighting patterns, major modes that are directly aware of ~tree-sitter~ should provide the query patterns on their own.
 
 ** Building grammars from source
-It's more convenient to work with this repository as a submodule of [[https://github.com/ubolonton/tree-sitter-langs][emacs-tree-sitter]]. However, if you want to skip that, below are the steps to build grammars from source using only this repository.
+It's more convenient to work with this repository as a submodule of [[https://github.com/ubolonton/emacs-tree-sitter#building-grammars-from-source][emacs-tree-sitter]]. However, if you want to skip that, below are the steps to build grammars from source using only this repository.
 
 *** Tools and dependencies
 - Install [[https://cask.readthedocs.io][cask]].
