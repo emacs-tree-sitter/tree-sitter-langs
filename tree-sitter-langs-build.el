@@ -396,7 +396,7 @@ non-nil."
                               (let ((coding-system-for-read 'utf-8))
                                 (insert-file-contents
                                  tree-sitter-langs--bundle-version-file)
-                                (buffer-string))))))
+                                (string-trim (buffer-string)))))))
     (cl-block nil
       (if (string= version current-version)
           (if skip-if-installed
