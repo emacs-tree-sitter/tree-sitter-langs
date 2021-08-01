@@ -31,8 +31,8 @@ jobs:
         IMAGE_NAME: 'macos-10.14'
         EVM_EMACS: emacs-27.1
         BUNDLE_TARGET: macos
-      ubuntu-16.04-emacs-27.1:
-        IMAGE_NAME: 'ubuntu-16.04'
+      ubuntu-18.04-emacs-27.1:
+        IMAGE_NAME: 'ubuntu-18.04'
         EVM_EMACS: emacs-27.1
         BUNDLE_TARGET: linux
   steps:
