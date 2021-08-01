@@ -3,6 +3,7 @@
 trigger:
 - master
 - ci
+- grammars
 
 pr:
 - master
