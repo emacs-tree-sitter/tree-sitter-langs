@@ -350,8 +350,7 @@ compile from the current state of the grammar repos, without cleanup."
               (insert tree-sitter-langs--bundle-version))))
       (when errors
         (message "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
-        (display-warning 'tree-sitter-langs
-                         (format "Could not compile grammars:\n%s" (pp-to-string errors)))))))
+        (error "Could not compile grammars:\n%s" (pp-to-string errors))))))
 
 ;; ---------------------------------------------------------------------------
 ;;; Download and installation.
