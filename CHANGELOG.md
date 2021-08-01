@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+## 0.11.0 - 2021-08-01
+- Added `pgn` grammar (chess's Portable Game Notation).
+
 ## 0.10.0 - 2021-03-14
 - Updated most language grammars to the latest version.
 - Upgraded `tree-sitter` CLI version to 0.19.3.
