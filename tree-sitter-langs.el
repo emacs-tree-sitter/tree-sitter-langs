@@ -111,6 +111,7 @@ See `tree-sitter-langs-repos'."
                 (ocaml-mode      . ocaml)
                 (php-mode        . php)
                 (python-mode     . python)
+                (pygn-mode       . pgn)
                 (rjsx-mode       . javascript)
                 (ruby-mode       . ruby)
                 (rust-mode       . rust)
