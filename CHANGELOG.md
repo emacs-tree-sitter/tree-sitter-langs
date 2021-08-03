@@ -1,8 +1,9 @@
 # Changelog
 
 ## Unreleased
+- Made Python variable highlighting for robust and consistent.
 
-## 0.11.0 - 2021-08-01
+## 0.10.1 - 2021-08-01
 - Added `pgn` grammar (chess's Portable Game Notation).
 
 ## 0.10.0 - 2021-03-14
