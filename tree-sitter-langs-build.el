@@ -80,7 +80,11 @@ If BUFFER is nil, `princ' is used to forward its stdout+stderr."
                       (while (not (memq (process-status proc)
                                         '(exit failed signal)))
                         (sleep-for 0.1))
-                      (process-exit-status proc))))
+                      (process-exit-status proc)))
+         ;; Flush buffered output. Not doing this caused
+         ;; `tree-sitter-langs-git-dir' to be set incorrectly, and
+         ;; `tree-sitter-langs-create-bundle's output to be unordered.
+         (_ (accept-process-output proc)))
     (unless (= exit-code 0)
       (error "Error calling %s, exit code is %s" command exit-code))))
 
