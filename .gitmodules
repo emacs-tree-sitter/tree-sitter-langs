@@ -156,3 +156,6 @@
 	url = https://github.com/rolandwalker/tree-sitter-pgn.git
 	ignore = dirty
 	branch = master
+[submodule "repos/hcl"]
+	path = repos/hcl
+	url = https://github.com/mitchellh/tree-sitter-hcl.git
