@@ -45,3 +45,4 @@ jobs:
     parameters:
       version: 0.19.3
   - template: steps/grammar-bundle/-create.yml
+  - template: steps/grammar-bundle/-test.yml

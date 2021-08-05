@@ -43,6 +43,7 @@ jobs:
       version: 0.19.3
   - template: steps/grammar-bundle/-create.yml
   - template: steps/grammar-bundle/-save.yml
+  - template: steps/grammar-bundle/-test.yml
 
 - job: Publish
   dependsOn: Build
