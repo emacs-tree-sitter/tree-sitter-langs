@@ -1,7 +1,10 @@
 # Changelog
 
 ## Unreleased
+
+## 0.10.2 - 2021-08-06
 - Made Python variable highlighting for robust and consistent.
+- Added `hcl` grammar and hl query patterns.
 
 ## 0.10.1 - 2021-08-01
 - Added `pgn` grammar (chess's Portable Game Notation).
