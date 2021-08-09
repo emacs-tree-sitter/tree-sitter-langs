@@ -84,12 +84,7 @@
 
 ; Literals
 
-(string) @string
-(bare_string) @string
 (bare_symbol) @string.special.symbol
-(subshell) @string
-(heredoc_beginning) @string
-(heredoc_body) @string
 (delimited_symbol) @string.special.symbol
 (regex) @string.special.regex
 (escape_sequence) @escape
@@ -99,10 +94,6 @@
 (nil) @constant.builtin
 (true) @constant.builtin
 (false) @constant.builtin
-
-(interpolation
-  "#{" @punctuation.special
-  "}" @punctuation.special) @embedded
 
 (comment) @comment
 
@@ -121,6 +112,24 @@
 "[" @punctuation.bracket
 "]" @punctuation.bracket
 "{" @punctuation.bracket
-"}" @punctuation.bracket
 "%w(" @punctuation.bracket
 "%i(" @punctuation.bracket
+
+;; "Contexts" may have internal highlighting -> low priority.
+
+[(string_content)
+ (heredoc_content)
+ "\""] @string
+
+(interpolation
+ "#{" @punctuation.special
+ (_) @embedded
+ "}" @punctuation.special)
+
+"}" @punctuation.bracket
+
+[(string)
+ (bare_string)
+ (subshell)
+ (heredoc_beginning)
+ (heredoc_body)] @string
