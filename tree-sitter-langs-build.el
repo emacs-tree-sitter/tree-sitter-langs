@@ -367,7 +367,7 @@ compile from the current state of the grammar repos, without cleanup."
   "Return the URL to download the grammar bundle.
 If VERSION and OS are not specified, use the defaults of
 `tree-sitter-langs--bundle-version' and `tree-sitter-langs--os'."
-  (format "https://github.com/ubolonton/tree-sitter-langs/releases/download/%s/%s"
+  (format "https://github.com/emacs-tree-sitter/tree-sitter-langs/releases/download/%s/%s"
           version
           (tree-sitter-langs--bundle-file ".gz" version os)))
 
