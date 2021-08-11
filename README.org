@@ -1,4 +1,10 @@
-#+TITLE: tree-sitter-langs
+#+TITLE: Tree-sitter Language Bundle for Emacs
+
+#+BEGIN_HTML
+<a href="https://dev.azure.com/emacs-tree-sitter/tree-sitter-langs/_build/latest?definitionId=2&branchName=master" rel="nofollow">
+  <img src="https://dev.azure.com/emacs-tree-sitter/tree-sitter-langs/_apis/build/status/ci?branchName=master&label=build&api-version=6.0-preview.1" alt="Build Status" style="max-width:100%;">
+</a>
+#+END_HTML
 
 This is a convenient language bundle for the Emacs package [[https://github.com/emacs-tree-sitter/elisp-tree-sitter][tree-sitter]]. It serves as an interim distribution mechanism, until ~tree-sitter~ is widespread enough for language-specific major modes to incorporate its functionalities.
 
