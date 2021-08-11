@@ -15,11 +15,11 @@ resources:
     name: ubolonton/emacs-module-rs
     ref: azure-pipelines
     endpoint: ubolonton
-  - repository: emacs-tree-sitter
+  - repository: elisp-tree-sitter
     type: github
-    name: ubolonton/emacs-tree-sitter
+    name: emacs-tree-sitter/elisp-tree-sitter
     ref: azure-pipelines
-    endpoint: ubolonton
+    endpoint: emacs-tree-sitter
 
 jobs:
 - job: Build

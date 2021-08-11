@@ -6,7 +6,7 @@ steps:
 - task: GitHubRelease@0
   inputs:
     gitHubConnection: ${{ parameters.endpoint }}
-    repositoryName: ubolonton/tree-sitter-langs
+    repositoryName: emacs-tree-sitter/tree-sitter-langs
     isDraft: true
     assetUploadMode: replace
     assets: |

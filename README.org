@@ -1,6 +1,6 @@
 #+TITLE: tree-sitter-langs
 
-This is a convenient language bundle for the Emacs package [[https://github.com/ubolonton/emacs-tree-sitter][tree-sitter]]. It serves as an interim distribution mechanism, until ~tree-sitter~ is widespread enough for language-specific major modes to incorporate its functionalities.
+This is a convenient language bundle for the Emacs package [[https://github.com/emacs-tree-sitter/elisp-tree-sitter][tree-sitter]]. It serves as an interim distribution mechanism, until ~tree-sitter~ is widespread enough for language-specific major modes to incorporate its functionalities.
 
 For each supported language, this package provides:
 1. Pre-compiled grammar binaries for 3 major platforms: macOS, Linux and Windows, on x86_64. In the future, ~tree-sitter-langs~ may provide tooling for major modes to do this on their own.
@@ -8,7 +8,7 @@ For each supported language, this package provides:
 3. Optional query patterns for other minor modes that provide high-level functionalities on top of ~tree-sitter~, such as code folding, evil text objects... As with highlighting patterns, major modes that are directly aware of ~tree-sitter~ should provide the query patterns on their own.
 
 ** Building grammars from source
-It's more convenient to work with this repository as a submodule of [[https://github.com/ubolonton/emacs-tree-sitter#building-grammars-from-source][emacs-tree-sitter]]. However, if you want to skip that, below are the steps to build grammars from source using only this repository.
+It's more convenient to work with this repository as a submodule of [[https://github.com/emacs-tree-sitter/elisp-tree-sitter#building-grammars-from-source][emacs-tree-sitter]]. However, if you want to skip that, below are the steps to build grammars from source using only this repository.
 
 *** Tools and dependencies
 - Install [[https://cask.readthedocs.io][cask]].
@@ -16,7 +16,7 @@ It's more convenient to work with this repository as a submodule of [[https://gi
 - Install [[https://tree-sitter.github.io/tree-sitter/creating-parsers#installation][tree-sitter CLI tool]] (if you don't use NodeJS, you can download the binary directly from [[https://github.com/tree-sitter/tree-sitter/releases][GitHub]]).
 - Clone this repository and install its dependencies.
 #+begin_src bash
-  git clone https://github.com/ubolonton/tree-sitter-langs
+  git clone https://github.com/emacs-tree-sitter/tree-sitter-langs
   cd tree-sitter-langs
   cask install
 #+end_src
