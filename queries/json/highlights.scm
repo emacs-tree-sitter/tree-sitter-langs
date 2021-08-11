@@ -1,9 +1,13 @@
+[(null) (true) (false)] @constant
+
 (pair
+ ;; @constant is better, but we stick to json-mode's conventions.
   key: (_) @keyword)
 
-(string) @string
+(number) @number
 
-(object
-  "{" @escape
-  (_)
-  "}" @escape)
+["{" "}" "[" "]"] @punctuation.bracket
+
+(escape_sequence) @escape
+
+(string) @string
