@@ -153,6 +153,8 @@
 
 (escape_sequence) @escape
 
+"\"" @string
+
 (interpolation
  "{" @punctuation.special
  (_) @embedded
