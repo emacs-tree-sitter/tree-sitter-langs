@@ -12,21 +12,16 @@ It's more convenient to work with this repository as a submodule of [[https://gi
 
 *** Tools and dependencies
 - Install [[https://cask.readthedocs.io][cask]].
-- Install ~npm~. (Some grammars depend on another npm-packaged grammar. For example: ~cpp~, ~typescript~.)
-- Install [[https://tree-sitter.github.io/tree-sitter/creating-parsers#installation][tree-sitter CLI tool]]. If you don't use NodeJS, you can download the binary directly from [[https://github.com/tree-sitter/tree-sitter/releases][GitHub]]. *Note: versions 0.20+ cannot be used, as they introduce [[https://github.com/tree-sitter/tree-sitter/pull/1157][a breaking change]] in binary storage location*.
-- Clone this repository and install its dependencies.
-#+begin_src bash
-  git clone https://github.com/ubolonton/tree-sitter-langs
-  cd tree-sitter-langs
-  cask install
-#+end_src
+- Install NodeJS. It is needed to generate the grammar code from the JavaScript DSL. The recommended tool to manage NodeJS is [[https://volta.sh/][volta]].
+- Install [[https://tree-sitter.github.io/tree-sitter/creating-parsers#installation][tree-sitter CLI tool]]. (Its binary can also be downloaded directly from [[https://github.com/tree-sitter/tree-sitter/releases][GitHub]].) *Note: versions 0.20+ cannot be used, as they introduce [[https://github.com/tree-sitter/tree-sitter/pull/1157][a breaking change]] in binary storage location*.
 
 *** Building a single grammar
+Run ~script/compile <lang>~, where ~lang~ is one of the languages under [[./repos][repos/]].
 #+begin_src bash
-  cask eval "(progn (require 'tree-sitter-langs-build) (tree-sitter-langs-compile 'rust))"
+  script/compile rust
 #+end_src
 
 *** Building the whole grammar bundle
 #+begin_src bash
-  cask eval "(progn (require 'tree-sitter-langs-build) (tree-sitter-langs-create-bundle))"
+  script/compile all
 #+end_src

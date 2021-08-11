@@ -439,11 +439,11 @@ If the optional arg FORCE is non-nil, any existing file will be overwritten."
                                (symbol-name lang-symbol)))))
         (unless (file-directory-p dst-dir)
           (make-directory dst-dir t))
-        (message "Copying highlights.scm for %s" lang-symbol)
         (let ((default-directory dst-dir))
           (if (file-exists-p "highlights.scm")
               (when force
                 (copy-file src dst-dir :force))
+            (message "Copying highlights.scm for %s" lang-symbol)
             (copy-file src dst-dir)))))))
 
 (defun tree-sitter-langs--copy-queries ()
