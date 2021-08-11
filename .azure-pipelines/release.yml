@@ -11,7 +11,7 @@ resources:
     type: github
     name: ubolonton/emacs-module-rs
     ref: azure-pipelines
-    endpoint: ubolonton
+    endpoint: emacs-tree-sitter
   - repository: elisp-tree-sitter
     type: github
     name: emacs-tree-sitter/elisp-tree-sitter
@@ -38,7 +38,7 @@ jobs:
   steps:
   - template: .azure-pipelines/steps/setup-emacs.yml@emacs-module-rs
   - template: .azure-pipelines/steps/setup-cask.yml@emacs-module-rs
-  - template: .azure-pipelines/steps/setup-tree-sitter-cli.yml@emacs-tree-sitter
+  - template: .azure-pipelines/steps/setup-tree-sitter-cli.yml@elisp-tree-sitter
     parameters:
       version: 0.19.3
   - template: steps/grammar-bundle/-create.yml
@@ -61,4 +61,4 @@ jobs:
       - linux
   - template: steps/grammar-bundle/-upload.yml
     parameters:
-      endpoint: github.com_ubolonton
+      endpoint: emacs-tree-sitter
