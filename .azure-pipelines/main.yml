@@ -1,9 +1,15 @@
 # TODO: For a PR, if only grammars/queries change, compile and test only the affected languages.
 trigger:
-- master
-- azure-pipelines               # To test changes related to Azure Pipelines.
-- ci                            # To test all CI changes.
-- grammars
+  branches:
+    include:
+    - master
+    - azure-pipelines               # To test changes related to Azure Pipelines.
+    - ci                            # To test all CI changes.
+    - grammars
+  paths:
+    exclude:
+    - README.org
+    - CHANGELOG.md
 
 pr:
 - master
