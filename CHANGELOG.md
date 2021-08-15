@@ -2,7 +2,7 @@
 
 ## Unreleased
 
-## 0.10.3 - 2021-08-15
+## 0.10.5 - 2021-08-15
 - Upgraded `ocaml` and `pgn` grammars.
 - Added hl query patterns for `json`, `ocaml`.
 - Improved interpolation highlighting in `python`, `ruby`, `bash`.
