@@ -61,4 +61,4 @@ jobs:
       - linux
   - template: steps/grammar-bundle/-upload.yml
     parameters:
-      endpoint: emacs-tree-sitter
+      endpoint: github.com_ubolonton

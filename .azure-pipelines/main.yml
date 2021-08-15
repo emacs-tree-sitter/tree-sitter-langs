@@ -5,7 +5,6 @@ trigger:
     - master
     - azure-pipelines               # To test changes related to Azure Pipelines.
     - ci                            # To test all CI changes.
-    - grammars
   paths:
     exclude:
     - README.org
