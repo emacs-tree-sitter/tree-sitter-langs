@@ -159,3 +159,6 @@
 [submodule "repos/hcl"]
 	path = repos/hcl
 	url = https://github.com/mitchellh/tree-sitter-hcl.git
+[submodule "repos/elisp"]
+	path = repos/elisp
+	url = https://github.com/Wilfred/tree-sitter-elisp
