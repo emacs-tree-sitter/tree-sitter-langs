@@ -1,8 +1,3 @@
-; Variables
-(interpolation
-  "#{" @punctuation.special
-  "}" @punctuation.special) @none
-
 ; Keywords
 
 [
@@ -135,7 +130,6 @@
  (string)
  (bare_string)
  (subshell)
- (heredoc_body)
  ] @string
 
 [
@@ -143,6 +137,17 @@
  (heredoc_beginning)
  (heredoc_end)
  ] @constant
+
+[(string_content)
+ (heredoc_content)
+ "\""] @string
+
+(interpolation
+ "#{" @punctuation.special
+ (_) @embedded
+ "}" @punctuation.special)
+
+"}" @punctuation.bracket
 
 [
  (simple_symbol)
