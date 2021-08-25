@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Improved general highlighting for `ruby`.
 
 ## 0.10.5 - 2021-08-15
 - Upgraded `ocaml` and `pgn` grammars.

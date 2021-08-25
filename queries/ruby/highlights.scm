@@ -1,7 +1,6 @@
-; Keywords
+;; Keywords and operators.
 
-[
- "alias"
+["alias"
  "begin"
  "break"
  "class"
@@ -41,72 +40,77 @@
  "while"
  ] @keyword
 
-
-(constant) @type
-
 ((identifier) @keyword
  (.match? @keyword "^(private|protected|public)$"))
-
-[
- "rescue"
- "ensure"
- ] @exception
 
 ((identifier) @keyword
  (.match? @keyword "^(fail|raise)$"))
 
-; Function calls
+["="
+ "=>" ":"
+ "->"
+ "+"
+ "-"
+ "*"
+ "/"
+ "=~"
+ ] @operator
 
-"defined?" @variable.builtin
+;;; ----------------------------------------------------------------------------
+;; Function calls and definitions.
 
+"defined?" @function.builtin
 (program
- (call
-  (identifier) @keyword)
+ (call method: (identifier) @keyword
+       arguments: (argument_list (identifier) @constant))
  (.match? @keyword "^(require|require_relative|load)$"))
-
 (call
-   receiver: (constant)? @type
-   method: [
-            (identifier)
-            (constant)
-            ] @function.method
-   )
+ receiver: [(constant) @type
+            (_)]
+ method: [(identifier)
+          (constant)] @method.call)
+(call
+ !receiver
+ method: [(identifier)
+          (constant)] @function.call)
 
-; Function definitions
+(alias (identifier) @method)
+(setter (identifier) @method)
+(method name: [(identifier) @method
+               (constant) @type])
+(singleton_method name: [(identifier) @method
+                         (constant) @type])
 
-(alias (identifier) @function.method)
-(setter (identifier) @function.method)
-
-(method name: [
-               (identifier) @function.method
-               (constant) @type
-               ])
-
-(singleton_method name: [
-                         (identifier) @function.method
-                         (constant) @type
-                         ])
+;;; ----------------------------------------------------------------------------
+;; Types.
 
 (class name: (constant) @type)
 (module name: (constant) @type)
-(superclass (constant) @type)
+(superclass (constant) @type.super)
 
-; Identifiers
-[
- (class_variable)
- (instance_variable)
- ] @property
+((constant) @constant
+ (.match? @constant "^[A-Z\\d_]+$"))
+
+(constant) @type
+
+;;; ----------------------------------------------------------------------------
+;; Variables & properties.
+
+[(self)
+ (super)
+ ] @variable.builtin
 
 ((identifier) @constant.builtin
  (.match? @constant.builtin "^__(callee|dir|id|method|send|ENCODING|FILE|LINE)__$"))
 
-((constant) @type
- (.match? @type "^[A-Z\\d_]+$"))
+(assignment
+ left: [(class_variable) @variable.special
+        (identifier) @variable
+        (instance_variable) @variable])
 
-[
- (self)
- (super)
- ] @variable.builtin
+[(class_variable)
+ (instance_variable)
+ ] @property
 
 (method_parameters (identifier) @variable.parameter)
 (lambda_parameters (identifier) @variable.parameter)
@@ -117,26 +121,53 @@
 (destructured_parameter (identifier) @variable.parameter)
 (block_parameter (identifier) @variable.parameter)
 (keyword_parameter (identifier) @variable.parameter)
-(identifier) @variable
+;; (identifier) @variable
 
+;; TODO: Re-enable this once it is supported
+;; ((identifier) @function
+;;  (#is-not? local))
 
-; TODO: Re-enable this once it is supported
-; ((identifier) @function
-;  (#is-not? local))
+;;; ----------------------------------------------------------------------------
+;; Literals.
 
-; Literals
-
-[
- (string)
- (bare_string)
- (subshell)
- ] @string
-
-[
- (bare_symbol)
+[(bare_symbol)
  (heredoc_beginning)
  (heredoc_end)
  ] @constant
+
+[(simple_symbol)
+ (delimited_symbol)
+ (hash_key_symbol)
+ ] @constant
+
+(escape_sequence) @escape
+
+[(integer) (float)]  @number
+
+(regex (string_content) @string.special)
+
+[(nil)
+ (true)
+ (false)
+ ] @constant
+
+(comment) @comment
+
+[","
+ ";"
+ "."
+ ] @punctuation.delimiter
+
+["("
+ ")"
+ "["
+ "]"
+ "{"
+ "%w("
+ "%i("] @punctuation.bracket
+
+;;; ----------------------------------------------------------------------------
+;; "Contexts" that may have internal highlighting and other low priority stuff.
 
 [(string_content)
  (heredoc_content)
@@ -147,58 +178,10 @@
  (_) @embedded
  "}" @punctuation.special)
 
+;; Lower priority than interpolation's closing bracket.
 "}" @punctuation.bracket
 
-[
- (simple_symbol)
- (delimited_symbol)
- (hash_key_symbol)
- ] @property
-
-;; (pair key: (simple_symbol) ":" @constant)
-(pair key: (hash_key_symbol) ":" @constant)
-(regex) @property
-(regex (string_content) @property)
-(escape_sequence) @string.escape
-(integer) @number
-(float) @float
-
-[
- (nil)
- (true)
- (false)
- ] @boolean
-
-(comment) @comment
-
-; Operators
-
-[
- "="
- "=>"
- "->"
- "+"
- "-"
- "*"
- "/"
- "=~"
- ] @operator
-
-[
- ","
- ";"
- "."
- ] @punctuation.delimiter
-
-[
- "("
- ")"
- "["
- "]"
- "{"
- "}"
- "%w("
- "%i("
- ] @property
-
-(ERROR) @error
+[(string)
+ (bare_string)
+ (subshell)
+ (heredoc_body)] @string
