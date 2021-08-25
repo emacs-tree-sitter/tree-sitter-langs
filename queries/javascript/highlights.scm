@@ -58,12 +58,15 @@
 (for_in_statement
  left: (identifier) @variable)
 
-;; FIX: This is disabled because typescript grammar redefines _formal_parameter, but its highlighting
-;; patterns reuse this file.
-;; (formal_parameters
-;;  (identifier) @variable.parameter)
 (arrow_function
  parameter: (identifier) @variable.parameter)
+;; TypeScript's highlighting patterns reuse this file, so the atter below must work for both
+;; JavaScript and TypeScript. Since TypeScript grammar redefines `_formal_parameter`, we use
+;; wildcard pattern instead of `formal_parameters`.
+(arrow_function
+ parameters: [(_ (identifier) @variable.parameter)
+              (_ (_ (identifier) @variable.parameter))
+              (_ (_ (_ (identifier) @variable.parameter)))])
 
 ;; Properties
 
