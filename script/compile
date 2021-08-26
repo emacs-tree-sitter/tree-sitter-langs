@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+#
+# Usage:
+#    compile <lang-name>
+#
+# Examples:
+#    compile rust
+#    compile cpp
+
+set -euo pipefail
+
+here=$(cd "$(dirname "$BASH_SOURCE")"; pwd)
+PROJECT_ROOT=$(cd "$here/.."; pwd)
+
+LANG=$1
+
+if [[ $LANG == "all" ]]; then
+    (
+
+        cd "$PROJECT_ROOT"
+        emacs -Q --batch \
+              --directory . \
+              --eval "
+        (progn
+          (require 'tree-sitter-langs-build)
+          (tree-sitter-langs-create-bundle))"
+    )
+else
+    (
+
+        cd "$PROJECT_ROOT"
+        emacs -Q --batch \
+              --directory . \
+              --eval "
+        (progn
+          (require 'tree-sitter-langs-build)
+          (tree-sitter-langs-compile '$LANG))"
+    )
+fi

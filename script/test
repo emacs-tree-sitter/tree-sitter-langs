@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+here=$(cd "$(dirname "$BASH_SOURCE")"; pwd)
+PROJECT_ROOT=$(cd "$here/.."; pwd)
+
+(
+    cd "$PROJECT_ROOT"
+    cask emacs --batch \
+         -l ert \
+         -l tree-sitter-langs-tests.el \
+         -f ert-run-tests-batch-and-exit
+)

@@ -4,8 +4,8 @@
 ;;
 ;; Author: Tuấn-Anh Nguyễn <ubolonton@gmail.com>
 ;; Keywords: languages tools parsers tree-sitter
-;; Homepage: https://github.com/ubolonton/tree-sitter-langs
-;; Version: 0.10.0
+;; Homepage: https://github.com/emacs-tree-sitter/tree-sitter-langs
+;; Version: 0.10.5
 ;; Package-Requires: ((emacs "25.1") (tree-sitter "0.15.0"))
 ;; SPDX-License-Identifier: MIT
 
@@ -26,6 +26,12 @@
 ;;    that are not aware of `tree-sitter'. A language major mode that wants to
 ;;    use `tree-sitter' for syntax highlighting should instead provide the query
 ;;    patterns on its own, using the mechanisms defined by `tree-sitter-hl'.
+;;
+;; 3. Optional query patterns for other minor modes that provide high-level
+;;    functionalities on top of `tree-sitter', such as code folding, evil text
+;;    objects... As with highlighting patterns, major modes that are directly
+;;    aware of `tree-sitter' should provide the query patterns on their own.
+
 
 ;;; Code:
 
@@ -92,8 +98,10 @@ See `tree-sitter-langs-repos'."
                 (css-mode        . css)
                 (elm-mode        . elm)
                 (go-mode         . go)
-                (haskell-mode         . haskell)
+                (hcl-mode        . hcl)
+                (haskell-mode    . haskell)
                 (html-mode       . html)
+                (mhtml-mode      . html)
                 (java-mode       . java)
                 (javascript-mode . javascript)
                 (js-mode         . javascript)
@@ -105,6 +113,7 @@ See `tree-sitter-langs-repos'."
                 (ocaml-mode      . ocaml)
                 (php-mode        . php)
                 (python-mode     . python)
+                (pygn-mode       . pgn)
                 (rjsx-mode       . javascript)
                 (ruby-mode       . ruby)
                 (rust-mode       . rust)

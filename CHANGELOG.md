@@ -1,6 +1,20 @@
 # Changelog
 
 ## Unreleased
+- Improved highlighting of arrow function parameters in `javascript` and `typescript`.
+- Improved general highlighting for `ruby`.
+
+## 0.10.5 - 2021-08-15
+- Upgraded `ocaml` and `pgn` grammars.
+- Added hl query patterns for `json`, `ocaml`.
+- Improved interpolation highlighting in `python`, `ruby`, `bash`.
+
+## 0.10.2 - 2021-08-06
+- Made Python variable highlighting for robust and consistent.
+- Added `hcl` grammar and hl query patterns.
+
+## 0.10.1 - 2021-08-01
+- Added `pgn` grammar (chess's Portable Game Notation).
 
 ## 0.10.0 - 2021-03-14
 - Updated most language grammars to the latest version.

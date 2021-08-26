@@ -1,8 +1,14 @@
-# TODO: Add (smoke) tests: load the grammars and execute the queries.
 # TODO: For a PR, if only grammars/queries change, compile and test only the affected languages.
 trigger:
-- master
-- ci
+  branches:
+    include:
+    - master
+    - azure-pipelines               # To test changes related to Azure Pipelines.
+    - ci                            # To test all CI changes.
+  paths:
+    exclude:
+    - README.org
+    - CHANGELOG.md
 
 pr:
 - master
@@ -13,12 +19,12 @@ resources:
     type: github
     name: ubolonton/emacs-module-rs
     ref: azure-pipelines
-    endpoint: ubolonton
-  - repository: emacs-tree-sitter
+    endpoint: emacs-tree-sitter
+  - repository: elisp-tree-sitter
     type: github
-    name: ubolonton/emacs-tree-sitter
+    name: emacs-tree-sitter/elisp-tree-sitter
     ref: azure-pipelines
-    endpoint: ubolonton
+    endpoint: emacs-tree-sitter
 
 jobs:
 - job: Build
@@ -33,14 +39,15 @@ jobs:
         IMAGE_NAME: 'macos-10.14'
         EVM_EMACS: emacs-27.1
         BUNDLE_TARGET: macos
-      ubuntu-16.04-emacs-27.1:
-        IMAGE_NAME: 'ubuntu-16.04'
+      ubuntu-18.04-emacs-27.1:
+        IMAGE_NAME: 'ubuntu-18.04'
         EVM_EMACS: emacs-27.1
         BUNDLE_TARGET: linux
   steps:
   - template: .azure-pipelines/steps/setup-emacs.yml@emacs-module-rs
   - template: .azure-pipelines/steps/setup-cask.yml@emacs-module-rs
-  - template: .azure-pipelines/steps/setup-tree-sitter-cli.yml@emacs-tree-sitter
+  - template: .azure-pipelines/steps/setup-tree-sitter-cli.yml@elisp-tree-sitter
     parameters:
       version: 0.19.3
   - template: steps/grammar-bundle/-create.yml
+  - template: steps/grammar-bundle/-test.yml

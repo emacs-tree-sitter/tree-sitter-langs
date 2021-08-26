@@ -36,37 +36,23 @@
  superclasses: (argument_list (identifier) @type.super))
 
 ;; Variables.
-
 ;; TODO: Add @variable.use
 
-(parameters [(identifier) @variable.parameter
-             (typed_parameter (identifier) @variable.parameter ":")
-             (default_parameter name: (identifier) @variable.parameter)
-             (typed_default_parameter name: (identifier) @variable.parameter)
-             ;; TODO: Make splat variables more visually distinct.
-             (list_splat (identifier) @variable.parameter)
-             (dictionary_splat (identifier) @variable.parameter)])
+(parameter/identifier) @variable.parameter
+(parameter/typed_parameter (identifier) @variable.parameter)
+(parameter/typed_default_parameter name: (identifier) @variable.parameter)
+(parameter/default_parameter name: (identifier) @variable.parameter)
+;; TODO: Make splat parameters more visually distinct.
+(parameter/list_splat_pattern (identifier) @variable.parameter)
+(parameter/dictionary_splat_pattern (identifier) @variable.parameter)
 
-(for_statement
- left: [(identifier) @variable
-        (tuple_pattern (identifier) @variable)])
-(for_in_clause
- left: [(identifier) @variable
-        (tuple_pattern (identifier) @variable)])
+(pattern/identifier) @variable
+(pattern/attribute attribute: (identifier) @variable)
+(pattern/subscript subscript: [(identifier) (string)] @variable)
 
 (named_expression name: (identifier) @variable)
 
 (keyword_argument name: (identifier) @label)
-
-(assignment left: (_ [(identifier) @variable
-                      (subscript subscript: (identifier) @variable)
-                      (attribute attribute: (identifier) @variable)
-                      (tuple (identifier) @variable)
-                      (list [(identifier) @variable
-                             (list_splat (identifier) @variable)])]))
-(augmented_assignment left: (_ [(identifier) @variable
-                                (subscript subscript: (identifier) @variable)
-                                (attribute attribute: (identifier) @variable)]))
 
 ;; Literals.
 
@@ -166,6 +152,8 @@
 ;; "Contexts" may have internal highlighting -> low priority.
 
 (escape_sequence) @escape
+
+"\"" @string
 
 (interpolation
  "{" @punctuation.special

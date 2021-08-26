@@ -80,7 +80,11 @@ If BUFFER is nil, `princ' is used to forward its stdout+stderr."
                       (while (not (memq (process-status proc)
                                         '(exit failed signal)))
                         (sleep-for 0.1))
-                      (process-exit-status proc))))
+                      (process-exit-status proc)))
+         ;; Flush buffered output. Not doing this caused
+         ;; `tree-sitter-langs-git-dir' to be set incorrectly, and
+         ;; `tree-sitter-langs-create-bundle's output to be unordered.
+         (_ (accept-process-output proc)))
     (unless (= exit-code 0)
       (error "Error calling %s, exit code is %s" command exit-code))))
 
@@ -205,7 +209,7 @@ latest commit."
 ;; ---------------------------------------------------------------------------
 ;;; Building language grammars.
 
-(defconst tree-sitter-langs--bundle-version "0.10.0"
+(defconst tree-sitter-langs--bundle-version "0.10.4"
   "Version of the grammar bundle.
 This should be bumped whenever a language submodule is updated, which should be
 infrequent (grammar-only changes). It is different from the version of
@@ -350,8 +354,7 @@ compile from the current state of the grammar repos, without cleanup."
               (insert tree-sitter-langs--bundle-version))))
       (when errors
         (message "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
-        (display-warning 'tree-sitter-langs
-                         (format "Could not compile grammars:\n%s" (pp-to-string errors)))))))
+        (error "Could not compile grammars:\n%s" (pp-to-string errors))))))
 
 ;; ---------------------------------------------------------------------------
 ;;; Download and installation.
@@ -364,7 +367,7 @@ compile from the current state of the grammar repos, without cleanup."
   "Return the URL to download the grammar bundle.
 If VERSION and OS are not specified, use the defaults of
 `tree-sitter-langs--bundle-version' and `tree-sitter-langs--os'."
-  (format "https://github.com/ubolonton/tree-sitter-langs/releases/download/%s/%s"
+  (format "https://github.com/emacs-tree-sitter/tree-sitter-langs/releases/download/%s/%s"
           version
           (tree-sitter-langs--bundle-file ".gz" version os)))
 
@@ -396,7 +399,7 @@ non-nil."
                               (let ((coding-system-for-read 'utf-8))
                                 (insert-file-contents
                                  tree-sitter-langs--bundle-version-file)
-                                (buffer-string))))))
+                                (string-trim (buffer-string)))))))
     (cl-block nil
       (if (string= version current-version)
           (if skip-if-installed
@@ -436,11 +439,11 @@ If the optional arg FORCE is non-nil, any existing file will be overwritten."
                                (symbol-name lang-symbol)))))
         (unless (file-directory-p dst-dir)
           (make-directory dst-dir t))
-        (message "Copying highlights.scm for %s" lang-symbol)
         (let ((default-directory dst-dir))
           (if (file-exists-p "highlights.scm")
               (when force
                 (copy-file src dst-dir :force))
+            (message "Copying highlights.scm for %s" lang-symbol)
             (copy-file src dst-dir)))))))
 
 (defun tree-sitter-langs--copy-queries ()
