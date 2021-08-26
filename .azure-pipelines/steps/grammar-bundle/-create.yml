@@ -12,6 +12,25 @@ steps:
 
 - bash: |
     set -e
+    brew install gcc
+  displayName: Install GCC
+  condition: and(succeeded(), eq(variables['Agent.OS'], 'Darwin'))
+
+- bash: |
+    set -e
+    sudo apt install build-essential manpages-dev software-properties-common -y
+    sudo add-apt-repository ppa:ubuntu-toolchain-r/test -y
+    sudo apt update -y && sudo apt install gcc-11 g++-11 -y
+  displayName: Install GCC
+  condition: and(succeeded(), eq(variables['Agent.OS'], 'Linux'))
+
+
+- bash: |
+    set -e
+    export CXXFLAGS="$CXXFLAGS -std=c++17 -O2"
+    export CFLAGS="$CFLAGS -O2"
+    alias gcc="gcc-11"
+    alias g++="g++-11"
     BUNDLE_VERSION=$(cask eval "(progn (require 'tree-sitter-langs-build) (princ tree-sitter-langs--bundle-version))")
     echo "##vso[task.setvariable variable=BUNDLE_VERSION]$BUNDLE_VERSION"
     cask eval "(progn (require 'tree-sitter-langs-build) (tree-sitter-langs-create-bundle :clean))"
