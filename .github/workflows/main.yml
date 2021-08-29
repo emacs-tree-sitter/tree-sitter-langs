@@ -65,5 +65,20 @@ jobs:
       - run: cask install
 
       - run: script/compile all
+        continue-on-error: true
+
+      - name: Check binaries
+        if: runner.os == 'Linux'
+        run: |
+          ldd bin/*.so
+          ldd $(which emacs)
+        continue-on-error: true
+
+      - name: Check binaries
+        if: runner.os == 'macOS'
+        run: |
+          otool -L bin/*.dylib
+          otool -L $(which emacs)
+        continue-on-error: true
 
       - run: script/test
