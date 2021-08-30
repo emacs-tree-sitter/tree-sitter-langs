@@ -71,6 +71,7 @@ jobs:
         if: runner.os == 'Linux'
         run: |
           ldd bin/*.so
+          echo ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
           ldd $(which emacs)
         continue-on-error: true
 
@@ -78,6 +79,7 @@ jobs:
         if: runner.os == 'macOS'
         run: |
           otool -L bin/*.dylib
+          echo ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
           otool -L $(which emacs)
         continue-on-error: true
 

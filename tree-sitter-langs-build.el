@@ -157,8 +157,9 @@ git checkout."
                      "git" "submodule" "status" "--cached" sub-path))
                   (buffer-substring-no-properties 2 9))
        :paths (pcase lang-symbol
-                ('typescript '("typescript" "tsx"))
-                ('ocaml '("ocaml" "interface"))
+                ;; XXX
+                ('typescript '("typescript" ("tsx" . tsx)))
+                ('ocaml '("ocaml" ("interface" . ocaml-interface)))
                 (_ '("")))))))
 
 (defun tree-sitter-langs--repo-status (lang-symbol)
@@ -284,10 +285,23 @@ from the current state of the grammar repo, without cleanup."
         (with-demoted-errors "Failed to run 'npm install': %s"
           (tree-sitter-langs--call "npm" "install")))
       ;; A repo can have multiple grammars (e.g. typescript + tsx).
-      (dolist (path paths)
-        (let ((default-directory (file-name-as-directory (concat dir path))))
+      (dolist (path-spec paths)
+        (let* ((path (or (car-safe path-spec) path-spec))
+               (lang-symbol (or (cdr-safe path-spec) lang-symbol))
+               (default-directory (file-name-as-directory (concat dir path))))
           (tree-sitter-langs--call "tree-sitter" "generate")
-          (tree-sitter-langs--call "tree-sitter" "test")))
+          (if (and (memq system-type '(gnu/linux))
+                   (file-exists-p "src/scanner.cc"))
+              ;; Modified from
+              ;; https://github.com/tree-sitter/tree-sitter/blob/v0.20.0/cli/loader/src/lib.rs#L351
+              (tree-sitter-langs--call
+               "g++" "-shared" "-fPIC" "-fno-exceptions" "-g" "-O2"
+               "-static-libgcc" "-static-libstdc++"
+               "-I" "src"
+               "src/scanner.cc"
+               "-xc" "src/parser.c"
+               "-o" (format "%sbin/%s.so" tree-sitter-langs-grammar-dir lang-symbol))
+            (tree-sitter-langs--call "tree-sitter" "test"))))
       ;; Replace underscores with hyphens. Example: c_sharp.
       (let ((default-directory bin-dir))
         (dolist (file (directory-files default-directory))
