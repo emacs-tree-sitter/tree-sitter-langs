@@ -9,7 +9,7 @@ lang=${1:-all}
 if [ "$lang" == all ]; then
     selector=nil
 else
-    selector='"'"queries/${lang}"'"'
+    selector='"'"/${lang}"'"'
 fi
 
 (

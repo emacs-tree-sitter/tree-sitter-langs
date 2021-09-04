@@ -5,7 +5,7 @@ $lang = $args[0]
 if ("all",$null -contains $lang) {
     $selector = 'nil'
 } else {
-    $selector = "\`"queries/${lang}\`""
+    $selector = "\`"/${lang}\`""
 }
 
 Push-Location $project_root

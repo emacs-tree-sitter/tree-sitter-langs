@@ -46,7 +46,8 @@ Run ~script/compile <lang>~, where ~lang~ is one of the languages under [[./repo
       update = none
       ignore = dirty
 #+end_src
-- Try building it. For example:
+- Try building and testing it. For example:
     #+begin_src bash
       script/compile rust
+      script/test rust
 #+end_src
