@@ -16,7 +16,21 @@ For each supported language, this package provides:
 2. An optional ~highlights.scm~ file that provides highlighting patterns. This is mainly intended for major modes that are not aware of ~tree-sitter~. A language major mode that wants to use ~tree-sitter~ for syntax highlighting should instead provide the query patterns on its own, using the mechanisms defined by [[https://emacs-tree-sitter.github.io/syntax-highlighting/interface-for-modes/][tree-sitter-hl]].
 3. Optional query patterns for other minor modes that provide high-level functionalities on top of ~tree-sitter~, such as code folding, evil text objects... As with highlighting patterns, major modes that are directly aware of ~tree-sitter~ should provide the query patterns on their own.
 
-** Building grammars from source
+** Highlighting Queries
+# *Note*: Highlighting styles are a mattter of taste.
+
+Highlighting query patterns for a language are in the file ~queries/{lang}/highlights.scm~. Most of them are *intentionally different* from those from upstream repositories, which are more geared towards /GitHub's use cases/. We try to be more consistent with /Emacs's existing conventions/. (For some languages, this is WIP, so their patterns may look similar to upstream's.)
+
+In general, try to follow what the docstrings of ~tree-sitter-hl-face:~ faces say. Most importantly:
+- Definitions and uses should be differentiated:
+   + ~@function~ vs. ~@function.call~.
+   + ~@method~ vs. ~@method.call~.
+   + ~@type.parameter~ vs. ~@type.argument~.
+- ~@variable~ and ~@variable.parameter~ should be applied only to declarations/definitions/bindings/mutations (/writes/), not usage (/reads/).
+- Special faces should have high priority (placed earlier in the pattern list): ~@function.macro~, ~@type.builtin~, ~@variable.special~.
+- Patterns whose internals may be highlighted should have low priority (placed towards the end). Example: strings with interpolation.
+
+** Building Grammars from Source
 Note: If you also plan to work on [[https://github.com/emacs-tree-sitter/elisp-tree-sitter#building-grammars-from-source][elisp-tree-sitter]], it might be more convenient to work with this repository as a submodule.
 
 *** Tools and dependencies
@@ -25,12 +39,12 @@ Note: If you also plan to work on [[https://github.com/emacs-tree-sitter/elisp-t
 - Install [[https://tree-sitter.github.io/tree-sitter/creating-parsers#installation][tree-sitter CLI tool]]. (Its binary can also be downloaded directly from [[https://github.com/tree-sitter/tree-sitter/releases][GitHub]].) *Note: versions 0.20+ cannot be used, as they introduce [[https://github.com/tree-sitter/tree-sitter/pull/1157][a breaking change]] in binary storage location*.
 
 *** Building grammars
-**** For a single language
-Run ~script/compile <lang>~, where ~lang~ is one of the languages under [[./repos][repos/]].
+To build a specific language's grammar, run ~script/compile~. (See the list of registered languages in [[./repos][repos/]].) For example:
 #+begin_src bash
   script/compile rust
 #+end_src
-**** For all registered languages (and making a bundle)
+
+To build all registered languages, and creating the bundle:
 #+begin_src bash
   script/compile all
 #+end_src
@@ -38,7 +52,7 @@ Run ~script/compile <lang>~, where ~lang~ is one of the languages under [[./repo
 *** Adding a new grammar
 - Register a new submodule. For example:
     #+begin_src bash
-      # git submodule add -b <main-branch> -- <git-url> repos/<lang-name>
+      # git submodule add -b <branch> -- <git-url> repos/<lang>
       git submodule add -b master -- https://github.com/tree-sitter/tree-sitter-rust repos/rust
 #+end_src
 - Modify its settings in [[.gitmodules][.gitmodules]]:
