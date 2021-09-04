@@ -159,3 +159,7 @@
 [submodule "repos/hcl"]
 	path = repos/hcl
 	url = https://github.com/mitchellh/tree-sitter-hcl.git
+[submodule "repos/haskell"]
+	path = repos/haskell
+	url = https://github.com/tree-sitter/tree-sitter-haskell
+	branch = master
