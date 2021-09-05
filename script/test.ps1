@@ -9,8 +9,11 @@ if ("all",$null -contains $lang) {
 }
 
 Push-Location $project_root
-cask emacs --batch `
-  -l ert `
-  -l tree-sitter-langs-tests.el `
-  --eval "(ert-run-tests-batch-and-exit ${selector})"
-Pop-Location
+try {
+    cask emacs --batch `
+      -l ert `
+      -l tree-sitter-langs-tests.el `
+      --eval "(ert-run-tests-batch-and-exit ${selector})"
+} finally {
+    Pop-Location
+}
