@@ -97,6 +97,7 @@ See `tree-sitter-langs-repos'."
                 (c++-mode        . cpp)
                 (css-mode        . css)
                 (elm-mode        . elm)
+                (elixir-mode     . elixir)
                 (go-mode         . go)
                 (hcl-mode        . hcl)
                 (html-mode       . html)
