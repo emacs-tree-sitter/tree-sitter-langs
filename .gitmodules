@@ -159,3 +159,9 @@
 [submodule "repos/hcl"]
 	path = repos/hcl
 	url = https://github.com/mitchellh/tree-sitter-hcl.git
+[submodule "repos/elixir"]
+	path = repos/elixir
+	url = https://github.com/ananthakumaran/tree-sitter-elixir
+	branch = master
+        update = none
+        ignore = dirty
