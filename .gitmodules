@@ -163,3 +163,9 @@
 	update = none
 	ignore = dirty
 	branch = master
+[submodule "repos/elixir"]
+	path = repos/elixir
+	url = https://github.com/ananthakumaran/tree-sitter-elixir
+	branch = master
+	update = none
+	ignore = dirty
