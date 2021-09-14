@@ -32,7 +32,7 @@
   (file-name-directory (locate-library "tree-sitter-langs.el"))
   "The directory where the library `tree-sitter-langs' is located.")
 
-;; TODO: Rename this.
+;; TODO: Separate build-time settings from run-time settings.
 (defcustom tree-sitter-langs-grammar-dir tree-sitter-langs--dir
   "The root data directory of `tree-sitter-langs'.
 The 'bin' directory under this directory is used to stored grammar
