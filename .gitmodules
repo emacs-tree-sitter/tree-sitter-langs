@@ -154,8 +154,12 @@
 [submodule "repos/pgn"]
 	path = repos/pgn
 	url = https://github.com/rolandwalker/tree-sitter-pgn.git
+	update = none
 	ignore = dirty
 	branch = master
 [submodule "repos/hcl"]
 	path = repos/hcl
 	url = https://github.com/mitchellh/tree-sitter-hcl.git
+	update = none
+	ignore = dirty
+	branch = master
