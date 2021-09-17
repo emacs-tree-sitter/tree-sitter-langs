@@ -4,6 +4,9 @@ on:
   push:
     tags:
       - '*.*.*'
+      # These are used to trigger (only) MELPA Stable. See
+      # https://github.com/emacs-tree-sitter/elisp-tree-sitter/issues/177
+      - '!melpa-stable/**'
 
 jobs:
   build:
