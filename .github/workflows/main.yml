@@ -38,6 +38,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v2
+      - run: .github/script/setup
 
       - name: Install tree-sitter CLI
         run: npm install -g tree-sitter-cli@0.19.3
@@ -51,36 +52,12 @@ jobs:
         with:
           version: ${{ matrix.emacs-version }}
 
-      - name: Set up cask
-        if: runner.os != 'Windows'
-        run: |
-          git clone -b github-actions https://github.com/ubolonton/cask "$HOME"/.cask
-          echo "$HOME/.cask/bin" >> $GITHUB_PATH
-      - name: Set up cask (Windows)
-        if: runner.os == 'Windows'
-        run: |
-          git clone -b github-actions https://github.com/ubolonton/cask "$env:UserProfile\.cask"
-          echo "$env:UserProfile\.cask\bin" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
-
+      - run: .github/script/setup-cask
       - run: cask install
 
       - run: script/compile all
         continue-on-error: true
 
-      - name: Check binaries
-        if: runner.os == 'Linux'
-        run: |
-          ldd bin/*.so
-          echo ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-          ldd $(which emacs)
+      - run: script/inspect-binaries
         continue-on-error: true
-
-      - name: Check binaries
-        if: runner.os == 'macOS'
-        run: |
-          otool -L bin/*.dylib
-          echo ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-          otool -L $(which emacs)
-        continue-on-error: true
-
       - run: script/test
