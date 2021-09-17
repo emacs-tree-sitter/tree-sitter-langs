@@ -4,3 +4,5 @@ scoop bucket add extras
 scoop bucket add nonportable
 scoop update
 scoop checkup
+
+scoop install tar
