@@ -7,17 +7,13 @@ try {
     if ($lang -eq "all") {
         emacs --batch `
           --directory "$project_root" `
-          --eval "
-          (progn
-            (require 'tree-sitter-langs-build)
-            (tree-sitter-langs-create-bundle))"
+          --load tree-sitter-langs-build `
+          --eval "(tree-sitter-langs-create-bundle)"
     } else {
         emacs --batch `
           --directory "$project_root" `
-          --eval "
-          (progn
-            (require 'tree-sitter-langs-build)
-            (tree-sitter-langs-compile '$lang))"
+          --load tree-sitter-langs-build `
+          --eval "(tree-sitter-langs-compile '$lang)"
     }
 } finally {
     Pop-Location
