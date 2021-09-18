@@ -1,0 +1,46 @@
+name: bump-version
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - repos/**
+
+jobs:
+  bump-version:
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: purcell/setup-emacs@v3.0
+        with:
+          version: '27.2'
+      - uses: actions/checkout@v2
+
+      - name: Bump version
+        run: script/dev bump-version
+
+      # This will not trigger workflows, because it doesn't use a personal access token.
+      - name: Create the release commit
+        # TODO: Sign the tag?
+        run: |
+          git add --update
+          git config --global user.name 'Tuấn-Anh Nguyễn'
+          git config --global user.email 'ubolonton@users.noreply.github.com'
+          RELEASE_VERSION=$(script/dev current-version)
+          git commit -m "Release $RELEASE_VERSION"
+          echo RELEASE_VERSION=$RELEASE_VERSION >> $GITHUB_ENV
+          echo RELEASE_SHA=$(git rev-parse HEAD) >> $GITHUB_ENV
+          git push
+
+      - name: Create the release tag
+        uses: actions/github-script@v4
+        with:
+          # Use personal access token to trigger the release workflow.
+          github-token: ${{ secrets.PAT }}
+          script: |
+            github.git.createRef({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              ref: "refs/tags/${{ env.RELEASE_VERSION }},
+              sha: "${{ env.RELEASE_SHA }}"
+            })
