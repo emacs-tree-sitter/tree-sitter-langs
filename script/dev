@@ -53,7 +53,7 @@
 
 (defun cmd:release-notes (&optional version)
   "Print VERSION's release notes, defaulting to 'Unreleased'."
-  (message "%s" (-release-notes version)))
+  (princ (-release-notes version)))
 
 (defun cmd:bump-version (&optional next)
   "Increase the patch version. This does not create a git tag."
@@ -88,7 +88,7 @@
 
 (defun cmd:current-version ()
   "Print the current version."
-  (message "%s" (-current-version)))
+  (princ (-current-version)))
 
 (defun -main (&rest args)
   (when-let* ((cmd (car args))
