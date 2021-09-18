@@ -1,0 +1,99 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - '*.*.*'
+      # These are used to trigger (only) MELPA Stable. See
+      # https://github.com/emacs-tree-sitter/elisp-tree-sitter/issues/177
+      - '!melpa-stable/**'
+
+jobs:
+  build:
+    strategy:
+      fail-fast: true
+      matrix:
+        include:
+          - os: macos-10.15
+            bundle_target: macos
+            emacs-version: '27.2'
+            ext: dylib
+          - os: ubuntu-18.04
+            bundle_target: linux
+            emacs-version: '27.2'
+            ext: so
+          - os: windows-2019
+            bundle_target: windows
+            emacs-version: '27.2'
+            ext: dll
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v2
+      - run: .github/script/setup
+
+      - name: Install tree-sitter CLI
+        run: npm install -g tree-sitter-cli@0.19.3
+
+      - uses: purcell/setup-emacs@v3.0
+        if: runner.os != 'Windows'
+        with:
+          version: ${{ matrix.emacs-version }}
+      - uses: jcs090218/setup-emacs-windows@v4
+        if: runner.os == 'Windows'
+        with:
+          version: ${{ matrix.emacs-version }}
+
+      - run: .github/script/setup-cask
+      - run: cask install
+
+      - run: script/compile all
+        continue-on-error: true
+
+      - run: script/inspect-binaries
+        continue-on-error: true
+      - run: script/test
+      - run: cask package
+
+      - name: Determine version
+        if: runner.os != 'Windows'
+        run: |
+          echo BUNDLE_VERSION=$(script/bundle-version) > $GITHUB_ENV
+      - name: Determine version
+        if: runner.os == 'Windows'
+        run: |
+          $bundle_version = ((script/bundle-version) | Out-String).Trim()
+          echo BUNDLE_VERSION=$bundle_version | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+
+      - name: Upload binary
+        uses: actions/upload-artifact@v2
+        with:
+          name: tree-sitter-grammars
+          path: tree-sitter-grammars-${{ matrix.bundle_target }}-${{ env.BUNDLE_VERSION }}.tar.gz
+          if-no-files-found: error
+
+  publish:
+    needs: build
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: purcell/setup-emacs@v3.0
+        with:
+          version: '27.2'
+      - uses: actions/checkout@v2
+      - name: Generate release notes
+        run: |
+          script/dev release-notes "$(git describe tags --abbrev=0)" > RELEASE-NOTES
+          cat RELEASE-NOTES
+
+      - name: Download binaries
+        uses: actions/download-artifact@v2
+        with:
+          name: tree-sitter-grammars
+      - run: ls -R
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          draft: true
+          body_path: RELEASE-NOTES
+          files: |
+            tree-sitter-grammars-*.tar.gz
