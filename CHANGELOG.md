@@ -3,6 +3,7 @@
 ## Unreleased
 
 ## 0.10.7 - 2021-09-18
+- Added `elixir` grammar.
 
 ## 0.10.6 - 2021-09-18
 - Improved highlighting of arrow function parameters in `javascript` and `typescript`.
