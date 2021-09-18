@@ -93,7 +93,6 @@ jobs:
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v1
         with:
-          draft: true
           body_path: RELEASE-NOTES
           files: |
             tree-sitter-grammars-*.tar.gz
