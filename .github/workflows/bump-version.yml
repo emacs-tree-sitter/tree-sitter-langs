@@ -19,7 +19,7 @@ jobs:
       - name: Bump version
         run: script/dev bump-version
 
-      # This will not trigger workflows, because it doesn't use a personal access token.
+      # We don't want this to trigger workflows, so we don't use a personal access token.
       - name: Create the release commit
         # TODO: Sign the tag?
         run: |
