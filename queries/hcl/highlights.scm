@@ -1,36 +1,48 @@
-[
-  "for"
-] @keyword
+("for" @keyword (identifier) @variable)
 
+;; (attribute (identifier) @variable)
+;; (object_elem key: (_) @variable)
 (attribute (identifier) @property)
-(object_elem (identifier) @property)
+(object_elem key: (_) @property)
+
+(get_attr (identifier) @property)
 
 (block (identifier) @type)
-(one_line_block (identifier) @type)
+;; (one_line_block (identifier) @type)
 
-(function_call (identifier) @function)
-
-[
-  (string_literal)
-  (quoted_template)
-  (heredoc)
-] @string
-
-(numeric_literal) @number
+(function_call (identifier) @function.call)
 
 [
-  (true)
-  (false)
-  (null)
-] @constant.builtin
+ ;; (string_lit)
+ (quoted_template_start)
+ (quoted_template_end)
+ (template_literal)
+ ;; (heredoc)
+ ] @string
+
+(numeric_lit) @number
+
+[(bool_lit)
+ (null_lit)
+ ] @constant.builtin
 
 (comment) @comment
 
-[
-  "("
-  ")"
-  "["
-  "]"
-  "{"
-  "}"
-]  @punctuation.bracket
+["("
+ ")"
+ "["
+ "]"
+ "{"
+ "}"
+ ]  @punctuation.bracket
+
+["&&" "?" ":" "!=" "==" "=>"] @operator
+
+["if" "in"] @keyword
+
+;; "." @punctuation.special
+
+(template_interpolation
+ (template_interpolation_start) @punctuation.special
+ (expression) @embedded
+ (template_interpolation_end) @punctuation.special)

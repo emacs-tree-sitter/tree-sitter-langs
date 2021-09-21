@@ -110,6 +110,7 @@ See `tree-sitter-langs-repos'."
                 (elixir-mode     . elixir)
                 (go-mode         . go)
                 (hcl-mode        . hcl)
+                (terraform-mode  . hcl)
                 (html-mode       . html)
                 (mhtml-mode      . html)
                 (nix-mode        . nix)
@@ -144,13 +145,18 @@ See `tree-sitter-langs-repos'."
 ;;; Normal load.
 (tree-sitter-langs--init-major-mode-alist)
 
-(defun tree-sitter-langs--hl-query-path (lang-symbol)
+(defun tree-sitter-langs--hl-query-path (lang-symbol &optional mode)
+  "Return the highlighting query file for LANG-SYMBOL.
+If MODE is non-nil, return the file containing additional MODE-specfic patterns
+instead. An example is `terraform-mode'-specific highlighting patterns for HCL."
   (concat (file-name-as-directory
            (concat tree-sitter-langs--queries-dir
                    (symbol-name lang-symbol)))
-          "highlights.scm"))
+          (if mode
+              (format "highlights.%s.scm" mode)
+            "highlights.scm")))
 
-(defun tree-sitter-langs--hl-default-patterns (lang-symbol)
+(defun tree-sitter-langs--hl-default-patterns (lang-symbol &optional mode)
   "Return the bundled default syntax highlighting patterns for LANG-SYMBOL.
 Return nil if there are no bundled patterns."
   (condition-case nil
@@ -162,6 +168,11 @@ Return nil if there are no bundled patterns."
                              ('typescript '(javascript))
                              ('tsx '(typescript javascript))
                              (_ nil))))
+          (when mode
+            (ignore-error 'file-missing
+              (insert-file-contents (tree-sitter-langs--hl-query-path sym mode))
+              (goto-char (point-max))
+              (insert "\n")))
           (insert-file-contents (tree-sitter-langs--hl-query-path sym))
           (goto-char (point-max))
           (insert "\n"))
@@ -174,7 +185,7 @@ Return nil if there are no bundled patterns."
   (unless tree-sitter-hl-default-patterns
     (let ((lang-symbol (tsc--lang-symbol tree-sitter-language)))
       (setq tree-sitter-hl-default-patterns
-            (tree-sitter-langs--hl-default-patterns lang-symbol)))))
+            (tree-sitter-langs--hl-default-patterns lang-symbol major-mode)))))
 
 ;;;###autoload
 (advice-add 'tree-sitter-hl--setup :before
