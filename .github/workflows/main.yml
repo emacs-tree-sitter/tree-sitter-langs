@@ -6,6 +6,7 @@ on:
       - master
       - github-actions          # To test changes related to GitHub Actions.
       - ci                      # To test all CI changes.
+      - macos-11
     paths-ignore:
       - README.org
       - CHANGELOG.md
@@ -22,19 +23,20 @@ jobs:
       fail-fast: false
       matrix:
         os:
-          - macos-10.15
+          - macos-11
+          # - macos-10.15
           # - ubuntu-18.04
-          - ubuntu-20.04
+          # - ubuntu-20.04
         emacs-version:
           # - '25.3'
           # - '26.3'
           - '27.2'
-        include:
-          # # Older Emacs binaries for Windows don't have dynamic modules enabled.
-          # - os: windows-2016
-          #   emacs-version: '27.2'
-          - os: windows-2019
-            emacs-version: '27.2'
+        # include:
+        #   # # Older Emacs binaries for Windows don't have dynamic modules enabled.
+        #   # - os: windows-2016
+        #   #   emacs-version: '27.2'
+        #   - os: windows-2019
+        #     emacs-version: '27.2'
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v2
@@ -55,9 +57,14 @@ jobs:
       - run: .github/script/setup-cask
       - run: cask install
 
-      - run: script/compile all
-        continue-on-error: true
+      - uses: mxschmitt/action-tmate@v3
+        name: Setup tmate session
+        with:
+          limit-access-to-actor: true
 
-      - run: script/inspect-binaries
-        continue-on-error: true
-      - run: script/test
+      # - run: script/compile all
+      #   continue-on-error: true
+
+      # - run: script/inspect-binaries
+      #   continue-on-error: true
+      # - run: script/test
