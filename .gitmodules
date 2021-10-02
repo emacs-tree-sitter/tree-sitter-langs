@@ -169,3 +169,6 @@
 	branch = master
 	update = none
 	ignore = dirty
+[submodule "repos/d"]
+	path = repos/d
+	url = https://github.com/CyberShadow/tree-sitter-d/
