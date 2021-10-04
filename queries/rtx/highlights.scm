@@ -5,19 +5,28 @@
   (not)
   "="
   (blank)
-] @keyword.operator
+] @keyword
 
 [
   (if_tok)
   (elif_tok)
   (else_tok)
   (always_tok)
-] @keyword.control
+] @keyword
 
 (comment) @comment
 
-(weight) @constant.numeric
-(reduce_rule ":" @constant.numeric)
-(num) @constant.numeric
+(weight) @constant
+(reduce_rule ":" @constant)
+(num) @constant
 
-(string) @constant.string
+(reduce_rule_group (ident) @function)
+(reduce_rule (string) @label)
+
+(output_var_set (ident) @constant)
+((clip) (str_op) (clip (ident) @string))
+(str_op) @operator
+(blank) @constant
+(ident) @variable
+
+(string) @string
