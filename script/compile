@@ -14,22 +14,22 @@ PROJECT_ROOT=$(cd "$here/.."; pwd)
 
 LANG=$1
 
-if [[ $LANG == "all" ]]; then
-    (
+case $LANG in
+    (all)
+        code="(tree-sitter-langs-create-bundle)"
+        ;;
+    (changed)
+        code='(tree-sitter-langs-compile-changed-or-all "origin/master")'
+        ;;
+    (*)
+        code="(tree-sitter-langs-compile '$LANG)"
+esac
 
-        cd "$PROJECT_ROOT"
-        emacs -Q --batch \
-              --directory . \
-              --load tree-sitter-langs-build \
-              --eval "(tree-sitter-langs-create-bundle)"
-    )
-else
-    (
+(
 
-        cd "$PROJECT_ROOT"
-        emacs -Q --batch \
-              --directory . \
-              --load tree-sitter-langs-build \
-              --eval "(tree-sitter-langs-compile '$LANG)"
-    )
-fi
+    cd "$PROJECT_ROOT"
+    emacs -Q --batch \
+          --directory . \
+          --load tree-sitter-langs-build \
+          --eval "$code"
+)

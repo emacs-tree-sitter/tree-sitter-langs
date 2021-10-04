@@ -207,6 +207,22 @@ latest commit."
                 (:tags (or (magit-get-current-tag "origin/master")
                            (magit-rev-parse "--short=7" "origin/master"))))))))
 
+(defun tree-sitter-langs--changed-langs (&optional base)
+  "Return languages that have changed since git revision BASE (as symbols)."
+  (let* ((base (or base "origin/master"))
+         (default-directory tree-sitter-langs-git-dir)
+         (changed-files (thread-first
+                            (format "git --no-pager diff --name-only %s" base)
+                          shell-command-to-string
+                          string-trim split-string))
+         grammar-changed queries-changed)
+    (dolist (file changed-files)
+      (let ((segs (split-string file "/")))
+        (pcase (car segs)
+          ("repos" (cl-pushnew (intern (cadr segs)) grammar-changed))
+          ("queries" (cl-pushnew (intern (cadr segs)) queries-changed)))))
+    (cl-union grammar-changed queries-changed)))
+
 ;; ---------------------------------------------------------------------------
 ;;; Building language grammars.
 
@@ -367,6 +383,23 @@ compile from the current state of the grammar repos, without cleanup."
             (let ((coding-system-for-write 'utf-8))
               (insert tree-sitter-langs--bundle-version)))
           (apply #'tree-sitter-langs--call "tar" "-zcvf" tar-file (append tar-opts files)))
+      (when errors
+        (message "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+        (error "Could not compile grammars:\n%s" (pp-to-string errors))))))
+
+(defun tree-sitter-langs-compile-changed-or-all (&optional base)
+  "Compile languages that have changed since git revision BASE.
+If no language-specific change is detected, compile all languages."
+  (let ((lang-symbols (tree-sitter-langs--changed-langs base))
+        errors)
+    (if (null lang-symbols)
+        (tree-sitter-langs-create-bundle)
+      (message "[tree-sitter-langs] Compiling langs changed since %s: %s" base lang-symbols)
+      (dolist (lang-symbol lang-symbols)
+        (message "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+        (condition-case err
+            (tree-sitter-langs-compile lang-symbol)
+          (error (setq errors (append errors `([,lang-symbol ,err]))))))
       (when errors
         (message "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
         (error "Could not compile grammars:\n%s" (pp-to-string errors))))))

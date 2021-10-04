@@ -62,7 +62,11 @@ jobs:
       - run: .github/script/setup-cask
       - run: cask install
 
+      - run: script/compile changed
+        if: github.event_name == 'pull_request'
+        continue-on-error: true
       - run: script/compile all
+        if: github.event_name != 'pull_request'
         continue-on-error: true
 
       - run: script/inspect-binaries
