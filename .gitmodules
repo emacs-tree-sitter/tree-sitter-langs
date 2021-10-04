@@ -205,3 +205,6 @@
 	branch = master
 	update = none
 	ignore = dirty
+[submodule "repos/apertium"]
+	path = repos/apertium
+	url = git@github.com:apertium/tree-sitter-apertium.git
