@@ -5,10 +5,17 @@ set -euo pipefail
 here=$(cd "$(dirname "$BASH_SOURCE")"; pwd)
 PROJECT_ROOT=$(cd "$here/.."; pwd)
 
+lang=${1:-all}
+if [ "$lang" == all ]; then
+    selector=nil
+else
+    selector='"'"/${lang}"'"'
+fi
+
 (
     cd "$PROJECT_ROOT"
     cask emacs --batch \
          -l ert \
          -l tree-sitter-langs-tests.el \
-         -f ert-run-tests-batch-and-exit
+         --eval '(ert-run-tests-batch-and-exit '"${selector}"')'
 )

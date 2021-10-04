@@ -32,7 +32,7 @@
   (file-name-directory (locate-library "tree-sitter-langs.el"))
   "The directory where the library `tree-sitter-langs' is located.")
 
-;; TODO: Rename this.
+;; TODO: Separate build-time settings from run-time settings.
 (defcustom tree-sitter-langs-grammar-dir tree-sitter-langs--dir
   "The root data directory of `tree-sitter-langs'.
 The 'bin' directory under this directory is used to stored grammar
@@ -157,8 +157,9 @@ git checkout."
                      "git" "submodule" "status" "--cached" sub-path))
                   (buffer-substring-no-properties 2 9))
        :paths (pcase lang-symbol
-                ('typescript '("typescript" "tsx"))
-                ('ocaml '("ocaml" "interface"))
+                ;; XXX
+                ('typescript '("typescript" ("tsx" . tsx)))
+                ('ocaml '("ocaml" ("interface" . ocaml-interface)))
                 (_ '("")))))))
 
 (defun tree-sitter-langs--repo-status (lang-symbol)
@@ -209,7 +210,7 @@ latest commit."
 ;; ---------------------------------------------------------------------------
 ;;; Building language grammars.
 
-(defconst tree-sitter-langs--bundle-version "0.10.4"
+(defconst tree-sitter-langs--bundle-version "0.10.7"
   "Version of the grammar bundle.
 This should be bumped whenever a language submodule is updated, which should be
 infrequent (grammar-only changes). It is different from the version of
@@ -284,10 +285,23 @@ from the current state of the grammar repo, without cleanup."
         (with-demoted-errors "Failed to run 'npm install': %s"
           (tree-sitter-langs--call "npm" "install")))
       ;; A repo can have multiple grammars (e.g. typescript + tsx).
-      (dolist (path paths)
-        (let ((default-directory (file-name-as-directory (concat dir path))))
+      (dolist (path-spec paths)
+        (let* ((path (or (car-safe path-spec) path-spec))
+               (lang-symbol (or (cdr-safe path-spec) lang-symbol))
+               (default-directory (file-name-as-directory (concat dir path))))
           (tree-sitter-langs--call "tree-sitter" "generate")
-          (tree-sitter-langs--call "tree-sitter" "test")))
+          (if (and (memq system-type '(gnu/linux))
+                   (file-exists-p "src/scanner.cc"))
+              ;; Modified from
+              ;; https://github.com/tree-sitter/tree-sitter/blob/v0.20.0/cli/loader/src/lib.rs#L351
+              (tree-sitter-langs--call
+               "g++" "-shared" "-fPIC" "-fno-exceptions" "-g" "-O2"
+               "-static-libgcc" "-static-libstdc++"
+               "-I" "src"
+               "src/scanner.cc"
+               "-xc" "src/parser.c"
+               "-o" (format "%sbin/%s.so" tree-sitter-langs-grammar-dir lang-symbol))
+            (tree-sitter-langs--call "tree-sitter" "test"))))
       ;; Replace underscores with hyphens. Example: c_sharp.
       (let ((default-directory bin-dir))
         (dolist (file (directory-files default-directory))
@@ -338,20 +352,21 @@ compile from the current state of the grammar repos, without cleanup."
                                  (tree-sitter-langs--bundle-file) ".gz"))
                (default-directory (tree-sitter-langs--bin-dir))
                (tree-sitter-langs--out (tree-sitter-langs--buffer "*tree-sitter-langs-create-bundle*"))
-               (files (seq-filter (lambda (file)
-                                    (when (seq-some (lambda (ext) (string-suffix-p ext file))
-                                                    tree-sitter-langs--suffixes)
-                                      file))
-                                  (directory-files default-directory)))
+               (files (cons tree-sitter-langs--bundle-version-file
+                            (seq-filter (lambda (file)
+                                          (when (seq-some (lambda (ext) (string-suffix-p ext file))
+                                                          tree-sitter-langs--suffixes)
+                                            file))
+                                        (directory-files default-directory))))
                ;; Disk names in Windows can confuse tar, so we need this option. BSD
                ;; tar (macOS) doesn't have it, so we don't set it everywhere.
                ;; https://unix.stackexchange.com/questions/13377/tar/13381#13381.
                (tar-opts (pcase system-type
                            ('windows-nt '("--force-local")))))
-          (apply #'tree-sitter-langs--call "tar" "-zcvf" tar-file (append tar-opts files))
           (with-temp-file tree-sitter-langs--bundle-version-file
             (let ((coding-system-for-write 'utf-8))
-              (insert tree-sitter-langs--bundle-version))))
+              (insert tree-sitter-langs--bundle-version)))
+          (apply #'tree-sitter-langs--call "tar" "-zcvf" tar-file (append tar-opts files)))
       (when errors
         (message "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
         (error "Could not compile grammars:\n%s" (pp-to-string errors))))))

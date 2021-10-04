@@ -34,6 +34,14 @@
          `(ert-deftest ,test-symbol ()
             (tree-sitter-langs-tests-check-queries (quote ,lang-symbol))))))))
 
+(tree-sitter-langs--map-repos
+ (lambda (lang-name)
+   (let ((test-symbol (intern (format "lang/%s" lang-name)))
+         (lang-symbol (intern lang-name)))
+     (eval
+      `(ert-deftest ,test-symbol ()
+         (tree-sitter-require (quote ,lang-symbol)))))))
+
 ;; Local Variables:
 ;; no-byte-compile: t
 ;; End:

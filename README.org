@@ -4,30 +4,64 @@
 <a href="https://dev.azure.com/emacs-tree-sitter/tree-sitter-langs/_build/latest?definitionId=2&branchName=master" rel="nofollow">
   <img src="https://dev.azure.com/emacs-tree-sitter/tree-sitter-langs/_apis/build/status/ci?branchName=master&label=build&api-version=6.0-preview.1" alt="Build Status" style="max-width:100%;">
 </a>
+<a href="https://github.com/emacs-tree-sitter/tree-sitter-langs/actions/workflows/main.yml">
+  <img src="https://github.com/emacs-tree-sitter/tree-sitter-langs/actions/workflows/main.yml/badge.svg" alt="GitHub Actions" style="max-width: 100%;">
+</a>
 #+END_HTML
 
 This is a convenient language bundle for the Emacs package [[https://github.com/emacs-tree-sitter/elisp-tree-sitter][tree-sitter]]. It serves as an interim distribution mechanism, until ~tree-sitter~ is widespread enough for language-specific major modes to incorporate its functionalities.
 
 For each supported language, this package provides:
 1. Pre-compiled grammar binaries for 3 major platforms: macOS, Linux and Windows, on x86_64. In the future, ~tree-sitter-langs~ may provide tooling for major modes to do this on their own.
-2. An optional ~highlights.scm~ file that provides highlighting patterns. This is mainly intended for major modes that are not aware of ~tree-sitter~. A language major mode that wants to use ~tree-sitter~ for syntax highlighting should instead provide the query patterns on its own, using the mechanisms defined by [[https://ubolonton.github.io/emacs-tree-sitter/syntax-highlighting/interface-for-modes/][tree-sitter-hl]].
+2. An optional ~highlights.scm~ file that provides highlighting patterns. This is mainly intended for major modes that are not aware of ~tree-sitter~. A language major mode that wants to use ~tree-sitter~ for syntax highlighting should instead provide the query patterns on its own, using the mechanisms defined by [[https://emacs-tree-sitter.github.io/syntax-highlighting/interface-for-modes/][tree-sitter-hl]].
 3. Optional query patterns for other minor modes that provide high-level functionalities on top of ~tree-sitter~, such as code folding, evil text objects... As with highlighting patterns, major modes that are directly aware of ~tree-sitter~ should provide the query patterns on their own.
 
-** Building grammars from source
-It's more convenient to work with this repository as a submodule of [[https://github.com/emacs-tree-sitter/elisp-tree-sitter#building-grammars-from-source][emacs-tree-sitter]]. However, if you want to skip that, below are the steps to build grammars from source using only this repository.
+** Highlighting Queries
+# *Note*: Highlighting styles are a mattter of taste.
+
+Highlighting query patterns for a language are in the file ~queries/{lang}/highlights.scm~. Most of them are *intentionally different* from those from upstream repositories, which are more geared towards /GitHub's use cases/. We try to be more consistent with /Emacs's existing conventions/. (For some languages, this is WIP, so their patterns may look similar to upstream's.)
+
+In general, try to follow what the docstrings of ~tree-sitter-hl-face:~ faces say. Most importantly:
+- Definitions and uses should be differentiated:
+   + ~@function~ vs. ~@function.call~.
+   + ~@method~ vs. ~@method.call~.
+   + ~@type.parameter~ vs. ~@type.argument~.
+- ~@variable~ and ~@variable.parameter~ should be applied only to declarations/definitions/bindings/mutations (/writes/), not usage (/reads/).
+- Special faces should have high priority (placed earlier in the pattern list): ~@function.macro~, ~@type.builtin~, ~@variable.special~.
+- Patterns whose internals may be highlighted should have low priority (placed towards the end). Example: strings with interpolation.
+
+** Building Grammars from Source
+Note: If you also plan to work on [[https://github.com/emacs-tree-sitter/elisp-tree-sitter#building-grammars-from-source][elisp-tree-sitter]], it might be more convenient to work with this repository as a submodule.
 
 *** Tools and dependencies
 - Install [[https://cask.readthedocs.io][cask]].
 - Install NodeJS. It is needed to generate the grammar code from the JavaScript DSL. The recommended tool to manage NodeJS is [[https://volta.sh/][volta]].
 - Install [[https://tree-sitter.github.io/tree-sitter/creating-parsers#installation][tree-sitter CLI tool]]. (Its binary can also be downloaded directly from [[https://github.com/tree-sitter/tree-sitter/releases][GitHub]].) *Note: versions 0.20+ cannot be used, as they introduce [[https://github.com/tree-sitter/tree-sitter/pull/1157][a breaking change]] in binary storage location*.
 
-*** Building a single grammar
-Run ~script/compile <lang>~, where ~lang~ is one of the languages under [[./repos][repos/]].
+*** Building grammars
+To build a specific language's grammar, run ~script/compile~. (See the list of registered languages in [[./repos][repos/]].) For example:
 #+begin_src bash
   script/compile rust
 #+end_src
 
-*** Building the whole grammar bundle
+To build all registered languages, and creating the bundle:
 #+begin_src bash
   script/compile all
+#+end_src
+
+*** Adding a new grammar
+- Register a new submodule. For example:
+    #+begin_src bash
+      # git submodule add -b <branch> -- <git-url> repos/<lang>
+      git submodule add -b master -- https://github.com/tree-sitter/tree-sitter-rust repos/rust
+#+end_src
+- Modify its settings in [[.gitmodules][.gitmodules]]:
+    #+begin_src conf
+      update = none
+      ignore = dirty
+#+end_src
+- Try building and testing it. For example:
+    #+begin_src bash
+      script/compile rust
+      script/test rust
 #+end_src
