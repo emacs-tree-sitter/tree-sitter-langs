@@ -205,6 +205,15 @@
 	branch = master
 	update = none
 	ignore = dirty
-[submodule "repos/apertium"]
-	path = repos/apertium
+[submodule "repos/rtx"]
+	path = repos/rtx
 	url = git@github.com:apertium/tree-sitter-apertium.git
+	branch = master
+	update = none
+	ignore = dirty
+[submodule "repos/cg"]
+	path = repos/cg
+	url = git@github.com:apertium/tree-sitter-apertium.git
+	branch = master
+	update = none
+	ignore = dirty
