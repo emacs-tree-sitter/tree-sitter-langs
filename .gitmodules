@@ -160,12 +160,6 @@
 [submodule "repos/hcl"]
 	path = repos/hcl
 	url = https://github.com/mitchellh/tree-sitter-hcl.git
-	update = none
-	ignore = dirty
-	branch = master
-[submodule "repos/elixir"]
-	path = repos/elixir
-	url = https://github.com/ananthakumaran/tree-sitter-elixir
-	branch = master
-	update = none
-	ignore = dirty
+[submodule "repos/elisp"]
+	path = repos/elisp
+	url = https://github.com/Wilfred/tree-sitter-elisp
