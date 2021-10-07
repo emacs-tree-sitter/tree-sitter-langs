@@ -105,7 +105,6 @@ See `tree-sitter-langs-repos'."
                 (c++-mode        . cpp)
                 (css-mode        . css)
                 (elm-mode        . elm)
-                (emacs-lisp-mode . elisp)
                 (go-mode         . go)
                 (hcl-mode        . hcl)
                 (html-mode       . html)
