@@ -210,7 +210,7 @@ latest commit."
 ;; ---------------------------------------------------------------------------
 ;;; Building language grammars.
 
-(defconst tree-sitter-langs--bundle-version "0.10.4"
+(defconst tree-sitter-langs--bundle-version "0.10.9"
   "Version of the grammar bundle.
 This should be bumped whenever a language submodule is updated, which should be
 infrequent (grammar-only changes). It is different from the version of
@@ -352,20 +352,21 @@ compile from the current state of the grammar repos, without cleanup."
                                  (tree-sitter-langs--bundle-file) ".gz"))
                (default-directory (tree-sitter-langs--bin-dir))
                (tree-sitter-langs--out (tree-sitter-langs--buffer "*tree-sitter-langs-create-bundle*"))
-               (files (seq-filter (lambda (file)
-                                    (when (seq-some (lambda (ext) (string-suffix-p ext file))
-                                                    tree-sitter-langs--suffixes)
-                                      file))
-                                  (directory-files default-directory)))
+               (files (cons tree-sitter-langs--bundle-version-file
+                            (seq-filter (lambda (file)
+                                          (when (seq-some (lambda (ext) (string-suffix-p ext file))
+                                                          tree-sitter-langs--suffixes)
+                                            file))
+                                        (directory-files default-directory))))
                ;; Disk names in Windows can confuse tar, so we need this option. BSD
                ;; tar (macOS) doesn't have it, so we don't set it everywhere.
                ;; https://unix.stackexchange.com/questions/13377/tar/13381#13381.
                (tar-opts (pcase system-type
                            ('windows-nt '("--force-local")))))
-          (apply #'tree-sitter-langs--call "tar" "-zcvf" tar-file (append tar-opts files))
           (with-temp-file tree-sitter-langs--bundle-version-file
             (let ((coding-system-for-write 'utf-8))
-              (insert tree-sitter-langs--bundle-version))))
+              (insert tree-sitter-langs--bundle-version)))
+          (apply #'tree-sitter-langs--call "tar" "-zcvf" tar-file (append tar-opts files)))
       (when errors
         (message "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
         (error "Could not compile grammars:\n%s" (pp-to-string errors))))))

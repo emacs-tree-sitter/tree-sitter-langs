@@ -5,7 +5,7 @@
 ;; Author: Tuấn-Anh Nguyễn <ubolonton@gmail.com>
 ;; Keywords: languages tools parsers tree-sitter
 ;; Homepage: https://github.com/emacs-tree-sitter/tree-sitter-langs
-;; Version: 0.10.5
+;; Version: 0.10.9
 ;; Package-Requires: ((emacs "25.1") (tree-sitter "0.15.0"))
 ;; SPDX-License-Identifier: MIT
 
@@ -103,8 +103,10 @@ See `tree-sitter-langs-repos'."
                 (c-mode          . c)
                 (csharp-mode     . c-sharp)
                 (c++-mode        . cpp)
+                (d-mode          . d)
                 (css-mode        . css)
                 (elm-mode        . elm)
+                (elixir-mode     . elixir)
                 (go-mode         . go)
                 (hcl-mode        . hcl)
                 (html-mode       . html)

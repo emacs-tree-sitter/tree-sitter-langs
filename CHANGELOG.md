@@ -1,10 +1,20 @@
 # Changelog
 
 ## Unreleased
-- Improved highlighting of arrow function parameters in `javascript` and `typescript`.
-- Improved general highlighting for `ruby`.
 - Updated `php` highlighting to support php8 changes
 - Resolve bugs with `php` preventing `evil-textobj-tree-sitter` motions from working
+
+## 0.10.9 - 2021-12-05
+
+## 0.10.8 - 2021-12-05
+
+## 0.10.7 - 2021-09-18
+- Added `elixir` grammar.
+
+## 0.10.6 - 2021-09-18
+- Improved highlighting of arrow function parameters in `javascript` and `typescript`.
+- Improved general highlighting for `ruby`.
+- Updated `python` grammar.
 
 ## 0.10.5 - 2021-08-15
 - Upgraded `ocaml` and `pgn` grammars.

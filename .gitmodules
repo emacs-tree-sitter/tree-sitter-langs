@@ -69,7 +69,7 @@
 	branch = master
 [submodule "repos/janet-simple"]
 	path = repos/janet-simple
-	url = https://codeberg.org/sogaiu/tree-sitter-janet-simple
+	url = https://github.com/sogaiu/tree-sitter-janet-simple
 	update = none
 	ignore = dirty
 	branch = master
@@ -154,8 +154,21 @@
 [submodule "repos/pgn"]
 	path = repos/pgn
 	url = https://github.com/rolandwalker/tree-sitter-pgn.git
+	update = none
 	ignore = dirty
 	branch = master
 [submodule "repos/hcl"]
 	path = repos/hcl
 	url = https://github.com/mitchellh/tree-sitter-hcl.git
+	update = none
+	ignore = dirty
+	branch = master
+[submodule "repos/elixir"]
+	path = repos/elixir
+	url = https://github.com/elixir-lang/tree-sitter-elixir
+	branch = main
+	update = none
+	ignore = dirty
+[submodule "repos/d"]
+	path = repos/d
+	url = https://github.com/CyberShadow/tree-sitter-d/

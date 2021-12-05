@@ -20,10 +20,8 @@ if [[ $LANG == "all" ]]; then
         cd "$PROJECT_ROOT"
         emacs -Q --batch \
               --directory . \
-              --eval "
-        (progn
-          (require 'tree-sitter-langs-build)
-          (tree-sitter-langs-create-bundle))"
+              --load tree-sitter-langs-build \
+              --eval "(tree-sitter-langs-create-bundle)"
     )
 else
     (
@@ -31,9 +29,7 @@ else
         cd "$PROJECT_ROOT"
         emacs -Q --batch \
               --directory . \
-              --eval "
-        (progn
-          (require 'tree-sitter-langs-build)
-          (tree-sitter-langs-compile '$LANG))"
+              --load tree-sitter-langs-build \
+              --eval "(tree-sitter-langs-compile '$LANG)"
     )
 fi
