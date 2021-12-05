@@ -103,6 +103,7 @@ See `tree-sitter-langs-repos'."
                 (c-mode          . c)
                 (csharp-mode     . c-sharp)
                 (c++-mode        . cpp)
+                (d-mode          . d)
                 (css-mode        . css)
                 (elm-mode        . elm)
                 (elixir-mode     . elixir)
