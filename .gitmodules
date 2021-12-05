@@ -165,7 +165,7 @@
 	branch = master
 [submodule "repos/elixir"]
 	path = repos/elixir
-	url = https://github.com/ananthakumaran/tree-sitter-elixir
-	branch = master
+	url = https://github.com/elixir-lang/tree-sitter-elixir
+	branch = main
 	update = none
 	ignore = dirty
