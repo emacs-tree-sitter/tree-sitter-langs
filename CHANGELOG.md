@@ -1,6 +1,8 @@
 # Changelog
 
 ## Unreleased
+- Updated `php` highlighting to support php8 changes
+- Resolve bugs with `php` preventing `evil-textobj-tree-sitter` motions from working
 
 ## 0.10.9 - 2021-12-05
 
