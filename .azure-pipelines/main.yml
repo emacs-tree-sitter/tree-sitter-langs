@@ -32,16 +32,11 @@ jobs:
     vmImage: $(IMAGE_NAME)
   strategy:
     matrix:
-      # XXX: Temporarily disabled due to outdated CA cert bundle. Maybe check
-      # https://docs.certifytheweb.com/docs/kb/kb-202109-letsencrypt/
-      # vs2017-win2016:
-      #   IMAGE_NAME: 'vs2017-win2016'
-      #   BUNDLE_TARGET: windows
       windows-2019:
         IMAGE_NAME: 'windows-2019'
         BUNDLE_TARGET: windows
-      macos-10.14-emacs-27.1:
-        IMAGE_NAME: 'macos-10.14'
+      macos-10.15-emacs-27.1:
+        IMAGE_NAME: 'macos-10.15'
         EVM_EMACS: emacs-27.1
         BUNDLE_TARGET: macos
       ubuntu-18.04-emacs-27.1:
