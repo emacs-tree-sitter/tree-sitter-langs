@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Upgraded `java` parser to support change to switch_expression node
 
 ## 0.10.10 - 2021-12-06
 - Updated `php` highlighting to support php8 changes
