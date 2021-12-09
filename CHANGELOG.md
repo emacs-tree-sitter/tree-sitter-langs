@@ -1,6 +1,8 @@
 # Changelog
 
 ## Unreleased
+
+## 0.10.11 - 2021-12-09
 - Upgraded `java` parser to support change to switch_expression node
 
 ## 0.10.10 - 2021-12-06
