@@ -16,6 +16,21 @@ jobs:
           version: '27.2'
       - uses: actions/checkout@v2
 
+      - name: Print commit data
+        uses: actions/github-script@v5
+        with:
+          script: |
+            let commit = github.rest.git.getCommit({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              sha: context.sha
+            });
+            console.log(commit);
+            let m = commit.message.match(/!bump-version(.*)$/m)
+            let version = typeof m[1] == 'string' ? m[1].trim() : ''
+            console.log(version);
+        continue-on-error: true
+
       - name: Bump version
         run: script/dev bump-version
 
