@@ -393,7 +393,9 @@ If no language-specific change is detected, compile all languages."
   (let ((lang-symbols (tree-sitter-langs--changed-langs base))
         errors)
     (if (null lang-symbols)
-        (tree-sitter-langs-create-bundle)
+        (progn
+          (message "[tree-sitter-langs] Compiling all langs")
+          (tree-sitter-langs-create-bundle))
       (message "[tree-sitter-langs] Compiling langs changed since %s: %s" base lang-symbols)
       (dolist (lang-symbol lang-symbols)
         (message "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")

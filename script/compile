@@ -2,10 +2,14 @@
 #
 # Usage:
 #    compile <lang-name>
+#    compile all
+#    compile changed [since=origin/master]
 #
 # Examples:
 #    compile rust
 #    compile cpp
+#
+#    compile changed 0.10.7
 
 set -euo pipefail
 
@@ -19,14 +23,13 @@ case $LANG in
         code="(tree-sitter-langs-create-bundle)"
         ;;
     (changed)
-        code='(tree-sitter-langs-compile-changed-or-all "origin/master")'
+        code="(tree-sitter-langs-compile-changed-or-all \"${2:-origin/master}\")"
         ;;
     (*)
         code="(tree-sitter-langs-compile '$LANG)"
 esac
 
 (
-
     cd "$PROJECT_ROOT"
     emacs -Q --batch \
           --directory . \

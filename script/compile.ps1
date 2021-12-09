@@ -6,7 +6,13 @@ Push-Location $project_root
 try {
     switch ($lang) {
         'all' { $code = "(tree-sitter-langs-create-bundle)" }
-        'changed' { $code = '(tree-sitter-langs-compile-changed-or-all ""origin/master"")' }
+        'changed' {
+            $base = $args[1]
+            if (!$base) {
+                $base = "origin/master"
+            }
+            $code = "(tree-sitter-langs-compile-changed-or-all """"$base"""")"
+        }
         default { $code = "(tree-sitter-langs-compile '$lang)" }
     }
     emacs --batch `

@@ -62,7 +62,7 @@ jobs:
       - run: .github/script/setup-cask
       - run: cask install
 
-      - run: script/compile changed
+      - run: script/compile changed ${{ github.event.pull_request.base.sha }}
         if: github.event_name == 'pull_request'
         continue-on-error: true
       - run: script/compile all
