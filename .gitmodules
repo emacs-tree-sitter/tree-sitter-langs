@@ -172,3 +172,9 @@
 [submodule "repos/d"]
 	path = repos/d
 	url = https://github.com/CyberShadow/tree-sitter-d/
+[submodule "repos/nix"]
+	path = repos/nix
+	url = https://github.com/cstrahan/tree-sitter-nix
+	branch = main
+	update = none
+	ignore = dirty
