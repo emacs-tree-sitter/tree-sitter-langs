@@ -257,7 +257,7 @@ If VERSION and OS are not spcified, use the defaults of
           (or version tree-sitter-langs--bundle-version)
           (or ext "")))
 
-(defun tree-sitter-langs-compile (lang-symbol &optional clean)
+(defun tree-sitter-langs-compile (lang-symbol &optional clean target)
   "Download and compile the grammar for LANG-SYMBOL.
 This function requires git and tree-sitter CLI.
 
@@ -269,6 +269,12 @@ from the current state of the grammar repo, without cleanup."
     (error "Could not find git (needed to download grammars)"))
   (unless (executable-find "tree-sitter")
     (error "Could not find tree-sitter executable (needed to compile grammars)"))
+  (setq target
+        (pcase (format "%s" target)
+          ;; Rust's triple -> system toolchain's triple
+          ("aarch64-apple-darwin" "arm64-apple-macos11")
+          ("nil" nil)
+          (_ (error "Unsupported cross-compilation target %s" target))))
   (let* ((source (tree-sitter-langs--source lang-symbol))
          (dir (if source
                   (file-name-as-directory
@@ -306,18 +312,41 @@ from the current state of the grammar repo, without cleanup."
                (lang-symbol (or (cdr-safe path-spec) lang-symbol))
                (default-directory (file-name-as-directory (concat dir path))))
           (tree-sitter-langs--call "tree-sitter" "generate")
-          (if (and (memq system-type '(gnu/linux))
-                   (file-exists-p "src/scanner.cc"))
-              ;; Modified from
-              ;; https://github.com/tree-sitter/tree-sitter/blob/v0.20.0/cli/loader/src/lib.rs#L351
-              (tree-sitter-langs--call
-               "g++" "-shared" "-fPIC" "-fno-exceptions" "-g" "-O2"
-               "-static-libgcc" "-static-libstdc++"
-               "-I" "src"
-               "src/scanner.cc"
-               "-xc" "src/parser.c"
-               "-o" (format "%sbin/%s.so" tree-sitter-langs-grammar-dir lang-symbol))
-            (tree-sitter-langs--call "tree-sitter" "test"))))
+          (cond
+           ((and (memq system-type '(gnu/linux))
+                 (file-exists-p "src/scanner.cc"))
+            ;; XXX: Modified from
+            ;; https://github.com/tree-sitter/tree-sitter/blob/v0.20.0/cli/loader/src/lib.rs#L351
+            (tree-sitter-langs--call
+             "g++" "-shared" "-fPIC" "-fno-exceptions" "-g" "-O2"
+             "-static-libgcc" "-static-libstdc++"
+             "-I" "src"
+             "src/scanner.cc" "-xc" "src/parser.c"
+             "-o" (format "%sbin/%s.so" tree-sitter-langs-grammar-dir lang-symbol)))
+           ;; XXX: This is a hack for cross compilation (mainly for Apple Silicon).
+           (target (cond
+                    ((file-exists-p "src/scanner.cc")
+                     (tree-sitter-langs--call
+                      "c++" "-shared" "-fPIC" "-fno-exceptions" "-g" "-O2"
+                      "-I" "src"
+                      "src/scanner.cc" "-xc" "src/parser.c"
+                      "-o" (format "%sbin/%s.so" tree-sitter-langs-grammar-dir lang-symbol)
+                      "-target" target))
+                    ((file-exists-p "src/scanner.c")
+                     (tree-sitter-langs--call
+                      "cc" "-shared" "-fPIC" "-g" "-O2"
+                      "-I" "src"
+                      "src/scanner.c" "src/parser.c"
+                      "-o" (format "%sbin/%s.so" tree-sitter-langs-grammar-dir lang-symbol)
+                      "-target" target))
+                    (:default
+                     (tree-sitter-langs--call
+                      "cc" "-shared" "-fPIC" "-g" "-O2"
+                      "-I" "src"
+                      "src/parser.c"
+                      "-o" (format "%sbin/%s.so" tree-sitter-langs-grammar-dir lang-symbol)
+                      "-target" target))))
+           (:default (tree-sitter-langs--call "tree-sitter" "test")))))
       ;; Replace underscores with hyphens. Example: c_sharp.
       (let ((default-directory bin-dir))
         (dolist (file (directory-files default-directory))
@@ -343,7 +372,7 @@ from the current state of the grammar repo, without cleanup."
         (tree-sitter-langs--call "git" "reset" "--hard" "HEAD")
         (tree-sitter-langs--call "git" "clean" "-f")))))
 
-(defun tree-sitter-langs-create-bundle (&optional clean)
+(cl-defun tree-sitter-langs-create-bundle (&optional clean target)
   "Create a bundle of language grammars.
 The bundle includes all languages tracked in git submodules.
 
@@ -358,7 +387,7 @@ compile from the current state of the grammar repos, without cleanup."
                        (message "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
                        (let ((lang-symbol (intern name)))
                          (condition-case err
-                             (tree-sitter-langs-compile lang-symbol clean)
+                             (tree-sitter-langs-compile lang-symbol clean target)
                            (error `[,lang-symbol ,err])))))
                   (seq-filter #'identity))))
     (message "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
@@ -387,7 +416,7 @@ compile from the current state of the grammar repos, without cleanup."
         (message "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
         (error "Could not compile grammars:\n%s" (pp-to-string errors))))))
 
-(defun tree-sitter-langs-compile-changed-or-all (&optional base)
+(defun tree-sitter-langs-compile-changed-or-all (&optional base target)
   "Compile languages that have changed since git revision BASE.
 If no language-specific change is detected, compile all languages."
   (let ((lang-symbols (tree-sitter-langs--changed-langs base))
@@ -395,12 +424,12 @@ If no language-specific change is detected, compile all languages."
     (if (null lang-symbols)
         (progn
           (message "[tree-sitter-langs] Compiling all langs")
-          (tree-sitter-langs-create-bundle))
+          (tree-sitter-langs-create-bundle nil target))
       (message "[tree-sitter-langs] Compiling langs changed since %s: %s" base lang-symbols)
       (dolist (lang-symbol lang-symbols)
         (message "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
         (condition-case err
-            (tree-sitter-langs-compile lang-symbol)
+            (tree-sitter-langs-compile lang-symbol nil target)
           (error (setq errors (append errors `([,lang-symbol ,err]))))))
       (when errors
         (message "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")

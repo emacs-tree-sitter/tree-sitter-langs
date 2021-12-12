@@ -18,15 +18,36 @@ PROJECT_ROOT=$(cd "$here/.."; pwd)
 
 LANG=$1
 
+# Parse named parameters.
+POSITIONAL=()
+while [[ $# -gt 0 ]]; do
+    key="$1"
+    case $key in
+        (-target)
+            target="'$2"
+            shift
+            shift
+            ;;
+        (*)
+            POSITIONAL+=("$1")
+            shift
+            ;;
+    esac
+done
+target=${target:-nil}
+if [ "$target" == '' ]; then
+    target=nil
+fi
+
 case $LANG in
     (all)
-        code="(tree-sitter-langs-create-bundle)"
+        code="(tree-sitter-langs-create-bundle nil $target)"
         ;;
     (changed)
-        code="(tree-sitter-langs-compile-changed-or-all \"${2:-origin/master}\")"
+        code="(tree-sitter-langs-compile-changed-or-all \"${2:-origin/master}\" $target)"
         ;;
     (*)
-        code="(tree-sitter-langs-compile '$LANG)"
+        code="(tree-sitter-langs-compile '$LANG $target)"
 esac
 
 (
