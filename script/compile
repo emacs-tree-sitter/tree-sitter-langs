@@ -35,7 +35,7 @@ while [[ $# -gt 0 ]]; do
     esac
 done
 target=${target:-nil}
-if [ "$target" == '' ]; then
+if [ "$target" == "'" ]; then
     target=nil
 fi
 
@@ -47,7 +47,7 @@ case $LANG in
         code="(tree-sitter-langs-compile-changed-or-all \"${2:-origin/master}\" $target)"
         ;;
     (*)
-        code="(tree-sitter-langs-compile '$LANG $target)"
+        code="(tree-sitter-langs-compile '$LANG nil $target)"
 esac
 
 (

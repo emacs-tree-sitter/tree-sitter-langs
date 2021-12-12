@@ -10,13 +10,23 @@ PROJECT_ROOT=$(cd "$here/.."; pwd)
 
     case $system in
         (Linux)
+            echo ┌─────────────────────────────────────────────────────────────────────
+            echo └ Grammar binaries:
+            file bin/*.so
             ldd bin/*.so
-            echo ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+            echo ┌─────────────────────────────────────────────────────────────────────
+            echo └ Emacs:
+            file "$(which emacs)"
             ldd "$(which emacs)"
             ;;
         (Darwin)
+            echo ┌─────────────────────────────────────────────────────────────────────
+            echo └ Grammar binaries:
+            file bin/*.dylib
             otool -L bin/*.dylib
-            echo ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+            echo ┌─────────────────────────────────────────────────────────────────────
+            echo └ Emacs:
+            file "$(which emacs)"
             otool -L "$(which emacs)"
             ;;
         (*)
