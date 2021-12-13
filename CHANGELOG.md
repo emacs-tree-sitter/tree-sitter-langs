@@ -1,6 +1,11 @@
 # Changelog
 
 ## Unreleased
+- Modified CI pipelines to publish additional pre-built grammar bundles. Their filenames include the platform they are built for. The files without platform in their name will eventually be deprecated.
+  + `tree-sitter-grammars.x86_64-apple-darwin.v<version>.tar.gz` (same as `tree-sitter-grammars-macos-<version>.tar.gz`)
+  + `tree-sitter-grammars.x86_64-unknown-linux-gnu.v<version>.tar.gz` (same as `tree-sitter-grammars-linux-<version>.tar.gz`)
+  + `tree-sitter-grammars.x86_64-pc-windows-msvc.v<version>.tar.gz` (same as `tree-sitter-grammars-windows-<version>.tar.gz`)
+  + `tree-sitter-grammars.aarch64-apple-darwin.v<version>.tar.gz` (new, for Apple Silicon)
 
 ## 0.10.12 - 2021-12-13
 
