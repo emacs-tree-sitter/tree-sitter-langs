@@ -111,6 +111,7 @@ See `tree-sitter-langs-repos'."
                 (hcl-mode        . hcl)
                 (html-mode       . html)
                 (mhtml-mode      . html)
+		(nix-mode        . nix)
                 (java-mode       . java)
                 (javascript-mode . javascript)
                 (js-mode         . javascript)
