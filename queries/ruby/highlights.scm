@@ -108,6 +108,11 @@
         (identifier) @variable
         (instance_variable) @variable])
 
+(left_assignment_list
+ [(identifier) @variable
+  (instance_variable) @variable
+  (class_variable) @variable.special])
+
 [(class_variable)
  (instance_variable)
  ] @property
