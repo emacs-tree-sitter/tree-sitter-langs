@@ -1,6 +1,8 @@
 # Changelog
 
 ## Unreleased
+
+## 0.10.13 - 2021-12-13
 - Modified CI pipelines to publish additional pre-built grammar bundles. Their filenames include the platform they are built for. The files without platform in their name will eventually be deprecated.
   + `tree-sitter-grammars.x86_64-apple-darwin.v<version>.tar.gz` (same as `tree-sitter-grammars-macos-<version>.tar.gz`)
   + `tree-sitter-grammars.x86_64-unknown-linux-gnu.v<version>.tar.gz` (same as `tree-sitter-grammars-linux-<version>.tar.gz`)
@@ -8,6 +10,7 @@
   + `tree-sitter-grammars.aarch64-apple-darwin.v<version>.tar.gz` (new, for Apple Silicon)
 
 ## 0.10.12 - 2021-12-13
+- Added `nix` grammar.
 
 ## 0.10.11 - 2021-12-09
 - Upgraded `java` parser to support change to switch_expression node
@@ -17,8 +20,10 @@
 - Resolve bugs with `php` preventing `evil-textobj-tree-sitter` motions from working
 
 ## 0.10.9 - 2021-12-05
+- Added `d` grammar.
 
 ## 0.10.8 - 2021-12-05
+- Switched to the official `elixir` grammar from `elixir-lang`.
 
 ## 0.10.7 - 2021-09-18
 - Added `elixir` grammar.
