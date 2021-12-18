@@ -40,6 +40,7 @@
 (require 'tree-sitter)
 (require 'tree-sitter-load)
 (require 'tree-sitter-hl)
+(require 'tree-sitter-imenu)
 
 (require 'tree-sitter-langs-build)
 
@@ -141,6 +142,38 @@ See `tree-sitter-langs-repos'."
 ;;; Normal load.
 (tree-sitter-langs--init-major-mode-alist)
 
+(defvar tree-sitter-langs--lang-inheritance
+  '((cpp c)
+    (typescript javascript)
+    (tsx typescript javascript))
+  "Alist associating a language-symbol with super-set languages.
+For example an entry of (cpp c) will make `tree-sitter-langs' look
+for pattern files for both cpp and c, giving a higher priority to
+entries earlier in the list.")
+
+(defun tree-sitter-langs--concat-queries (lang-symbol query-file-func)
+  "Concatenate queries for LANG-SYMBOL and its ancestor languages.
+QUERY-FILE-FUNC is a function passed the a language symbol that
+should return the path of the patterns file for that language."
+  (with-temp-buffer
+    (let (found)
+      (dolist (sym (append (list lang-symbol)
+                           (alist-get lang-symbol
+                                      tree-sitter-langs--lang-inheritance)))
+        (condition-case nil
+            (progn
+              (insert-file-contents (funcall query-file-func sym))
+              (setq found t)
+              (goto-char (point-max))
+              (insert "\n"))
+          (file-missing nil)))
+      ;; When at least one language file was correctly concatenated.
+      (when found
+        (buffer-string)))))
+
+;;; ----------------------------------------------------------------------------
+;;; Syntax highlighting.
+
 (defun tree-sitter-langs--hl-query-path (lang-symbol)
   (concat (file-name-as-directory
            (concat tree-sitter-langs--queries-dir
@@ -150,20 +183,7 @@ See `tree-sitter-langs-repos'."
 (defun tree-sitter-langs--hl-default-patterns (lang-symbol)
   "Return the bundled default syntax highlighting patterns for LANG-SYMBOL.
 Return nil if there are no bundled patterns."
-  (condition-case nil
-      (with-temp-buffer
-        ;; TODO: Make this less ad-hoc.
-        (dolist (sym (cons lang-symbol
-                           (pcase lang-symbol
-                             ('cpp '(c))
-                             ('typescript '(javascript))
-                             ('tsx '(typescript javascript))
-                             (_ nil))))
-          (insert-file-contents (tree-sitter-langs--hl-query-path sym))
-          (goto-char (point-max))
-          (insert "\n"))
-        (buffer-string))
-    (file-missing nil)))
+  (tree-sitter-langs--concat-queries lang-symbol #'tree-sitter-langs--hl-query-path))
 
 ;;;###autoload
 (defun tree-sitter-langs--set-hl-default-patterns (&rest _args)
@@ -176,6 +196,32 @@ Return nil if there are no bundled patterns."
 ;;;###autoload
 (advice-add 'tree-sitter-hl--setup :before
             #'tree-sitter-langs--set-hl-default-patterns)
+
+;;; ----------------------------------------------------------------------------
+;;; imenu.
+
+(defun tree-sitter-langs--imenu-query-path (lang-symbol)
+  (concat (file-name-as-directory
+           (concat tree-sitter-langs--queries-dir
+                   (symbol-name lang-symbol)))
+          "imenu.scm"))
+
+(defun tree-sitter-langs--imenu-default-patterns (lang-symbol)
+  "Return the bundled default imenu patterns for LANG-SYMBOL.
+Return nil if there are no bundled patterns."
+  (tree-sitter-langs--concat-queries lang-symbol #'tree-sitter-langs--imenu-query-path))
+
+;;;###autoload
+(defun tree-sitter-langs--set-imenu-default-patterns (&rest _args)
+  "Use imenu patterns provided by `tree-sitter-langs'."
+  (unless tree-sitter-imenu-default-patterns
+    (let ((lang-symbol (tsc--lang-symbol tree-sitter-language)))
+      (setq tree-sitter-imenu-default-patterns
+            (tree-sitter-langs--imenu-default-patterns lang-symbol)))))
+
+;;;###autoload
+(advice-add 'tree-sitter-imenu--setup :before
+            #'tree-sitter-langs--set-imenu-default-patterns)
 
 (provide 'tree-sitter-langs)
 ;;; tree-sitter-langs.el ends here
