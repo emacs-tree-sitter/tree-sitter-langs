@@ -128,8 +128,16 @@ jobs:
             tree-sitter-grammars*.tar.gz
 
       - name: Greenlight releasing to MELPA
-        run: |
-          git push origin ${{ env.RELEASE_VERSION }}:refs/heads/release
+        uses: actions/github-script@v5
+        with:
+          github-token: ${{ secrets.PAT }}
+          script: |
+            github.rest.git.updateRef({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              ref: "refs/heads/release",
+              sha: context.sha
+            })
         continue-on-error: true
 
       # We don't want this to trigger workflows, so we don't use a personal access token.

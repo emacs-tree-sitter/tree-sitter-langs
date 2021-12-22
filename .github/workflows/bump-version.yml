@@ -20,7 +20,7 @@ jobs:
         uses: actions/github-script@v5
         with:
           script: |
-            let commit = github.rest.git.getCommit({
+            let commit = await github.rest.git.getCommit({
               owner: context.repo.owner,
               repo: context.repo.repo,
               commit_sha: context.sha
@@ -48,12 +48,12 @@ jobs:
           git push
 
       - name: Create the release tag
-        uses: actions/github-script@v4
+        uses: actions/github-script@v5
         with:
           # Use personal access token to trigger the release workflow.
           github-token: ${{ secrets.PAT }}
           script: |
-            github.git.createRef({
+            github.rest.git.createRef({
               owner: context.repo.owner,
               repo: context.repo.repo,
               ref: "refs/tags/${{ env.RELEASE_VERSION }}",
