@@ -48,7 +48,8 @@
 ;; Variables
 
 (variable_declarator
- name: (identifier) @variable)
+ name: [(identifier) @variable
+        (object_pattern (shorthand_property_identifier_pattern) @variable)])
 (assignment_expression
  left: [(identifier) @variable
         (member_expression property: (property_identifier) @variable)])
