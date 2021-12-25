@@ -140,12 +140,12 @@ jobs:
             })
         continue-on-error: true
 
-      # We don't want this to trigger workflows, so we don't use a personal access token.
       - name: Greenlight releasing to MELPA Stable
-        uses: actions/github-script@v4
+        uses: actions/github-script@v5
         with:
+          github-token: ${{ secrets.PAT }}
           script: |
-            github.git.createRef({
+            github.rest.git.createRef({
               owner: context.repo.owner,
               repo: context.repo.repo,
               ref: "refs/tags/melpa-stable/v${{ env.RELEASE_VERSION }}",
