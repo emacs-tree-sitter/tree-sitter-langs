@@ -65,3 +65,9 @@ To build all registered languages, and creating the bundle:
       script/compile rust
       script/test rust
 #+end_src
+
+** Releasing
+Whenever a tag is created with the format ~*.*.*~, the [[./.github/workflows/release.yml][release workflow]] publishes a new GitHub Release with pre-compiled grammars.
+
+*** Merged pull requests with grammar changes
+When a pull request with grammar changes is merged, the [[./.github/workflows/bump-version.yml][bump-version workflow]] creates and tags a release commit, triggering the release workflow.
