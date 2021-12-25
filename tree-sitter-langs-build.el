@@ -195,6 +195,15 @@ git checkout."
   (tree-sitter-langs--map-repos
    (lambda (_) (tree-sitter-langs--call "git" "remote" "update"))))
 
+(defun tree-sitter-langs--show-upstream-changes (lang-symbol)
+  (let ((default-directory (file-name-as-directory
+                            (concat (tree-sitter-langs--repos-dir)
+                                    (symbol-name lang-symbol)))))
+    (tree-sitter-langs--call
+     "git" "--no-pager" "log" "--abbrev=8"
+     "--pretty=format:%C(red)%h%Creset %s %C(green)%an%Creset %C(cyan)(%cr)%Creset"
+     "HEAD..origin/HEAD")))
+
 (defun tree-sitter-langs--get-latest (type)
   "Return the latest tags/commits of the language repositories.
 TYPE should be either `:commits' or `:tags'. If there's no tag, return the

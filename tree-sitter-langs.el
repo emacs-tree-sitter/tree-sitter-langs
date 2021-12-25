@@ -36,6 +36,7 @@
 ;;; Code:
 
 (require 'cl-lib)
+(require 'xref)
 
 (require 'tree-sitter)
 (require 'tree-sitter-load)
@@ -173,7 +174,61 @@ Return nil if there are no bundled patterns."
       (setq tree-sitter-hl-default-patterns
             (tree-sitter-langs--hl-default-patterns lang-symbol)))))
 
+(defun tree-sitter-langs--read-rule-name ()
+  (unless tree-sitter-tree
+    (user-error "Tree-sitter-mode is not enabled in this buffer"))
+  (let* ((root-node (tsc-root-node tree-sitter-tree))
+         (pnt (point))
+         (mrk (if (region-active-p) (mark) pnt))
+         (current-node (tsc-get-named-descendant-for-position-range
+                        root-node (min pnt mrk) (max pnt mrk)))
+         (steps (tsc--node-steps current-node))
+         (options (nreverse (seq-map (lambda (step) (tsc-node-type (car step)))
+                                     steps)))
+         (node-type (tsc-node-type current-node))
+         (default (format "%s" node-type)))
+    (if (or current-prefix-arg (not default))
+        (completing-read (format "Rule name (default %s): " default)
+                         options)
+      default)))
+
 ;;;###autoload
+(defun tree-sitter-langs-find-hl-pattern-at-point ()
+  (interactive)
+  (let* ((lang-symbol (tsc--lang-symbol tree-sitter-language))
+         (query-path (tree-sitter-langs--hl-query-path lang-symbol)))
+    (find-file query-path)))
+
+;;;###autoload
+(defun tree-sitter-langs--find-grammar-rule (rule-name)
+  "Find the grammar rule of the syntax node at point.
+If the region is active, look for the grammar rule of the smallest syntax node
+that contains it.
+
+With prefix argumment, prompt for a grammar rule from the list of rules that
+correspond to the syntax nodes that cover the point/region."
+  (interactive (list (tree-sitter-langs--read-rule-name)))
+  (let* ((lang-symbol (tsc--lang-symbol tree-sitter-language))
+         (grammar-file (format "%s/repos/%s/grammar.js" tree-sitter-langs-git-dir lang-symbol)))
+    (unless (file-exists-p grammar-file)
+      (user-error "No file at %s" grammar-file))
+    ;; TODO: Check that the rule exists before taking off.
+    (xref-push-marker-stack)
+    (find-file grammar-file)
+    ;; TODO: Cache the query.
+    (pcase-let* ((captures (tsc-query-captures
+                            (tsc-make-query
+                             ;; This assumes `tree-sitter-mode' is turned on for the file
+                             ;; grammar.js.
+                             tree-sitter-language
+                             `[((pair key: (property_identifier) @f
+                                      value: [(function) (arrow_function)])
+                                (.eq? @f ,rule-name))])
+                            (tsc-root-node tree-sitter-tree)
+                            #'tsc--buffer-substring-no-properties))
+                 (`(_ . ,node) (seq-first captures)))
+      (goto-char (tsc-node-start-position node)))))
+
 (advice-add 'tree-sitter-hl--setup :before
             #'tree-sitter-langs--set-hl-default-patterns)
 
