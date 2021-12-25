@@ -27,8 +27,12 @@ jobs:
             });
             console.log(commit);
             let m = commit.message.match(/!bump-version(.*)$/m)
-            let version = typeof m[1] == 'string' ? m[1].trim() : ''
-            console.log(version);
+            if (typeof m[1] == 'string') {
+              let next_version = m[1].trim();
+              await exec.exec('script/dev', ['bump-version', next_version]);
+            } else {
+              await exec.exec('script/dev', ['bump-version']);
+            }
         continue-on-error: true
 
       - name: Bump version
