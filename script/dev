@@ -51,6 +51,12 @@
     (cl-incf (caddr v))
     (apply #'format "%s.%s.%s" v)))
 
+(defun -load-lib ()
+  (add-to-list 'load-path (file-name-directory
+                           (directory-file-name
+                            (file-name-directory load-file-name))))
+  (require 'tree-sitter-langs-build))
+
 (defun cmd:release-notes (&optional version)
   "Print VERSION's release notes, defaulting to 'Unreleased'."
   (princ (-release-notes version)))
@@ -89,6 +95,9 @@
 (defun cmd:current-version ()
   "Print the current version."
   (princ (-current-version)))
+
+(defun cmd:diff (lang)
+  (tree-sitter-langs--call "git diff"))
 
 (defun -main (&rest args)
   (when-let* ((cmd (car args))
