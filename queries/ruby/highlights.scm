@@ -40,6 +40,10 @@
  "while"
  ] @keyword
 
+;; Braces, when used to denote a block, have the same function as "do" and "end"
+;; and should be highlighted similarly.
+(block ["{" "}"] @keyword)
+
 ((identifier) @keyword
  (.match? @keyword "^(private|protected|public)$"))
 
