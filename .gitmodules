@@ -178,3 +178,9 @@
 	branch = main
 	update = none
 	ignore = dirty
+[submodule "repos/prisma"]
+	path = repos/prisma
+	url = https://github.com/LumaKernel/tree-sitter-prisma
+	branch = master
+	update = none
+	ignore = dirty

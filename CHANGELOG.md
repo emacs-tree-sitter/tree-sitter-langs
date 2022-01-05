@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+## 0.10.14 - 2022-01-05
+- Added `prisma` grammar.
+
 ## 0.10.13 - 2021-12-13
 - Modified CI pipelines to publish additional pre-built grammar bundles. Their filenames include the platform they are built for. The files without platform in their name will eventually be deprecated.
   + `tree-sitter-grammars.x86_64-apple-darwin.v<version>.tar.gz` (same as `tree-sitter-grammars-macos-<version>.tar.gz`)
