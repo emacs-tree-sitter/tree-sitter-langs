@@ -20,12 +20,13 @@ jobs:
         uses: actions/github-script@v5
         with:
           script: |
-            let commit = await github.rest.git.getCommit({
+            let response = await github.rest.git.getCommit({
               owner: context.repo.owner,
               repo: context.repo.repo,
               commit_sha: context.sha
             });
-            console.log(commit);
+            console.log(response);
+            let commit = response.data;
             let m = commit.message.match(/!bump-version(.*)$/m)
             let version = typeof m[1] == 'string' ? m[1].trim() : ''
             console.log(version);
