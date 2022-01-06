@@ -423,7 +423,7 @@ If no language-specific change is detected, compile all languages."
         errors)
     (if (null lang-symbols)
         (progn
-          (message "[tree-sitter-langs] Compiling all langs")
+          (message "[tree-sitter-langs] Compiling all langs, since there's no change since %s" base)
           (tree-sitter-langs-create-bundle nil target))
       (message "[tree-sitter-langs] Compiling langs changed since %s: %s" base lang-symbols)
       (dolist (lang-symbol lang-symbols)

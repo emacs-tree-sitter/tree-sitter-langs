@@ -11,7 +11,7 @@ try {
             if (!$base) {
                 $base = "origin/master"
             }
-            $code = "(tree-sitter-langs-compile-changed-or-all """"$base"""")"
+            $code = "(tree-sitter-langs-compile-changed-or-all \`"$base\`")"
         }
         default { $code = "(tree-sitter-langs-compile '$lang)" }
     }
