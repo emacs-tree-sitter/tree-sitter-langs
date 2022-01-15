@@ -236,9 +236,10 @@ infrequent (grammar-only changes). It is different from the version of
 
 (defconst tree-sitter-langs--os
   (pcase system-type
-    ('darwin "macos")
-    ('gnu/linux "linux")
-    ('windows-nt "windows")
+    ((guard (and (eq system-type 'darwin) (string= (car (split-string system-configuration "-")) "aarch64"))) "aarch64-apple-darwin")
+    ('darwin "x86_64-apple-darwin")
+    ('gnu/linux "x86_64-unknown-linux-gnu")
+    ('windows-nt "x86_64-pc-windows-msvc")
     (_ (error "Unsupported system-type %s" system-type))))
 
 (defconst tree-sitter-langs--suffixes '(".dylib" ".dll" ".so")
