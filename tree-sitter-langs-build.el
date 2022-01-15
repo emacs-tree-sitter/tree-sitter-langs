@@ -253,7 +253,7 @@ infrequent (grammar-only changes). It is different from the version of
   "Return the grammar bundle file's name, with optional EXT.
 If VERSION and OS are not spcified, use the defaults of
 `tree-sitter-langs--bundle-version' and `tree-sitter-langs--os'."
-  (format "tree-sitter-grammars-%s-%s.tar%s"
+  (format "tree-sitter-grammars.%s.v%s.tar%s"
           (or os tree-sitter-langs--os)
           (or version tree-sitter-langs--bundle-version)
           (or ext "")))
