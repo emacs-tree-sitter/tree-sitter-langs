@@ -21,9 +21,8 @@
 (field_identifier) @property
 (short_var_declaration left: (expression_list (identifier) @variable))
 (var_declaration (var_spec name: (identifier) @variable))
-(parameter_declaration name: ((identifier) @variable ("," (identifier) @variable)*))
+(parameter_declaration name: ((identifier) @variable.parameter ("," (identifier) @variable.parameter)*))
 (const_declaration (const_spec name: (identifier) @variable))
-(qualified_type package: (package_identifier) @keyword)
 (range_clause left: (expression_list (identifier) @variable))
 
 ; Operators
