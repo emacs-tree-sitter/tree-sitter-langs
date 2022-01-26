@@ -1,8 +1,7 @@
 # Changelog
 
 ## Unreleased
-
-## 0.10.14 - 2022-01-05
+- Added `haskell` grammar.
 
 ## 0.10.14 - 2022-01-05
 - Added `prisma` grammar.
