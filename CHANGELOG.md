@@ -1,6 +1,8 @@
 # Changelog
 
 ## Unreleased
+
+## 0.10.15 - 2022-01-27
 - Added `haskell` grammar.
 
 ## 0.10.14 - 2022-01-05
