@@ -252,9 +252,9 @@ infrequent (grammar-only changes). It is different from the version of
   "Return the grammar bundle file's name, with optional EXT.
 If VERSION and OS are not spcified, use the defaults of
 `tree-sitter-langs--bundle-version' and `tree-sitter-langs--os'."
-  (setq version (or version tree-sitter-langs--bundle-version))
-  (setq os (or os tree-sitter-langs--os))
-  (setq ext (or ext ""))
+  (setq os (or os tree-sitter-langs--os)
+        version (or version tree-sitter-langs--bundle-version)
+        ext (or ext ""))
   (if (version<= "0.10.13" version)
       (format "tree-sitter-grammars.%s.v%s.tar%s"
               ;; FIX: Implement this correctly, refactoring 'OS' -> 'platform'.
@@ -265,8 +265,16 @@ If VERSION and OS are not spcified, use the defaults of
                              "aarch64-apple-darwin"
                            "x86_64-apple-darwin")))
               version ext)
-    (format "tree-sitter-grammars-%s-%s.tar%s"
-            os version ext)))
+    (tree-sitter-langs--old-bundle-file
+     ext version os)))
+
+;; This is for compatibility with old downloading code. TODO: Remove it.
+(defun tree-sitter-langs--old-bundle-file (&optional ext version os)
+  (setq os (or os tree-sitter-langs--os)
+        version (or version tree-sitter-langs--bundle-version)
+        ext (or ext ""))
+  (format "tree-sitter-grammars-%s-%s.tar%s"
+          os version ext))
 
 (defun tree-sitter-langs-compile (lang-symbol &optional clean target)
   "Download and compile the grammar for LANG-SYMBOL.
@@ -405,7 +413,7 @@ compile from the current state of the grammar repos, without cleanup."
     (unwind-protect
         (let* ((tar-file (concat (file-name-as-directory
                                   (expand-file-name default-directory))
-                                 (tree-sitter-langs--bundle-file) ".gz"))
+                                 (tree-sitter-langs--old-bundle-file) ".gz"))
                (default-directory (tree-sitter-langs--bin-dir))
                (tree-sitter-langs--out (tree-sitter-langs--buffer "*tree-sitter-langs-create-bundle*"))
                (files (cons tree-sitter-langs--bundle-version-file
