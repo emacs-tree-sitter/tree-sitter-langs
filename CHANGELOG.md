@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Made `tree-sitter-langs-install-grammars` download platform-specific binaries (mainly for Apple Silicon).
 
 ## 0.10.15 - 2022-01-27
 - Added `haskell` grammar.

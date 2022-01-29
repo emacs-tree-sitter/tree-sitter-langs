@@ -252,10 +252,21 @@ infrequent (grammar-only changes). It is different from the version of
   "Return the grammar bundle file's name, with optional EXT.
 If VERSION and OS are not spcified, use the defaults of
 `tree-sitter-langs--bundle-version' and `tree-sitter-langs--os'."
-  (format "tree-sitter-grammars-%s-%s.tar%s"
-          (or os tree-sitter-langs--os)
-          (or version tree-sitter-langs--bundle-version)
-          (or ext "")))
+  (setq version (or version tree-sitter-langs--bundle-version))
+  (setq os (or os tree-sitter-langs--os))
+  (setq ext (or ext ""))
+  (if (version<= "0.10.13" version)
+      (format "tree-sitter-grammars.%s.v%s.tar%s"
+              ;; FIX: Implement this correctly, refactoring 'OS' -> 'platform'.
+              (pcase os
+                ("windows" "x86_64-pc-windows-msvc")
+                ("linux" "x86_64-unknown-linux-gnu")
+                ("macos" (if (string-prefix-p "aarch64" system-configuration)
+                             "aarch64-apple-darwin"
+                           "x86_64-apple-darwin")))
+              version ext)
+    (format "tree-sitter-grammars-%s-%s.tar%s"
+            os version ext)))
 
 (defun tree-sitter-langs-compile (lang-symbol &optional clean target)
   "Download and compile the grammar for LANG-SYMBOL.
