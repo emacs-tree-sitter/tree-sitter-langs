@@ -26,19 +26,18 @@
 ;; Functions
 
 (call_expression
- function: (scoped_identifier name: (_) @function.call))
+ function: (qualified_identifier name: (_) @function.call))
 
 (template_function
  name: [(identifier) @function.call
-        (scoped_identifier name: (_) @function.call)])
+        (qualified_identifier name: (_) @function.call)])
 
 (template_method
- name: [(field_identifier) @method.call
-        (scoped_field_identifier name: (_) @method.call)])
+ name: (field_identifier) @method.call)
 
 (function_declarator
  declarator: [(field_identifier) @function
-              (scoped_identifier name: (_) @function)])
+              (qualified_identifier name: (_) @function)])
 
 ;;; ----------------------------------------------------------------------------
 ;; Types

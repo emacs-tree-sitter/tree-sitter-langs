@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Updated `cpp` grammar and highlighting.
 
 ## 0.11.0 - 2022-01-29
 - Made `tree-sitter-langs-install-grammars` download platform-specific binaries (mainly for Apple Silicon).
