@@ -16,7 +16,7 @@ jobs:
           version: '27.2'
       - uses: actions/checkout@v2
 
-      - name: Print commit data
+      - name: Bump version
         uses: actions/github-script@v5
         with:
           script: |
@@ -28,12 +28,12 @@ jobs:
             console.log(response);
             let commit = response.data;
             let m = commit.message.match(/!bump-version(.*)$/m)
-            let version = typeof m[1] == 'string' ? m[1].trim() : ''
-            console.log(version);
-        continue-on-error: true
-
-      - name: Bump version
-        run: script/dev bump-version
+            if (typeof m[1] == 'string') {
+              let next_version = m[1].trim();
+              await exec.exec('script/dev', ['bump-version', next_version]);
+            } else {
+              await exec.exec('script/dev', ['bump-version']);
+            }
 
       # We don't want this to trigger workflows, so we don't use a personal access token.
       - name: Create the release commit
