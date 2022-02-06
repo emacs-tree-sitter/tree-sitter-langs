@@ -1,6 +1,8 @@
 # Changelog
 
 ## Unreleased
+
+## 0.11.1 - 2022-02-06
 - Updated `cpp` grammar and highlighting.
 
 ## 0.11.0 - 2022-01-29
