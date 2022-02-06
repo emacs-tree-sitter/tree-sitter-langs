@@ -28,7 +28,7 @@ jobs:
             console.log(response);
             let commit = response.data;
             let m = commit.message.match(/!bump-version(.*)$/m)
-            if (typeof m[1] == 'string') {
+            if (!!m && typeof m[1] == 'string') {
               let next_version = m[1].trim();
               await exec.exec('script/dev', ['bump-version', next_version]);
             } else {
