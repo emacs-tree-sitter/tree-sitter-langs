@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Added `zig` grammar.
 
 ## 0.11.1 - 2022-02-06
 - Updated `cpp` grammar and highlighting.
