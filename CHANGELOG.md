@@ -1,6 +1,8 @@
 # Changelog
 
 ## Unreleased
+
+## 0.11.2 - 2022-02-11
 - Updated `python` grammar and highlighting (add support for pattern matching).
 
 ## 0.11.1 - 2022-02-06
