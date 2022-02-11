@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Updated `python` grammar and highlighting (add support for pattern matching).
 
 ## 0.11.1 - 2022-02-06
 - Updated `cpp` grammar and highlighting.
