@@ -1,6 +1,8 @@
 # Changelog
 
 ## Unreleased
+
+## 0.11.3 - 2022-02-12
 - Added `zig` grammar.
 
 ## 0.11.2 - 2022-02-11
