@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Added `zig` grammar.
 
 ## 0.11.2 - 2022-02-11
 - Updated `python` grammar and highlighting (add support for pattern matching).

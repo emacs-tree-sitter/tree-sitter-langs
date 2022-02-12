@@ -193,3 +193,9 @@
 	branch = master
 	update = none
 	ignore = dirty
+[submodule "repos/zig"]
+	path = repos/zig
+	url = https://github.com/maxxnino/tree-sitter-zig
+	branch = main
+	update = none
+	ignore = dirty

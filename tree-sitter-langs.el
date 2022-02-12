@@ -132,7 +132,8 @@ See `tree-sitter-langs-repos'."
                 (scala-mode      . scala)
                 (swift-mode      . swift)
                 (tuareg-mode     . ocaml)
-                (typescript-mode . typescript))))
+                (typescript-mode . typescript)
+                (zig-mode        . zig))))
     (cl-pushnew entry tree-sitter-major-mode-language-alist
                 :key #'car))
   (advice-remove 'tree-sitter--setup #'tree-sitter-langs--init-major-mode-alist))
