@@ -93,7 +93,6 @@ If BUFFER is nil, `princ' is used to forward its stdout+stderr."
 In batch mode, return nil, so that stdout is used instead."
   (unless noninteractive
     (let ((buf (get-buffer-create name)))
-      (pop-to-buffer buf)
       (delete-region (point-min) (point-max))
       (redisplay)
       buf)))
