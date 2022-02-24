@@ -276,16 +276,13 @@ If VERSION and OS are not spcified, use the defaults of
   (format "tree-sitter-grammars-%s-%s.tar%s"
           os version ext))
 
-(defun tree-sitter-langs-compile (lang-symbol &optional clean target)
-  "Download and compile the grammar for LANG-SYMBOL.
-This function requires git and tree-sitter CLI.
+(defun tree-sitter-langs--compile (lang-symbol dir &optional paths target)
+  "Download and compile the grammar at DIR for LANG-SYMBOL.
 
-If the optional arg CLEAN is non-nil, compile from the revision recorded in this
-project (through git submodules), and clean up afterwards. Otherwise, compile
-from the current state of the grammar repo, without cleanup."
-  (message "[tree-sitter-langs] Processing %s" lang-symbol)
-  (unless (executable-find "git")
-    (error "Could not find git (needed to download grammars)"))
+If a directory contains multiple subgrammars, PATHS may be used to specify them.
+TARGET allows a cross-compilation target to be specified.
+
+This function requires tree-sitter CLI."
   (unless (executable-find "tree-sitter")
     (error "Could not find tree-sitter executable (needed to compile grammars)"))
   (setq target
@@ -294,32 +291,11 @@ from the current state of the grammar repo, without cleanup."
           ("aarch64-apple-darwin" "arm64-apple-macos11")
           ("nil" nil)
           (_ (error "Unsupported cross-compilation target %s" target))))
-  (let* ((source (tree-sitter-langs--source lang-symbol))
-         (dir (if source
-                  (file-name-as-directory
-                   (concat (tree-sitter-langs--repos-dir)
-                           (symbol-name lang-symbol)))
-                (error "Unknown language `%s'" lang-symbol)))
-         (sub-path (format "repos/%s" lang-symbol))
-         (status (tree-sitter-langs--repo-status lang-symbol))
-         (paths (plist-get source :paths))
+  (let* ((paths (or paths '("")))
          (bin-dir (tree-sitter-langs--bin-dir))
          (tree-sitter-langs--out (tree-sitter-langs--buffer
                                   (format "*tree-sitter-langs-compile %s*" lang-symbol))))
-    (let ((default-directory tree-sitter-langs-git-dir))
-      (pcase status
-        (:uninitialized
-         (tree-sitter-langs--call "git" "submodule" "update" "--init" "--checkout" "--" sub-path))
-        (:modified
-         (when clean
-           (let ((default-directory dir))
-             (tree-sitter-langs--call "git" "stash" "push"))
-           (tree-sitter-langs--call "git" "submodule" "update" "--init" "--checkout" "--force" "--" sub-path)))
-        (:conflicts
-         (error "Unresolved conflicts in %s" dir))
-        (:synchronized nil)
-        (_
-         (error "Weird status from git-submodule '%s'" status))))
+
     (let ((default-directory dir))
       (when (member lang-symbol tree-sitter-langs--langs-with-deps)
         (tree-sitter-langs--call "npm" "set" "progress=false")
@@ -365,7 +341,8 @@ from the current state of the grammar repo, without cleanup."
                       "src/parser.c"
                       "-o" (format "%sbin/%s.so" tree-sitter-langs-grammar-dir lang-symbol)
                       "-target" target))))
-           (:default (tree-sitter-langs--call "tree-sitter" "test")))))
+           (:default
+            (tree-sitter-langs--call "tree-sitter" "test")))))
       ;; Replace underscores with hyphens. Example: c_sharp.
       (let ((default-directory bin-dir))
         (dolist (file (directory-files default-directory))
@@ -386,10 +363,45 @@ from the current state of the grammar repo, without cleanup."
               (let ((new-name (concat (file-name-base file) ".dylib")))
                 (when (file-exists-p new-name)
                   (delete-file new-name))
-                (rename-file file new-name))))))
-      (when clean
-        (tree-sitter-langs--call "git" "reset" "--hard" "HEAD")
-        (tree-sitter-langs--call "git" "clean" "-f")))))
+                (rename-file file new-name)))))))))
+
+(defun tree-sitter-langs-compile (lang-symbol &optional clean target)
+  "Download and compile the grammar for LANG-SYMBOL.
+This function requires git and tree-sitter CLI.
+
+If the optional arg CLEAN is non-nil, compile from the revision recorded in this
+project (through git submodules), and clean up afterwards. Otherwise, compile
+from the current state of the grammar repo, without cleanup."
+  (message "[tree-sitter-langs] Processing %s" lang-symbol)
+  (unless (executable-find "git")
+    (error "Could not find git (needed to download grammars)"))
+  (let* ((source (tree-sitter-langs--source lang-symbol))
+         (dir (if source
+                  (file-name-as-directory
+                   (concat (tree-sitter-langs--repos-dir)
+                           (symbol-name lang-symbol)))
+                (error "Unknown language `%s'" lang-symbol)))
+         (sub-path (format "repos/%s" lang-symbol))
+         (status (tree-sitter-langs--repo-status lang-symbol))
+         (paths (plist-get source :paths)))
+    (let ((default-directory tree-sitter-langs-git-dir))
+      (pcase status
+        (:uninitialized
+         (tree-sitter-langs--call "git" "submodule" "update" "--init" "--checkout" "--" sub-path))
+        (:modified
+         (when clean
+           (let ((default-directory dir))
+             (tree-sitter-langs--call "git" "stash" "push"))
+           (tree-sitter-langs--call "git" "submodule" "update" "--init" "--checkout" "--force" "--" sub-path)))
+        (:conflicts
+         (error "Unresolved conflicts in %s" dir))
+        (:synchronized nil)
+        (_
+         (error "Weird status from git-submodule '%s'" status))))
+    (tree-sitter-langs--compile lang-symbol dir paths target)
+    (when clean
+      (tree-sitter-langs--call "git" "reset" "--hard" "HEAD")
+      (tree-sitter-langs--call "git" "clean" "-f"))))
 
 (cl-defun tree-sitter-langs-create-bundle (&optional clean target)
   "Create a bundle of language grammars.
@@ -521,16 +533,17 @@ non-nil."
           (when (bound-and-true-p dired-omit-mode)
             (dired-omit-mode -1)))))))
 
-(defun tree-sitter-langs--copy-query (lang-symbol &optional force)
+(defun tree-sitter-langs--copy-query (lang-symbol &optional src-dir force)
   "Copy highlights.scm file of LANG-SYMBOL to `tree-sitter-langs--queries-dir'.
 This assumes the repo has already been set up, for example by
 `tree-sitter-langs-compile'.
 
-If the optional arg FORCE is non-nil, any existing file will be overwritten."
-  (let ((src (thread-first (tree-sitter-langs--repos-dir)
-               (concat (symbol-name lang-symbol))
-               file-name-as-directory (concat "queries")
-               file-name-as-directory (concat "highlights.scm"))))
+If the optional arg FORCE is non-nil, any existing file will be overwritten.
+If the optional arg SRC-DIR is non-nil, highlights will be extracted from
+the provided directory."
+  (let ((src (thread-first (or src-dir (concat (tree-sitter-langs--repos-dir) (symbol-name lang-symbol)))
+                           file-name-as-directory (concat "queries")
+                           file-name-as-directory (concat "highlights.scm"))))
     (when (file-exists-p src)
       (let ((dst-dir  (file-name-as-directory
                        (concat tree-sitter-langs--queries-dir

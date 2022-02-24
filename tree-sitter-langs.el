@@ -64,9 +64,12 @@
   (unless (bound-and-true-p tree-sitter-langs--testing)
     (tree-sitter-langs-install-grammars :skip-if-installed)))
 
-(defun tree-sitter-langs-ensure (lang-symbol)
+(defun tree-sitter-langs-ensure (lang-symbol &optional src-dir &rest compilation-args)
   "Return the language object identified by LANG-SYMBOL.
 If it cannot be loaded, this function tries to compile the grammar.
+
+If SRC-DIR is non-nil, the language will be compiled from the provided directory.
+COMPILATION-ARGS will provide additional args to `tree-sitter-langs--compile'.
 
 This function also tries to copy highlight query from the language repo, if it
 exists.
@@ -79,9 +82,11 @@ See `tree-sitter-langs-repos'."
          (display-warning 'tree-sitter-langs
                           (format "Could not load grammar for `%s', trying to compile it"
                                   lang-symbol))
-         (tree-sitter-langs-compile lang-symbol)
-         (tree-sitter-require lang-symbol)))
-    (tree-sitter-langs--copy-query lang-symbol)))
+         (if src-dir
+             (apply #'tree-sitter-langs--compile lang-symbol src-dir compilation-args)
+           (tree-sitter-langs-compile lang-symbol))
+         (tree-sitter-require lang-symbol)
+         (tree-sitter-langs--copy-query lang-symbol src-dir)))))
 
 ;;;###autoload
 (defun tree-sitter-langs--init-load-path (&rest _args)
