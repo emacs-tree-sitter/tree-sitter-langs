@@ -226,7 +226,7 @@ latest commit."
 ;; ---------------------------------------------------------------------------
 ;;; Building language grammars.
 
-(defconst tree-sitter-langs--bundle-version "0.10.14"
+(defconst tree-sitter-langs--bundle-version "0.11.3"
   "Version of the grammar bundle.
 This should be bumped whenever a language submodule is updated, which should be
 infrequent (grammar-only changes). It is different from the version of
@@ -252,10 +252,29 @@ infrequent (grammar-only changes). It is different from the version of
   "Return the grammar bundle file's name, with optional EXT.
 If VERSION and OS are not spcified, use the defaults of
 `tree-sitter-langs--bundle-version' and `tree-sitter-langs--os'."
+  (setq os (or os tree-sitter-langs--os)
+        version (or version tree-sitter-langs--bundle-version)
+        ext (or ext ""))
+  (if (version<= "0.10.13" version)
+      (format "tree-sitter-grammars.%s.v%s.tar%s"
+              ;; FIX: Implement this correctly, refactoring 'OS' -> 'platform'.
+              (pcase os
+                ("windows" "x86_64-pc-windows-msvc")
+                ("linux" "x86_64-unknown-linux-gnu")
+                ("macos" (if (string-prefix-p "aarch64" system-configuration)
+                             "aarch64-apple-darwin"
+                           "x86_64-apple-darwin")))
+              version ext)
+    (tree-sitter-langs--old-bundle-file
+     ext version os)))
+
+;; This is for compatibility with old downloading code. TODO: Remove it.
+(defun tree-sitter-langs--old-bundle-file (&optional ext version os)
+  (setq os (or os tree-sitter-langs--os)
+        version (or version tree-sitter-langs--bundle-version)
+        ext (or ext ""))
   (format "tree-sitter-grammars-%s-%s.tar%s"
-          (or os tree-sitter-langs--os)
-          (or version tree-sitter-langs--bundle-version)
-          (or ext "")))
+          os version ext))
 
 (defun tree-sitter-langs-compile (lang-symbol &optional clean target)
   "Download and compile the grammar for LANG-SYMBOL.
@@ -394,7 +413,7 @@ compile from the current state of the grammar repos, without cleanup."
     (unwind-protect
         (let* ((tar-file (concat (file-name-as-directory
                                   (expand-file-name default-directory))
-                                 (tree-sitter-langs--bundle-file) ".gz"))
+                                 (tree-sitter-langs--old-bundle-file) ".gz"))
                (default-directory (tree-sitter-langs--bin-dir))
                (tree-sitter-langs--out (tree-sitter-langs--buffer "*tree-sitter-langs-create-bundle*"))
                (files (cons tree-sitter-langs--bundle-version-file

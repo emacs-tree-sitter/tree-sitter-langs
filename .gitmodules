@@ -172,6 +172,9 @@
 [submodule "repos/d"]
 	path = repos/d
 	url = https://github.com/CyberShadow/tree-sitter-d/
+	branch = master
+	update = none
+	ignore = dirty
 [submodule "repos/nix"]
 	path = repos/nix
 	url = https://github.com/cstrahan/tree-sitter-nix
@@ -182,6 +185,18 @@
 	path = repos/prisma
 	url = https://github.com/LumaKernel/tree-sitter-prisma
 	branch = master
+	update = none
+	ignore = dirty  
+[submodule "repos/haskell"]
+	path = repos/haskell
+	url = https://github.com/tree-sitter/tree-sitter-haskell
+	branch = master
+	update = none
+	ignore = dirty
+[submodule "repos/zig"]
+	path = repos/zig
+	url = https://github.com/maxxnino/tree-sitter-zig
+	branch = main
 	update = none
 	ignore = dirty
 [submodule "repos/verilog"]

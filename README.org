@@ -35,6 +35,10 @@ Note: If you also plan to work on [[https://github.com/emacs-tree-sitter/elisp-t
 
 *** Tools and dependencies
 - Install [[https://cask.readthedocs.io][cask]].
+- Install ELisp dependencies:
+    #+begin_src bash
+      cask install
+#+end_src
 - Install NodeJS. It is needed to generate the grammar code from the JavaScript DSL. The recommended tool to manage NodeJS is [[https://volta.sh/][volta]].
 - Install [[https://tree-sitter.github.io/tree-sitter/creating-parsers#installation][tree-sitter CLI tool]]. (Its binary can also be downloaded directly from [[https://github.com/tree-sitter/tree-sitter/releases][GitHub]].) *Note: versions 0.20+ cannot be used, as they introduce [[https://github.com/tree-sitter/tree-sitter/pull/1157][a breaking change]] in binary storage location*.
 

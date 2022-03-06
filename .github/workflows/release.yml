@@ -135,7 +135,7 @@ jobs:
             github.rest.git.updateRef({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              ref: "refs/heads/release",
+              ref: "heads/release",
               sha: context.sha
             })
         continue-on-error: true

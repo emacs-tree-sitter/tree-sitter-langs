@@ -1,11 +1,11 @@
 ; Function calls
 
 (call_expression
-  function: (identifier) @function)
+  function: (identifier) @function.call)
 
 (call_expression
   function: (selector_expression
-    field: (field_identifier) @function.method))
+    field: (field_identifier) @function.method.call))
 
 ; Function definitions
 
@@ -19,88 +19,103 @@
 
 (type_identifier) @type
 (field_identifier) @property
-(identifier) @variable
+(short_var_declaration left: (expression_list (identifier) @variable))
+(var_declaration (var_spec name: (identifier) @variable))
+(parameter_declaration (identifier) @variable.parameter)
+(const_declaration (const_spec name: (identifier) @variable))
+(range_clause left: (expression_list (identifier) @variable))
 
 ; Operators
 
-"--" @operator
-"-" @operator
-"-=" @operator
-":=" @operator
-"!" @operator
-"!=" @operator
-"..." @operator
-"*" @operator
-"*" @operator
-"*=" @operator
-"/" @operator
-"/=" @operator
-"&" @operator
-"&&" @operator
-"&=" @operator
-"%" @operator
-"%=" @operator
-"^" @operator
-"^=" @operator
-"+" @operator
-"++" @operator
-"+=" @operator
-"<-" @operator
-"<" @operator
-"<<" @operator
-"<<=" @operator
-"<=" @operator
-"=" @operator
-"==" @operator
-">" @operator
-">=" @operator
-">>" @operator
-">>=" @operator
-"|" @operator
-"|=" @operator
-"||" @operator
+[
+  "--"
+  "-"
+  "-="
+  ":="
+  "!"
+  "!="
+  "..."
+  "*"
+  "*"
+  "*="
+  "/"
+  "/="
+  "&"
+  "&&"
+  "&="
+  "%"
+  "%="
+  "^"
+  "^="
+  "+"
+  "++"
+  "+="
+  "<-"
+  "<"
+  "<<"
+  "<<="
+  "<="
+  "="
+  "=="
+  ">"
+  ">="
+  ">>"
+  ">>="
+  "|"
+  "|="
+  "||"
+] @operator
 
 ; Keywords
 
-"break" @keyword
-"case" @keyword
-"chan" @keyword
-"const" @keyword
-"continue" @keyword
-"default" @keyword
-"defer" @keyword
-"else" @keyword
-"fallthrough" @keyword
-"for" @keyword
-"func" @keyword
-"go" @keyword
-"goto" @keyword
-"if" @keyword
-"import" @keyword
-"interface" @keyword
-"map" @keyword
-"package" @keyword
-"range" @keyword
-"return" @keyword
-"select" @keyword
-"struct" @keyword
-"switch" @keyword
-"type" @keyword
-"var" @keyword
+[
+  "break"
+  "case"
+  "chan"
+  "const"
+  "continue"
+  "default"
+  "defer"
+  "else"
+  "fallthrough"
+  "for"
+  "func"
+  "go"
+  "goto"
+  "if"
+  "import"
+  "interface"
+  "map"
+  "package"
+  "range"
+  "return"
+  "select"
+  "struct"
+  "switch"
+  "type"
+  "var"
+] @keyword
 
 ; Literals
 
-(interpreted_string_literal) @string
-(raw_string_literal) @string
-(rune_literal) @string
+[
+  (interpreted_string_literal)
+  (raw_string_literal)
+  (rune_literal)
+] @string
+
 (escape_sequence) @escape
 
-(int_literal) @number
-(float_literal) @number
-(imaginary_literal) @number
+[
+  (int_literal)
+  (float_literal)
+  (imaginary_literal)
+] @number
 
-(true) @constant.builtin
-(false) @constant.builtin
-(nil) @constant.builtin
+[
+  (true)
+  (false)
+  (nil)
+] @constant.builtin
 
 (comment) @comment

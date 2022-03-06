@@ -2,7 +2,20 @@
 
 ## Unreleased
 
-## 0.10.14 - 2022-01-05
+## 0.11.3 - 2022-02-12
+- Added `zig` grammar.
+
+## 0.11.2 - 2022-02-11
+- Updated `python` grammar and highlighting (add support for pattern matching).
+
+## 0.11.1 - 2022-02-06
+- Updated `cpp` grammar and highlighting.
+
+## 0.11.0 - 2022-01-29
+- Made `tree-sitter-langs-install-grammars` download platform-specific binaries (mainly for Apple Silicon).
+
+## 0.10.15 - 2022-01-27
+- Added `haskell` grammar.
 
 ## 0.10.14 - 2022-01-05
 - Added `prisma` grammar.
