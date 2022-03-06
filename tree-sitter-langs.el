@@ -132,6 +132,7 @@ See `tree-sitter-langs-repos'."
                 (rustic-mode     . rust)
                 (scala-mode      . scala)
                 (swift-mode      . swift)
+                (terraform-mode  . hcl)
                 (tuareg-mode     . ocaml)
                 (typescript-mode . typescript)
                 (zig-mode        . zig))))

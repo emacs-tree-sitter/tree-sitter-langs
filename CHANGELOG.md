@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Map `terraform-mode` to the `hcl` grammer.
+
 ## 0.11.6 - 2022-03-28
 - Updated `bash` grammar.
 
