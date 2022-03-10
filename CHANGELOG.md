@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+## 0.11.4 - 22-03-10
+- Added `verilog` grammar.
+
 ## 0.11.3 - 2022-02-12
 - Added `zig` grammar.
 
