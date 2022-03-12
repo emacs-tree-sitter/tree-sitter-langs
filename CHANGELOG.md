@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Added `solidity` grammar and highlighting.
 
 ## 0.11.4 - 2022-03-19
 
