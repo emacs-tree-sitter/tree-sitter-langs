@@ -199,3 +199,9 @@
 	branch = main
 	update = none
 	ignore = dirty
+[submodule "repos/ql"]
+	path = repos/ql
+	url = https://github.com/tree-sitter/tree-sitter-ql
+	branch = master
+        update = none
+        ignore = dirty
