@@ -101,6 +101,7 @@ See `tree-sitter-langs-repos'."
               '((agda-mode       . agda)
                 (sh-mode         . bash)
                 (c-mode          . c)
+                (caml-mode       . ocaml)
                 (csharp-mode     . c-sharp)
                 (c++-mode        . cpp)
                 (d-mode          . d)
