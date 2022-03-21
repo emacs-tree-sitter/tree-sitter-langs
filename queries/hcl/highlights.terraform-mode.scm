@@ -29,7 +29,9 @@
 
 ;; TODO: Highlight `content'.
 ((block (identifier) @keyword
-        [(string_lit (template_literal) @variable)])
+        [(string_lit (quoted_template_start) @noise
+                     (template_literal) @variable
+                     (quoted_template_end) @noise)])
  (.eq? @keyword "dynamic"))
 
 ;; ((block (identifier) @keyword
@@ -39,25 +41,35 @@
 ;;  (.eq? @keyword "dynamic"))
 
 ((block (identifier) @keyword
-        . [(string_lit (template_literal) @function)
+        . [(string_lit (quoted_template_start) @noise
+                       (template_literal) @function
+                       (quoted_template_end) @noise)
            (identifier) @function])
  (.eq? @keyword "output"))
 
 ((block (identifier) @keyword
-        [(string_lit (template_literal) @variable.special)
+        [(string_lit (quoted_template_start) @noise
+                     (template_literal) @variable.special
+                     (quoted_template_end) @noise)
          (identifier) @variable.special])
  (.eq? @keyword "variable"))
 
 ((block (identifier) @keyword
-        [(string_lit (template_literal) @type)
+        [(string_lit (quoted_template_start) @noise
+                     (template_literal) @type
+                     (quoted_template_end) @noise)
          (identifier) @type])
  (.eq? @keyword "module"))
 
 ;; resource "aws_launch_template" "default"
 (block (identifier)
-       [(string_lit (template_literal) @type)
+       [(string_lit (quoted_template_start) @noise
+                    (template_literal) @type
+                    (quoted_template_end) @noise)
         (identifier) @type]
-       . [(string_lit (template_literal) @function)
+       . [(string_lit (quoted_template_start) @noise
+                      (template_literal) @function
+                      (quoted_template_end) @noise)
           (identifier) @function]
        . (block_start))
 
