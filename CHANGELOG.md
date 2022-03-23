@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- Update `javascript` grammar to fix object destructing with default values
+- Update `typescript` grammar
+
 ## 0.11.4 - 2022-03-19
 
 ## 0.11.4 - 22-03-10
