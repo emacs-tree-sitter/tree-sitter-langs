@@ -1,5 +1,3 @@
-;; Copied and modified from
-;; https://github.com/nvim-treesitter/nvim-treesitter/blob/master/queries/kotlin/highlights.scm
 ;;; Identifiers
 
 (simple_identifier) @variable
