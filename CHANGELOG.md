@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Updated `bash` grammar.
 
 ## 0.11.5 - 2022-03-28
 
