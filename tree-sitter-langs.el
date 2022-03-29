@@ -134,6 +134,7 @@ See `tree-sitter-langs-repos'."
                 (swift-mode      . swift)
                 (tuareg-mode     . ocaml)
                 (typescript-mode . typescript)
+                (verilog-mode    . verilog)
                 (zig-mode        . zig))))
     (cl-pushnew entry tree-sitter-major-mode-language-alist
                 :key #'car))
