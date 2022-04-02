@@ -5,7 +5,7 @@
 ;; Author: Tuấn-Anh Nguyễn <ubolonton@gmail.com>
 ;; Keywords: languages tools parsers tree-sitter
 ;; Homepage: https://github.com/emacs-tree-sitter/tree-sitter-langs
-;; Version: 0.11.3
+;; Version: 0.11.6
 ;; Package-Requires: ((emacs "25.1") (tree-sitter "0.15.0"))
 ;; SPDX-License-Identifier: MIT
 
@@ -101,6 +101,7 @@ See `tree-sitter-langs-repos'."
               '((agda-mode       . agda)
                 (sh-mode         . bash)
                 (c-mode          . c)
+                (caml-mode       . ocaml)
                 (csharp-mode     . c-sharp)
                 (c++-mode        . cpp)
                 (d-mode          . d)

@@ -2,6 +2,19 @@
 
 ## Unreleased
 
+## 0.11.6 - 2022-03-28
+- Updated `bash` grammar.
+
+## 0.11.5 - 2022-03-28
+
+- Update `javascript` grammar to fix object destructing with default values
+- Update `typescript` grammar
+
+## 0.11.4 - 2022-03-19
+
+## 0.11.4 - 22-03-10
+- Added `verilog` grammar.
+
 ## 0.11.3 - 2022-02-12
 - Added `zig` grammar.
 
