@@ -160,6 +160,9 @@ git checkout."
                 ;; XXX
                 ('typescript '("typescript" ("tsx" . tsx)))
                 ('ocaml '("ocaml" ("interface" . ocaml-interface)))
+                ;; lexd/twolc/xfst don't yet have major modes for Emacs:
+                ('rtx '(("tree-sitter-rtx" . rtx)))
+                ('cg '(("tree-sitter-cg" . cg)))
                 (_ '("")))))))
 
 (defun tree-sitter-langs--repo-status (lang-symbol)
