@@ -157,12 +157,6 @@
 	update = none
 	ignore = dirty
 	branch = master
-[submodule "repos/hcl"]
-	path = repos/hcl
-	url = https://github.com/mitchellh/tree-sitter-hcl.git
-	update = none
-	ignore = dirty
-	branch = master
 [submodule "repos/elixir"]
 	path = repos/elixir
 	url = https://github.com/elixir-lang/tree-sitter-elixir
