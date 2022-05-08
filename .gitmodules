@@ -159,7 +159,7 @@
 	branch = master
 [submodule "repos/hcl"]
 	path = repos/hcl
-	url = https://github.com/mitchellh/tree-sitter-hcl.git
+	url = https://github.com/MichaHoffmann/tree-sitter-hcl
 	update = none
 	ignore = dirty
 	branch = master

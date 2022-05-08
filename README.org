@@ -19,7 +19,7 @@ For each supported language, this package provides:
 ** Highlighting Queries
 # *Note*: Highlighting styles are a mattter of taste.
 
-Highlighting query patterns for a language are in the file ~queries/{lang}/highlights.scm~. Most of them are *intentionally different* from those from upstream repositories, which are more geared towards /GitHub's use cases/. We try to be more consistent with /Emacs's existing conventions/. (For some languages, this is WIP, so their patterns may look similar to upstream's.)
+Highlighting query patterns for a language are in the file ~queries/<lang>/highlights.scm~. Most of them are *intentionally different* from those from upstream repositories, which are more geared towards /GitHub's use cases/. We try to be more consistent with /Emacs's existing conventions/. (For some languages, this is WIP, so their patterns may look similar to upstream's.)
 
 In general, try to follow what the docstrings of ~tree-sitter-hl-face:~ faces say. Most importantly:
 - Definitions and uses should be differentiated:
@@ -29,6 +29,9 @@ In general, try to follow what the docstrings of ~tree-sitter-hl-face:~ faces sa
 - ~@variable~ and ~@variable.parameter~ should be applied only to declarations/definitions/bindings/mutations (/writes/), not usage (/reads/).
 - Special faces should have high priority (placed earlier in the pattern list): ~@function.macro~, ~@type.builtin~, ~@variable.special~.
 - Patterns whose internals may be highlighted should have low priority (placed towards the end). Example: strings with interpolation.
+
+*** Mode-specific highlighting
+Some languages are associated with multiple major modes. Mode-specific highlighting patterns are provided by the files ~queries/<lang>/highlights.<major-mode>.scm~. These are combined with the base highlighting patterns in ~queries/<lang>/highlights.scm~, but have higher precedence.
 
 ** Building Grammars from Source
 Note: If you also plan to work on [[https://github.com/emacs-tree-sitter/elisp-tree-sitter#building-grammars-from-source][elisp-tree-sitter]], it might be more convenient to work with this repository as a submodule.
