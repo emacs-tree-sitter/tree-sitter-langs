@@ -242,6 +242,7 @@ infrequent (grammar-only changes). It is different from the version of
   (pcase system-type
     ('darwin "macos")
     ('gnu/linux "linux")
+    ('berkeley-unix "freebsd")
     ('windows-nt "windows")
     (_ (error "Unsupported system-type %s" system-type))))
 
@@ -272,6 +273,7 @@ If VERSION and OS are not spcified, use the defaults of
               (pcase os
                 ("windows" "x86_64-pc-windows-msvc")
                 ("linux" "x86_64-unknown-linux-gnu")
+                ("freebsd" "x86_64-unknown-freebsd")
                 ("macos" (if (string-prefix-p "aarch64" system-configuration)
                              "aarch64-apple-darwin"
                            "x86_64-apple-darwin")))
@@ -376,6 +378,26 @@ from the current state of the grammar repo, without cleanup."
                       "src/parser.c"
                       "-o" (format "%sbin/%s.so" tree-sitter-langs-grammar-dir lang-symbol)
                       "-target" target))))
+           ((memq system-type '(berkeley-unix))
+            (cond
+             ((file-exists-p "src/scanner.cc")
+              (tree-sitter-langs--call
+               "c++" "-shared" "-fPIC" "-fno-exceptions" "-g" "-O2"
+               "-I" "src"
+               "src/scanner.cc" "-xc" "src/parser.c"
+               "-o" (format "%sbin/%s.so" tree-sitter-langs-grammar-dir lang-symbol)))
+             ((file-exists-p "src/scanner.c")
+              (tree-sitter-langs--call
+               "cc" "-shared" "-fPIC" "-g" "-O2"
+               "-I" "src"
+               "src/scanner.c" "src/parser.c"
+               "-o" (format "%sbin/%s.so" tree-sitter-langs-grammar-dir lang-symbol)))
+             (:default
+              (tree-sitter-langs--call
+               "cc" "-shared" "-fPIC" "-g" "-O2"
+               "-I" "src"
+               "src/parser.c"
+               "-o" (format "%sbin/%s.so" tree-sitter-langs-grammar-dir lang-symbol)))))
            (:default (tree-sitter-langs--call "tree-sitter" "test")))))
       ;; Replace underscores with hyphens. Example: c_sharp.
       (let ((default-directory bin-dir))
