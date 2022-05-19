@@ -8,6 +8,7 @@
  "enum"
  "extern"
  "for"
+ "goto"
  "if"
  "inline"
  "return"
