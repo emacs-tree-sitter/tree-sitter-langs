@@ -24,19 +24,25 @@
 (require 'tree-sitter-langs)
 
 
-(defun treesit-langs--reformat-shared-objects (&rest _args)
-  "tree-sitter-langs saves grammars as LANG.so, but treesit needs libtree-sitter-LANG.so"
+(defun treesit-langs--reformat-shared-objects ()
+  "Make symlinks so *.so files are aliased to libtree-sitter-*.so in `tree-sitter-langs--bin-dir' .
+
+Rationale: tree-sitter-langs saves grammars as LANG.so, but
+treesit needs libtree-sitter-LANG.so."
   (dolist (file (directory-files (tree-sitter-langs--bin-dir) 'full
-                                 (concat "\\" (car tree-sitter-load-suffixes) "$")))
-    ;; make symlink libtree-sitter-c.so -> c.so
+                                 (concat (regexp-opt (list module-file-suffix)) "$")))
+    ;; make a symlink so that libtree-sitter-c.so points to c.so
     (make-symbolic-link file
                         (concat (file-name-as-directory (file-name-directory file))
                                 "libtree-sitter-"
                                 (file-name-nondirectory file)))))
 
-(unless (file-exists-p (concat (tree-sitter-langs--bin-dir)
-                               "libtree-sitter-c"
-                               (car tree-sitter-load-suffixes)))
+;; don't make symlinks *again*, we don't want stuff like
+;; libtree-sitterlibtree-sitter-c.so
+(unless (directory-files (tree-sitter-langs--bin-dir) 'full
+                         (concat
+                          "libtree-sitter-c"
+                          (regexp-opt (list module-file-suffix))))
   (treesit-langs--reformat-shared-objects))
 
 (cl-pushnew (tree-sitter-langs--bin-dir) treesit-extra-load-path
@@ -88,8 +94,9 @@ elisp-tree-sitter) to a query string compatible with treesit."
 (defvar-local treesit-langs-current-patterns nil
   "Loaded query patterns for current buffer.")
 
+;;;###autoload
 (define-minor-mode treesit-langs-hl-mode
-  "TODO"
+  "Minor mode to enable syntax highlighting via `treesit'."
   :init-value nil
   :group 'treesit
   (if treesit-langs-hl-mode
@@ -100,7 +107,7 @@ elisp-tree-sitter) to a query string compatible with treesit."
                        (treesit-language-available-p lang-symbol))
             (error "Tree sitter isn't available"))
 
-          (treesit-get-parser-create lang-symbol)
+          (treesit-parser-create lang-symbol)
           (setq treesit-langs-current-patterns
                 `((,lang-symbol
                    ,(treesit-langs--convert-highlights
