@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Added `clojure` grammar.
 
 ## 0.12.0 - 2022-05-08
 - Used a different `hcl` grammar.
