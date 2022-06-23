@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Add `yaml` grammar.
 
 ## 0.12.1 - 2022-08-21
 
