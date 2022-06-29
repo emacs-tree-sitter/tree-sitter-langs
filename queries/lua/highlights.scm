@@ -1,11 +1,12 @@
+;; Adapted from nvim-treesitter
 ;; Keywords
 
-"return" @keyword.return
 
 [
  "goto"
  "in"
  "local"
+ "return"
 ] @keyword
 
 (label_statement) @label
@@ -23,13 +24,13 @@
   "while"
   "do"
   "end"
-] @repeat)
+] @keyword)
 
 (repeat_statement
 [
   "repeat"
   "until"
-] @repeat)
+] @keyword)
 
 (if_statement
 [
@@ -38,39 +39,39 @@
   "else"
   "then"
   "end"
-] @conditional)
+] @keyword)
 
 (elseif_statement
 [
   "elseif"
   "then"
   "end"
-] @conditional)
+] @keyword)
 
 (else_statement
 [
   "else"
   "end"
-] @conditional)
+] @keyword)
 
 (for_statement
 [
   "for"
   "do"
   "end"
-] @repeat)
+] @keyword)
 
 (function_declaration
 [
   "function"
   "end"
-] @keyword.function)
+] @keyword)
 
 (function_definition
 [
   "function"
   "end"
-] @keyword.function)
+] @keyword)
 
 ;; Operators
 
@@ -78,7 +79,7 @@
  "and"
  "not"
  "or"
-] @keyword.operator
+] @operator
 
 [
   "+"
@@ -134,7 +135,7 @@
 ;; Constants
 
 ((identifier) @constant
- (#lua-match? @constant "^[A-Z][A-Z_0-9]*$"))
+ (#match? @constant "^[A-Z][A-Z_0-9]*$"))
 
 (vararg_expression) @constant
 
@@ -143,13 +144,13 @@
 [
   (false)
   (true)
-] @boolean
+] @constant.builtin
 
 ;; Tables
 
-(field name: (identifier) @field)
+(field name: (identifier) @variable)
 
-(dot_index_expression field: (identifier) @field)
+(dot_index_expression field: (identifier) @variable)
 
 (table_constructor
 [
@@ -159,9 +160,9 @@
 
 ;; Functions
 
-(parameters (identifier) @parameter)
+(parameters (identifier) @variable.parameter)
 
-(function_call name: (identifier) @function)
+(function_call name: (identifier) @function.call)
 (function_declaration name: (identifier) @function)
 
 (function_call name: (dot_index_expression field: (identifier) @function))
@@ -188,5 +189,5 @@
 
 (string) @string
 
-;; Error
-(ERROR) @error
+;; Error TODO
+;;(ERROR) @error
