@@ -229,3 +229,9 @@
 	branch = master
 	update = none
 	ignore = dirty
+[submodule "repos/lua"]
+	path = repos/lua
+	url = https://github.com/MunifTanjim/tree-sitter-lua
+	branch = main
+	update = none
+	ignore = dirty

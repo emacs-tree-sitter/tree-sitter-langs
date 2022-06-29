@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+ - Added `lua` grammar.
 
 ## 0.12.6 - 2022-11-22
 - Add `R` grammar
