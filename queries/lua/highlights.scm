@@ -127,7 +127,11 @@
 
 ;; Variables
 
-(identifier) @variable
+(assignment_statement (variable_list
+                       [(identifier) @variable
+                        (dot_index_expression table: (identifier) @variable)
+                        (bracket_index_expression table: (identifier) @variable)]))
+(variable_declaration (variable_list (identifier) @variable))
 
 ((identifier) @variable.builtin
  (#eq? @variable.builtin "self"))
@@ -165,10 +169,9 @@
 (function_call name: (identifier) @function.call)
 (function_declaration name: (identifier) @function)
 
-(function_call name: (dot_index_expression field: (identifier) @function))
+(function_call name: (dot_index_expression field: (identifier) @function.call))
 (function_declaration name: (dot_index_expression field: (identifier) @function))
-(function_call name: (method_index_expression method: [(identifier) @property
-                                                       (identifier) @method.call]))
+(function_call name: (method_index_expression method: (identifier) @method.call))
 
 
 (function_call
