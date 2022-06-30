@@ -131,9 +131,11 @@ elisp-tree-sitter) to a query string compatible with treesit."
           (treesit-parser-create lang-symbol)
           (setq treesit-langs-current-patterns
                 `((,lang-symbol
-                   ,(treesit-langs--convert-highlights
-                     (or (tree-sitter-langs--hl-default-patterns lang-symbol)
-                         (error "No query patterns for %s" lang-symbol)))))))
+                   ,(treesit-query-compile
+                     lang-symbol
+                     (treesit-langs--convert-highlights
+                      (or (tree-sitter-langs--hl-default-patterns lang-symbol)
+                          (error "No query patterns for %s" lang-symbol))))))))
 
         (setq-local indent-line-function #'treesit-indent)
         ;; (setq-local treesit-defun-query "")
