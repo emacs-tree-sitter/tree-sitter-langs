@@ -60,66 +60,57 @@ treesit needs libtree-sitter-LANG.so."
               (nth 1 parent))))))         ; TODO better solution?
   (symbol-name face))
 
-(defun treesit-langs-transform-form-at-point (fn)
-  "Bind sexp at point to VAR-NAME and replace it with the evaluation of BODY.
-Leave point after the evaluation of BODY in the buffer.
-
-Example: (| specifies point) say you have
-|(a b c)
-Run (treesit-langs-transform-form-at-point #'reverse), now you have
-(c b a)|"
-  (let* ((beg (point))
-         (form (read (current-buffer)))
-         (end (point))
-         (evaluation (funcall fn form)))
-    (delete-region beg end)
-    (goto-char beg)
-    (insert (replace-regexp-in-string "\\\\\\." "."
-                                      (prin1-to-string evaluation)))))
 (defun treesit-langs--convert-highlights (patterns)
   "Convert PATTERNS (a query string compatible with
 elisp-tree-sitter) to a query string compatible with treesit."
-  (with-temp-buffer
-    (insert patterns)
-    (goto-char (point-min))
-    ;; remove comments
-    (while (re-search-forward ";;.*" nil t)
-      (replace-match ""))
-    (goto-char (point-min))
-    ;; treesit needs captures to be actual faces
-    (while (re-search-forward "@\\([a-z.-]+\\)" nil t)
-      (replace-match
-       (concat "@"
-               (treesit-langs--convert-tree-sitter-hl-face
-                (intern
-                 (concat "tree-sitter-hl-face:" (match-string 1)))))))
-    (goto-char (point-min))
-    ;; .match? becomes #match and needs its arguments swapped
-    (while (re-search-forward "[.#]match\\??" nil t)
-      (replace-match "#match")
-      ;; delete @capture and re-add it right after the regex
-      (let (capture)
-        (save-excursion
-          (re-search-forward "@[a-z.-]+")
-          (setq capture (match-string 0))
-          (replace-match ""))
-        (end-of-line)
-        (backward-char 2)
-        (insert " " capture)))
-    (goto-char (point-min))
-    ;; replace #eq? with #equal
-    (while (re-search-forward "[.#]eq\\??" nil t)
-      (replace-match "#equal"))
-    ;; replace #any-of? with calculated regex
-    (while (re-search-forward "[.#]any-of\\??" nil t)
-      (replace-match ".any-of?") ; `read' can't deal with "#"
-      (goto-char (1- (match-beginning 0))) ; before paren
-      (treesit-langs-transform-form-at-point
-          (lambda (form)
-            (cl-destructuring-bind (_ capture . options) form
-              `(.match "AOAO" ;; ,(regexp-opt options)
-                ,capture)))))
-    (buffer-substring (point-min) (point-max))))
+  (cl-labels ((transform
+               (exp)
+               (pcase-exhaustive exp
+                 ;; .match has its args flipped
+                 ((or `(.match?  ,capture ,regexp)
+                      `(\#match? ,capture ,regexp))
+                  `(.match ,(transform regexp) ,(transform capture)))
+                 ;; .equal becomes .eq
+                 ((or `(.eq?  ,a ,b)
+                      `(\#eq? ,a ,b))
+                  `(.equal ,(transform a) ,(transform b)))
+                 ;; .any-of becomes .match with regexp-opt
+                 ((or `(.any-of?  ,capture . ,options)
+                      `(\#any-of? ,capture . ,options))
+                  `(.match ,(regexp-opt options) ,(transform capture)))
+                 ;; @capture => @parent face of tree-sitter-hl-face:capture
+                 ((pred symbolp)
+                  (let ((name (symbol-name exp)))
+                    (if (string-prefix-p "@" name)
+                        (intern
+                         (concat
+                          "@"
+                          (treesit-langs--convert-tree-sitter-hl-face
+                           (intern (concat "tree-sitter-hl-face:" (substring name 1))))))
+                      exp)))
+                 ;; handle other cases
+                 ((pred listp)
+                  (mapcar #'transform exp))
+                 ((pred vectorp)
+                  (apply #'vector (mapcar #'transform exp)))
+                 ((pred stringp)
+                  exp)))
+              (prin1exp
+               (exp)
+               (let (print-level print-length)
+                 (mapconcat #'prin1-to-string exp "\n"))))
+    (thread-last
+      patterns
+      (format "(%s)")
+      ;; `read' can't handle unescaped symbols that start with "#"
+      (replace-regexp-in-string "(#" "(\\\\#")
+      (read-from-string)
+      (car)
+      (transform)
+      (prin1exp)
+      ;; `prin1' likes to prefix symbols that start with . with a backslash,
+      ;; but the tree-sitter query parser does diffrentiate.
+      (replace-regexp-in-string (regexp-quote "\\.") "."))))
 
 (defvar-local treesit-langs-current-patterns nil
   "Loaded query patterns for current buffer.")
