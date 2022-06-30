@@ -46,7 +46,7 @@ treesit needs libtree-sitter-LANG.so."
   (treesit-langs--reformat-shared-objects))
 
 (cl-pushnew (tree-sitter-langs--bin-dir) treesit-extra-load-path
-              :test #'string-equal)
+            :test #'string-equal)
 
 (defun treesit-langs--convert-tree-sitter-hl-face (face)
   ;; tree-sitter-hl-face:keyword -> "font-lock-keyword-face"
@@ -141,7 +141,8 @@ elisp-tree-sitter) to a query string compatible with treesit."
           (setq treesit-langs-current-patterns
                 `((,lang-symbol
                    ,(treesit-langs--convert-highlights
-                     (tree-sitter-langs--hl-default-patterns lang-symbol))))))
+                     (or (tree-sitter-langs--hl-default-patterns lang-symbol)
+                         (error "No query patterns for %s" lang-symbol)))))))
 
         (setq-local indent-line-function #'treesit-indent)
         ;; (setq-local treesit-defun-query "")
