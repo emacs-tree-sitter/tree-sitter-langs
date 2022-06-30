@@ -60,11 +60,31 @@ treesit needs libtree-sitter-LANG.so."
               (nth 1 parent))))))         ; TODO better solution?
   (symbol-name face))
 
+(defun treesit-langs-transform-form-at-point (fn)
+  "Bind sexp at point to VAR-NAME and replace it with the evaluation of BODY.
+Leave point after the evaluation of BODY in the buffer.
+
+Example: (| specifies point) say you have
+|(a b c)
+Run (treesit-langs-transform-form-at-point #'reverse), now you have
+(c b a)|"
+  (let* ((beg (point))
+         (form (read (current-buffer)))
+         (end (point))
+         (evaluation (funcall fn form)))
+    (delete-region beg end)
+    (goto-char beg)
+    (insert (replace-regexp-in-string "\\\\\\." "."
+                                      (prin1-to-string evaluation)))))
 (defun treesit-langs--convert-highlights (patterns)
   "Convert PATTERNS (a query string compatible with
 elisp-tree-sitter) to a query string compatible with treesit."
   (with-temp-buffer
     (insert patterns)
+    (goto-char (point-min))
+    ;; remove comments
+    (while (re-search-forward ";;.*" nil t)
+      (replace-match ""))
     (goto-char (point-min))
     ;; treesit needs captures to be actual faces
     (while (re-search-forward "@\\([a-z.-]+\\)" nil t)
@@ -75,7 +95,7 @@ elisp-tree-sitter) to a query string compatible with treesit."
                  (concat "tree-sitter-hl-face:" (match-string 1)))))))
     (goto-char (point-min))
     ;; .match? becomes #match and needs its arguments swapped
-    (while (search-forward ".match?" nil t)
+    (while (re-search-forward "[.#]match\\??" nil t)
       (replace-match "#match")
       ;; delete @capture and re-add it right after the regex
       (let (capture)
@@ -87,8 +107,18 @@ elisp-tree-sitter) to a query string compatible with treesit."
         (backward-char 2)
         (insert " " capture)))
     (goto-char (point-min))
-    ;; TODO might need a thing for .equal? too, but no query file contains
-    ;; .equal? yet
+    ;; replace #eq? with #equal
+    (while (re-search-forward "[.#]eq\\??" nil t)
+      (replace-match "#equal"))
+    ;; replace #any-of? with calculated regex
+    (while (re-search-forward "[.#]any-of\\??" nil t)
+      (replace-match ".any-of?") ; `read' can't deal with "#"
+      (goto-char (1- (match-beginning 0))) ; before paren
+      (treesit-langs-transform-form-at-point
+          (lambda (form)
+            (cl-destructuring-bind (_ capture . options) form
+              `(.match "AOAO" ;; ,(regexp-opt options)
+                ,capture)))))
     (buffer-substring (point-min) (point-max))))
 
 (defvar-local treesit-langs-current-patterns nil
