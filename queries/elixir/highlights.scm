@@ -1,5 +1,6 @@
 ; Reserved keywords
 
+; TODO: handle not in
 ["when" "and" "or" "not" "in" "fn" "do" "end" "catch" "rescue" "after" "else"] @keyword
 
 ; Operators
@@ -72,7 +73,10 @@
 
 ; Quoted content
 
-(interpolation "#{" @punctuation.special "}" @punctuation.special) @embedded
+(interpolation
+ "#{" @punctuation.special
+ (_) @embedded
+ "}" @punctuation.special)
 
 (escape_sequence) @string.escape
 
@@ -126,7 +130,7 @@
     (identifier) @function
     ; remote
     (dot
-      right: (identifier) @function)
+      right: (identifier) @function.call)
   ])
 
 ; * just identifier in function definition
@@ -153,7 +157,7 @@
 ; * pipe into identifier (function call)
 (binary_operator
   operator: "|>"
-  right: (identifier) @function)
+  right: (identifier) @function.call)
 
 ; Identifiers
 
@@ -165,8 +169,8 @@
 
 ; * unused
 (
-  (identifier) @comment.unused
-  (#match? @comment.unused "^_")
+  (identifier) @comment
+  (#match? @comment "^_")
 )
 
 ; * regular
