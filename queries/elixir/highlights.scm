@@ -7,19 +7,19 @@
 
 ; * doc string
 (unary_operator
-  operator: "@" @comment.doc
+  operator: "@" @attribute
   operand: (call
-    target: (identifier) @comment.doc.__attribute__
+    target: (identifier) @doc.__attribute__
     (arguments
       [
-        (string) @comment.doc
-        (charlist) @comment.doc
+        (string) @doc
+        (charlist) @doc
         (sigil
-          quoted_start: _ @comment.doc
-          quoted_end: _ @comment.doc) @comment.doc
-        (boolean) @comment.doc
+          quoted_start: _ @doc
+          quoted_end: _ @doc) @doc
+        (boolean) @doc
       ]))
-  (#match? @comment.doc.__attribute__ "^(moduledoc|typedoc|doc)$"))
+  (#match? @doc.__attribute__ "^(moduledoc|typedoc|doc)$"))
 
 ; * module attribute
 (unary_operator
