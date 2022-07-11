@@ -85,7 +85,7 @@
   (quoted_atom)
   (keyword)
   (quoted_keyword)
-] @string.special.symbol
+] @constant
 
 [
   (string)
