@@ -3,6 +3,13 @@
 ; TODO: handle not in
 ["when" "and" "or" "not" "in" "fn" "do" "end" "catch" "rescue" "after" "else"] @keyword
 
+; Interpolation
+
+(interpolation
+ "#{" @punctuation.special
+ (_) @embedded
+ "}" @punctuation.special)
+
 ; Operators
 
 ; * doc string
@@ -72,11 +79,6 @@
 (char) @constant
 
 ; Quoted content
-
-(interpolation
- "#{" @punctuation.special
- (_) @embedded
- "}" @punctuation.special)
 
 (escape_sequence) @string.escape
 
