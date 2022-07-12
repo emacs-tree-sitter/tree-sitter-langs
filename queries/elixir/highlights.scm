@@ -123,27 +123,28 @@
   target: (identifier) @keyword
   (#match? @keyword "^(alias|case|cond|else|for|if|import|quote|raise|receive|require|reraise|super|throw|try|unless|unquote|unquote_splicing|use|with)$"))
 
-; * function call
-(call
-  target: [
-    ; local
-    (identifier) @function
-    ; remote
-    (dot
-      right: (identifier) @function.call)
-  ])
-
 ; * just identifier in function definition
 (call
   target: (identifier) @keyword
   (arguments
     [
-      (identifier) @function
+      (call target: (identifier) @function)
       (binary_operator
-        left: (identifier) @function
+        left: (call
+               target: (identifier) @function)
         operator: "when")
     ])
   (#match? @keyword "^(def|defdelegate|defguard|defguardp|defmacro|defmacrop|defn|defnp|defp)$"))
+
+; * function call
+(call
+  target: [
+    ; local
+    (identifier) @function.call
+    ; remote
+    (dot
+      right: (identifier) @function.call)
+  ])
 
 ; * pipe into identifier (definition)
 (call
