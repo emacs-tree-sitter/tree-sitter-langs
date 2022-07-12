@@ -122,6 +122,7 @@ See `tree-sitter-langs-repos'."
                 (json-mode       . json)
                 (jsonc-mode      . json)
                 (julia-mode      . julia)
+		(latex-mode      . latex)
                 (ocaml-mode      . ocaml)
                 (php-mode        . php)
                 (prisma-mode     . prisma)
