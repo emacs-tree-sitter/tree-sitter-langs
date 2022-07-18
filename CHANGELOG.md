@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+## 0.12.0 - 2022-05-08
+- Used a different `hcl` grammar.
+- Added support for mode-specific highlighting patterns.
+- Added highlighting patterns for `terraform-mode`.
+
 ## 0.11.6 - 2022-03-28
 - Updated `bash` grammar.
 
