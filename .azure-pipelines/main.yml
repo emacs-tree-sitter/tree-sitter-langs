@@ -17,7 +17,7 @@ resources:
   repositories:
   - repository: emacs-module-rs
     type: github
-    name: ubolonton/emacs-module-rs
+    name: meain/emacs-module-rs
     ref: azure-pipelines
     endpoint: emacs-tree-sitter
   - repository: elisp-tree-sitter
