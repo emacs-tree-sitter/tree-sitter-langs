@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 0.12.1 - 2022-08-21
+
 ## 0.12.0 - 2022-05-08
 - Used a different `hcl` grammar.
 - Added support for mode-specific highlighting patterns.
