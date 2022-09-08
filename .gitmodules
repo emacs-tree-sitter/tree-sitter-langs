@@ -141,10 +141,10 @@
 	branch = master
 [submodule "repos/swift"]
 	path = repos/swift
-	url = https://github.com/tree-sitter/tree-sitter-swift
+	url = https://github.com/alex-pinkus/tree-sitter-swift.git
 	update = none
 	ignore = dirty
-	branch = master
+	branch = main
 [submodule "repos/typescript"]
 	path = repos/typescript
 	url = https://github.com/tree-sitter/tree-sitter-typescript
