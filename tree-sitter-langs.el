@@ -110,6 +110,7 @@ See `tree-sitter-langs-repos'."
                 (elixir-mode     . elixir)
                 (ess-r-mo de     . r)
                 (go-mode         . go)
+                (haskell-mode    . haskell)
                 (hcl-mode        . hcl)
                 (terraform-mode  . hcl)
                 (html-mode       . html)
