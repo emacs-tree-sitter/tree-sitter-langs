@@ -1,6 +1,12 @@
 # Changelog
 
 ## Unreleased
+- Added highlighting for `haskell-mode`.
+
+## 0.12.2 - 2022-09-11
+- Add `yaml` grammar.
+
+## 0.12.1 - 2022-08-21
 
 ## 0.12.0 - 2022-05-08
 - Used a different `hcl` grammar.
