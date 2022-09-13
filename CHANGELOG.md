@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Added initial support for Perl
 
 ## 0.12.1 - 2022-08-21
 
