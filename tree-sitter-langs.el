@@ -123,6 +123,7 @@ See `tree-sitter-langs-repos'."
                 (jsonc-mode      . json)
                 (julia-mode      . julia)
                 (ocaml-mode      . ocaml)
+                (perl-mode       . perl)
                 (php-mode        . php)
                 (prisma-mode     . prisma)
                 (python-mode     . python)
@@ -136,8 +137,7 @@ See `tree-sitter-langs-repos'."
                 (tuareg-mode     . ocaml)
                 (typescript-mode . typescript)
                 (verilog-mode    . verilog)
-                (zig-mode        . zig)
-                (perl-mode       . perl))))
+                (zig-mode        . zig))))
     (cl-pushnew entry tree-sitter-major-mode-language-alist
                 :key #'car))
   (advice-remove 'tree-sitter--setup #'tree-sitter-langs--init-major-mode-alist))
