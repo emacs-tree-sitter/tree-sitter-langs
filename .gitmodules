@@ -214,6 +214,6 @@
 [submodule "repos/perl"]
 	path = repos/perl
 	url = https://github.com/leonerd/tree-sitter-perl.git
-  branch = master
+	branch = master
 	update = none
 	ignore = dirty
