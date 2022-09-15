@@ -1,6 +1,8 @@
 # Changelog
 
 ## Unreleased
+
+## 0.12.3 - 2022-09-15
 - Added initial support for Perl
 - Added highlighting for `haskell-mode`.
 
