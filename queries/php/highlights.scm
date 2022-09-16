@@ -1,17 +1,12 @@
 (php_tag) @tag
 "?>" @tag
-; Variables
-
-(variable_name) @variable
 
 ; Types
 
-[
- (primitive_type)
- (cast_type)
- ] @type.builtin
-(named_type (name)) @type
-(named_type (qualified_name)) @type
+(primitive_type) @type.builtin
+(cast_type) @type.builtin
+(named_type (name) @type) @type
+(named_type (qualified_name) @type) @type
 
 ; Functions
 
@@ -33,9 +28,6 @@
 (function_definition
   name: (name) @function)
 
-(nullsafe_member_call_expression
-  name: (name) @function.method)
-
 ; Member
 
 (property_element
@@ -43,7 +35,6 @@
 
 (member_access_expression
   name: (variable_name (name)) @property)
-
 (member_access_expression
   name: (name) @property)
 
@@ -52,164 +43,73 @@
 (relative_scope) @variable.builtin
 
 ((name) @constant
- (.match? @constant "^_?[A-Z][A-Z\d_]+$"))
+ (#match? @constant "^_?[A-Z][A-Z\\d_]+$"))
 
 ((name) @constructor
- (.match? @constructor "^[A-Z]"))
+ (#match? @constructor "^[A-Z]"))
 
 ((name) @variable.builtin
- (.eq? @variable.builtin "this"))
+ (#eq? @variable.builtin "this"))
 
 (variable_name) @variable
 
 ; Basic tokens
 
-[
- (string)
- (heredoc)
- ] @string
-
-(boolean) @constant.boolean
+(string) @string
+(heredoc) @string
+(boolean) @constant.builtin
 (null) @constant.builtin
 (integer) @number
-(float) @float
+(float) @number
 (comment) @comment
+
+"$" @operator
 
 ; Keywords
 
-[
- "as"
-] @keyword.operator
-
-[
- "fn"
- "function"
-] @keyword.function
-
-[
- "$"
- "abstract"
- "break"
- "class"
- "const"
- "continue"
- "declare"
- "default"
- "echo"
- "enddeclare"
- "extends"
- "final"
- "global"
- "implements"
- "insteadof"
- "instanceof"
- "interface"
- "namespace"
- "new"
- "private"
- "protected"
- "public"
- "static"
- "trait"
- ] @keyword
-
-"return" @keyword.return
-
-[
- "case"
- "else"
- "elseif"
- "endif"
- "endswitch"
- "if"
- "switch"
- "match"
- ] @conditional
-
-[
- "do"
- "endfor"
- "endforeach"
- "endwhile"
- "for"
- "foreach"
- "while"
- ] @repeat
-
-[
- "catch"
- "finally"
- "throw"
- "try"
- ] @exception
-
-[
- "include_once"
- "include"
- "require_once"
- "require"
- "use"
- ] @include
-
-[
- ","
- ";"
- "."
- ] @punctuation.delimiter
-
-[
- (php_tag)
- "?>"
- "("
- ")"
- "["
- "]"
- "{"
- "}"
- ] @punctuation.bracket
-
-[
-  "="
-
-  "-"
-  "*"
-  "/"
-  "+"
-  "%"
-
-  "~"
-  "|"
-  "&"
-  "<<"
-  ">>"
-
-  "->"
-  "?->"
-
-  "=>"
-
-  "<"
-  "<="
-  ">="
-  ">"
-  "=="
-  "!="
-  "==="
-  "!=="
-
-  "!"
-  "&&"
-  "||"
-
-  "-="
-  "+="
-  "*="
-  "/="
-  "%="
-  "|="
-  "&="
-  "--"
-  "++"
-] @operator
-
-(ERROR) @error
+"abstract" @keyword
+"as" @keyword
+"break" @keyword
+"case" @keyword
+"catch" @keyword
+"class" @keyword
+"const" @keyword
+"continue" @keyword
+"declare" @keyword
+"default" @keyword
+"do" @keyword
+"echo" @keyword
+"else" @keyword
+"elseif" @keyword
+"enddeclare" @keyword
+"endforeach" @keyword
+"endif" @keyword
+"endswitch" @keyword
+"endwhile" @keyword
+"extends" @keyword
+"final" @keyword
+"finally" @keyword
+"foreach" @keyword
+"function" @keyword
+"global" @keyword
+"if" @keyword
+"implements" @keyword
+"include_once" @keyword
+"include" @keyword
+"insteadof" @keyword
+"interface" @keyword
+"namespace" @keyword
+"new" @keyword
+"private" @keyword
+"protected" @keyword
+"public" @keyword
+"require_once" @keyword
+"require" @keyword
+"return" @keyword
+"static" @keyword
+"switch" @keyword
+"throw" @keyword
+"trait" @keyword
+"try" @keyword
+"use" @keyword
+"while" @keyword
