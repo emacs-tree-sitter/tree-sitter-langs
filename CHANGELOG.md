@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Bump go grammer
 
 ## 0.12.3 - 2022-09-15
 - Added initial support for Perl
