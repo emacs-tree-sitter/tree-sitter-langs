@@ -97,6 +97,7 @@
  "default"
  "echo"
  "enddeclare"
+ "enum"
  "extends"
  "final"
  "global"
