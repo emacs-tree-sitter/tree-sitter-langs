@@ -1,6 +1,8 @@
 # Changelog
 
 ## Unreleased
+
+## 0.12.4 - 2022-09-25
 - Bump go grammer
 
 ## 0.12.3 - 2022-09-15
