@@ -112,8 +112,8 @@ elisp-tree-sitter) to a query string compatible with treesit."
       ;; but the tree-sitter query parser does diffrentiate.
       (replace-regexp-in-string (regexp-quote "\\.") "."))))
 
-(defvar-local treesit-langs-current-patterns nil
-  "Loaded query patterns for current buffer.")
+(defvar-local treesit-langs--current-treesit-settings nil
+  "Font-lock settings for the current buffer.")
 
 ;;;###autoload
 (define-minor-mode treesit-langs-hl-mode
@@ -124,18 +124,17 @@ elisp-tree-sitter) to a query string compatible with treesit."
       (progn
         (let ((lang-symbol
                (alist-get major-mode tree-sitter-major-mode-language-alist)))
-          (unless (and (treesit-should-enable-p)
+          (unless (and (treesit-can-enable-p)
                        (treesit-language-available-p lang-symbol))
             (error "Tree sitter isn't available"))
 
           (treesit-parser-create lang-symbol)
-          (setq treesit-langs-current-patterns
-                `((,lang-symbol
-                   ,(treesit-query-compile
-                     lang-symbol
-                     (treesit-langs--convert-highlights
-                      (or (tree-sitter-langs--hl-default-patterns lang-symbol)
-                          (error "No query patterns for %s" lang-symbol))))))))
+          (setq treesit-langs--current-treesit-settings
+                (treesit-font-lock-rules
+                 :language lang-symbol
+                 (treesit-langs--convert-highlights
+                  (or (tree-sitter-langs--hl-default-patterns lang-symbol)
+                      (error "No query patterns for %s" lang-symbol))))))
 
         (setq-local indent-line-function #'treesit-indent)
         ;; (setq-local treesit-defun-query "")
@@ -145,8 +144,8 @@ elisp-tree-sitter) to a query string compatible with treesit."
         (unless font-lock-defaults
           (setq font-lock-defaults '(nil t)))
 
-        (setq-local treesit-font-lock-defaults
-                    '((treesit-langs-current-patterns)))
+        (setq-local treesit-font-lock-settings
+                    treesit-langs--current-treesit-settings)
         (treesit-font-lock-enable)
         ;; make font-lock refontify buffer, as this is a minor mode
         (font-lock-mode -1)
