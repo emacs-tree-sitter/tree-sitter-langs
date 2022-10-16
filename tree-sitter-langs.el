@@ -98,7 +98,7 @@ See `tree-sitter-langs-repos'."
   "Link known major modes to languages provided by the bundle."
   (dolist
       (entry (reverse
-              '((agda-mode       . agda)
+              '((agda2-mode      . agda)
                 (sh-mode         . bash)
                 (c-mode          . c)
                 (caml-mode       . ocaml)
