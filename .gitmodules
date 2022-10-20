@@ -217,3 +217,9 @@
 	branch = master
 	update = none
 	ignore = dirty
+[submodule "repos/erlang"]
+	path = repos/erlang
+	url = https://github.com/WhatsApp/tree-sitter-erlang
+	branch = main
+	update = none
+	ignore = dirty

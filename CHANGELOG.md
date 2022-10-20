@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Add `erlang` grammer
 
 ## 0.12.4 - 2022-09-25
 - Bump go grammer
