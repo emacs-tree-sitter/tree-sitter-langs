@@ -3,10 +3,10 @@
 ## Unreleased
 
 ## 0.12.5 - 2022-11-14
-- Add `erlang` grammer
+- Add `erlang` grammar
 
 ## 0.12.4 - 2022-09-25
-- Bump go grammer
+- Bump go grammar
 
 ## 0.12.3 - 2022-09-15
 - Added initial support for Perl
