@@ -1,6 +1,8 @@
 # Changelog
 
 ## Unreleased
+
+## 0.12.5 - 2022-11-14
 - Add `erlang` grammer
 
 ## 0.12.4 - 2022-09-25
