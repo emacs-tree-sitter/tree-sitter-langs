@@ -5,7 +5,7 @@
 ;; Author: Tuấn-Anh Nguyễn <ubolonton@gmail.com>
 ;; Keywords: languages tools parsers tree-sitter
 ;; Homepage: https://github.com/emacs-tree-sitter/tree-sitter-langs
-;; Version: 0.12.0
+;; Version: 0.12.5
 ;; Package-Requires: ((emacs "25.1") (tree-sitter "0.15.0"))
 ;; SPDX-License-Identifier: MIT
 
@@ -108,7 +108,9 @@ See `tree-sitter-langs-repos'."
                 (css-mode        . css)
                 (elm-mode        . elm)
                 (elixir-mode     . elixir)
+                (erlang-mode     . erlang)
                 (go-mode         . go)
+                (haskell-mode    . haskell)
                 (hcl-mode        . hcl)
                 (terraform-mode  . hcl)
                 (html-mode       . html)
@@ -123,6 +125,7 @@ See `tree-sitter-langs-repos'."
                 (jsonc-mode      . json)
                 (julia-mode      . julia)
                 (ocaml-mode      . ocaml)
+                (perl-mode       . perl)
                 (php-mode        . php)
                 (prisma-mode     . prisma)
                 (python-mode     . python)
@@ -135,6 +138,8 @@ See `tree-sitter-langs-repos'."
                 (swift-mode      . swift)
                 (tuareg-mode     . ocaml)
                 (typescript-mode . typescript)
+                (verilog-mode    . verilog)
+                (yaml-mode       . yaml)
                 (zig-mode        . zig))))
     (cl-pushnew entry tree-sitter-major-mode-language-alist
                 :key #'car))

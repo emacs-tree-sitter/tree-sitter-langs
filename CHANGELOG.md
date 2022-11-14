@@ -2,6 +2,21 @@
 
 ## Unreleased
 
+## 0.12.5 - 2022-11-14
+- Add `erlang` grammer
+
+## 0.12.4 - 2022-09-25
+- Bump go grammer
+
+## 0.12.3 - 2022-09-15
+- Added initial support for Perl
+- Added highlighting for `haskell-mode`.
+
+## 0.12.2 - 2022-09-11
+- Add `yaml` grammar.
+
+## 0.12.1 - 2022-08-21
+
 ## 0.12.0 - 2022-05-08
 - Used a different `hcl` grammar.
 - Added support for mode-specific highlighting patterns.

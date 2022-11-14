@@ -1,9 +1,6 @@
 #+TITLE: Tree-sitter Language Bundle for Emacs
 
 #+BEGIN_HTML
-<a href="https://dev.azure.com/emacs-tree-sitter/tree-sitter-langs/_build/latest?definitionId=2&branchName=master" rel="nofollow">
-  <img src="https://dev.azure.com/emacs-tree-sitter/tree-sitter-langs/_apis/build/status/ci?branchName=master&label=build&api-version=6.0-preview.1" alt="Build Status" style="max-width:100%;">
-</a>
 <a href="https://github.com/emacs-tree-sitter/tree-sitter-langs/actions/workflows/main.yml">
   <img src="https://github.com/emacs-tree-sitter/tree-sitter-langs/actions/workflows/main.yml/badge.svg" alt="GitHub Actions" style="max-width: 100%;">
 </a>
