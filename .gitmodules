@@ -223,3 +223,9 @@
 	branch = main
 	update = none
 	ignore = dirty
+[submodule "repos/r"]
+	path = repos/r
+	url = https://github.com/r-lib/tree-sitter-r.git
+	branch = master
+	update = none
+	ignore = dirty
