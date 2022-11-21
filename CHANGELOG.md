@@ -1,6 +1,8 @@
 # Changelog
 
 ## Unreleased
+- Add `R` grammar
+
 
 ## 0.12.5 - 2022-11-14
 - Add `erlang` grammar
