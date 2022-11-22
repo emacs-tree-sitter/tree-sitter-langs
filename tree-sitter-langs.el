@@ -109,7 +109,7 @@ See `tree-sitter-langs-repos'."
                 (elm-mode        . elm)
                 (elixir-mode     . elixir)
                 (erlang-mode     . erlang)
-                (ess-r-mo de     . r)
+                (ess-r-mode      . r)
                 (go-mode         . go)
                 (haskell-mode    . haskell)
                 (hcl-mode        . hcl)
