@@ -1,6 +1,8 @@
 # Changelog
 
 ## Unreleased
+
+## 0.12.6 - 2022-11-22
 - Add `R` grammar
 
 ## 0.12.5 - 2022-11-14
