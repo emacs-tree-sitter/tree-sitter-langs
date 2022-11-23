@@ -137,6 +137,7 @@ See `tree-sitter-langs-repos'."
                 (rustic-mode     . rust)
                 (scala-mode      . scala)
                 (swift-mode      . swift)
+                (tla-mode        . tlaplus)
                 (tuareg-mode     . ocaml)
                 (typescript-mode . typescript)
                 (verilog-mode    . verilog)

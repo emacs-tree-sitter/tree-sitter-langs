@@ -229,3 +229,9 @@
 	branch = master
 	update = none
 	ignore = dirty
+[submodule "repos/tlaplus"]
+	path = repos/tlaplus
+	url = https://github.com/tlaplus-community/tree-sitter-tlaplus.git
+  branch = master
+  update = none
+  ignore = dirty
