@@ -25,7 +25,6 @@ jobs:
           - macos-11
           # - ubuntu-18.04
           - ubuntu-20.04
-          - windows-2019
         emacs-version:
           # - '25.3'
           # - '26.3'
@@ -35,8 +34,8 @@ jobs:
           # # Older Emacs binaries for Windows don't have dynamic modules enabled.
           # - os: windows-2016
           #   emacs-version: '27.2'
-          # - os: windows-2019
-          #   emacs-version: '27.2'
+          - os: windows-2019
+            emacs-version: '27.2'
           - os: macos-11
             emacs-version: '27.2'
             # Cross build
