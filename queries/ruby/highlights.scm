@@ -107,6 +107,14 @@
 ((identifier) @constant.builtin
  (.match? @constant.builtin "^__(callee|dir|id|method|send|ENCODING|FILE|LINE)__$"))
 
+(file) @constant.builtin
+(line) @constant.builtin
+(encoding) @constant.builtin
+
+(hash_splat_nil
+  "**" @operator
+) @constant.builtin
+
 (assignment
  left: [(class_variable) @variable.special
         (identifier) @variable
