@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Bump ruby grammar
 
 ## 0.12.7 - 2022-11-26
  - Added `lua` grammar.
