@@ -22,9 +22,9 @@ jobs:
       fail-fast: false
       matrix:
         os:
-          - macos-11
+          - macos-12
           # - ubuntu-18.04
-          - ubuntu-20.04
+          - ubuntu-22.04
         emacs-version:
           # - '25.3'
           # - '26.3'
@@ -34,9 +34,9 @@ jobs:
           # # Older Emacs binaries for Windows don't have dynamic modules enabled.
           # - os: windows-2016
           #   emacs-version: '27.2'
-          - os: windows-2019
+          - os: windows-2022
             emacs-version: '27.2'
-          - os: macos-11
+          - os: macos-12
             emacs-version: '27.2'
             # Cross build
             target: aarch64-apple-darwin
