@@ -49,7 +49,11 @@ treesit needs libtree-sitter-LANG.so."
             :test #'string-equal)
 
 (defun treesit-langs--convert-tree-sitter-hl-face (face)
-  ;; tree-sitter-hl-face:keyword -> "font-lock-keyword-face"
+  "Return the face FACE inherits from, as a string.
+e.g `tree-sitter-hl-face:keyword' -> \"font-lock-keyword-face\".
+
+This is used in treesit-langs because we can't use faces with
+colons as capture names, so we use their parent face."
   (while (string-match-p "^tree-sitter-hl-face:" (symbol-name face))
     (let ((parent (face-attribute face :inherit)))
       (setq face
@@ -57,7 +61,7 @@ treesit needs libtree-sitter-LANG.so."
              ((symbolp parent)
               parent)
              ((consp parent)
-              (nth 1 parent))))))         ; TODO better solution?
+              (nth 1 parent))))))       ; TODO better solution?
   (symbol-name face))
 
 (defun treesit-langs--convert-highlights (patterns)
