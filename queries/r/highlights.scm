@@ -14,7 +14,11 @@
 
 (comment) @comment
 
-(identifier) @variable
+;; tune for tree-sitter-langs as it make all as variable
+;; (identifier) @variable
+(left_assignment name: (identifier) @variable)
+(equals_assignment name: (identifier) @variable)
+(right_assignment name: (identifier) @variable)
 
 (formal_parameters (identifier) @parameter)
 (formal_parameters (default_parameter (identifier) @parameter))
