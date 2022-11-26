@@ -1,6 +1,8 @@
 # Changelog
 
 ## Unreleased
+
+## 0.12.7 - 2022-11-26
  - Added `lua` grammar.
 
 ## 0.12.6 - 2022-11-22
