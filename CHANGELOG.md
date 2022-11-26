@@ -1,6 +1,8 @@
 # Changelog
 
 ## Unreleased
+
+## 0.12.8 - 2022-11-26
 - Bump ruby grammar
 
 ## 0.12.7 - 2022-11-26
