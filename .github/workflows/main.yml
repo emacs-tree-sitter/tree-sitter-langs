@@ -28,6 +28,8 @@ jobs:
         emacs-version:
           - '27.2'
           - '28.2'
+        target:
+          - ""
         include:
           - os: macos-12
             emacs-version: '27.2'
