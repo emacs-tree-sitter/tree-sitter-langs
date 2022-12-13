@@ -115,6 +115,7 @@ See `tree-sitter-langs-repos'."
                 (hcl-mode        . hcl)
                 (terraform-mode  . hcl)
                 (html-mode       . html)
+                (markdown-mode   . markdown)
                 (mhtml-mode      . html)
                 (nix-mode        . nix)
                 (java-mode       . java)
