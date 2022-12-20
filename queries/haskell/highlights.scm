@@ -33,12 +33,13 @@
 ;; ----------------------------------------------------------------------------
 ;; Keywords, operators, includes
 
+(module) @type.builtin
 [
   "forall"
   "∀"
 ] @repeat
 
-(pragma) @constant.macro
+(pragma) @comment
 
 [
   "if"
@@ -46,13 +47,13 @@
   "else"
   "case"
   "of"
-] @conditional
+] @keyword
 
 [
   "import"
   "qualified"
   "module"
-] @include
+] @keyword
 
 [
   (operator)
@@ -103,29 +104,31 @@
 ;; ----------------------------------------------------------------------------
 ;; Functions and variables
 
-(variable) @variable
-(pat_wildcard) @variable
 
-(signature name: (variable) @type)
-(function
-  name: (variable) @function
-  patterns: (patterns))
-((signature (fun)) . (function (variable) @function))
-((signature (context (fun))) . (function (variable) @function))
-((signature (forall (context (fun)))) . (function (variable) @function))
+(pat_name . (constructor) @constructor)
+(pat_wildcard) @operator
+;; (pat_apply . (constructor) @constructor) 
+(signature name: (variable) @function)
+;; (function name: (variable) @function patterns: (pat_apply) @constructor)
+(function name: (variable) @function.call patterns: (patterns) @variable.parameter)
+((signature (fun)) . (function (fun) @function.call))
+((signature (context (fun))) . (function (fun) @variable))
+((signature (forall (context (fun)))) . (function (variable) @variable))
 
 (exp_infix (variable) @operator)  ; consider infix functions as operators
 
-(exp_infix (exp_name) @function (#set! "priority" 101))
-(exp_apply . (exp_name (variable) @function))
-(exp_apply . (exp_name (qualified_variable (variable) @function)))
+(exp_infix (exp_name (variable) @property))
+(exp_apply . (exp_name (variable) @function.call))
+(exp_apply . (exp_name (qualified_variable (variable) @function.call)))
 
+(record_fields (field (variable) @constant ))
+(variable) @variable
 
 ;; ----------------------------------------------------------------------------
 ;; Types
 
 (type) @type
-(type_variable) @type
+(type_variable) @type.argument
 
 (constructor) @constructor
 
@@ -136,5 +139,5 @@
 ;; ----------------------------------------------------------------------------
 ;; Quasi-quotes
 
-(quoter) @function
+(quoter) @function.call
 ; Highlighting of quasiquote_body is handled by injections.scm
