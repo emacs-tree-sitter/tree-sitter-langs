@@ -235,3 +235,6 @@
 	branch = main
 	update = none
 	ignore = dirty
+[submodule "repos/toml"]
+	path = repos/toml
+	url = https://github.com/ikatyang/tree-sitter-toml.git
