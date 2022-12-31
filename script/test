@@ -14,7 +14,8 @@ fi
 
 (
     cd "$PROJECT_ROOT"
-    cask emacs --batch \
+    cask emacs -Q --batch \
+         --directory . \
          -l ert \
          -l tree-sitter-langs-tests.el \
          --eval '(ert-run-tests-batch-and-exit '"${selector}"')'
