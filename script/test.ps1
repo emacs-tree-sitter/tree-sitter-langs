@@ -10,7 +10,8 @@ if ("all",$null -contains $lang) {
 
 Push-Location $project_root
 try {
-    cask emacs --batch `
+    cask emacs -Q --batch `
+      --directory . `
       -l ert `
       -l tree-sitter-langs-tests.el `
       --eval "(ert-run-tests-batch-and-exit ${selector})"
