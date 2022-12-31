@@ -1,6 +1,8 @@
 # Changelog
 
 ## Unreleased
+
+## 0.12.10 - 2022-12-31
 - Fix release scripts
 - Update go highlights and grammar
 
