@@ -2,6 +2,7 @@
 
 ## Unreleased
 - Fix release scripts
+- Update go highlights
 
 ## 0.12.9 - 2022-12-31
 - Bump typescript grammar
