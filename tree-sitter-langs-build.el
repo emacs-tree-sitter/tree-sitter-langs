@@ -332,16 +332,17 @@ from the current state of the grammar repo, without cleanup."
                (default-directory (file-name-as-directory (concat dir path))))
           (tree-sitter-langs--call "tree-sitter" "generate")
           (cond
-           ((and (memq system-type '(gnu/linux))
-                 (file-exists-p "src/scanner.cc"))
+           ((file-exists-p "src/scanner.cc")
             ;; XXX: Modified from
             ;; https://github.com/tree-sitter/tree-sitter/blob/v0.20.0/cli/loader/src/lib.rs#L351
-            (tree-sitter-langs--call
-             "g++" "-shared" "-fPIC" "-fno-exceptions" "-g" "-O2"
-             "-static-libgcc" "-static-libstdc++"
+           (let ((static-flags (and (eq system-type 'gnu/linux) '("-static-libgcc" "-static-libstdc++")))
+                 (output (format "%sbin/%s.so" tree-sitter-langs-grammar-dir lang-symbol)))
+            (apply 'tree-sitter-langs--call
+             `("g++" "-shared" "-fPIC" "-fno-exceptions" "-g" "-O2"
+             ,@static-flags
              "-I" "src"
              "src/scanner.cc" "-xc" "src/parser.c"
-             "-o" (format "%sbin/%s.so" tree-sitter-langs-grammar-dir lang-symbol)))
+             "-o" ,output))))
            ;; XXX: This is a hack for cross compilation (mainly for Apple Silicon).
            (target (cond
                     ((file-exists-p "src/scanner.cc")
