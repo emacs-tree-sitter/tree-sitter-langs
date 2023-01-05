@@ -527,11 +527,13 @@ non-nil."
   "tree-sitter-langs-build releases grammars as LANG.so, but treesit needs libtree-sitter-LANG.so"
   (dolist (file (directory-files (tree-sitter-langs--bin-dir) 'full
                                  (concat "\\" (car tree-sitter-load-suffixes) "$")))
-    ;; make symlink libtree-sitter-c.so -> c.so
-    (make-symbolic-link file
-                        (concat (file-name-as-directory (file-name-directory file))
+    ;; make symlink (or copy) libtree-sitter-c.so -> c.so
+    (let ((target (concat (file-name-as-directory (file-name-directory file))
                                 "libtree-sitter-"
-                                (file-name-nondirectory file)))))
+                                (file-name-nondirectory file))))
+      (if (memq system-type '(ms-dos windows-nt cygwin))
+          (copy-file file target)
+        (make-symbolic-link file target)))))
 
 (defun tree-sitter-langs--copy-query (lang-symbol &optional force)
   "Copy highlights.scm file of LANG-SYMBOL to `tree-sitter-langs--queries-dir'.
