@@ -2,6 +2,7 @@
 
 ## Unreleased
 - Add `TOML` grammar.
+- Bump bash grammar
 
 ## 0.12.11 - 2023-01-14
 - Bump perl grammar
