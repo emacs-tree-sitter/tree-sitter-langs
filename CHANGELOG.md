@@ -1,6 +1,8 @@
 # Changelog
 
 ## Unreleased
+
+## 0.12.12 - 2023-01-14
 - Add `TOML` grammar.
 - Bump bash grammar
 
