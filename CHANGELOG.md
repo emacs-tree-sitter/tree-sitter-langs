@@ -1,6 +1,8 @@
 # Changelog
 
 ## Unreleased
+
+## 0.12.11 - 2023-01-14
 - Bump perl grammar
 
 ## 0.12.10 - 2022-12-31
