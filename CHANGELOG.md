@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Bump perl grammar
 
 ## 0.12.10 - 2022-12-31
 - Fix release scripts
