@@ -246,3 +246,9 @@
 	branch = master
 	update = none
 	ignore = dirty
+[submodule "repos/scheme"]
+	path = repos/scheme
+	url = https://github.com/6cdh/tree-sitter-scheme
+	branch = main
+	update = none
+	ignore = dirty
