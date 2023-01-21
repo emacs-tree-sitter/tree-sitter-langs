@@ -246,3 +246,9 @@
 	branch = master
 	update = none
 	ignore = dirty
+[submodule "repos/clojure"]
+	path = repos/clojure
+	url = https://github.com/sogaiu/tree-sitter-clojure
+	branch = master
+	update = none
+	ignore = dirty
