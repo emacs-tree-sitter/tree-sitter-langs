@@ -246,3 +246,9 @@
 	branch = master
 	update = none
 	ignore = dirty
+[submodule "repos/fennel"]
+	path = repos/fennel
+	url = https://github.com/TravonteD/tree-sitter-fennel
+	branch = master
+	update = none
+	ignore = dirty
