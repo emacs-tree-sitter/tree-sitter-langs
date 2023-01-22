@@ -102,6 +102,7 @@ See `tree-sitter-langs-repos'."
                 (sh-mode         . bash)
                 (c-mode          . c)
                 (caml-mode       . ocaml)
+                (clojure-mode    . clojure)
                 (csharp-mode     . c-sharp)
                 (c++-mode        . cpp)
                 (d-mode          . d)
