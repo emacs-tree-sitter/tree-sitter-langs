@@ -145,7 +145,7 @@ See `tree-sitter-langs-repos'."
                 (verilog-mode    . verilog)
                 (yaml-mode       . yaml)
                 (zig-mode        . zig)
-								(scheme-mode     . scheme))))
+				(scheme-mode     . scheme))))
     (cl-pushnew entry tree-sitter-major-mode-language-alist
                 :key #'car))
   (advice-remove 'tree-sitter--setup #'tree-sitter-langs--init-major-mode-alist))
