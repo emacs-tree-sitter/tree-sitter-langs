@@ -94,10 +94,10 @@ See `tree-sitter-langs-repos'."
 (advice-add 'tree-sitter-load :before #'tree-sitter-langs--init-load-path)
 
 ;;;###autoload
-(defun tree-sitter-langs--init-major-mode-alist (&rest _args)
+(defun tree-sitter-langs--init-major-mode-alist(&rest _args)
   "Link known major modes to languages provided by the bundle."
-  (dolist
-      (entry (reverse
+  (setq major-mode-table (make-hash-table :test 'eq)
+      (dolist (entry`
               '((agda2-mode      . agda)
                 (sh-mode         . bash)
                 (c-mode          . c)
@@ -145,8 +145,8 @@ See `tree-sitter-langs-repos'."
                 (verilog-mode    . verilog)
                 (yaml-mode       . yaml)
                 (zig-mode        . zig))))
-    (cl-pushnew entry tree-sitter-major-mode-language-alist
-                :key #'car))
+    (when (not (gethash (car entry) major-mode-table))
+      (puthash (car entry) (cdr entry) major-mode-table)))
   (advice-remove 'tree-sitter--setup #'tree-sitter-langs--init-major-mode-alist))
 
 ;;;###autoload
