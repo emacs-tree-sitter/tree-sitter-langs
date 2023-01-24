@@ -25,7 +25,7 @@ jobs:
             emacs-version: '27.2'
             ext: dylib
             target: aarch64-apple-darwin
-          - os: ubuntu-22.04
+          - os: ubuntu-20.04
             bundle_os: linux
             emacs-version: '27.2'
             ext: so
@@ -101,7 +101,7 @@ jobs:
 
   publish:
     needs: build
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-20.04
     steps:
       - uses: purcell/setup-emacs@b56a75706e31e22d474357c77fb25ce73be2973a
         with:
