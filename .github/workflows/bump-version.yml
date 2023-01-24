@@ -9,7 +9,7 @@ on:
 
 jobs:
   bump-version:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-20.04
     steps:
       - uses: purcell/setup-emacs@b56a75706e31e22d474357c77fb25ce73be2973a
         with:
