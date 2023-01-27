@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Bump `rust` grammar
 
 ## 0.12.43 - 2023-09-04
 - Revert `Fortran` support
