@@ -111,6 +111,7 @@ See `tree-sitter-langs-repos'."
                 (elixir-mode     . elixir)
                 (erlang-mode     . erlang)
                 (ess-r-mode      . r)
+                (fennel-mode     . fennel)
                 (go-mode         . go)
                 (haskell-mode    . haskell)
                 (hcl-mode        . hcl)

@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Add `Fennel` grammar
 
 ## 0.12.14 - 2023-01-28
 - Add `Clojure` grammar
