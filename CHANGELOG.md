@@ -1,6 +1,8 @@
 # Changelog
 
 ## Unreleased
+
+## 0.12.14 - 2023-01-28
 - Add `Clojure` grammar
 
 ## 0.12.13 - 2023-01-16
