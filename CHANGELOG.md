@@ -1,6 +1,8 @@
 # Changelog
 
 ## Unreleased
+
+## 0.12.15 - 2023-01-28
 - Add `Fennel` grammar
 
 ## 0.12.14 - 2023-01-28
