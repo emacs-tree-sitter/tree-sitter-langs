@@ -250,5 +250,15 @@
 	path = repos/scheme
 	url = https://github.com/6cdh/tree-sitter-scheme
 	branch = main
+[submodule "repos/fennel"]
+	path = repos/fennel
+	url = https://github.com/TravonteD/tree-sitter-fennel
+  branch = master
+  update = none
+  ignore = dirty
+[submodule "repos/clojure"]
+	path = repos/clojure
+	url = https://github.com/sogaiu/tree-sitter-clojure
+	branch = master
 	update = none
 	ignore = dirty
