@@ -94,6 +94,7 @@ See `tree-sitter-langs-repos'."
 (advice-add 'tree-sitter-load :before #'tree-sitter-langs--init-load-path)
 
 ;;;###autoload
+<<<<<<< HEAD
 (let ((entry nil))
   (defun tree-sitter-langs--init-major-mode-alist(&rest _args)
     "Link known major modes to languages provided by the bundle."
@@ -151,6 +152,7 @@ See `tree-sitter-langs-repos'."
       (when (not (gethash (car entry) major-mode-table))
         (puthash (car entry) (cdr entry) major-mode-table)))
     (advice-remove 'tree-sitter--setup #'tree-sitter-langs--init-major-mode-alist)))
+
 
 ;;;###autoload
 (advice-add 'tree-sitter--setup :before #'tree-sitter-langs--init-major-mode-alist)
