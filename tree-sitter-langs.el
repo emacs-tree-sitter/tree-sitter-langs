@@ -94,6 +94,7 @@ See `tree-sitter-langs-repos'."
 (advice-add 'tree-sitter-load :before #'tree-sitter-langs--init-load-path)
 
 ;;;###autoload
+<<<<<<< HEAD
 (let ((entry nil))
   (defun tree-sitter-langs--init-major-mode-alist(&rest _args)
     "Link known major modes to languages provided by the bundle."
@@ -103,6 +104,7 @@ See `tree-sitter-langs-repos'."
                (sh-mode         . bash)
                (c-mode          . c)
                (caml-mode       . ocaml)
+							 (clojure-mode    . clojure)
                (csharp-mode     . c-sharp)
                (c++-mode        . cpp)
                (d-mode          . d)
@@ -111,6 +113,7 @@ See `tree-sitter-langs-repos'."
                (elixir-mode     . elixir)
                (erlang-mode     . erlang)
                (ess-r-mode      . r)
+							 (fennel-mode     . fennel)
                (go-mode         . go)
                (haskell-mode    . haskell)
                (hcl-mode        . hcl)
