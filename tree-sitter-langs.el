@@ -94,7 +94,6 @@ See `tree-sitter-langs-repos'."
 (advice-add 'tree-sitter-load :before #'tree-sitter-langs--init-load-path)
 
 ;;;###autoload
-
 (let ((entry nil))
   (defun tree-sitter-langs--init-major-mode-alist(&rest _args)
     "Link known major modes to languages provided by the bundle."
