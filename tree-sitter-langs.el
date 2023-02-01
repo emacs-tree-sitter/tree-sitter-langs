@@ -98,7 +98,6 @@ See `tree-sitter-langs-repos'."
   (defun tree-sitter-langs--init-major-mode-alist(&rest _args)
     "Link known major modes to languages provided by the bundle."
     (setq major-mode-table (make-hash-table :test 'eq))
-<<<<<<< HEAD
     (dolist (entry
              '((agda2-mode      . agda)
                (sh-mode         . bash)
