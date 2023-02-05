@@ -3,6 +3,7 @@
 ## Unreleased
 
 ## 0.12.16 - 2023-02-05
+- Update elixir highlights
 
 ## 0.12.15 - 2023-01-28
 - Add `Fennel` grammar
