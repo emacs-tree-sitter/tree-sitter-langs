@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Add `Meson` grammar
 
 ## 0.12.17 - 2023-03-11
 - Add `Scheme` grammar
