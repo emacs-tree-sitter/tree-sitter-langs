@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Add `Meson` grammar
 
 ## 0.12.16 - 2023-02-05
 - Update elixir highlights
