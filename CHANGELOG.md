@@ -1,6 +1,8 @@
 # Changelog
 
 ## Unreleased
+
+## 0.12.17 - 2023-03-11
 - Add `Scheme` grammar
 
 ## 0.12.16 - 2023-02-05
