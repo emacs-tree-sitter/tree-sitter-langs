@@ -140,6 +140,7 @@ See `tree-sitter-langs-repos'."
                 (rust-mode       . rust)
                 (rustic-mode     . rust)
                 (scala-mode      . scala)
+                (scheme-mode     . scheme)
                 (swift-mode      . swift)
                 (toml-mode       . toml)
                 (tuareg-mode     . ocaml)
