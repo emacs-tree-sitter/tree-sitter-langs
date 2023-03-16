@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Bump `nix` grammar
 
 ## 0.12.18 - 2023-03-11
 - Add `Meson` grammar
