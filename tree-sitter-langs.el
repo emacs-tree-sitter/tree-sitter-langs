@@ -128,6 +128,7 @@ See `tree-sitter-langs-repos'."
                 (json-mode       . json)
                 (jsonc-mode      . json)
                 (julia-mode      . julia)
+                (kotlin-mode     . kotlin)
                 (lua-mode        . lua)
                 (meson-mode      . meson)
                 (ocaml-mode      . ocaml)
