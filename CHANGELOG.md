@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Add `MATLAB` grammar
+
 ## 0.12.20 - 2023-06-22
 - Bump `go` grammar
 
