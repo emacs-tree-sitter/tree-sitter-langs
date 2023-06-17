@@ -45,22 +45,9 @@ jobs:
       - name: Install tree-sitter CLI
         run: npm install -g tree-sitter-cli@0.19.3
 
-      # Using a specific commit hash to fix this https://github.com/purcell/setup-emacs/issues/24.
-      - uses: purcell/setup-emacs@b56a75706e31e22d474357c77fb25ce73be2973a
-        if: runner.os != 'Windows'
+      - uses: jcs090218/setup-emacs@master
         with:
           version: ${{ matrix.emacs-version }}
-      # Seems like the Emacs archive from GNU's FTP uses its own outdated bundle of CA certs, which
-      # wouldn't include the new LetsEncrypt's root CA cert, which is used by MELPA, among others.
-      # So we use mingw64's Emacs instead. TODO: Switch back whenever possible.
-      - name: Install Emacs (Windows)
-        if: runner.os == 'Windows'
-        run: |
-          $env:MSYS_PATH = "$env:CD\ci-tools\msys2"
-          choco install msys2 --params="/InstallDir:$env:MSYS_PATH /NoPath"
-          $env:PATH = "$env:MSYS_PATH\usr\bin;" + $env:PATH
-          pacman -S --noconfirm --needed mingw-w64-x86_64-emacs
-          echo "$env:MSYS_PATH\mingw64\bin" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf-8 -Append
 
       - uses: emacs-eask/setup-eask@master
         with:
