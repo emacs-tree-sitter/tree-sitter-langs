@@ -14,8 +14,8 @@
 (files "tree-sitter-langs.el"
        "tree-sitter-langs-build.el"
        ;; XXX: Figure out how to include only .scm files under a level of directories.
-       ("queries"
-        "queries/*"))
+       "queries"
+       "queries/*")
 
 (depends-on "emacs" "25.1")
 (depends-on "tree-sitter")
