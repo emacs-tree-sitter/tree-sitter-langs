@@ -59,8 +59,10 @@ jobs:
           pacman -S --noconfirm --needed mingw-w64-x86_64-emacs
           echo "$env:MSYS_PATH\mingw64\bin" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf-8 -Append
 
-      - run: .github/script/setup-cask
-      - run: cask install
+      - uses: emacs-eask/setup-eask@master
+        with:
+          version: 'snapshot'
+      - run: eask install-deps
 
       - run: script/compile all -target "${{ matrix.target }}"
         continue-on-error: ${{ !matrix.target }}
@@ -69,7 +71,7 @@ jobs:
         continue-on-error: true
       - run: script/test
         if: ${{ !matrix.target }}
-      - run: cask package
+      - run: eask package
         if: ${{ !matrix.target }}
 
       - name: Determine version
