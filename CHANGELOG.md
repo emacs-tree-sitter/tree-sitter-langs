@@ -1,6 +1,8 @@
 # Changelog
 
 ## Unreleased
+
+## 0.12.19 - 2023-06-20
 - Bump `nix` grammar
 
 ## 0.12.18 - 2023-03-11
