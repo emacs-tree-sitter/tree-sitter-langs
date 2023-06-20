@@ -44,7 +44,6 @@ jobs:
         run: npm install -g tree-sitter-cli@0.19.3
 
       - uses: jcs090218/setup-emacs@master
-        if: runner.os != 'Windows'
         with:
           version: ${{ matrix.emacs-version }}
 
