@@ -1,1 +1,6 @@
-bin/
+/.eask
+
+/bin
+/dist
+
+*.tar.gz
