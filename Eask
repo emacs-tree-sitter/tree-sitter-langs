@@ -21,3 +21,7 @@
 (depends-on "tree-sitter")
 
 (setq network-security-level 'low)  ; see https://github.com/jcs090218/setup-emacs-windows/issues/156#issuecomment-932956432
+
+;; Use GNU tar in Windows
+(when (memq system-type '(cygwin windows-nt ms-dos))
+  (setq package-build-tar-executable "C:/Program Files/Git/usr/bin/tar.exe"))

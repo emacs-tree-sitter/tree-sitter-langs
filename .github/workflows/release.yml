@@ -59,13 +59,16 @@ jobs:
         continue-on-error: true
       - run: script/test
         if: ${{ !matrix.target }}
+
       - run: eask package
         if: ${{ !matrix.target }}
 
       - name: Determine version
         if: runner.os != 'Windows'
         run: |
-          echo BUNDLE_VERSION=$(script/bundle-version) > $GITHUB_ENV
+          bundle_version=$(script/bundle-version)
+          bundle_version=${bundle_version//$'\n'/}
+          echo BUNDLE_VERSION=$bundle_version >> $GITHUB_ENV
       - name: Determine version
         if: runner.os == 'Windows'
         run: |
