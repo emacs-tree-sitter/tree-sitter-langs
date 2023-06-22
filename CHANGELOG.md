@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Bump `go` grammar
 
 ## 0.12.19 - 2023-06-20
 - Bump `nix` grammar
