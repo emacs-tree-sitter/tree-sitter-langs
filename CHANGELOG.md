@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Bump `MATLAB` grammar
+
 ## 0.12.21 - 2023-07-03
 
 - Add `MATLAB` grammar
