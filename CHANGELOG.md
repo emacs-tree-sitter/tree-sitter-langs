@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 0.12.22 - 2023-07-05
+
 - Bump `MATLAB` grammar
 
 ## 0.12.21 - 2023-07-03
