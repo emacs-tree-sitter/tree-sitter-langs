@@ -131,6 +131,7 @@ See `tree-sitter-langs-repos'."
                 (lua-mode        . lua)
                 (matlab-mode     . matlab)
                 (meson-mode      . meson)
+                (noir-mode       . noir)
                 (ocaml-mode      . ocaml)
                 (perl-mode       . perl)
                 (php-mode        . php)

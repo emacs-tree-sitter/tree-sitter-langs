@@ -274,3 +274,9 @@
 	branch = main
 	update = none
 	ignore = dirty
+[submodule "repos/noir"]
+	path = repos/noir
+	url = https://github.com/hhamud/tree-sitter-noir
+	branch = main
+	update = none
+	ignore = dirty

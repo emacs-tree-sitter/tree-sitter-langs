@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Add `Noir` grammar
 
 ## 0.12.22 - 2023-07-05
 
