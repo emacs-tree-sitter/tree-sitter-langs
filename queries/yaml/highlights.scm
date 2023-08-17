@@ -10,13 +10,13 @@
 (flow_mapping
  (_ key: (flow_node (plain_scalar (string_scalar) @property))))
 
-["[" "]" "{" "}"] @punctuation.bracket
+["[" "]" "{" "}" "\"" "'"] @punctuation.bracket
 ["," "-" ":" "?" ">" "|"] @punctuation.delimiter
 ["*" "&" "---" "..."] @punctuation.special
 
 [(null_scalar) (boolean_scalar)] @constant.builtin
 [(integer_scalar) (float_scalar)] @number
-[(double_quote_scalar) (single_quote_scalar) (block_scalar)] @string
+[(double_quote_scalar) (single_quote_scalar) (block_scalar) (plain_scalar)] @string
 (escape_sequence) @escape
 
 (comment) @comment
