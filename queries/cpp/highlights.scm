@@ -54,8 +54,6 @@
 ((namespace_identifier) @type
  (.match? @type "^[A-Za-z]"))
 
-(namespace_definition (identifier) @type)
-
 (auto) @type
 
 ;;; ----------------------------------------------------------------------------
