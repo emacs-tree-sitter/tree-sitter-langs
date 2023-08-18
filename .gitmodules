@@ -277,3 +277,6 @@
 [submodule "repos/dart"]
 	path = repos/dart
 	url = https://github.com/UserNobody14/tree-sitter-dart
+	branch = master
+	update = none
+	ignore = dirty
