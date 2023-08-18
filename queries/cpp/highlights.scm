@@ -51,8 +51,12 @@
 ;;; ----------------------------------------------------------------------------
 ;; Types
 
+(namespace_identifier) @namespace
+
 ((namespace_identifier) @type
- (.match? @type "^[A-Za-z]"))
+                        (#lua-match? @type "^[A-Z]"))
+
+(using_declaration . "using" . "namespace" . [(qualified_identifier) (identifier)] @namespace)
 
 (auto) @type
 
