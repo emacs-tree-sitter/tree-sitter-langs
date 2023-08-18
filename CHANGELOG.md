@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Bump `C++` grammar
 
 ## 0.12.22 - 2023-07-05
 
