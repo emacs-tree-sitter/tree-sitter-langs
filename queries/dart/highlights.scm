@@ -6,7 +6,7 @@
 
 ; TODO: add method/call_expression to grammar and
 ; distinguish method call from variable access
-(function_expression_body (identifier) @function)
+(function_expression_body (identifier) @type)
 ; ((identifier)(selector (argument_part)) @function)
 
 ; NOTE: This query is a bit of a work around for the fact that the dart grammar doesn't
@@ -227,7 +227,7 @@
     "external"
     "static"
     "sync*"
-] @type.qualifier
+] @type
 
 ; when used as an identifier:
 ((identifier) @variable.builtin
