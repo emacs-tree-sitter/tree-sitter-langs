@@ -54,7 +54,7 @@
 (namespace_identifier) @namespace
 
 ((namespace_identifier) @type
-                        (#lua-match? @type "^[A-Z]"))
+ (.match? @type "^[A-Za-z]"))
 
 (using_declaration . "using" . "namespace" . [(qualified_identifier) (identifier)] @namespace)
 
