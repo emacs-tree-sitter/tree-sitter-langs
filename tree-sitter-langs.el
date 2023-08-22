@@ -100,6 +100,7 @@ See `tree-sitter-langs-repos'."
       (entry (reverse
               '((agda2-mode      . agda)
                 (sh-mode         . bash)
+                (bibtex-mode     . bibtex)
                 (c-mode          . c)
                 (caml-mode       . ocaml)
                 (clojure-mode    . clojure)

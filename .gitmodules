@@ -280,3 +280,9 @@
 	branch = master
 	update = none
 	ignore = dirty
+[submodule "repos/bibtex"]
+	path = repos/bibtex
+	url = https://github.com/latex-lsp/tree-sitter-bibtex
+	branch = master
+	update = none
+	ignore = dirty
