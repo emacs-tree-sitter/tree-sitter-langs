@@ -9,7 +9,7 @@
 "struct" @type
 
 (string_literal) @string
-(built_in_type) @type
+;;(built_in_type) @type
 (number) @number
 (function_definition name: (identifier) @function)
 (struct_decl name: (identifier) @type.user)
