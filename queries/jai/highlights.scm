@@ -11,7 +11,7 @@
 (string_literal) @string
 ;;(built_in_type) @type
 (number) @number
-(function_definition name: (identifier) @function)
+;;(function_definition name: (identifier) @function)
 ;;(struct_decl name: (identifier) @type.user)
 ;;(constant_value_definition name: (identifier) @constant)
 (inline_comment) @comment
