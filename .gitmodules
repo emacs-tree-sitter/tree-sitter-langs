@@ -283,3 +283,6 @@
 [submodule "repos/comment"]
 	path = repos/comment
 	url = https://github.com/stsewd/tree-sitter-comment
+	branch = master
+	update = none
+	ignore = dirty
