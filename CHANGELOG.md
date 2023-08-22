@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+## 0.12.23 - 2023-08-22
+- Bump `C++` grammar
+
 ## 0.12.22 - 2023-07-05
 
 - Bump `MATLAB` grammar

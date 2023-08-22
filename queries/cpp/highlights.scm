@@ -1,33 +1,35 @@
 ;; Keywords
 
-["catch"
+[
+ "catch"
  "class"
  "co_await"
  "co_return"
  "co_yield"
- "concept"
- "consteval"
  "constexpr"
  "constinit"
+ "consteval"
  "delete"
  "explicit"
  "final"
  "friend"
  "mutable"
  "namespace"
- "new"
  "noexcept"
+ "new"
  "override"
  "private"
  "protected"
  "public"
- "requires"
  "template"
  "throw"
  "try"
  "typename"
  "using"
- "virtual"] @keyword
+ "virtual"
+ "concept"
+ "requires"
+] @keyword
 
 ;;; ----------------------------------------------------------------------------
 ;; Functions
@@ -49,10 +51,12 @@
 ;;; ----------------------------------------------------------------------------
 ;; Types
 
+(namespace_identifier) @namespace
+
 ((namespace_identifier) @type
  (.match? @type "^[A-Za-z]"))
 
-(namespace_definition (identifier) @type)
+(using_declaration . "using" . "namespace" . [(qualified_identifier) (identifier)] @namespace)
 
 (auto) @type
 
@@ -60,4 +64,4 @@
 ;; Constants
 
 (this) @variable.builtin
-(nullptr) @constant
+(null "nullptr" @constant)
