@@ -16,7 +16,7 @@
 ;;(constant_value_definition name: (identifier) @constant)
 (inline_comment) @comment
 (block_comment) @comment
-(cast_expression name: (identifier) @function)
+;;(cast_expression name: (identifier) @function)
 ;;(function_call name: (variable_reference) @function)
 ;;(variable_decl name: (identifier) @variable)
 ;;(variable_decl names: (identifier) @variable)
