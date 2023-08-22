@@ -23,4 +23,4 @@
 ;;(implicit_variable_decl name: (identifier) @variable)
 ;;(parameter_decl name: (identifier) @variable)
 (for_loop name: (identifier) @variable)
-(for_loop names: (identifier) @variable)
+;;(for_loop names: (identifier) @variable)
