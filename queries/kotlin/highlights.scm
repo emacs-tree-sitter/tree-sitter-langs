@@ -208,7 +208,6 @@
 ;;; Literals
 
 [
- (comment)
  (shebang_line)
  ] @comment
 
