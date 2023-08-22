@@ -105,6 +105,7 @@ See `tree-sitter-langs-repos'."
                 (clojure-mode    . clojure)
                 (csharp-mode     . c-sharp)
                 (c++-mode        . cpp)
+                (cmake-mode      . cmake)
                 (d-mode          . d)
                 (dart-mode       . dart)
                 (css-mode        . css)
