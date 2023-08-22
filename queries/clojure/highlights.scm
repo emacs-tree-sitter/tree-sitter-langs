@@ -58,8 +58,8 @@
  (#match? @variable.builtin "^[%]"))
 
 ; Constructor
-((sym_lit) @constructor
- (#match? @constructor "^-\\>[^\\>].*"))
+;;((sym_lit) @constructor
+;; (#match? @constructor "^-\\>[^\\>].*"))
 
 ; Dynamic variables
 ((sym_lit) @variable.builtin
