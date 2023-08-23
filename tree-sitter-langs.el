@@ -110,6 +110,7 @@ See `tree-sitter-langs-repos'."
                 (css-mode        . css)
                 (elm-mode        . elm)
                 (elixir-mode     . elixir)
+                (emacs-lisp-mode . elisp)
                 (erlang-mode     . erlang)
                 (ess-r-mode      . r)
                 (fennel-mode     . fennel)
