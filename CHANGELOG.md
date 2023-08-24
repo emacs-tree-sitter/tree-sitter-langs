@@ -1,6 +1,12 @@
 # Changelog
 
 ## Unreleased
+- Add `Beancount` support
+- Add `Bibtex` support
+- Add `comment` support
+- Add `Elisp` support
+- Add `GDScript` support
+- Add `Jai` support
 
 ## 0.12.26 - 2023-08-24
 
