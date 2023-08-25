@@ -114,6 +114,7 @@ See `tree-sitter-langs-repos'."
                 (erlang-mode     . erlang)
                 (ess-r-mode      . r)
                 (fennel-mode     . fennel)
+                (glsl-mode       . glsl)
                 (go-mode         . go)
                 (haskell-mode    . haskell)
                 (hcl-mode        . hcl)
