@@ -107,6 +107,7 @@ See `tree-sitter-langs-repos'."
                 (c++-mode        . cpp)
                 (d-mode          . d)
                 (dart-mode       . dart)
+                (diff-mode       . diff)
                 (css-mode        . css)
                 (elm-mode        . elm)
                 (elixir-mode     . elixir)
