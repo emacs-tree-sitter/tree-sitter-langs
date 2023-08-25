@@ -7,6 +7,8 @@
 - Add `Elisp` support
 - Add `GDScript` support
 - Add `Jai` support
+- Add `diff` support
+- Add `Dockerfile` support
 
 ## 0.12.26 - 2023-08-24
 
