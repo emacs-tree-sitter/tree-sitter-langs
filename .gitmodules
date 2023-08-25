@@ -280,9 +280,16 @@
 	branch = master
 	update = none
 	ignore = dirty
+[submodule "repos/elisp"]
+	path = repos/elisp
+	url = https://github.com/Wilfred/tree-sitter-elisp
+	branch = main
+	update = none
+	ignore = dirty
 [submodule "repos/jai"]
 	path = repos/jai
 	url = https://github.com/Pyromuffin/tree-sitter-jai
 	branch = master
 	update = none
 	ignore = dirty
+
