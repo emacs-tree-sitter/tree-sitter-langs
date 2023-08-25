@@ -9,6 +9,7 @@
 - Add `Jai` support
 - Add `diff` support
 - Add `Dockerfile` support
+- Add `Xml` support
 
 ## 0.12.26 - 2023-08-24
 
