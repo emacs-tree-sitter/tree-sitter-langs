@@ -277,6 +277,15 @@
 [submodule "repos/noir"]
 	path = repos/noir
 	url = https://github.com/hhamud/tree-sitter-noir
+[submodule "repos/dart"]
+	path = repos/dart
+	url = https://github.com/UserNobody14/tree-sitter-dart
+	branch = master
+	update = none
+	ignore = dirty
+[submodule "repos/elisp"]
+	path = repos/elisp
+	url = https://github.com/Wilfred/tree-sitter-elisp
 	branch = main
 	update = none
 	ignore = dirty
