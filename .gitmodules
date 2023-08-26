@@ -277,6 +277,9 @@
 [submodule "repos/noir"]
 	path = repos/noir
 	url = https://github.com/hhamud/tree-sitter-noir
+ 	branch = main
+	update = none
+	ignore = dirty
 [submodule "repos/dart"]
 	path = repos/dart
 	url = https://github.com/UserNobody14/tree-sitter-dart
