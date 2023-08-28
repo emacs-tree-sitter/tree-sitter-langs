@@ -25,12 +25,6 @@
 	update = none
 	ignore = dirty
 	branch = master
-[submodule "repos/c-sharp"]
-	path = repos/c-sharp
-	url = https://github.com/tree-sitter/tree-sitter-c-sharp
-	update = none
-	ignore = dirty
-	branch = master
 [submodule "repos/cpp"]
 	path = repos/cpp
 	url = https://github.com/tree-sitter/tree-sitter-cpp
@@ -284,5 +278,11 @@
 	path = repos/elisp
 	url = https://github.com/Wilfred/tree-sitter-elisp
 	branch = main
+	update = none
+	ignore = dirty
+[submodule "repos/c-sharp"]
+	path = repos/c-sharp
+	url = https://github.com/tree-sitter/tree-sitter-c-sharp
+	branch = master
 	update = none
 	ignore = dirty
