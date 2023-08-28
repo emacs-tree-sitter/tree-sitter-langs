@@ -286,6 +286,12 @@
 	branch = main
 	update = none
 	ignore = dirty
+[submodule "repos/beancount"]
+	path = repos/beancount
+	url = https://github.com/polarmutex/tree-sitter-beancount
+	branch = master
+	update = none
+	ignore = dirty
 [submodule "repos/gdscript"]
 	path = repos/gdscript
 	url = https://github.com/PrestonKnopp/tree-sitter-gdscript
