@@ -5,7 +5,7 @@
 ;; Author: Tuấn-Anh Nguyễn <ubolonton@gmail.com>
 ;; Keywords: languages tools parsers tree-sitter
 ;; Homepage: https://github.com/emacs-tree-sitter/tree-sitter-langs
-;; Version: 0.12.27
+;; Version: 0.12.29
 ;; Package-Requires: ((emacs "25.1") (tree-sitter "0.15.0"))
 ;; SPDX-License-Identifier: MIT
 
@@ -101,6 +101,7 @@ See `tree-sitter-langs-repos'."
               '((agda2-mode      . agda)
                 (sh-mode         . bash)
                 (beancount-mode  . beancount)
+                (bibtex-mode     . bibtex)
                 (c-mode          . c)
                 (caml-mode       . ocaml)
                 (clojure-mode    . clojure)
@@ -134,6 +135,7 @@ See `tree-sitter-langs-repos'."
                 (lua-mode        . lua)
                 (matlab-mode     . matlab)
                 (meson-mode      . meson)
+                (noir-mode       . noir)
                 (ocaml-mode      . ocaml)
                 (perl-mode       . perl)
                 (php-mode        . php)
@@ -148,6 +150,7 @@ See `tree-sitter-langs-repos'."
                 (scheme-mode     . scheme)
                 (swift-mode      . swift)
                 (toml-mode       . toml)
+                (conf-toml-mode  . toml)
                 (tuareg-mode     . ocaml)
                 (typescript-mode . typescript)
                 (verilog-mode    . verilog)
