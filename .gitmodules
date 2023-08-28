@@ -286,6 +286,12 @@
 	branch = main
 	update = none
 	ignore = dirty
+[submodule "repos/beancount"]
+	path = repos/beancount
+	url = https://github.com/polarmutex/tree-sitter-beancount
+	branch = master
+	update = none
+	ignore = dirty
 [submodule "repos/comment"]
 	path = repos/comment
 	url = https://github.com/stsewd/tree-sitter-comment
