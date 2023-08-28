@@ -101,6 +101,7 @@ See `tree-sitter-langs-repos'."
               '((agda2-mode      . agda)
                 (sh-mode         . bash)
                 (beancount-mode  . beancount)
+                (bibtex-mode     . bibtex)
                 (c-mode          . c)
                 (caml-mode       . ocaml)
                 (clojure-mode    . clojure)
