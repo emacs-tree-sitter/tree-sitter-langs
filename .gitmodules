@@ -274,6 +274,12 @@
 	branch = main
 	update = none
 	ignore = dirty
+[submodule "repos/noir"]
+	path = repos/noir
+	url = https://github.com/hhamud/tree-sitter-noir
+ 	branch = main
+	update = none
+	ignore = dirty
 [submodule "repos/dart"]
 	path = repos/dart
 	url = https://github.com/UserNobody14/tree-sitter-dart
@@ -292,10 +298,15 @@
 	branch = master
 	update = none
 	ignore = dirty
+[submodule "repos/bibtex"]
+	path = repos/bibtex
+	url = https://github.com/latex-lsp/tree-sitter-bibtex
+	branch = master
+	update = none
+	ignore = dirty
 [submodule "repos/dockerfile"]
 	path = repos/dockerfile
 	url = https://github.com/camdencheek/tree-sitter-dockerfile
 	branch = main
 	update = none
 	ignore = dirty
-
