@@ -316,3 +316,9 @@
 	branch = master
 	update = none
 	ignore = dirty
+[submodule "repos/gdscript"]
+	path = repos/gdscript
+	url = https://github.com/PrestonKnopp/tree-sitter-gdscript
+	branch = master
+	update = none
+	ignore = dirty
