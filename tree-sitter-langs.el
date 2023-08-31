@@ -124,6 +124,7 @@ See `tree-sitter-langs-repos'."
                 (markdown-mode   . markdown)
                 (mhtml-mode      . html)
                 (nix-mode        . nix)
+                (jai-mode        . jai)
                 (java-mode       . java)
                 (javascript-mode . javascript)
                 (js-mode         . javascript)
