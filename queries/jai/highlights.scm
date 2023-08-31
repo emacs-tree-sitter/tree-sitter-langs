@@ -1,12 +1,25 @@
 ; highlights.scm
 
-"if" @keyword
-"return" @keyword
-"else" @keyword
-"for" @keyword
-"while" @keyword
-"using" @keyword
-"struct" @type
+[
+ (if_directive)
+] @function.macro
+
+[
+ (cast_expression)
+] @type
+
+[
+ "for"
+ "while"
+ "return"
+ ] @keyword
+
+(operator_definition) @operator
+
+[
+ "#import"
+ "#insert"
+] @function.macro
 
 (string_literal) @string
 ;;(built_in_type) @type
