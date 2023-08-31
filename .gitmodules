@@ -304,6 +304,18 @@
 	branch = master
 	update = none
 	ignore = dirty
+[submodule "repos/kotlin"]
+	path = repos/kotlin
+	url = https://github.com/fwcd/tree-sitter-kotlin
+	branch = main
+	update = none
+	ignore = dirty
+[submodule "repos/jai"]
+	path = repos/jai
+	url = https://github.com/Pyromuffin/tree-sitter-jai
+	branch = master
+	update = none
+	ignore = dirty
 [submodule "repos/gdscript"]
 	path = repos/gdscript
 	url = https://github.com/PrestonKnopp/tree-sitter-gdscript
