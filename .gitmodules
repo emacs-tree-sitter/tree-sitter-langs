@@ -304,3 +304,9 @@
 	branch = master
 	update = none
 	ignore = dirty
+[submodule "repos/kotlin"]
+	path = repos/kotlin
+	url = https://github.com/fwcd/tree-sitter-kotlin
+	branch = main
+	update = none
+	ignore = dirty
