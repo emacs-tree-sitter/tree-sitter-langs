@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Add `GLSL` support
 
 ## 0.12.26 - 2023-08-24
 
