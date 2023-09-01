@@ -211,12 +211,6 @@
 	branch = master
 	update = none
 	ignore = dirty
-[submodule "repos/perl"]
-	path = repos/perl
-	url = https://github.com/leonerd/tree-sitter-perl.git
-	branch = master
-	update = none
-	ignore = dirty
 [submodule "repos/erlang"]
 	path = repos/erlang
 	url = https://github.com/WhatsApp/tree-sitter-erlang
@@ -319,6 +313,12 @@
 [submodule "repos/gdscript"]
 	path = repos/gdscript
 	url = https://github.com/PrestonKnopp/tree-sitter-gdscript
+	branch = master
+	update = none
+	ignore = dirty
+[submodule "repos/perl"]
+	path = repos/perl
+	url = https://github.com/tree-sitter-perl/tree-sitter-perl
 	branch = master
 	update = none
 	ignore = dirty
