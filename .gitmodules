@@ -304,6 +304,18 @@
 	branch = main
 	update = none
 	ignore = dirty
+[submodule "repos/jai"]
+	path = repos/jai
+	url = https://github.com/Pyromuffin/tree-sitter-jai
+	branch = master
+	update = none
+	ignore = dirty
+[submodule "repos/gdscript"]
+	path = repos/gdscript
+	url = https://github.com/PrestonKnopp/tree-sitter-gdscript
+	branch = master
+	update = none
+	ignore = dirty
 [submodule "repos/perl"]
 	path = repos/perl
 	url = https://github.com/tree-sitter-perl/tree-sitter-perl
