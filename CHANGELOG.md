@@ -10,6 +10,7 @@
 - Add `diff` support
 - Add `Dockerfile` support
 - Add `Xml` support
+- Add `LaTex` support
 
 ## 0.12.26 - 2023-08-24
 
