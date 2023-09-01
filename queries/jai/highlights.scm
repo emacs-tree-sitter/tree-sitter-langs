@@ -1,12 +1,48 @@
-; highlights.scm
+;; highlights.scm
 
-"if" @keyword
-"return" @keyword
-"else" @keyword
-"for" @keyword
-"while" @keyword
-"using" @keyword
-"struct" @type
+[
+ (cast_expression)
+ ] @type
+
+[
+ "if"
+ "ifx"
+ "then"
+ "else"
+ "for"
+ "while"
+ "break"
+ "return"
+ ] @keyword
+
+(variable_initializer (identifier) @type)
+(operator_definition) @operator
+
+(parameter (identifier) (identifier) @type)
+(trailing_return_types (parameter (identifier) @type))
+
+[
+ (expression_like_directive)
+ "#assert"
+ "#type_info_none"
+ "#type_info_procedures_are_void_pointers"
+ "#no_padding"
+ "#specified"
+ "#must"
+ "#deprecated"
+ (trailing_directive)
+ "#code"
+ "#complete"
+ (operator_like_directive)
+ "#foreign"
+ "#align"
+ "#module_parameters"
+ (module_scope_directive)
+ "#if"
+ "#load"
+ "#insert"
+ "#program_export"
+ ] @function.macro
 
 (string_literal) @string
 ;;(built_in_type) @type

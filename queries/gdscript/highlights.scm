@@ -12,8 +12,8 @@
 (null) @constant
 (setter) @function
 (getter) @function
-(set_body "set" @keyword.function)
-(get_body "get" @keyword.function)
+(set_body "set" @keyword)
+(get_body "get" @keyword)
 (static_keyword) @type.qualifier
 (tool_statement) @keyword
 (breakpoint_statement) @debug
@@ -91,9 +91,9 @@
 
 ["," "." ":"] @punctuation.delimiter
 
-["if" "elif" "else" "match"] @conditional
+["if" "elif" "else" "match"] @keyword
 
-["for" "while" "break" "continue"] @repeat
+["for" "while" "break" "continue"] @keyword
 
 [
   "~"
@@ -135,7 +135,7 @@
   "is"
   "not"
   "or"
-] @keyword.operator
+] @keyword
 
 [
   "pass"
@@ -156,11 +156,11 @@
   "puppetsync"
 ] @keyword
 
-"func" @keyword.function
+"func" @keyword
 
 [
   "return"
-] @keyword.return
+] @keyword
 
 [
   "await"
