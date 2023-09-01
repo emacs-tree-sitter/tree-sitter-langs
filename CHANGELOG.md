@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Add `comment` support
 
 ## 0.12.29 - 2023-08-28
 
