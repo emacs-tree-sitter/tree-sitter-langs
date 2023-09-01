@@ -3,6 +3,18 @@
 ## Unreleased
 - Add `comment` support
 
+## 0.12.34 - 2023-09-01
+- Add `LaTex` support
+
+## 0.12.33 - 2023-09-01
+- Replace with supported faces for `GDScript` and `Jai`
+
+## 0.12.32 - 2023-09-01
+
+## 0.12.31 - 2023-08-31
+
+## 0.12.30 - 2023-08-31
+
 ## 0.12.29 - 2023-08-28
 
 ## 0.12.28 - 2023-08-28
