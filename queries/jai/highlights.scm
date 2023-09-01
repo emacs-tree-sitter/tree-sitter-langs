@@ -5,6 +5,10 @@
  ] @type
 
 [
+ "if"
+ "ifx"
+ "then"
+ "else"
  "for"
  "while"
  "break"
@@ -13,6 +17,9 @@
 
 (variable_initializer (identifier) @type)
 (operator_definition) @operator
+
+(parameter (identifier) (identifier) @type)
+(trailing_return_types (parameter (identifier) @type))
 
 [
  (expression_like_directive)
