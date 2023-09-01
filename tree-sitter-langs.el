@@ -136,6 +136,7 @@ See `tree-sitter-langs-repos'."
                 (jsonc-mode      . json)
                 (julia-mode      . julia)
                 (kotlin-mode     . kotlin)
+                (latex-mode      . latex)
                 (lua-mode        . lua)
                 (matlab-mode     . matlab)
                 (meson-mode      . meson)
