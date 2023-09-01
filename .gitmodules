@@ -322,3 +322,9 @@
 	branch = master
 	update = none
 	ignore = dirty
+[submodule "repos/dockerfile"]
+	path = repos/dockerfile
+	url = https://github.com/camdencheek/tree-sitter-dockerfile
+	branch = main
+	update = none
+	ignore = dirty
