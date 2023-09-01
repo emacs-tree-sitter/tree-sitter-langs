@@ -1,6 +1,8 @@
 # Changelog
 
 ## Unreleased
+
+## 0.12.34 - 2023-09-01
 - Add `LaTex` support
 
 ## 0.12.33 - 2023-09-01
