@@ -1,25 +1,41 @@
-; highlights.scm
-
-[
- (if_directive)
-] @function.macro
+;; highlights.scm
 
 [
  (cast_expression)
-] @type
+ ] @type
 
 [
  "for"
  "while"
+ "break"
  "return"
  ] @keyword
 
+(variable_initializer (identifier) @type)
 (operator_definition) @operator
 
 [
- "#import"
+ (expression_like_directive)
+ "#assert"
+ "#type_info_none"
+ "#type_info_procedures_are_void_pointers"
+ "#no_padding"
+ "#specified"
+ "#must"
+ "#deprecated"
+ (trailing_directive)
+ "#code"
+ "#complete"
+ (operator_like_directive)
+ "#foreign"
+ "#align"
+ "#module_parameters"
+ (module_scope_directive)
+ "#if"
+ "#load"
  "#insert"
-] @function.macro
+ "#program_export"
+ ] @function.macro
 
 (string_literal) @string
 ;;(built_in_type) @type

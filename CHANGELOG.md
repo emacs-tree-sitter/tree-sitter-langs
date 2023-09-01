@@ -1,7 +1,7 @@
 # Changelog
 
 ## Unreleased
-- Replace with supported face for `GDScript` and `Jai`
+- Replace with supported faces for `GDScript` and `Jai`
 
 ## 0.12.31 - 2023-08-31
 
