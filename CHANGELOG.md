@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Bump C# grammar
 
 ## 0.12.26 - 2023-08-24
 
