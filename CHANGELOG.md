@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Add `VHDL` support
 
 ## 0.12.35 - 2023-09-02
 - Add `Ada` support
