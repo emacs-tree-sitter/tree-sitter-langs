@@ -334,3 +334,9 @@
 	branch = master
 	update = none
 	ignore = dirty
+[submodule "repos/vhdl"]
+	path = repos/vhdl
+	url = https://github.com/alemuller/tree-sitter-vhdl
+	branch = main
+	update = none
+	ignore = dirty
