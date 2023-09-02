@@ -1,6 +1,8 @@
 # Changelog
 
 ## Unreleased
+
+## 0.12.35 - 2023-09-02
 - Add `Ada` support
 
 ## 0.12.34 - 2023-09-01
