@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Add `Ada` support
 
 ## 0.12.34 - 2023-09-01
 - Add `LaTex` support

@@ -98,7 +98,8 @@ See `tree-sitter-langs-repos'."
   "Link known major modes to languages provided by the bundle."
   (dolist
       (entry (reverse
-              '((agda2-mode      . agda)
+              '((ada-mode        . ada)
+                (agda2-mode      . agda)
                 (sh-mode         . bash)
                 (beancount-mode  . beancount)
                 (bibtex-mode     . bibtex)
