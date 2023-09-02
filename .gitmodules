@@ -328,3 +328,9 @@
 	branch = main
 	update = none
 	ignore = dirty
+[submodule "repos/latex"]
+	path = repos/latex
+	url = https://github.com/latex-lsp/tree-sitter-latex
+	branch = master
+	update = none
+	ignore = dirty
