@@ -99,6 +99,7 @@ See `tree-sitter-langs-repos'."
   (dolist
       (entry (reverse
               '((ada-mode        . ada)
+                (agda-mode       . agda)
                 (agda2-mode      . agda)
                 (sh-mode         . bash)
                 (beancount-mode  . beancount)
