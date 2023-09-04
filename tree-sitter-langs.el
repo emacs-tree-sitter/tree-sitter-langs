@@ -119,7 +119,6 @@ See `tree-sitter-langs-repos'."
                 (erlang-mode     . erlang)
                 (ess-r-mode      . r)
                 (fennel-mode     . fennel)
-                (fortran-mode    . fortran)
                 (gdscript-mode   . gdscript)
                 (go-mode         . go)
                 (haskell-mode    . haskell)

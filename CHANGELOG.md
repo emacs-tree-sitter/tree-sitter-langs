@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Revert `Fortran` support
 
 ## 0.12.42 - 2023-09-04
 
