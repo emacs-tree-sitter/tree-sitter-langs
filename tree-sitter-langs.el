@@ -136,6 +136,7 @@ See `tree-sitter-langs-repos'."
                 (js3-mode        . javascript)
                 (json-mode       . json)
                 (jsonc-mode      . json)
+                (jsonnet-mode    . jsonnet)
                 (julia-mode      . julia)
                 (kotlin-mode     . kotlin)
                 (latex-mode      . latex)
