@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Add `Xml` support
 
 ## 0.12.36 - 2023-09-02
 - Add `VHDL` support
