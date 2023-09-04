@@ -5,7 +5,7 @@
 ;; Author: Tuấn-Anh Nguyễn <ubolonton@gmail.com>
 ;; Keywords: languages tools parsers tree-sitter
 ;; Homepage: https://github.com/emacs-tree-sitter/tree-sitter-langs
-;; Version: 0.12.29
+;; Version: 0.12.36
 ;; Package-Requires: ((emacs "25.1") (tree-sitter "0.15.0"))
 ;; SPDX-License-Identifier: MIT
 
@@ -98,7 +98,9 @@ See `tree-sitter-langs-repos'."
   "Link known major modes to languages provided by the bundle."
   (dolist
       (entry (reverse
-              '((agda2-mode      . agda)
+              '((ada-mode        . ada)
+                (agda-mode       . agda)
+                (agda2-mode      . agda)
                 (sh-mode         . bash)
                 (beancount-mode  . beancount)
                 (bibtex-mode     . bibtex)
@@ -109,6 +111,7 @@ See `tree-sitter-langs-repos'."
                 (c++-mode        . cpp)
                 (d-mode          . d)
                 (dart-mode       . dart)
+                (dockerfile-mode . dockerfile)
                 (css-mode        . css)
                 (elm-mode        . elm)
                 (elixir-mode     . elixir)
@@ -116,6 +119,7 @@ See `tree-sitter-langs-repos'."
                 (erlang-mode     . erlang)
                 (ess-r-mode      . r)
                 (fennel-mode     . fennel)
+                (gdscript-mode   . gdscript)
                 (go-mode         . go)
                 (haskell-mode    . haskell)
                 (hcl-mode        . hcl)
@@ -124,6 +128,7 @@ See `tree-sitter-langs-repos'."
                 (markdown-mode   . markdown)
                 (mhtml-mode      . html)
                 (nix-mode        . nix)
+                (jai-mode        . jai)
                 (java-mode       . java)
                 (javascript-mode . javascript)
                 (js-mode         . javascript)
@@ -132,6 +137,8 @@ See `tree-sitter-langs-repos'."
                 (json-mode       . json)
                 (jsonc-mode      . json)
                 (julia-mode      . julia)
+                (kotlin-mode     . kotlin)
+                (latex-mode      . latex)
                 (lua-mode        . lua)
                 (matlab-mode     . matlab)
                 (meson-mode      . meson)
@@ -154,6 +161,7 @@ See `tree-sitter-langs-repos'."
                 (tuareg-mode     . ocaml)
                 (typescript-mode . typescript)
                 (verilog-mode    . verilog)
+                (vhdl-mode       . vhdl)
                 (nxml-mode       . xml)
                 (yaml-mode       . yaml)
                 (zig-mode        . zig))))
