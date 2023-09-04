@@ -1,6 +1,8 @@
 # Changelog
 
 ## Unreleased
+
+## 0.12.37 - 2023-09-04
 - Add `Xml` support
 
 ## 0.12.36 - 2023-09-02
