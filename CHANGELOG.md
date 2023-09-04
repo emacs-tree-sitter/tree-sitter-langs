@@ -2,6 +2,7 @@
 
 ## Unreleased
 - Revert `Fortran` support
+- Revert `Pascal` support
 
 ## 0.12.42 - 2023-09-04
 
