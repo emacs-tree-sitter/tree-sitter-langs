@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Add `Pascal` support
 
 ## 0.12.40 - 2023-09-04
 - Add `Fortran` support
