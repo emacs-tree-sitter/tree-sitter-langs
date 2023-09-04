@@ -216,7 +216,7 @@
 	(kIs)
 	(kAs)
 	(kIn)
-] @keyword.operator
+] @keyword
 
 ; -- Builtin constants
 
@@ -361,10 +361,10 @@
 ; -- Break, Continue & Exit
 ; (Not ideal: ideally, there would be a way to check if these special
 ; identifiers are shadowed by a local variable)
-(statement ((identifier) @keyword.return
- (#match? @keyword.return "^[eE][xX][iI][tT]$")))
-(statement (exprCall entity: ((identifier) @keyword.return
- (#match? @keyword.return "^[eE][xX][iI][tT]$"))))
+(statement ((identifier) @keyword
+ (#match? @keyword "^[eE][xX][iI][tT]$")))
+(statement (exprCall entity: ((identifier) @keyword
+ (#match? @keyword "^[eE][xX][iI][tT]$"))))
 (statement ((identifier) @keyword
  (#match? @keyword "^[bB][rR][eE][aA][kK]$")))
 (statement ((identifier) @keyword
