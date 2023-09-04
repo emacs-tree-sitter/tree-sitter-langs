@@ -1,6 +1,8 @@
 # Changelog
 
 ## Unreleased
+
+## 0.12.43 - 2023-09-04
 - Revert `Fortran` support
 - Revert `Pascal` support
 
