@@ -1,6 +1,9 @@
 # Changelog
 
 ## Unreleased
+- Add `Fortran` support
+
+## 0.12.38 - 2023-09-04
 
 ## 0.12.39 - 2023-09-04
 - Add `Jsonnet` support
