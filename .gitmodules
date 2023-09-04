@@ -352,6 +352,18 @@
 	branch = master
 	update = none
 	ignore = dirty
+[submodule "repos/jsonnet"]
+	path = repos/jsonnet
+	url = https://github.com/sourcegraph/tree-sitter-jsonnet
+	branch = main
+	update = none
+	ignore = dirty
+[submodule "repos/fortran"]
+	path = repos/fortran
+	url = https://github.com/stadelmanma/tree-sitter-fortran
+	branch = master
+	update = none
+	ignore = dirty
 [submodule "repos/pascal"]
 	path = repos/pascal
 	url = https://github.com/Isopod/tree-sitter-pascal

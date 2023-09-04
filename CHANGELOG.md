@@ -3,6 +3,16 @@
 ## Unreleased
 - Add `Pascal` support
 
+## 0.12.40 - 2023-09-04
+- Add `Fortran` support
+
+## 0.12.38 - 2023-09-04
+
+## 0.12.39 - 2023-09-04
+- Add `Jsonnet` support
+
+## 0.12.38 - 2023-09-04
+
 ## 0.12.37 - 2023-09-04
 - Add `Xml` support
 

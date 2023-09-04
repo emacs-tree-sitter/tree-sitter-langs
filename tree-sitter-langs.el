@@ -5,7 +5,7 @@
 ;; Author: Tuấn-Anh Nguyễn <ubolonton@gmail.com>
 ;; Keywords: languages tools parsers tree-sitter
 ;; Homepage: https://github.com/emacs-tree-sitter/tree-sitter-langs
-;; Version: 0.12.37
+;; Version: 0.12.40
 ;; Package-Requires: ((emacs "25.1") (tree-sitter "0.15.0"))
 ;; SPDX-License-Identifier: MIT
 
@@ -119,6 +119,7 @@ See `tree-sitter-langs-repos'."
                 (erlang-mode     . erlang)
                 (ess-r-mode      . r)
                 (fennel-mode     . fennel)
+                (fortran-mode    . fortran)
                 (gdscript-mode   . gdscript)
                 (go-mode         . go)
                 (haskell-mode    . haskell)
@@ -136,6 +137,7 @@ See `tree-sitter-langs-repos'."
                 (js3-mode        . javascript)
                 (json-mode       . json)
                 (jsonc-mode      . json)
+                (jsonnet-mode    . jsonnet)
                 (julia-mode      . julia)
                 (kotlin-mode     . kotlin)
                 (latex-mode      . latex)
