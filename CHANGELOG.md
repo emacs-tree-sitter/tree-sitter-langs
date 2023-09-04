@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Add `Fortran` support
 
 ## 0.12.38 - 2023-09-04
 
