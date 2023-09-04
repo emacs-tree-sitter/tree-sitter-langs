@@ -1,6 +1,9 @@
 # Changelog
 
 ## Unreleased
+- Add `Jsonnet` support
+
+## 0.12.38 - 2023-09-04
 
 ## 0.12.37 - 2023-09-04
 - Add `Xml` support

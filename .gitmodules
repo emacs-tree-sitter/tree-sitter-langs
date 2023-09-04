@@ -352,3 +352,9 @@
 	branch = master
 	update = none
 	ignore = dirty
+[submodule "repos/jsonnet"]
+	path = repos/jsonnet
+	url = https://github.com/sourcegraph/tree-sitter-jsonnet
+	branch = main
+	update = none
+	ignore = dirty
