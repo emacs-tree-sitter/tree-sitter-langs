@@ -141,10 +141,10 @@
 	branch = master
 [submodule "repos/swift"]
 	path = repos/swift
-	url = https://github.com/tree-sitter/tree-sitter-swift
+	url = https://github.com/alex-pinkus/tree-sitter-swift.git
 	update = none
 	ignore = dirty
-	branch = master
+	branch = main
 [submodule "repos/typescript"]
 	path = repos/typescript
 	url = https://github.com/tree-sitter/tree-sitter-typescript
@@ -208,12 +208,6 @@
 [submodule "repos/yaml"]
 	path = repos/yaml
 	url = https://github.com/ikatyang/tree-sitter-yaml
-	branch = master
-	update = none
-	ignore = dirty
-[submodule "repos/perl"]
-	path = repos/perl
-	url = https://github.com/leonerd/tree-sitter-perl.git
 	branch = master
 	update = none
 	ignore = dirty
@@ -302,6 +296,66 @@
 	path = repos/bibtex
 	url = https://github.com/latex-lsp/tree-sitter-bibtex
 	branch = master
+	update = none
+	ignore = dirty
+[submodule "repos/kotlin"]
+	path = repos/kotlin
+	url = https://github.com/fwcd/tree-sitter-kotlin
+	branch = main
+	update = none
+	ignore = dirty
+[submodule "repos/jai"]
+	path = repos/jai
+	url = https://github.com/Pyromuffin/tree-sitter-jai
+	branch = master
+	update = none
+	ignore = dirty
+[submodule "repos/gdscript"]
+	path = repos/gdscript
+	url = https://github.com/PrestonKnopp/tree-sitter-gdscript
+	branch = master
+	update = none
+	ignore = dirty
+[submodule "repos/perl"]
+	path = repos/perl
+	url = https://github.com/tree-sitter-perl/tree-sitter-perl
+	branch = master
+	update = none
+	ignore = dirty
+[submodule "repos/dockerfile"]
+	path = repos/dockerfile
+	url = https://github.com/camdencheek/tree-sitter-dockerfile
+	branch = main
+	update = none
+	ignore = dirty
+[submodule "repos/latex"]
+	path = repos/latex
+	url = https://github.com/latex-lsp/tree-sitter-latex
+	branch = master
+	update = none
+	ignore = dirty
+[submodule "repos/ada"]
+	path = repos/ada
+	url = https://github.com/briot/tree-sitter-ada
+	branch = master
+	update = none
+	ignore = dirty
+[submodule "repos/vhdl"]
+	path = repos/vhdl
+	url = https://github.com/alemuller/tree-sitter-vhdl
+	branch = main
+	update = none
+	ignore = dirty
+[submodule "repos/xml"]
+	path = repos/xml
+	url = https://github.com/ObserverOfTime/tree-sitter-xml
+	branch = master
+	update = none
+	ignore = dirty
+[submodule "repos/jsonnet"]
+	path = repos/jsonnet
+	url = https://github.com/sourcegraph/tree-sitter-jsonnet
+	branch = main
 	update = none
 	ignore = dirty
 [submodule "repos/diff"]
