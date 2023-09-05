@@ -156,6 +156,7 @@ See `tree-sitter-langs-repos'."
                 (rustic-mode     . rust)
                 (scala-mode      . scala)
                 (scheme-mode     . scheme)
+                (smithy-mode     . smithy)
                 (swift-mode      . swift)
                 (toml-mode       . toml)
                 (conf-toml-mode  . toml)
