@@ -3,6 +3,9 @@
 ## Unreleased
 - Add `Pascal` support
 
+## 0.12.44 - 2023-09-06
+- Bump `TypeScript`/`TSX` grammar
+
 ## 0.12.43 - 2023-09-04
 - Revert `Fortran` support
 - Revert `Pascal` support
