@@ -1,7 +1,10 @@
 # Changelog
 
 ## Unreleased
+<<<<<<< HEAD
 - Add `Pascal` support
+=======
+>>>>>>> 11dbae0 (Release 0.12.44)
 
 ## 0.12.44 - 2023-09-06
 - Bump `TypeScript`/`TSX` grammar
