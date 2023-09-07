@@ -3,6 +3,37 @@
 ## Unreleased
 - Add `comment` support
 
+## 0.12.44 - 2023-09-06
+- Bump `TypeScript`/`TSX` grammar
+
+## 0.12.43 - 2023-09-04
+- Revert `Fortran` support
+- Revert `Pascal` support
+
+## 0.12.42 - 2023-09-04
+
+## 0.12.41 - 2023-09-04
+- Add `Pascal` support
+
+## 0.12.40 - 2023-09-04
+- Add `Fortran` support
+
+## 0.12.38 - 2023-09-04
+
+## 0.12.39 - 2023-09-04
+- Add `Jsonnet` support
+
+## 0.12.38 - 2023-09-04
+
+## 0.12.37 - 2023-09-04
+- Add `Xml` support
+
+## 0.12.36 - 2023-09-02
+- Add `VHDL` support
+
+## 0.12.35 - 2023-09-02
+- Add `Ada` support
+
 ## 0.12.34 - 2023-09-01
 - Add `LaTex` support
 

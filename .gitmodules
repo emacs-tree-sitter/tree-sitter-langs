@@ -141,10 +141,10 @@
 	branch = master
 [submodule "repos/swift"]
 	path = repos/swift
-	url = https://github.com/tree-sitter/tree-sitter-swift
+	url = https://github.com/alex-pinkus/tree-sitter-swift.git
 	update = none
 	ignore = dirty
-	branch = master
+	branch = main
 [submodule "repos/typescript"]
 	path = repos/typescript
 	url = https://github.com/tree-sitter/tree-sitter-typescript
@@ -332,6 +332,30 @@
 	path = repos/latex
 	url = https://github.com/latex-lsp/tree-sitter-latex
 	branch = master
+	update = none
+	ignore = dirty
+[submodule "repos/ada"]
+	path = repos/ada
+	url = https://github.com/briot/tree-sitter-ada
+	branch = master
+	update = none
+	ignore = dirty
+[submodule "repos/vhdl"]
+	path = repos/vhdl
+	url = https://github.com/alemuller/tree-sitter-vhdl
+	branch = main
+	update = none
+	ignore = dirty
+[submodule "repos/xml"]
+	path = repos/xml
+	url = https://github.com/ObserverOfTime/tree-sitter-xml
+	branch = master
+	update = none
+	ignore = dirty
+[submodule "repos/jsonnet"]
+	path = repos/jsonnet
+	url = https://github.com/sourcegraph/tree-sitter-jsonnet
+	branch = main
 	update = none
 	ignore = dirty
 [submodule "repos/comment"]
