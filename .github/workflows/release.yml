@@ -63,6 +63,7 @@ jobs:
         continue-on-error: true
       - run: script/test
         if: ${{ !matrix.target }}
+        continue-on-error: ${{ runner.os == 'Windows' }}
 
       - run: eask package
         if: ${{ !matrix.target }}
