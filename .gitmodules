@@ -358,3 +358,9 @@
 	branch = main
 	update = none
 	ignore = dirty
+[submodule "repos/fortran"]
+	path = repos/fortran
+	url = https://github.com/stadelmanma/tree-sitter-fortran
+	branch = master
+	update = none
+	ignore = dirty

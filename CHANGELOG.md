@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Add `Fortran` support
 
 ## 0.12.44 - 2023-09-06
 - Bump `TypeScript`/`TSX` grammar
