@@ -1,6 +1,8 @@
 # Changelog
 
 ## Unreleased
+
+## 0.12.46 - 2023-09-08
 - Add `Pascal` support
 
 ## 0.12.45 - 2023-09-08
