@@ -25,32 +25,15 @@
         (patterns (tree-sitter-langs--hl-default-patterns lang-symbol)))
     (tsc-make-query language patterns)))
 
-(defun tree-sitter-langs-tests--ignore-test (lang-symbol)
-  "Ignore the test with LANG-SYMBOL."
-  (cl-case lang-symbol
-    ;; XXX: Need further investigation to resolve this; for now, just simply
-    ;; ignore the `tsx' test.
-    ;;
-    ;; Steps to reproduce the failed test:
-    ;;
-    ;;   1. After `jsonnet' grammar is added in #234
-    ;;   2. Add a new gammar (any grammar)
-    ;;   3. CI will report `queries/tsx' error, LoadLibraryExW failed (Windows only)
-    ;;
-    ;; The strange part is why adding a new grammar will cause irrelevant grammar
-    ;; tests to fail.
-    (`tsx (eq system-type 'windows-nt))))
-
 ;;; Tests which verify that the highlight query patterns are valid.
 (let ((default-directory tree-sitter-langs--queries-dir))
   (seq-doseq (lang-name (directory-files default-directory))
     (when (file-exists-p (format "%s/highlights.scm" lang-name))
       (let ((test-symbol (intern (format "queries/%s" lang-name)))
             (lang-symbol (intern lang-name)))
-        (unless (tree-sitter-langs-tests--ignore-test lang-symbol)
-          (eval
-           `(ert-deftest ,test-symbol ()
-              (tree-sitter-langs-tests-check-queries (quote ,lang-symbol)))))))))
+        (eval
+         `(ert-deftest ,test-symbol ()
+            (tree-sitter-langs-tests-check-queries (quote ,lang-symbol))))))))
 
 (tree-sitter-langs--map-repos
  (lambda (lang-name)
