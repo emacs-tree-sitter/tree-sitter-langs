@@ -111,6 +111,7 @@ See `tree-sitter-langs-repos'."
                 (c++-mode        . cpp)
                 (d-mode          . d)
                 (dart-mode       . dart)
+                (diff-mode       . diff)
                 (dockerfile-mode . dockerfile)
                 (css-mode        . css)
                 (elm-mode        . elm)
