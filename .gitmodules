@@ -244,6 +244,12 @@
 	path = repos/scheme
 	url = https://github.com/6cdh/tree-sitter-scheme
 	branch = main
+[submodule "repos/smithy"]
+	path = repos/smithy
+	url = https://github.com/indoorvivants/tree-sitter-smithy
+	branch = main
+	update = none
+	ignore = dirty
 [submodule "repos/fennel"]
 	path = repos/fennel
 	url = https://github.com/TravonteD/tree-sitter-fennel

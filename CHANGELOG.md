@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Add `Smithy` grammar
 
 ## 0.12.46 - 2023-09-08
 - Add `Pascal` support
