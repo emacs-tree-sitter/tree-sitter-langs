@@ -3,6 +3,15 @@
 ## Unreleased
 - Add `comment` support
 
+## 0.12.47 - 2023-09-08
+- Add `Smithy` grammar
+
+## 0.12.46 - 2023-09-08
+- Add `Pascal` support
+
+## 0.12.45 - 2023-09-08
+- Add `Fortran` support
+
 ## 0.12.44 - 2023-09-06
 - Bump `TypeScript`/`TSX` grammar
 
