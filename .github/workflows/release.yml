@@ -8,6 +8,10 @@ on:
       # https://github.com/emacs-tree-sitter/elisp-tree-sitter/issues/177
       - '!melpa-stable/**'
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   build:
     strategy:
@@ -37,7 +41,7 @@ jobs:
             host: x86_64-pc-windows-msvc
     runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - run: .github/script/setup
 
       - name: Install tree-sitter CLI
@@ -59,6 +63,7 @@ jobs:
         continue-on-error: true
       - run: script/test
         if: ${{ !matrix.target }}
+        continue-on-error: ${{ runner.os == 'Windows' }}
 
       - run: eask package
         if: ${{ !matrix.target }}

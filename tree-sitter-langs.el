@@ -5,7 +5,7 @@
 ;; Author: Tuấn-Anh Nguyễn <ubolonton@gmail.com>
 ;; Keywords: languages tools parsers tree-sitter
 ;; Homepage: https://github.com/emacs-tree-sitter/tree-sitter-langs
-;; Version: 0.12.24
+;; Version: 0.12.47
 ;; Package-Requires: ((emacs "25.1") (tree-sitter "0.15.0"))
 ;; SPDX-License-Identifier: MIT
 
@@ -98,8 +98,12 @@ See `tree-sitter-langs-repos'."
   "Link known major modes to languages provided by the bundle."
   (dolist
       (entry (reverse
-              '((agda2-mode      . agda)
+              '((ada-mode        . ada)
+                (agda-mode       . agda)
+                (agda2-mode      . agda)
                 (sh-mode         . bash)
+                (beancount-mode  . beancount)
+                (bibtex-mode     . bibtex)
                 (c-mode          . c)
                 (caml-mode       . ocaml)
                 (clojure-mode    . clojure)
@@ -108,12 +112,17 @@ See `tree-sitter-langs-repos'."
                 (cmake-mode      . cmake)
                 (d-mode          . d)
                 (dart-mode       . dart)
+                (dockerfile-mode . dockerfile)
                 (css-mode        . css)
                 (elm-mode        . elm)
                 (elixir-mode     . elixir)
+                (emacs-lisp-mode . elisp)
                 (erlang-mode     . erlang)
                 (ess-r-mode      . r)
                 (fennel-mode     . fennel)
+                (f90-mode        . fortran)
+                (fortran-mode    . fortran)
+                (gdscript-mode   . gdscript)
                 (go-mode         . go)
                 (haskell-mode    . haskell)
                 (hcl-mode        . hcl)
@@ -122,6 +131,7 @@ See `tree-sitter-langs-repos'."
                 (markdown-mode   . markdown)
                 (mhtml-mode      . html)
                 (nix-mode        . nix)
+                (jai-mode        . jai)
                 (java-mode       . java)
                 (javascript-mode . javascript)
                 (js-mode         . javascript)
@@ -129,11 +139,16 @@ See `tree-sitter-langs-repos'."
                 (js3-mode        . javascript)
                 (json-mode       . json)
                 (jsonc-mode      . json)
+                (jsonnet-mode    . jsonnet)
                 (julia-mode      . julia)
+                (kotlin-mode     . kotlin)
+                (latex-mode      . latex)
                 (lua-mode        . lua)
                 (matlab-mode     . matlab)
                 (meson-mode      . meson)
+                (noir-mode       . noir)
                 (ocaml-mode      . ocaml)
+                (pascal-mode     . pascal)
                 (perl-mode       . perl)
                 (php-mode        . php)
                 (prisma-mode     . prisma)
@@ -145,11 +160,15 @@ See `tree-sitter-langs-repos'."
                 (rustic-mode     . rust)
                 (scala-mode      . scala)
                 (scheme-mode     . scheme)
+                (smithy-mode     . smithy)
                 (swift-mode      . swift)
                 (toml-mode       . toml)
+                (conf-toml-mode  . toml)
                 (tuareg-mode     . ocaml)
                 (typescript-mode . typescript)
                 (verilog-mode    . verilog)
+                (vhdl-mode       . vhdl)
+                (nxml-mode       . xml)
                 (yaml-mode       . yaml)
                 (zig-mode        . zig))))
     (cl-pushnew entry tree-sitter-major-mode-language-alist

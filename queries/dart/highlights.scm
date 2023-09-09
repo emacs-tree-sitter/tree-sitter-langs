@@ -167,7 +167,7 @@
   "as"
   "show"
   "hide"
-] @include
+] @constant.builtin
 
 ; Reserved words (cannot be used as identifiers)
 [
@@ -196,7 +196,7 @@
 [
   "return"
   "yield"
-] @keyword.return
+] @keyword
 
 
 ; Built in identifiers:
@@ -253,7 +253,7 @@
           "static"
           "typedef"))
 
-["if" "else" "switch" "default"] @conditional
+["if" "else" "switch" "default"] @keyword
 
 [
   "try"
@@ -263,7 +263,7 @@
   (break_statement)
 ] @exception
 
-["do" "while" "continue" "for"] @repeat
+["do" "while" "continue" "for"] @keyword
 
 ; Error
 (ERROR) @error

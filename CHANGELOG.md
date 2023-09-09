@@ -2,6 +2,69 @@
 
 ## Unreleased
 
+## 0.12.47 - 2023-09-08
+- Add `Smithy` grammar
+
+## 0.12.46 - 2023-09-08
+- Add `Pascal` support
+
+## 0.12.45 - 2023-09-08
+- Add `Fortran` support
+
+## 0.12.44 - 2023-09-06
+- Bump `TypeScript`/`TSX` grammar
+
+## 0.12.43 - 2023-09-04
+- Revert `Fortran` support
+- Revert `Pascal` support
+
+## 0.12.42 - 2023-09-04
+
+## 0.12.41 - 2023-09-04
+- Add `Pascal` support
+
+## 0.12.40 - 2023-09-04
+- Add `Fortran` support
+
+## 0.12.38 - 2023-09-04
+
+## 0.12.39 - 2023-09-04
+- Add `Jsonnet` support
+
+## 0.12.38 - 2023-09-04
+
+## 0.12.37 - 2023-09-04
+- Add `Xml` support
+
+## 0.12.36 - 2023-09-02
+- Add `VHDL` support
+
+## 0.12.35 - 2023-09-02
+- Add `Ada` support
+
+## 0.12.34 - 2023-09-01
+- Add `LaTex` support
+
+## 0.12.33 - 2023-09-01
+- Replace with supported faces for `GDScript` and `Jai`
+
+## 0.12.32 - 2023-09-01
+
+## 0.12.31 - 2023-08-31
+
+## 0.12.30 - 2023-08-31
+
+## 0.12.29 - 2023-08-28
+
+## 0.12.28 - 2023-08-28
+- Add `Noir` grammar
+
+## 0.12.27 - 2023-08-28
+
+## 0.12.26 - 2023-08-24
+
+## 0.12.25 - 2023-08-24
+
 ## 0.12.24 - 2023-08-22
 
 ## 0.12.23 - 2023-08-22
