@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Add `Vim` support
 
 ## 0.12.24 - 2023-08-22
 
