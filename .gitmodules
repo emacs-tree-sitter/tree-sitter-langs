@@ -376,3 +376,9 @@
 	branch = master
 	update = none
 	ignore = dirty
+[submodule "repos/cmake"]
+	path = repos/cmake
+	url = https://github.com/uyha/tree-sitter-cmake
+	branch = master
+	update = none
+	ignore = dirty
