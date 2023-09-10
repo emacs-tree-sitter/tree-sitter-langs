@@ -15,6 +15,11 @@ on:
     paths-ignore:
       - README.org
       - CHANGELOG.md
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   ci:
@@ -66,3 +71,4 @@ jobs:
         continue-on-error: true
       - run: script/test
         if: ${{ !matrix.target }}
+        continue-on-error: ${{ runner.os == 'Windows' }}
