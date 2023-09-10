@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Add `CMake` support
 
 ## 0.12.47 - 2023-09-08
 - Add `Smithy` grammar
