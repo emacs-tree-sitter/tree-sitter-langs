@@ -3,6 +3,9 @@
 ## Unreleased
 - Add `Vim` support
 
+## 0.12.48 - 2023-09-10
+- Add `CMake` support
+
 ## 0.12.47 - 2023-09-08
 - Add `Smithy` grammar
 

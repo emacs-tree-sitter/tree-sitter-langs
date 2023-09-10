@@ -376,6 +376,12 @@
 	branch = master
 	update = none
 	ignore = dirty
+[submodule "repos/cmake"]
+	path = repos/cmake
+	url = https://github.com/uyha/tree-sitter-cmake
+	branch = master
+	update = none
+	ignore = dirty
 [submodule "repos/vim"]
 	path = repos/vim
 	url = https://github.com/neovim/tree-sitter-vim
