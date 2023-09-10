@@ -9,7 +9,7 @@
 [
  (bracket_comment)
  (line_comment)
-] @comment @spell
+] @comment
 
 (normal_command (identifier) @function)
 
@@ -38,56 +38,56 @@
  (endwhile)
 ] @repeat
 
-(function_command
-  (function)
-  . (argument) @function
-  (argument)* @parameter
-)
+;; (function_command
+;;   (function)
+;;   . (argument) @function
+;;   (argument)* @parameter
+;; )
 
-(macro_command
-  (macro)
-  . (argument) @function.macro
-  (argument)* @parameter
-)
-
-(normal_command
-  (identifier) @function.builtin
-  . (argument) @variable
-  (#match? @function.builtin "\\c^(set)$")
-)
-
-(normal_command
-  (identifier) @function.builtin
-  (#match? @function.builtin "\\c^(set)$")
-  (
-    (argument) @constant
-    (#any-of? @constant "PARENT_SCOPE")
-  ) .
-)
-
-(normal_command
-  (identifier) @function.builtin
-  (#match? @function.builtin "\\c^(set)$")
-  . (argument)
-  (
-    (argument) @_cache @constant
-    .
-    (argument) @_type @constant
-    (#any-of? @_cache "CACHE")
-    (#any-of? @_type "BOOL" "FILEPATH" "PATH" "STRING" "INTERNAL")
-  )
-)
-(normal_command
-  (identifier) @function.builtin
-  (#match? @function.builtin "\\c^(set)$")
-  . (argument)
-  (argument) @_cache
-  (#any-of? @_cache "CACHE")
-  (
-    (argument) @_force @constant
-    (#any-of? @_force "FORCE")
-  ) .
-)
+;; (macro_command
+;;   (macro)
+;;   . (argument) @function.macro
+;;   (argument)* @parameter
+;; )
+;;
+;; (normal_command
+;;   (identifier) @function.builtin
+;;   . (argument) @variable
+;;   (#match? @function.builtin "\\c^(set)$")
+;; )
+;;
+;; (normal_command
+;;   (identifier) @function.builtin
+;;   (#match? @function.builtin "\\c^(set)$")
+;;   (
+;;     (argument) @constant
+;;     (#any-of? @constant "PARENT_SCOPE")
+;;   ) .
+;; )
+;;
+;; (normal_command
+;;   (identifier) @function.builtin
+;;   (#match? @function.builtin "\\c^(set)$")
+;;   . (argument)
+;;   (
+;;     (argument) @_cache @constant
+;;     .
+;;     (argument) @_type @constant
+;;     (#any-of? @_cache "CACHE")
+;;     (#any-of? @_type "BOOL" "FILEPATH" "PATH" "STRING" "INTERNAL")
+;;   )
+;; )
+;; (normal_command
+;;   (identifier) @function.builtin
+;;   (#match? @function.builtin "\\c^(set)$")
+;;   . (argument)
+;;   (argument) @_cache
+;;   (#any-of? @_cache "CACHE")
+;;   (
+;;     (argument) @_force @constant
+;;     (#any-of? @_force "FORCE")
+;;   ) .
+;; )
 
 ((argument) @boolean
   (#match? @boolean "\\c^(1|on|yes|true|y|0|off|no|false|n|ignore|notfound|.*-notfound)$")
