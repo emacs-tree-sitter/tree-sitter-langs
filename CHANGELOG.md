@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Improve `CMake` highlight.scm
 
 ## 0.12.48 - 2023-09-10
 - Add `CMake` support
