@@ -1,6 +1,8 @@
 # Changelog
 
 ## Unreleased
+
+## 0.12.49 - 2023-09-10
 - Improve `CMake` highlight.scm
 
 ## 0.12.48 - 2023-09-10
