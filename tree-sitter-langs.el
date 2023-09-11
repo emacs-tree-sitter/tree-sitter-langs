@@ -168,6 +168,7 @@ See `tree-sitter-langs-repos'."
                 (typescript-mode . typescript)
                 (verilog-mode    . verilog)
                 (vhdl-mode       . vhdl)
+                (vimrc-mode      . vim)
                 (nxml-mode       . xml)
                 (yaml-mode       . yaml)
                 (zig-mode        . zig))))

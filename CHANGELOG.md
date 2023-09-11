@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Add `Vim` support
 
 ## 0.12.49 - 2023-09-10
 - Improve `CMake` highlight.scm
