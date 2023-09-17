@@ -166,6 +166,7 @@ See `tree-sitter-langs-repos'."
                 (conf-toml-mode  . toml)
                 (tuareg-mode     . ocaml)
                 (typescript-mode . typescript)
+                (typst-mode      . typst)
                 (verilog-mode    . verilog)
                 (vhdl-mode       . vhdl)
                 (nxml-mode       . xml)
