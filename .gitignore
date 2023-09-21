@@ -4,3 +4,4 @@
 /dist
 
 *.tar.gz
+*.elc
