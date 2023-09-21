@@ -1,6 +1,8 @@
 # Changelog
 
 ## Unreleased
+
+## 0.12.50 - 2023-09-21
 - Add `Assembly` support
 
 ## 0.12.49 - 2023-09-10
