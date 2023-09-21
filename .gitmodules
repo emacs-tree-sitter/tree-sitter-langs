@@ -382,3 +382,9 @@
 	branch = master
 	update = none
 	ignore = dirty
+[submodule "repos/asm"]
+	path = repos/asm
+	url = https://github.com/rush-rs/tree-sitter-asm
+	branch = main
+	update = none
+	ignore = dirty
