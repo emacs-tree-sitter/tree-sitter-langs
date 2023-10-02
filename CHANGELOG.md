@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Add `Mermaid` support
 
 ## 0.12.50 - 2023-09-21
 - Add `Assembly` support
