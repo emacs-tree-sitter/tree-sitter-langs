@@ -388,3 +388,9 @@
 	branch = main
 	update = none
 	ignore = dirty
+[submodule "repos/mermaid"]
+	path = repos/mermaid
+	url = https://github.com/monaqa/tree-sitter-mermaid
+	branch = master
+	update = none
+	ignore = dirty

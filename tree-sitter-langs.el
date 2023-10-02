@@ -148,6 +148,7 @@ See `tree-sitter-langs-repos'."
                 (latex-mode      . latex)
                 (lua-mode        . lua)
                 (matlab-mode     . matlab)
+                (mermaid-mode    . mermaid)
                 (meson-mode      . meson)
                 (noir-mode       . noir)
                 (ocaml-mode      . ocaml)
