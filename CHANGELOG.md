@@ -1,6 +1,8 @@
 # Changelog
 
 ## Unreleased
+
+## 0.12.51 - 2023-10-02
 - Add `Mermaid` support
 
 ## 0.12.50 - 2023-09-21
