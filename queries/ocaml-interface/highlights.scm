@@ -1,7 +1,7 @@
 ; Modules
 ;--------
 
-[(module_name) (module_type_name)] @constructor
+[(module_name) (module_type_name)] @module
 
 ; Types
 ;------
@@ -13,7 +13,7 @@
 
 [(class_name) (class_type_name) (type_constructor)] @type
 
-[(constructor_name) (tag)] @tag
+[(constructor_name) (tag)] @constructor
 
 ; Functions
 ;----------
@@ -42,11 +42,11 @@
 
 (infix_expression
   left: (value_path (value_name) @function)
-  (infix_operator) @operator
+  operator: (concat_operator) @operator
   (#eq? @operator "@@"))
 
 (infix_expression
-  (infix_operator) @operator
+  operator: (rel_operator) @operator
   right: (value_path (value_name) @function)
   (#eq? @operator "|>"))
 
@@ -85,21 +85,25 @@
 
 (match_expression (match_operator) @keyword)
 
-(value_definition [(let_operator) (and_operator)] @keyword)
+(value_definition [(let_operator) (let_and_operator)] @keyword)
 
 [
   (prefix_operator)
   (sign_operator)
-  (infix_operator)
+  (pow_operator)
+  (mult_operator)
+  (add_operator)
+  (concat_operator)
+  (rel_operator)
+  (and_operator)
+  (or_operator)
+  (assign_operator)
   (hash_operator)
   (indexing_operator)
   (let_operator)
-  (and_operator)
+  (let_and_operator)
   (match_operator)
 ] @operator
-
-(infix_operator ["&" "+" "-" "=" ">" "|" "%"] @operator)
-(signed_number ["+" "-"] @operator)
 
 ["*" "#" "::" "<-"] @operator
 
@@ -139,7 +143,7 @@
 ; Attributes
 ;-----------
 
-(attribute_id) @attribute
+(attribute_id) @tag
 
 ; Comments
 ;---------
