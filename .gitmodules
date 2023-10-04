@@ -394,6 +394,12 @@
 	branch = master
 	update = none
 	ignore = dirty
+[submodule "repos/rst"]
+	path = repos/rst
+	url = https://github.com/stsewd/tree-sitter-rst/
+	branch = master
+	update = none
+	ignore = dirty
 [submodule "repos/ocaml-interface"]
 	path = repos/ocaml-interface
 	url = https://github.com/tree-sitter/tree-sitter-ocaml

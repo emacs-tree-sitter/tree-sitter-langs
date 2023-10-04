@@ -159,6 +159,7 @@ See `tree-sitter-langs-repos'."
                 (python-mode     . python)
                 (pygn-mode       . pgn)
                 (rjsx-mode       . javascript)
+                (rst-mode        . rst)
                 (ruby-mode       . ruby)
                 (rust-mode       . rust)
                 (rustic-mode     . rust)
