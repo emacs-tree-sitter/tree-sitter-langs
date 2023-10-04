@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Add `Make` support
 
 ## 0.12.53 - 2023-10-04
 - Add `reStructuredText` support

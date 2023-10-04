@@ -406,3 +406,9 @@
 	branch = master
 	update = none
 	ignore = dirty
+[submodule "repos/make"]
+	path = repos/make
+	url = https://github.com/alemuller/tree-sitter-make
+	branch = main
+	update = none
+	ignore = dirty
