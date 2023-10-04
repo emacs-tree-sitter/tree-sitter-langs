@@ -160,6 +160,7 @@ git checkout."
                 ;; XXX
                 ('typescript '("typescript" ("tsx" . tsx)))
                 ('ocaml '("ocaml" ("interface" . ocaml-interface)))
+                ('ocaml-interface '("interface" ("interface" . ocaml-interface)))
                 ('xml '("tree-sitter-xml" ("tree-sitter-dtd" . dtd)))
                 (_ '("")))))))
 
