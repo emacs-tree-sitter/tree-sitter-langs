@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Add `reStructuredText` support
 
 ## 0.12.51 - 2023-10-02
 - Add `Mermaid` support
