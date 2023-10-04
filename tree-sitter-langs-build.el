@@ -142,7 +142,6 @@ git checkout."
          (name (symbol-name lang-symbol))
          (dir (concat (tree-sitter-langs--repos-dir) name))
          (sub-path (format "repos/%s" name)))
-    (message "dir: %s" dir)
     (when (file-directory-p dir)
       (list
        :repo (tree-sitter-langs--with-temp-buffer
