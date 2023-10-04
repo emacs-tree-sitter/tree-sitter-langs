@@ -1,6 +1,8 @@
 # Changelog
 
 ## Unreleased
+
+## 0.12.52 - 2023-10-04
 - Add `OCaml` interface support
 
 ## 0.12.51 - 2023-10-02
