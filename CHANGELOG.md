@@ -1,6 +1,8 @@
 # Changelog
 
 ## Unreleased
+
+## 0.12.55 - 2023-10-05
 - Add `SQL` support
 
 ## 0.12.54 - 2023-10-04
