@@ -126,7 +126,7 @@ jobs:
             tree-sitter-grammars*.tar.gz
 
       - name: Greenlight releasing to MELPA
-        uses: actions/github-script@v5
+        uses: actions/github-script@v6
         with:
           github-token: ${{ secrets.PAT }}
           script: |
@@ -139,7 +139,7 @@ jobs:
         continue-on-error: true
 
       - name: Greenlight releasing to MELPA Stable
-        uses: actions/github-script@v5
+        uses: actions/github-script@v6
         with:
           github-token: ${{ secrets.PAT }}
           script: |
