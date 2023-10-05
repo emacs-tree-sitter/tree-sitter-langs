@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Add `git rebase` support
 
 ## 0.12.57 - 2023-10-05
 - Add `gitignore` support
