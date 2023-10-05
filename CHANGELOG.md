@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Add `SQL` support
 
 ## 0.12.54 - 2023-10-04
 - Add `Make` support
