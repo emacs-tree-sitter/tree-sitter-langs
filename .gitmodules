@@ -412,3 +412,9 @@
 	branch = main
 	update = none
 	ignore = dirty
+[submodule "repos/sql"]
+	path = repos/sql
+	url = https://github.com/DerekStride/tree-sitter-sql
+	branch = main
+	update = none
+	ignore = dirty

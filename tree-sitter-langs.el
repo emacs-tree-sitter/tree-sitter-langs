@@ -172,6 +172,7 @@ See `tree-sitter-langs-repos'."
                 (scala-mode             . scala)
                 (scheme-mode            . scheme)
                 (smithy-mode            . smithy)
+                (sql-mode               . sql)
                 (swift-mode             . swift)
                 (toml-mode              . toml)
                 (conf-toml-mode         . toml)
