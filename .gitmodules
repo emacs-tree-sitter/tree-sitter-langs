@@ -424,3 +424,9 @@
 	branch = master
 	update = none
 	ignore = dirty
+[submodule "repos/gitignore"]
+	path = repos/gitignore
+	url = https://github.com/shunsambongi/tree-sitter-gitignore
+	branch = main
+	update = none
+	ignore = dirty

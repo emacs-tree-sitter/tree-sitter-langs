@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Add `gitignore` support
 
 ## 0.12.56 - 2023-10-05
 - Add `gitattributes` support
