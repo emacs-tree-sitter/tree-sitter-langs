@@ -418,3 +418,9 @@
 	branch = main
 	update = none
 	ignore = dirty
+[submodule "repos/gitattributes"]
+	path = repos/gitattributes
+	url = https://github.com/ObserverOfTime/tree-sitter-gitattributes
+	branch = master
+	update = none
+	ignore = dirty
