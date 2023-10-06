@@ -3,6 +3,9 @@
 ## Unreleased
 - Add `git rebase` support
 
+## 0.12.58 - 2023-10-06
+- Add `gitcommit` support
+
 ## 0.12.57 - 2023-10-05
 - Add `gitignore` support
 
