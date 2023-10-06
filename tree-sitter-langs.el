@@ -127,6 +127,7 @@ See `tree-sitter-langs-repos'."
                 (fortran-mode           . fortran)
                 (gdscript-mode          . gdscript)
                 (git-commit-mode        . gitcommit)
+                (git-rebase-mode        . git-rebase)
                 (gitattributes-mode     . gitattributes)
                 (gitignore-mode         . gitignore)
                 (go-mode                . go)

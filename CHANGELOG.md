@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Add `git rebase` support
 
 ## 0.12.58 - 2023-10-06
 - Add `gitcommit` support
