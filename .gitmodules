@@ -430,3 +430,9 @@
 	branch = main
 	update = none
 	ignore = dirty
+[submodule "repos/gitcommit"]
+	path = repos/gitcommit
+	url = https://github.com/gbprod/tree-sitter-gitcommit
+	branch = main
+	update = none
+	ignore = dirty
