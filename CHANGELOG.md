@@ -1,6 +1,8 @@
 # Changelog
 
 ## Unreleased
+
+## 0.12.60 - 2023-10-08
 - Add Bibtex highlight.scm (#264)
 
 ## 0.12.59 - 2023-10-06
