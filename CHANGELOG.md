@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Add Bibtex highlight.scm (#264)
 
 ## 0.12.59 - 2023-10-06
 - Add `git rebase` support
