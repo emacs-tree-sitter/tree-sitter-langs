@@ -175,6 +175,7 @@ See `tree-sitter-langs-repos'."
                 (rustic-mode            . rust)
                 (scala-mode             . scala)
                 (scheme-mode            . scheme)
+                (solidity-mode          . solidity)
                 (smithy-mode            . smithy)
                 (sql-mode               . sql)
                 (swift-mode             . swift)

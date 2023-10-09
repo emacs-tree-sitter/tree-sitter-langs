@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Add `Solidity` support
 
 ## 0.12.60 - 2023-10-08
 - Add Bibtex highlight.scm (#264)
