@@ -1,6 +1,8 @@
 # Changelog
 
 ## Unreleased
+
+## 0.12.64 - 2023-10-10
 - Add `Common Lisp` support
 
 ## 0.12.63 - 2023-10-10
