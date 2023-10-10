@@ -448,9 +448,15 @@
 	branch = master
 	update = none
 	ignore = dirty
+[submodule "repos/glsl"]
+	path = repos/glsl
+	url = https://github.com/theHamsta/tree-sitter-glsl
+	branch = master
+	update = none
+	ignore = dirty
 [submodule "repos/hlsl"]
 	path = repos/hlsl
-	url = https://github.com/theHamsta/tree-sitter-hlsl
+	url = https://github.com/theHamsta/tree-sitter-hlsl  
 	branch = master
 	update = none
 	ignore = dirty
