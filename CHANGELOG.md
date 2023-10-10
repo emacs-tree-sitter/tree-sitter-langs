@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Add `Common Lisp` support
 
 ## 0.12.61 - 2023-10-10
 - Add `Solidity` support
