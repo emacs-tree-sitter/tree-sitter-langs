@@ -110,6 +110,8 @@ See `tree-sitter-langs-repos'."
                 (c-mode                 . c)
                 (caml-mode              . ocaml)
                 (clojure-mode           . clojure)
+                (lisp-mode              . commonlisp)
+                (lisp-interaction-mode  . commonlisp)
                 (csharp-mode            . c-sharp)
                 (c++-mode               . cpp)
                 (cmake-mode             . cmake)
