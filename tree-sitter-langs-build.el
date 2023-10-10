@@ -228,7 +228,7 @@ latest commit."
 ;; ---------------------------------------------------------------------------
 ;;; Building language grammars.
 
-(defconst tree-sitter-langs--bundle-version "0.12.62"
+(defconst tree-sitter-langs--bundle-version "0.12.63"
   "Version of the grammar bundle.
 This should be bumped whenever a language submodule is updated, which should be
 infrequent (grammar-only changes). It is different from the version of
@@ -249,6 +249,7 @@ infrequent (grammar-only changes). It is different from the version of
 (defconst tree-sitter-langs--langs-with-deps
   '( cpp
      commonlisp
+     hlsl
      glsl
      toml
      typescript)
