@@ -220,10 +220,11 @@ Return nil if there are no bundled patterns."
         ;; TODO: Make this less ad-hoc.
         (dolist (sym (cons lang-symbol
                            (pcase lang-symbol
-                             ('cpp '(c))
+                             ('cpp        '(c))
+                             ('hlsl       '(cpp c))
                              ('typescript '(javascript))
-                             ('tsx '(typescript javascript))
-                             (_ nil))))
+                             ('tsx        '(typescript javascript))
+                             (_           nil))))
           (when mode
             (ignore-error 'file-missing
               (insert-file-contents (tree-sitter-langs--hl-query-path sym mode))

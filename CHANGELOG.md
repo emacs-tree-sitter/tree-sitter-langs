@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Fix `HLSL` highlighting
 
 ## 0.12.64 - 2023-10-10
 - Add `Common Lisp` support
