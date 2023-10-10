@@ -3,6 +3,42 @@
 ## Unreleased
 - Add `Typst` support
 
+## 0.12.61 - 2023-10-10
+- Add `Solidity` support
+
+## 0.12.60 - 2023-10-08
+- Add Bibtex highlight.scm (#264)
+
+## 0.12.59 - 2023-10-06
+- Add `git rebase` support
+
+## 0.12.58 - 2023-10-06
+- Add `gitcommit` support
+
+## 0.12.57 - 2023-10-05
+- Add `gitignore` support
+
+## 0.12.56 - 2023-10-05
+- Add `gitattributes` support
+
+## 0.12.55 - 2023-10-05
+- Add `SQL` support
+
+## 0.12.54 - 2023-10-04
+- Add `Make` support
+
+## 0.12.53 - 2023-10-04
+- Add `reStructuredText` support
+
+## 0.12.52 - 2023-10-04
+- Add `OCaml` interface support
+
+## 0.12.51 - 2023-10-02
+- Add `Mermaid` support
+
+## 0.12.50 - 2023-09-21
+- Add `Assembly` support
+
 ## 0.12.49 - 2023-09-10
 - Improve `CMake` highlight.scm
 

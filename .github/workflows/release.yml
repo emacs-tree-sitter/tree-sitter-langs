@@ -41,7 +41,7 @@ jobs:
             host: x86_64-pc-windows-msvc
     runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - run: .github/script/setup
 
       - name: Install tree-sitter CLI
@@ -104,7 +104,7 @@ jobs:
       - uses: jcs090218/setup-emacs@master
         with:
           version: '27.2'
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
       - name: Generate release notes
         run: |
           RELEASE_VERSION=$(git describe --tags --abbrev=0)

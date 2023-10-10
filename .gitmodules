@@ -382,6 +382,72 @@
 	branch = master
 	update = none
 	ignore = dirty
+[submodule "repos/asm"]
+	path = repos/asm
+	url = https://github.com/rush-rs/tree-sitter-asm
+	branch = main
+	update = none
+	ignore = dirty
+[submodule "repos/mermaid"]
+	path = repos/mermaid
+	url = https://github.com/monaqa/tree-sitter-mermaid
+	branch = master
+	update = none
+	ignore = dirty
+[submodule "repos/rst"]
+	path = repos/rst
+	url = https://github.com/stsewd/tree-sitter-rst/
+	branch = master
+	update = none
+	ignore = dirty
+[submodule "repos/ocaml-interface"]
+	path = repos/ocaml-interface
+	url = https://github.com/tree-sitter/tree-sitter-ocaml
+	branch = master
+	update = none
+	ignore = dirty
+[submodule "repos/make"]
+	path = repos/make
+	url = https://github.com/alemuller/tree-sitter-make
+	branch = main
+	update = none
+	ignore = dirty
+[submodule "repos/sql"]
+	path = repos/sql
+	url = https://github.com/DerekStride/tree-sitter-sql
+	branch = main
+	update = none
+	ignore = dirty
+[submodule "repos/gitattributes"]
+	path = repos/gitattributes
+	url = https://github.com/ObserverOfTime/tree-sitter-gitattributes
+	branch = master
+	update = none
+	ignore = dirty
+[submodule "repos/gitignore"]
+	path = repos/gitignore
+	url = https://github.com/shunsambongi/tree-sitter-gitignore
+	branch = main
+	update = none
+	ignore = dirty
+[submodule "repos/gitcommit"]
+	path = repos/gitcommit
+	url = https://github.com/gbprod/tree-sitter-gitcommit
+	branch = main
+	update = none
+	ignore = dirty
+[submodule "repos/git-rebase"]
+	path = repos/git-rebase
+	url = https://github.com/the-mikedavis/tree-sitter-git-rebase
+	branch = main
+	update = none
+	ignore = dirty
+[submodule "repos/solidity"]
+	path = repos/solidity
+	url = https://github.com/JoranHonig/tree-sitter-solidity
+	branch = master
+	update = none
+	ignore = dirty
 [submodule "repos/typst"]
 	path = repos/typst
 	url = https://github.com/uben0/tree-sitter-typst
