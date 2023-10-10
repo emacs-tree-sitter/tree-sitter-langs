@@ -5,7 +5,7 @@
 ;; Author: Tuấn-Anh Nguyễn <ubolonton@gmail.com>
 ;; Keywords: languages tools parsers tree-sitter
 ;; Homepage: https://github.com/emacs-tree-sitter/tree-sitter-langs
-;; Version: 0.12.61
+;; Version: 0.12.62
 ;; Package-Requires: ((emacs "25.1") (tree-sitter "0.15.0"))
 ;; SPDX-License-Identifier: MIT
 
@@ -132,6 +132,7 @@ See `tree-sitter-langs-repos'."
                 (git-rebase-mode        . git-rebase)
                 (gitattributes-mode     . gitattributes)
                 (gitignore-mode         . gitignore)
+                (glsl-mode              . glsl)
                 (go-mode                . go)
                 (haskell-mode           . haskell)
                 (hcl-mode               . hcl)
