@@ -247,11 +247,11 @@ infrequent (grammar-only changes). It is different from the version of
   "List of suffixes for shared libraries that define tree-sitter languages.")
 
 (defconst tree-sitter-langs--langs-with-deps
-  '(cpp
-    commonlisp
-    glsl
-    toml
-    typescript)
+  '( cpp
+     commonlisp
+     glsl
+     toml
+     typescript)
   "Languages that depend on another, thus requiring 'npm install'.")
 
 (defun tree-sitter-langs--bundle-file (&optional ext version os)
