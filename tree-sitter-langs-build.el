@@ -160,6 +160,8 @@ git checkout."
                 ;; XXX
                 ('typescript '("typescript" ("tsx" . tsx)))
                 ('ocaml '("ocaml" ("interface" . ocaml-interface)))
+                ('ocaml-interface '("interface" ("interface" . ocaml-interface)))
+                ('xml '("tree-sitter-xml" ("tree-sitter-dtd" . dtd)))
                 (_ '("")))))))
 
 (defun tree-sitter-langs--repo-status (lang-symbol)
@@ -226,7 +228,7 @@ latest commit."
 ;; ---------------------------------------------------------------------------
 ;;; Building language grammars.
 
-(defconst tree-sitter-langs--bundle-version "0.12.26"
+(defconst tree-sitter-langs--bundle-version "0.12.61"
   "Version of the grammar bundle.
 This should be bumped whenever a language submodule is updated, which should be
 infrequent (grammar-only changes). It is different from the version of

@@ -6,6 +6,11 @@ on:
       - master
     paths:
       - repos/**
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   bump-version:
@@ -14,7 +19,7 @@ jobs:
       - uses: jcs090218/setup-emacs@master
         with:
           version: '27.2'
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
       - name: Bump version
         uses: actions/github-script@v5
