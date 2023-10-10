@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Add `HLSL` support
 
 ## 0.12.62 - 2023-10-10
 - Add `GLSL` support

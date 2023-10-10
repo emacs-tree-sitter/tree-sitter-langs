@@ -248,6 +248,7 @@ infrequent (grammar-only changes). It is different from the version of
 
 (defconst tree-sitter-langs--langs-with-deps
   '( cpp
+     hlsl
      glsl
      typescript
      toml)
