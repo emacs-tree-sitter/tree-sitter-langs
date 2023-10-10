@@ -20,6 +20,7 @@
   (require 'subr-x))
 
 (defun tree-sitter-langs-tests-check-queries (lang-symbol)
+  "Check LANG-SYMBOL's queries."
   (let ((language (tree-sitter-require lang-symbol))
         (patterns (tree-sitter-langs--hl-default-patterns lang-symbol)))
     (tsc-make-query language patterns)))

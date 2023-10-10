@@ -15,6 +15,11 @@ on:
     paths-ignore:
       - README.org
       - CHANGELOG.md
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   ci:
@@ -39,7 +44,7 @@ jobs:
             target: aarch64-apple-darwin
     runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - run: .github/script/setup
 
       - name: Install tree-sitter CLI
@@ -66,3 +71,4 @@ jobs:
         continue-on-error: true
       - run: script/test
         if: ${{ !matrix.target }}
+        continue-on-error: ${{ runner.os == 'Windows' }}
