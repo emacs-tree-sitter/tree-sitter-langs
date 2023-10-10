@@ -248,10 +248,11 @@ infrequent (grammar-only changes). It is different from the version of
 
 (defconst tree-sitter-langs--langs-with-deps
   '( cpp
+     commonlisp
      hlsl
      glsl
-     typescript
-     toml)
+     toml
+     typescript)
   "Languages that depend on another, thus requiring 'npm install'.")
 
 (defun tree-sitter-langs--bundle-file (&optional ext version os)
