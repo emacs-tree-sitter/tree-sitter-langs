@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Add `Arduino` support
 
 ## 0.12.65 - 2023-10-10
 - Fix `HLSL` highlighting

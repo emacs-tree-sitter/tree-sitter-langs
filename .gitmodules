@@ -466,3 +466,9 @@
 	branch = master
 	update = none
 	ignore = dirty
+[submodule "repos/arduino"]
+	path = repos/arduino
+	url = https://github.com/ObserverOfTime/tree-sitter-arduino
+	branch = master
+	update = none
+	ignore = dirty
