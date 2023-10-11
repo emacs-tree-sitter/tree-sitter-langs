@@ -247,7 +247,8 @@ infrequent (grammar-only changes). It is different from the version of
   "List of suffixes for shared libraries that define tree-sitter languages.")
 
 (defconst tree-sitter-langs--langs-with-deps
-  '( cpp
+  '( arduino
+     cpp
      commonlisp
      hlsl
      glsl
