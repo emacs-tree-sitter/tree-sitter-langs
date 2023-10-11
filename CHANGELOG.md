@@ -1,6 +1,8 @@
 # Changelog
 
 ## Unreleased
+
+## 0.12.67 - 2023-10-11
 - Add `Astro` support
 
 ## 0.12.66 - 2023-10-11
