@@ -101,7 +101,6 @@ See `tree-sitter-langs-repos'."
               '((ada-mode               . ada)
                 (agda-mode              . agda)
                 (agda2-mode             . agda)
-                (astro-mode             . astro)
                 (arduino-mode           . arduino)
                 (astro-mode             . astro)
                 (fasm-mode              . asm)
