@@ -5,7 +5,7 @@
 ;; Author: Tuấn-Anh Nguyễn <ubolonton@gmail.com>
 ;; Keywords: languages tools parsers tree-sitter
 ;; Homepage: https://github.com/emacs-tree-sitter/tree-sitter-langs
-;; Version: 0.12.65
+;; Version: 0.12.66
 ;; Package-Requires: ((emacs "25.1") (tree-sitter "0.15.0"))
 ;; SPDX-License-Identifier: MIT
 
@@ -101,6 +101,8 @@ See `tree-sitter-langs-repos'."
               '((ada-mode               . ada)
                 (agda-mode              . agda)
                 (agda2-mode             . agda)
+                (astro-mode             . astro)
+                (arduino-mode           . arduino)
                 (astro-mode             . astro)
                 (fasm-mode              . asm)
                 (masm-mode              . asm)
@@ -221,6 +223,7 @@ Return nil if there are no bundled patterns."
         ;; TODO: Make this less ad-hoc.
         (dolist (sym (cons lang-symbol
                            (pcase lang-symbol
+                             ('arduino    '(cpp c))
                              ('astro      '(html))
                              ('cpp        '(c))
                              ('hlsl       '(cpp c))

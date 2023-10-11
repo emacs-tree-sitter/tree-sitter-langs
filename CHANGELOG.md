@@ -3,6 +3,9 @@
 ## Unreleased
 - Add `Astro` support
 
+## 0.12.66 - 2023-10-11
+- Add `Arduino` support
+
 ## 0.12.65 - 2023-10-10
 - Fix `HLSL` highlighting
 

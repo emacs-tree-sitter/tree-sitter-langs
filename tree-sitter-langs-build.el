@@ -228,7 +228,7 @@ latest commit."
 ;; ---------------------------------------------------------------------------
 ;;; Building language grammars.
 
-(defconst tree-sitter-langs--bundle-version "0.12.65"
+(defconst tree-sitter-langs--bundle-version "0.12.66"
   "Version of the grammar bundle.
 This should be bumped whenever a language submodule is updated, which should be
 infrequent (grammar-only changes). It is different from the version of
@@ -247,7 +247,8 @@ infrequent (grammar-only changes). It is different from the version of
   "List of suffixes for shared libraries that define tree-sitter languages.")
 
 (defconst tree-sitter-langs--langs-with-deps
-  '( astro
+  '( arduino
+     astro
      cpp
      commonlisp
      hlsl
