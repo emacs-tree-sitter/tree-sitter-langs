@@ -472,3 +472,9 @@
 	branch = master
 	update = none
 	ignore = dirty
+[submodule "repos/astro"]
+	path = repos/astro
+	url = https://github.com/virchau13/tree-sitter-astro
+	branch = master
+	update = none
+	ignore = dirty

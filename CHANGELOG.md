@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Add `Astro` support
 
 ## 0.12.66 - 2023-10-11
 - Add `Arduino` support

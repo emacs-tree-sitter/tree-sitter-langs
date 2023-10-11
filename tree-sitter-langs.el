@@ -101,7 +101,9 @@ See `tree-sitter-langs-repos'."
               '((ada-mode               . ada)
                 (agda-mode              . agda)
                 (agda2-mode             . agda)
+                (astro-mode             . astro)
                 (arduino-mode           . arduino)
+                (astro-mode             . astro)
                 (fasm-mode              . asm)
                 (masm-mode              . asm)
                 (nasm-mode              . asm)
@@ -222,6 +224,7 @@ Return nil if there are no bundled patterns."
         (dolist (sym (cons lang-symbol
                            (pcase lang-symbol
                              ('arduino    '(cpp c))
+                             ('astro      '(html))
                              ('cpp        '(c))
                              ('hlsl       '(cpp c))
                              ('typescript '(javascript))
