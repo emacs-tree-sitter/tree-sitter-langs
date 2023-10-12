@@ -188,6 +188,7 @@ See `tree-sitter-langs-repos'."
                 (swift-mode             . swift)
                 (toml-mode              . toml)
                 (conf-toml-mode         . toml)
+                (tcl-mode               . tcl)
                 (tuareg-mode            . ocaml)
                 (typescript-mode        . typescript)
                 (verilog-mode           . verilog)

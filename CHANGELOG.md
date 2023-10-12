@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Add `Tcl` support
 
 ## 0.12.68 - 2023-10-12
 - Add `HEEx` support
