@@ -1,6 +1,8 @@
 # Changelog
 
 ## Unreleased
+
+## 0.12.68 - 2023-10-12
 - Add `HEEx` support
 
 ## 0.12.67 - 2023-10-11
