@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+## 0.12.71 - 2023-10-12
+- Bump `Erlang` grammar
+
 ## 0.12.70 - 2023-10-12
 - Add `Fish` support
 
