@@ -478,6 +478,12 @@
 	branch = master
 	update = none
 	ignore = dirty
+[submodule "repos/heex"]
+	path = repos/heex
+	url = https://github.com/phoenixframework/tree-sitter-heex
+	branch = main
+	update = none
+	ignore = dirty
 [submodule "repos/tcl"]
 	path = repos/tcl
 	url = https://github.com/lewis6991/tree-sitter-tcl
