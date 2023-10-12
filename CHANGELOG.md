@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Add `Fish` support
 
 ## 0.12.69 - 2023-10-12
 - Add `Tcl` support

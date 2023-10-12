@@ -490,3 +490,9 @@
 	branch = main
 	update = none
 	ignore = dirty
+[submodule "repos/fish"]
+	path = repos/fish
+	url = https://github.com/ram02z/tree-sitter-fish
+	branch = master
+	update = none
+	ignore = dirty
