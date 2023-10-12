@@ -104,6 +104,7 @@ See `tree-sitter-langs-repos'."
                 (arduino-mode           . arduino)
                 (astro-mode             . astro)
                 (fasm-mode              . asm)
+                (fish-mode              . fish)
                 (masm-mode              . asm)
                 (nasm-mode              . asm)
                 (sh-mode                . bash)

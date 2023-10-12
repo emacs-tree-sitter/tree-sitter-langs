@@ -456,7 +456,7 @@
 	ignore = dirty
 [submodule "repos/hlsl"]
 	path = repos/hlsl
-	url = https://github.com/theHamsta/tree-sitter-hlsl  
+	url = https://github.com/theHamsta/tree-sitter-hlsl
 	branch = master
 	update = none
 	ignore = dirty
@@ -475,6 +475,12 @@
 [submodule "repos/astro"]
 	path = repos/astro
 	url = https://github.com/virchau13/tree-sitter-astro
+	branch = master
+	update = none
+	ignore = dirty
+[submodule "repos/fish"]
+	path = repos/fish
+	url = https://github.com/ram02z/tree-sitter-fish
 	branch = master
 	update = none
 	ignore = dirty
