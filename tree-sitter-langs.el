@@ -139,6 +139,7 @@ See `tree-sitter-langs-repos'."
                 (haskell-mode           . haskell)
                 (hcl-mode               . hcl)
                 (terraform-mode         . hcl)
+                (heex-mode              . heex)
                 (hlsl-mode              . hlsl)
                 (html-mode              . html)
                 (markdown-mode          . markdown)

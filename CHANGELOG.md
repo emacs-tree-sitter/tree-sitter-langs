@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Add `HEEx` support
 
 ## 0.12.67 - 2023-10-11
 - Add `Astro` support
