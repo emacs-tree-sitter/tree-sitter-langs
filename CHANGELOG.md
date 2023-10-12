@@ -1,6 +1,8 @@
 # Changelog
 
 ## Unreleased
+
+## 0.12.70 - 2023-10-12
 - Add `Fish` support
 
 ## 0.12.69 - 2023-10-12
