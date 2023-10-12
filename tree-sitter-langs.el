@@ -5,7 +5,7 @@
 ;; Author: Tuấn-Anh Nguyễn <ubolonton@gmail.com>
 ;; Keywords: languages tools parsers tree-sitter
 ;; Homepage: https://github.com/emacs-tree-sitter/tree-sitter-langs
-;; Version: 0.12.67
+;; Version: 0.12.69
 ;; Package-Requires: ((emacs "25.1") (tree-sitter "0.15.0"))
 ;; SPDX-License-Identifier: MIT
 
@@ -140,6 +140,7 @@ See `tree-sitter-langs-repos'."
                 (haskell-mode           . haskell)
                 (hcl-mode               . hcl)
                 (terraform-mode         . hcl)
+                (heex-mode              . heex)
                 (hlsl-mode              . hlsl)
                 (html-mode              . html)
                 (markdown-mode          . markdown)
@@ -188,6 +189,7 @@ See `tree-sitter-langs-repos'."
                 (swift-mode             . swift)
                 (toml-mode              . toml)
                 (conf-toml-mode         . toml)
+                (tcl-mode               . tcl)
                 (tuareg-mode            . ocaml)
                 (typescript-mode        . typescript)
                 (verilog-mode           . verilog)
