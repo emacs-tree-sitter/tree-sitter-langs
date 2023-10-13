@@ -1,6 +1,8 @@
 # Changelog
 
 ## Unreleased
+
+## 0.12.71 - 2023-10-13
 - Add `CSV` support
 
 ## 0.12.70 - 2023-10-12
