@@ -35,7 +35,7 @@
 ;; TODO: Separate build-time settings from run-time settings.
 (defcustom tree-sitter-langs-grammar-dir tree-sitter-langs--dir
   "The root data directory of `tree-sitter-langs'.
-The 'bin' directory under this directory is used to stored grammar
+The `bin' directory under this directory is used to stored grammar
 binaries (either downloaded, or compiled from source).
 
 This should be set before the grammars are downloaded, e.g. before
@@ -256,7 +256,7 @@ infrequent (grammar-only changes). It is different from the version of
      glsl
      toml
      typescript)
-  "Languages that depend on another, thus requiring 'npm install'.")
+  "Languages that depend on another, thus requiring `npm install'.")
 
 (defun tree-sitter-langs--bundle-file (&optional ext version os)
   "Return the grammar bundle file's name, with optional EXT.
