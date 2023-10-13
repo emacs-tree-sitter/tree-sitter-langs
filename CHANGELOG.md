@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Add `CSV` support
 
 ## 0.12.70 - 2023-10-12
 - Add `Fish` support
