@@ -122,6 +122,7 @@ See `tree-sitter-langs-repos'."
                 (dart-mode              . dart)
                 (dockerfile-mode        . dockerfile)
                 (css-mode               . css)
+                (csv-mode               . csv)
                 (elm-mode               . elm)
                 (elixir-mode            . elixir)
                 (emacs-lisp-mode        . elisp)

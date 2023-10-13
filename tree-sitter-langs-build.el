@@ -158,9 +158,10 @@ git checkout."
                   (buffer-substring-no-properties 2 9))
        :paths (pcase lang-symbol
                 ;; XXX
-                ('typescript '("typescript" ("tsx" . tsx)))
+                ('csv '("csv" ("csv" . csv)))
                 ('ocaml '("ocaml" ("interface" . ocaml-interface)))
                 ('ocaml-interface '("interface" ("interface" . ocaml-interface)))
+                ('typescript '("typescript" ("tsx" . tsx)))
                 ('xml '("tree-sitter-xml" ("tree-sitter-dtd" . dtd)))
                 (_ '("")))))))
 
@@ -182,15 +183,15 @@ git checkout."
   "Call FN in each of the language repositories."
   (let ((repos-dir (tree-sitter-langs--repos-dir)))
     (thread-last (directory-files repos-dir)
-      (seq-map (lambda (name)
-                 (unless (member name '("." ".."))
-                   (let ((dir (concat repos-dir name)))
-                     (when (file-directory-p dir)
-                       `(,name . ,dir))))))
-      (seq-filter #'identity)
-      (seq-map (lambda (d)
-                 (pcase-let ((`(,name . ,default-directory) d))
-                   (funcall fn name)))))))
+                 (seq-map (lambda (name)
+                            (unless (member name '("." ".."))
+                              (let ((dir (concat repos-dir name)))
+                                (when (file-directory-p dir)
+                                  `(,name . ,dir))))))
+                 (seq-filter #'identity)
+                 (seq-map (lambda (d)
+                            (pcase-let ((`(,name . ,default-directory) d))
+                              (funcall fn name)))))))
 
 (defun tree-sitter-langs--update-repos ()
   "Update lang repos' remotes."
@@ -214,7 +215,7 @@ latest commit."
   (let* ((base (or base "origin/master"))
          (default-directory tree-sitter-langs-git-dir)
          (changed-files (thread-first
-                            (format "git --no-pager diff --name-only %s" base)
+                          (format "git --no-pager diff --name-only %s" base)
                           shell-command-to-string
                           string-trim split-string))
          grammar-changed queries-changed)
@@ -410,13 +411,13 @@ compile from the current state of the grammar repos, without cleanup."
   (unless (executable-find "tar")
     (error "Could not find tar executable (needed to bundle compiled grammars)"))
   (let ((errors (thread-last
-                    (tree-sitter-langs--map-repos
-                     (lambda (name)
-                       (message "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
-                       (let ((lang-symbol (intern name)))
-                         (condition-case err
-                             (tree-sitter-langs-compile lang-symbol clean target)
-                           (error `[,lang-symbol ,err])))))
+                  (tree-sitter-langs--map-repos
+                   (lambda (name)
+                     (message "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
+                     (let ((lang-symbol (intern name)))
+                       (condition-case err
+                           (tree-sitter-langs-compile lang-symbol clean target)
+                         (error `[,lang-symbol ,err])))))
                   (seq-filter #'identity))))
     (message "~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
     (unwind-protect
@@ -536,7 +537,8 @@ This assumes the repo has already been set up, for example by
 `tree-sitter-langs-compile'.
 
 If the optional arg FORCE is non-nil, any existing file will be overwritten."
-  (let ((src (thread-first (tree-sitter-langs--repos-dir)
+  (let ((src (thread-first
+               (tree-sitter-langs--repos-dir)
                (concat (symbol-name lang-symbol))
                file-name-as-directory (concat "queries")
                file-name-as-directory (concat "highlights.scm"))))

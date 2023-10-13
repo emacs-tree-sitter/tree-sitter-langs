@@ -496,3 +496,9 @@
 	branch = master
 	update = none
 	ignore = dirty
+[submodule "repos/csv"]
+	path = repos/csv
+	url = https://github.com/amaanq/tree-sitter-csv
+	branch = master
+	update = none
+	ignore = dirty
