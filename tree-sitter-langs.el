@@ -229,6 +229,7 @@ Return nil if there are no bundled patterns."
                              ('arduino    '(cpp c))
                              ('astro      '(html))
                              ('cpp        '(c))
+                             ('csv        '(tsv))
                              ('hlsl       '(cpp c))
                              ('typescript '(javascript))
                              ('tsx        '(typescript javascript))
