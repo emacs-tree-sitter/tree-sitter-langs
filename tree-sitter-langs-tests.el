@@ -35,10 +35,10 @@
     (when (file-exists-p (format "%s/highlights.scm" lang-name))
       (let ((test-symbol (intern (format "queries/%s" lang-name)))
             (lang-symbol (intern lang-name)))
-        (unless (memq lang-symbol tree-sitter-langs-tests-ignore-queries)
-          (eval
-           `(ert-deftest ,test-symbol ()
-              (tree-sitter-langs-tests-check-queries (quote ,lang-symbol)))))))))
+        (eval
+         `(ert-deftest ,test-symbol ()
+            (skip-unless (not (memq (quote ,lang-symbol) tree-sitter-langs-tests-ignore-queries)))
+            (tree-sitter-langs-tests-check-queries (quote ,lang-symbol))))))))
 
 (tree-sitter-langs--map-repos
  (lambda (lang-name)
