@@ -3,6 +3,38 @@
 ## Unreleased
 - Add `Typst` support
 
+## 0.12.72 - 2023-10-13
+
+## 0.12.71 - 2023-10-13
+- Add `CSV` support
+
+## 0.12.70 - 2023-10-12
+- Add `Fish` support
+
+## 0.12.69 - 2023-10-12
+- Add `Tcl` support
+
+## 0.12.68 - 2023-10-12
+- Add `HEEx` support
+
+## 0.12.67 - 2023-10-11
+- Add `Astro` support
+
+## 0.12.66 - 2023-10-11
+- Add `Arduino` support
+
+## 0.12.65 - 2023-10-10
+- Fix `HLSL` highlighting
+
+## 0.12.64 - 2023-10-10
+- Add `Common Lisp` support
+
+## 0.12.63 - 2023-10-10
+- Add `HLSL` support
+
+## 0.12.62 - 2023-10-10
+- Add `GLSL` support
+
 ## 0.12.61 - 2023-10-10
 - Add `Solidity` support
 

@@ -5,7 +5,7 @@
 ;; Author: Tuấn-Anh Nguyễn <ubolonton@gmail.com>
 ;; Keywords: languages tools parsers tree-sitter
 ;; Homepage: https://github.com/emacs-tree-sitter/tree-sitter-langs
-;; Version: 0.12.61
+;; Version: 0.12.72
 ;; Package-Requires: ((emacs "25.1") (tree-sitter "0.15.0"))
 ;; SPDX-License-Identifier: MIT
 
@@ -101,7 +101,10 @@ See `tree-sitter-langs-repos'."
               '((ada-mode               . ada)
                 (agda-mode              . agda)
                 (agda2-mode             . agda)
+                (arduino-mode           . arduino)
+                (astro-mode             . astro)
                 (fasm-mode              . asm)
+                (fish-mode              . fish)
                 (masm-mode              . asm)
                 (nasm-mode              . asm)
                 (sh-mode                . bash)
@@ -110,6 +113,8 @@ See `tree-sitter-langs-repos'."
                 (c-mode                 . c)
                 (caml-mode              . ocaml)
                 (clojure-mode           . clojure)
+                (lisp-mode              . commonlisp)
+                (lisp-interaction-mode  . commonlisp)
                 (csharp-mode            . c-sharp)
                 (c++-mode               . cpp)
                 (cmake-mode             . cmake)
@@ -117,6 +122,7 @@ See `tree-sitter-langs-repos'."
                 (dart-mode              . dart)
                 (dockerfile-mode        . dockerfile)
                 (css-mode               . css)
+                (csv-mode               . csv)
                 (elm-mode               . elm)
                 (elixir-mode            . elixir)
                 (emacs-lisp-mode        . elisp)
@@ -130,10 +136,13 @@ See `tree-sitter-langs-repos'."
                 (git-rebase-mode        . git-rebase)
                 (gitattributes-mode     . gitattributes)
                 (gitignore-mode         . gitignore)
+                (glsl-mode              . glsl)
                 (go-mode                . go)
                 (haskell-mode           . haskell)
                 (hcl-mode               . hcl)
                 (terraform-mode         . hcl)
+                (heex-mode              . heex)
+                (hlsl-mode              . hlsl)
                 (html-mode              . html)
                 (markdown-mode          . markdown)
                 (mhtml-mode             . html)
@@ -181,6 +190,7 @@ See `tree-sitter-langs-repos'."
                 (swift-mode             . swift)
                 (toml-mode              . toml)
                 (conf-toml-mode         . toml)
+                (tcl-mode               . tcl)
                 (tuareg-mode            . ocaml)
                 (typescript-mode        . typescript)
                 (typst-mode             . typst)
@@ -217,10 +227,14 @@ Return nil if there are no bundled patterns."
         ;; TODO: Make this less ad-hoc.
         (dolist (sym (cons lang-symbol
                            (pcase lang-symbol
-                             ('cpp '(c))
+                             ('arduino    '(cpp c))
+                             ('astro      '(html))
+                             ('cpp        '(c))
+                             ('csv        '(tsv))
+                             ('hlsl       '(cpp c))
                              ('typescript '(javascript))
-                             ('tsx '(typescript javascript))
-                             (_ nil))))
+                             ('tsx        '(typescript javascript))
+                             (_           nil))))
           (when mode
             (ignore-error 'file-missing
               (insert-file-contents (tree-sitter-langs--hl-query-path sym mode))

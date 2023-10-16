@@ -19,6 +19,10 @@
 (eval-when-compile
   (require 'subr-x))
 
+(defvar tree-sitter-langs-tests-ignore-queries
+  '( psv tsv)
+  "List of queries to ignore the test.")
+
 (defun tree-sitter-langs-tests-check-queries (lang-symbol)
   "Check LANG-SYMBOL's queries."
   (let ((language (tree-sitter-require lang-symbol))
@@ -33,6 +37,7 @@
             (lang-symbol (intern lang-name)))
         (eval
          `(ert-deftest ,test-symbol ()
+            (skip-unless (not (memq (quote ,lang-symbol) tree-sitter-langs-tests-ignore-queries)))
             (tree-sitter-langs-tests-check-queries (quote ,lang-symbol))))))))
 
 (tree-sitter-langs--map-repos

@@ -448,6 +448,60 @@
 	branch = master
 	update = none
 	ignore = dirty
+[submodule "repos/glsl"]
+	path = repos/glsl
+	url = https://github.com/theHamsta/tree-sitter-glsl
+	branch = master
+	update = none
+	ignore = dirty
+[submodule "repos/hlsl"]
+	path = repos/hlsl
+	url = https://github.com/theHamsta/tree-sitter-hlsl
+	branch = master
+	update = none
+	ignore = dirty
+[submodule "repos/commonlisp"]
+	path = repos/commonlisp
+	url = https://github.com/theHamsta/tree-sitter-commonlisp
+	branch = master
+	update = none
+	ignore = dirty
+[submodule "repos/arduino"]
+	path = repos/arduino
+	url = https://github.com/ObserverOfTime/tree-sitter-arduino
+	branch = master
+	update = none
+	ignore = dirty
+[submodule "repos/astro"]
+	path = repos/astro
+	url = https://github.com/virchau13/tree-sitter-astro
+	branch = master
+	update = none
+	ignore = dirty
+[submodule "repos/heex"]
+	path = repos/heex
+	url = https://github.com/phoenixframework/tree-sitter-heex
+	branch = main
+	update = none
+	ignore = dirty
+[submodule "repos/tcl"]
+	path = repos/tcl
+	url = https://github.com/lewis6991/tree-sitter-tcl
+	branch = main
+	update = none
+	ignore = dirty
+[submodule "repos/fish"]
+	path = repos/fish
+	url = https://github.com/ram02z/tree-sitter-fish
+	branch = master
+	update = none
+	ignore = dirty
+[submodule "repos/csv"]
+	path = repos/csv
+	url = https://github.com/amaanq/tree-sitter-csv
+	branch = master
+	update = none
+	ignore = dirty
 [submodule "repos/typst"]
 	path = repos/typst
 	url = https://github.com/uben0/tree-sitter-typst
