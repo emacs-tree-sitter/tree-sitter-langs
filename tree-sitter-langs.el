@@ -138,6 +138,8 @@ See `tree-sitter-langs-repos'."
                 (gitignore-mode         . gitignore)
                 (glsl-mode              . glsl)
                 (go-mode                . go)
+                (groovy-mode            . groovy)
+                (jenkinsfile-mode       . groovy)
                 (haskell-mode           . haskell)
                 (hcl-mode               . hcl)
                 (terraform-mode         . hcl)

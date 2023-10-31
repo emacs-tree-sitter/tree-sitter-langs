@@ -502,3 +502,9 @@
 	branch = master
 	update = none
 	ignore = dirty
+[submodule "repos/groovy"]
+	path = repos/groovy
+	url = https://github.com/Decodetalkers/tree-sitter-groovy
+	update = none
+	ignore = dirty
+	branch = master
