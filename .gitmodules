@@ -508,3 +508,9 @@
 	update = none
 	ignore = dirty
 	branch = master
+[submodule "repos/typst"]
+	path = repos/typst
+	url = https://github.com/uben0/tree-sitter-typst
+	update = none
+	ignore = dirty
+	branch = master

@@ -195,6 +195,7 @@ See `tree-sitter-langs-repos'."
                 (tcl-mode               . tcl)
                 (tuareg-mode            . ocaml)
                 (typescript-mode        . typescript)
+                (typst-mode             . typst)
                 (verilog-mode           . verilog)
                 (vhdl-mode              . vhdl)
                 (nxml-mode              . xml)
