@@ -1,6 +1,8 @@
 # Changelog
 
 ## Unreleased
+
+## 0.12.73 - 2023-10-31
 - Add `Groovy` support
 
 ## 0.12.72 - 2023-10-13
