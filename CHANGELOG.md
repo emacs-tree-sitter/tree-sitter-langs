@@ -1,6 +1,8 @@
 # Changelog
 
 ## Unreleased
+
+## 0.12.74 - 2023-11-01
 - Add `Typst` support
 
 ## 0.12.73 - 2023-10-31
