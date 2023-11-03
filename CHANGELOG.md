@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Support `k8s-mode`
 
 ## 0.12.74 - 2023-11-01
 - Add `Typst` support
