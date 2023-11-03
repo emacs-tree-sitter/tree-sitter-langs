@@ -1,6 +1,8 @@
 # Changelog
 
 ## Unreleased
+
+## 0.12.75 - 2023-11-03
 - Support `k8s-mode`
 
 ## 0.12.74 - 2023-11-01
