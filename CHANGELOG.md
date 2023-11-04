@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Add `Org` support
 
 ## 0.12.75 - 2023-11-03
 - Support `k8s-mode`

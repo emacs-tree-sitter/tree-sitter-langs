@@ -514,3 +514,9 @@
 	update = none
 	ignore = dirty
 	branch = master
+[submodule "repos/org"]
+	path = repos/org
+	url = https://github.com/milisims/tree-sitter-org
+	update = none
+	ignore = dirty
+	branch = main
