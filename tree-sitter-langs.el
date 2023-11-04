@@ -173,6 +173,7 @@ See `tree-sitter-langs-repos'."
                 (meson-mode             . meson)
                 (noir-mode              . noir)
                 (ocaml-mode             . ocaml)
+                (org-mode               . org)
                 (pascal-mode            . pascal)
                 (perl-mode              . perl)
                 (php-mode               . php)
