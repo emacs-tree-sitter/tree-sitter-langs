@@ -1,6 +1,8 @@
 # Changelog
 
 ## Unreleased
+
+## 0.12.76 - 2023-11-05
 - Add `Org` support
 
 ## 0.12.75 - 2023-11-03
