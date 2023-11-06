@@ -62,7 +62,10 @@
 (defvar tree-sitter-langs--testing)
 (eval-and-compile
   (unless (bound-and-true-p tree-sitter-langs--testing)
-    (tree-sitter-langs-install-grammars :skip-if-installed)))
+    (tree-sitter-langs-install-grammars :skip-if-installed))
+  (when (boundp treesit-extra-load-path)  ;; Emacs 29.x
+    (setq treesit-extra-load-path (append (list (tree-sitter-langs--bin-dir))
+                                          treesit-extra-load-path))))
 
 (defun tree-sitter-langs-ensure (lang-symbol)
   "Return the language object identified by LANG-SYMBOL.
