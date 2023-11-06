@@ -155,7 +155,8 @@
  "with"
  "yield"
  "match"
- "case"] @keyword
+ "case"
+ "type"] @keyword
 
 ;; "Contexts" may have internal highlighting -> low priority.
 
