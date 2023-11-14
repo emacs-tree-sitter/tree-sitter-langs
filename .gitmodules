@@ -520,3 +520,9 @@
 	update = none
 	ignore = dirty
 	branch = main
+[submodule "repos/twig"]
+	path = repos/twig
+	url = https://github.com/gbprod/tree-sitter-twig
+	update = none
+	ignore = dirty
+	branch = main
