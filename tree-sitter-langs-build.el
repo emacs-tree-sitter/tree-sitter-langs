@@ -532,7 +532,6 @@ non-nil."
           (when (bound-and-true-p dired-omit-mode)
             (dired-omit-mode -1)))))))
 
-
 (defun tree-sitter-langs-get-latest-tag ()
   "Retrieve the latest tag for tree-sitter-langs from GitHub.
 In case of retrieval or parsing error, logs an error message and returns nil."
@@ -546,7 +545,6 @@ In case of retrieval or parsing error, logs an error message and returns nil."
     (error
      (message "Error retrieving the latest version of tree-sitter-langs.")
      nil)))
-
 
 ;;;###autoload
 (defun tree-sitter-langs-install-latest-grammar (&optional skip-if-installed os keep-bundle)
@@ -563,7 +561,6 @@ If KEEP-BUNDLE is non-nil, the downloaded bundle file is not deleted after insta
           (message "Latest version retrieved: %s" latest-tag)
           (tree-sitter-langs-install-grammars skip-if-installed latest-tag os keep-bundle))
       (message "Failed to retrieve the latest version."))))
-
 
 (defun tree-sitter-langs--copy-query (lang-symbol &optional force)
   "Copy highlights.scm file of LANG-SYMBOL to `tree-sitter-langs--queries-dir'.
