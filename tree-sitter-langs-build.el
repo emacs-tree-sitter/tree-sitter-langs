@@ -18,6 +18,7 @@
 (require 'pp)
 (require 'url)
 (require 'tar-mode)
+(require 'json)
 
 (eval-when-compile
   (require 'subr-x)
@@ -530,6 +531,39 @@ non-nil."
         (with-current-buffer (find-file bin-dir)
           (when (bound-and-true-p dired-omit-mode)
             (dired-omit-mode -1)))))))
+
+
+(defun tree-sitter-langs-get-latest-tag ()
+  "Retrieve the latest tag for tree-sitter-langs from GitHub.
+In case of retrieval or parsing error, logs an error message and returns nil."
+  (condition-case nil
+      (with-current-buffer (url-retrieve-synchronously "https://api.github.com/repos/emacs-tree-sitter/tree-sitter-langs/releases/latest" 'silent 'inhibit-cookies)
+        (goto-char (point-min))
+        (re-search-forward "^$")
+        (delete-region (point) (point-min))
+        (let ((response (json-read)))
+          (cdr (assoc 'tag_name response))))
+    (error
+     (message "Error retrieving the latest version of tree-sitter-langs.")
+     nil)))
+
+
+;;;###autoload
+(defun tree-sitter-langs-install-latest-grammar (&optional skip-if-installed os keep-bundle)
+  "Install the latest version of the tree-sitter-langs grammar bundle.
+Automatically retrieves the latest version tag from GitHub.
+If SKIP-IF-INSTALLED is non-nil, skips if the latest version is already installed.
+OS specifies the operating system.
+If KEEP-BUNDLE is non-nil, the downloaded bundle file is not deleted after installation."
+  (interactive (list 't tree-sitter-langs--os nil))
+  (message "Fetching the latest version of tree-sitter-langs...")
+  (let ((latest-tag (tree-sitter-langs-get-latest-tag)))
+    (if latest-tag
+        (progn
+          (message "Latest version retrieved: %s" latest-tag)
+          (tree-sitter-langs-install-grammars skip-if-installed latest-tag os keep-bundle))
+      (message "Failed to retrieve the latest version."))))
+
 
 (defun tree-sitter-langs--copy-query (lang-symbol &optional force)
   "Copy highlights.scm file of LANG-SYMBOL to `tree-sitter-langs--queries-dir'.
