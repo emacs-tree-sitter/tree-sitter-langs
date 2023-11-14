@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Add `Twig` support
 
 ## 0.12.77 - 2023-11-05
 
