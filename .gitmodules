@@ -55,6 +55,12 @@
 	update = none
 	ignore = dirty
 	branch = master
+[submodule "repos/gleam"]
+	path = repos/gleam
+	url = https://github.com/gleam-lang/tree-sitter-gleam
+	update = none
+	ignore = dirty
+	branch = main
 [submodule "repos/go"]
 	path = repos/go
 	url = https://github.com/tree-sitter/tree-sitter-go

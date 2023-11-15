@@ -136,6 +136,7 @@ See `tree-sitter-langs-repos'."
                 (git-rebase-mode        . git-rebase)
                 (gitattributes-mode     . gitattributes)
                 (gitignore-mode         . gitignore)
+                (gleam-mode             . gleam)
                 (glsl-mode              . glsl)
                 (go-mode                . go)
                 (groovy-mode            . groovy)
