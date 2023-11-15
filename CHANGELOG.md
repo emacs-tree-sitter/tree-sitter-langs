@@ -1,6 +1,8 @@
 # Changelog
 
 ## Unreleased
+
+## 0.12.79 - 2023-11-15
 - Add `Gleam` support
 
 ## 0.12.78 - 2023-11-14
