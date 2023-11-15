@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Add `Gleam` support
 
 ## 0.12.78 - 2023-11-14
 - Add `Twig` support
