@@ -1,6 +1,8 @@
 # Changelog
 
 ## Unreleased
+
+## 0.12.80 - 2023-11-29
 - Bump `Clojure` grammar
 
 ## 0.12.79 - 2023-11-15
