@@ -1,6 +1,8 @@
 # Changelog
 
 ## Unreleased
+
+## 0.12.81 - 2023-11-29
 - Remove `Clojure` query (#281)
 
 ## 0.12.80 - 2023-11-29
