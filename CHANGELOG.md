@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Bump `Clojure` grammar
 
 ## 0.12.79 - 2023-11-15
 - Add `Gleam` support
