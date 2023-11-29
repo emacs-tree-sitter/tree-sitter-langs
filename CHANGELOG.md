@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Remove `Clojure` query (#281)
 
 ## 0.12.80 - 2023-11-29
 - Bump `Clojure` grammar
