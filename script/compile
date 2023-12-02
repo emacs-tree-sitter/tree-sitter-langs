@@ -16,7 +16,7 @@ set -euo pipefail
 here=$(cd "$(dirname "$BASH_SOURCE")"; pwd)
 PROJECT_ROOT=$(cd "$here/.."; pwd)
 
-LANG=$1
+PROGLANG=$1
 
 # Parse named parameters.
 POSITIONAL=()
@@ -39,7 +39,7 @@ if [ "$target" == "'" ]; then
     target=nil
 fi
 
-case $LANG in
+case $PROGLANG in
     (all)
         code="(tree-sitter-langs-create-bundle nil $target)"
         ;;
@@ -47,7 +47,7 @@ case $LANG in
         code="(tree-sitter-langs-compile-changed-or-all \"${POSITIONAL[1]:-origin/master}\" $target)"
         ;;
     (*)
-        code="(tree-sitter-langs-compile '$LANG nil $target)"
+        code="(tree-sitter-langs-compile '$PROGLANG nil ${target})"
 esac
 
 (
