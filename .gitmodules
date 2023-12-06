@@ -534,3 +534,9 @@
 	update = none
 	ignore = dirty
 	branch = main
+[submodule "repos/llvm"]
+	path = repos/llvm
+	url = https://github.com/benwilliamgraham/tree-sitter-llvm
+	update = none
+	ignore = dirty
+	branch = main

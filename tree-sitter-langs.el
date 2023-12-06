@@ -162,6 +162,7 @@ See `tree-sitter-langs-repos'."
                 (julia-mode             . julia)
                 (kotlin-mode            . kotlin)
                 (latex-mode             . latex)
+                (llvm-mode              . llvm)
                 (lua-mode               . lua)
                 (makefile-mode          . make)
                 (makefile-automake-mode . make)
