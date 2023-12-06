@@ -1,6 +1,8 @@
 # Changelog
 
 ## Unreleased
+
+## 0.12.83 - 2023-12-06
 - Add `LLVM` support
 
 ## 0.12.82 - 2023-12-03
