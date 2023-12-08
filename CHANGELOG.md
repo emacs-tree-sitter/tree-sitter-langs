@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Bump `Julia` grammar
 
 ## 0.12.83 - 2023-12-06
 - Add `LLVM` support
