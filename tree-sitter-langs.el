@@ -181,6 +181,7 @@ See `tree-sitter-langs-repos'."
                 (pascal-mode            . pascal)
                 (perl-mode              . perl)
                 (php-mode               . php)
+                (qss-mode               . css)
                 (prisma-mode            . prisma)
                 (python-mode            . python)
                 (pygn-mode              . pgn)
