@@ -540,3 +540,9 @@
 	update = none
 	ignore = dirty
 	branch = main
+[submodule "repos/actionscript"]
+	path = repos/actionscript
+	url = https://github.com/Rileran/tree-sitter-actionscript
+	update = none
+	ignore = dirty
+	branch = main
