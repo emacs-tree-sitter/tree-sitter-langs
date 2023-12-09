@@ -540,3 +540,9 @@
 	update = none
 	ignore = dirty
 	branch = main
+[submodule "repos/llvm-mir"]
+	path = repos/llvm-mir
+	url = https://github.com/Flakebi/tree-sitter-llvm-mir
+	update = none
+	ignore = dirty
+	branch = master
