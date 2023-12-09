@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Register `qss-mode` with `CSS`
 
 ## 0.12.85 - 2023-12-09
 - Add `Racket` support
