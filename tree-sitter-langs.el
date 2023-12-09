@@ -98,7 +98,8 @@ See `tree-sitter-langs-repos'."
   "Link known major modes to languages provided by the bundle."
   (dolist
       (entry (reverse
-              '((ada-mode               . ada)
+              '((actionscript-mode      . actionscript)
+                (ada-mode               . ada)
                 (agda-mode              . agda)
                 (agda2-mode             . agda)
                 (arduino-mode           . arduino)
