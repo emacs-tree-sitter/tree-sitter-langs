@@ -164,6 +164,7 @@ See `tree-sitter-langs-repos'."
                 (kotlin-mode            . kotlin)
                 (latex-mode             . latex)
                 (llvm-mode              . llvm)
+                (llvm-mir-mode          . llvm-mir)
                 (lua-mode               . lua)
                 (makefile-mode          . make)
                 (makefile-automake-mode . make)
