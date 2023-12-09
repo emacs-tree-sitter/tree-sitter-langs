@@ -540,3 +540,9 @@
 	update = none
 	ignore = dirty
 	branch = main
+[submodule "repos/tablegen"]
+	path = repos/tablegen
+	url = https://github.com/Flakebi/tree-sitter-tablegen
+	update = none
+	ignore = dirty
+	branch = master

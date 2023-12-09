@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Add `LLVM Tablegen` support
 
 ## 0.12.83 - 2023-12-06
 - Add `LLVM` support
