@@ -1,6 +1,8 @@
 # Changelog
 
 ## Unreleased
+
+## 0.12.85 - 2023-12-09
 - Add `Racket` support
 - Add `LLVM Tablegen` support
 - Add `LLVM MIR` support
