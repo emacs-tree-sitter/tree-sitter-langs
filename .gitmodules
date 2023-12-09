@@ -540,6 +540,12 @@
 	update = none
 	ignore = dirty
 	branch = main
+[submodule "repos/racket"]
+	path = repos/racket
+	url = https://github.com/6cdh/tree-sitter-racket
+	update = none
+	ignore = dirty
+	branch = main
 [submodule "repos/tablegen"]
 	path = repos/tablegen
 	url = https://github.com/Flakebi/tree-sitter-tablegen
@@ -555,6 +561,3 @@
 [submodule "repos/actionscript"]
 	path = repos/actionscript
 	url = https://github.com/Rileran/tree-sitter-actionscript
-	update = none
-	ignore = dirty
-	branch = main

@@ -184,6 +184,7 @@ See `tree-sitter-langs-repos'."
                 (prisma-mode            . prisma)
                 (python-mode            . python)
                 (pygn-mode              . pgn)
+                (racket-mode            . racket)
                 (rjsx-mode              . javascript)
                 (rst-mode               . rst)
                 (ruby-mode              . ruby)

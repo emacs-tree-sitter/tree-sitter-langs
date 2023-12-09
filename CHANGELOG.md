@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Add `Racket` support
 - Add `LLVM Tablegen` support
 - Add `LLVM MIR` support
 
