@@ -1,6 +1,8 @@
 # Changelog
 
 ## Unreleased
+
+## 0.12.86 - 2023-12-09
 - Register `qss-mode` with `CSS`
 
 ## 0.12.85 - 2023-12-09
