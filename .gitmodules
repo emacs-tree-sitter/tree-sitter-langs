@@ -546,3 +546,15 @@
 	update = none
 	ignore = dirty
 	branch = master
+[submodule "repos/llvm-mir"]
+	path = repos/llvm-mir
+	url = https://github.com/Flakebi/tree-sitter-llvm-mir
+	update = none
+	ignore = dirty
+	branch = master
+[submodule "repos/actionscript"]
+	path = repos/actionscript
+	url = https://github.com/Rileran/tree-sitter-actionscript
+	update = none
+	ignore = dirty
+	branch = main
