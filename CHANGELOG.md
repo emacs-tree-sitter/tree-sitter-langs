@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Add `LLVM Tablegen` support
 - Add `LLVM MIR` support
 
 ## 0.12.84 - 2023-12-09

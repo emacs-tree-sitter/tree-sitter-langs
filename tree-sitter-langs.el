@@ -195,6 +195,7 @@ See `tree-sitter-langs-repos'."
                 (smithy-mode            . smithy)
                 (sql-mode               . sql)
                 (swift-mode             . swift)
+                (tablegen-mode          . tablegen)
                 (toml-mode              . toml)
                 (conf-toml-mode         . toml)
                 (tcl-mode               . tcl)
