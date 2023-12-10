@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Add `Nim` support
 
 ## 0.12.86 - 2023-12-09
 - Register `qss-mode` with `CSS`

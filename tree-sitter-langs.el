@@ -175,6 +175,7 @@ See `tree-sitter-langs-repos'."
                 (matlab-mode            . matlab)
                 (mermaid-mode           . mermaid)
                 (meson-mode             . meson)
+                (nim-mode               . nim)
                 (noir-mode              . noir)
                 (ocaml-mode             . ocaml)
                 (org-mode               . org)

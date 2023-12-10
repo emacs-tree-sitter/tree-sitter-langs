@@ -561,3 +561,12 @@
 [submodule "repos/actionscript"]
 	path = repos/actionscript
 	url = https://github.com/Rileran/tree-sitter-actionscript
+	update = none
+	ignore = dirty
+	branch = main
+[submodule "repos/nim"]
+	path = repos/nim
+	url = https://github.com/alaviss/tree-sitter-nim
+	update = none
+	ignore = dirty
+	branch = main
