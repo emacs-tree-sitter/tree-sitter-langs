@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 0.12.87 - 2023-12-20
+
 ## 0.12.86 - 2023-12-09
 - Register `qss-mode` with `CSS`
 
