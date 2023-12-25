@@ -564,3 +564,9 @@
 	update = none
 	ignore = dirty
 	branch = main
+[submodule "repos/ninja"]
+	path = repos/ninja
+	url = https://github.com/alemuller/tree-sitter-ninja
+	update = none
+	ignore = dirty
+	branch = main
