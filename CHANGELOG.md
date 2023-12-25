@@ -1,6 +1,8 @@
 # Changelog
 
 ## Unreleased
+
+## 0.12.89 - 2023-12-25
 - Add `Ninja` support
 
 ## 0.12.88 - 2023-12-21
