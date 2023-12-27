@@ -168,6 +168,7 @@ See `tree-sitter-langs-repos'."
                 (llvm-mode              . llvm)
                 (llvm-mir-mode          . llvm-mir)
                 (lua-mode               . lua)
+                (magik-mode             . magik)
                 (makefile-mode          . make)
                 (makefile-automake-mode . make)
                 (makefile-gmake-mode    . make)

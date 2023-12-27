@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Add `Magik` support
+
 ## 0.12.89 - 2023-12-25
 - Add `Ninja` support
 
