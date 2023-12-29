@@ -1,6 +1,8 @@
 # Changelog
 
 ## Unreleased
+
+## 0.12.91 - 2023-12-29
 - Bump `Assembly` grammar
 
 ## 0.12.90 - 2023-12-27
