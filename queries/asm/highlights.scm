@@ -7,7 +7,10 @@
   kind: (_) @function.call)
 
 ; Comments
-(line_comment) @comment
+[
+  (line_comment)
+  (block_comment)
+] @comment @spell
 
 ; Literals
 (int) @number
