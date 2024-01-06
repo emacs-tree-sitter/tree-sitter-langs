@@ -270,6 +270,12 @@
 	branch = master
 	update = none
 	ignore = dirty
+[submodule "repos/magik"]
+	path = repos/magik
+	url = https://github.com/krn-robin/tree-sitter-magik
+	branch = main
+	update = none
+	ignore = dirty
 [submodule "repos/meson"]
 	path = repos/meson
 	url = https://github.com/Decodetalkers/tree-sitter-meson
@@ -561,6 +567,12 @@
 [submodule "repos/actionscript"]
 	path = repos/actionscript
 	url = https://github.com/Rileran/tree-sitter-actionscript
+	update = none
+	ignore = dirty
+	branch = main
+[submodule "repos/ninja"]
+	path = repos/ninja
+	url = https://github.com/alemuller/tree-sitter-ninja
 	update = none
 	ignore = dirty
 	branch = main
