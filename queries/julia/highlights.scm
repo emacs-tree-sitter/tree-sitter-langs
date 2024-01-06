@@ -361,22 +361,22 @@
  ["let" "end"] @keyword)
 
 (if_statement
- ["if" "end"] @conditional)
+ ["if" "end"] @keyword)
 (elseif_clause
- "elseif" @conditional)
+ "elseif" @keyword)
 (else_clause
- "else" @conditional)
+ "else" @keyword)
 (if_clause
- "if" @conditional) ; `if` clause in comprehensions
+ "if" @keyword) ; `if` clause in comprehensions
 (ternary_expression
- ["?" ":"] @conditional.ternary)
+ ["?" ":"] @operator)
 
 (try_statement
- ["try" "end"] @exception)
+ ["try" "end"] @keyword)
 (finally_clause
- "finally" @exception)
+ "finally" @keyword)
 (catch_clause
- "catch" @exception)
+ "catch" @keyword)
 
 (for_statement
  ["for" "end"] @keyword)
