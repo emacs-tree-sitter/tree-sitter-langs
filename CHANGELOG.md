@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 0.12.92 - 2024-01-07
+
 ## 0.12.91 - 2023-12-29
 - Bump `Assembly` grammar
 
