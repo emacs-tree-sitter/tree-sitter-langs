@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Bump `rust` grammar
 
 ## 0.12.92 - 2024-01-07
 

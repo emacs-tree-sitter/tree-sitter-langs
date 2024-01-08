@@ -53,6 +53,11 @@ To build all registered languages, and creating the bundle:
   script/compile all
 #+end_src
 
+To build on Apple Silicon:
+#+begin_src bash
+  script/compile rust -target aarch64-apple-darwin
+#+end_src
+
 *** Adding a new grammar
 - Register a new submodule. For example:
     #+begin_src bash
