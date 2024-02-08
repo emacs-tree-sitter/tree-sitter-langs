@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Bump `Magik` support
 
 ## 0.12.92 - 2024-01-07
 
