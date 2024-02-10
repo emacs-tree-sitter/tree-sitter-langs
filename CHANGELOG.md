@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Bump `Magik` support
 
 ## 0.12.94 - 2024-02-10
 - Add `Svelte` support
