@@ -168,7 +168,7 @@
 	url = https://github.com/MichaHoffmann/tree-sitter-hcl
 	update = none
 	ignore = dirty
-	branch = master
+	branch = main
 [submodule "repos/elixir"]
 	path = repos/elixir
 	url = https://github.com/elixir-lang/tree-sitter-elixir
