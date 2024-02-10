@@ -200,6 +200,7 @@ See `tree-sitter-langs-repos'."
                 (solidity-mode          . solidity)
                 (smithy-mode            . smithy)
                 (sql-mode               . sql)
+                (svelte-mode            . svelte)
                 (swift-mode             . swift)
                 (tablegen-mode          . tablegen)
                 (toml-mode              . toml)

@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Add `Svelte` support
 
 ## 0.12.93 - 2024-02-10
 

@@ -576,3 +576,9 @@
 	update = none
 	ignore = dirty
 	branch = main
+[submodule "repos/svelte"]
+	path = repos/svelte
+	url = https://github.com/Himujjal/tree-sitter-svelte
+	update = none
+	ignore = dirty
+	branch = master
