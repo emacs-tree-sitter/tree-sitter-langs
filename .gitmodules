@@ -183,8 +183,8 @@
 	ignore = dirty
 [submodule "repos/nix"]
 	path = repos/nix
-	url = https://github.com/cstrahan/tree-sitter-nix
-	branch = main
+	url = https://github.com/nix-community/tree-sitter-nix
+	branch = master
 	update = none
 	ignore = dirty
 [submodule "repos/prisma"]
