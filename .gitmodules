@@ -168,7 +168,7 @@
 	url = https://github.com/MichaHoffmann/tree-sitter-hcl
 	update = none
 	ignore = dirty
-	branch = master
+	branch = main
 [submodule "repos/elixir"]
 	path = repos/elixir
 	url = https://github.com/elixir-lang/tree-sitter-elixir
@@ -183,8 +183,8 @@
 	ignore = dirty
 [submodule "repos/nix"]
 	path = repos/nix
-	url = https://github.com/cstrahan/tree-sitter-nix
-	branch = main
+	url = https://github.com/nix-community/tree-sitter-nix
+	branch = master
 	update = none
 	ignore = dirty
 [submodule "repos/prisma"]
@@ -226,7 +226,7 @@
 [submodule "repos/r"]
 	path = repos/r
 	url = https://github.com/r-lib/tree-sitter-r.git
-	branch = master
+	branch = main
 	update = none
 	ignore = dirty
 [submodule "repos/lua"]
