@@ -250,7 +250,6 @@ Return nil if there are no bundled patterns."
                              ('cpp        '(c))
                              ('csv        '(tsv))
                              ('hlsl       '(cpp c))
-                             ('svelte     '(html))
                              ('typescript '(javascript))
                              ('tsx        '(typescript javascript))
                              (_           nil))))
