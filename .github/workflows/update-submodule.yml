@@ -15,8 +15,8 @@ jobs:
     steps:
     - uses: actions/checkout@v4
       with:
-        fetch-depth: 0
-        token: ${{ secrets.PAT }}  # needed for trigger other workflow
+        persist-credentials: false
+        fetch-depth: 0 
 
     - name: Submodule update
       run: |
@@ -31,3 +31,4 @@ jobs:
         commit-message: 'Update all submodules'
         branch: submodules-update
         delete-branch: true
+        token: ${{ secrets.PAT }}  # needed for trigger other workflow
