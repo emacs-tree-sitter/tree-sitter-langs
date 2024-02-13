@@ -145,6 +145,7 @@ See `tree-sitter-langs-repos'."
                 (groovy-mode            . groovy)
                 (jenkinsfile-mode       . groovy)
                 (haskell-mode           . haskell)
+                (haxe-mode              . haxe)
                 (hcl-mode               . hcl)
                 (terraform-mode         . hcl)
                 (heex-mode              . heex)

@@ -111,6 +111,7 @@ jobs:
           - actionscript
           - ninja
           - svelte
+          - haxe
     steps:
     - uses: actions/checkout@v4
       with:
