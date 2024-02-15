@@ -1,6 +1,8 @@
 # Changelog
 
 ## Unreleased
+
+## 0.12.113 - 2024-02-15
 - Add `Haxe` support
 
 ## 0.12.112 - 2024-02-15
