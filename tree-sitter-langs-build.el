@@ -250,14 +250,14 @@ infrequent (grammar-only changes). It is different from the version of
   "List of suffixes for shared libraries that define tree-sitter languages.")
 
 (defconst tree-sitter-langs--langs-with-deps
-  '( arduino
-     astro
-     cpp
-     commonlisp
-     hlsl
-     glsl
-     toml
-     typescript)
+  '((arduino ("tree-sitter-c@0.20.6"))
+    (astro)
+    (cpp ("tree-sitter-c@0.20.6"))
+    (commonlisp)
+    (hlsl)
+    (glsl)
+    (toml)
+    (typescript))
   "Languages that depend on another, thus requiring `npm install'.")
 
 (defun tree-sitter-langs--bundle-file (&optional ext version os)
@@ -333,9 +333,14 @@ from the current state of the grammar repo, without cleanup."
         (:synchronized nil)
         (_
          (error "Weird status from git-submodule '%s'" status))))
-    (let ((default-directory dir))
-      (when (member lang-symbol tree-sitter-langs--langs-with-deps)
+    (let ((default-directory dir)
+          (langs-with-deps (mapcar #'car tree-sitter-langs--langs-with-deps))
+          (cmds (cadr (assoc lang-symbol tree-sitter-langs--langs-with-deps))))
+      (when (member lang-symbol langs-with-deps)
         (tree-sitter-langs--call "npm" "set" "progress=false")
+        (dolist (cmd cmds)
+          (with-demoted-errors (concat "Failed to run 'npm install %s': " cmd "%s")
+            (tree-sitter-langs--call "npm" "install" cmd)))
         (with-demoted-errors "Failed to run 'npm install': %s"
           (tree-sitter-langs--call "npm" "install")))
       ;; A repo can have multiple grammars (e.g. typescript + tsx).
