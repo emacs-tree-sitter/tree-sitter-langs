@@ -582,3 +582,9 @@
 	update = none
 	ignore = dirty
 	branch = master
+[submodule "repos/haxe"]
+	path = repos/haxe
+	url = https://github.com/vantreeseba/tree-sitter-haxe
+	update = none
+	ignore = dirty
+	branch = main
