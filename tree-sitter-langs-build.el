@@ -339,7 +339,7 @@ from the current state of the grammar repo, without cleanup."
       (when (member lang-symbol langs-with-deps)
         (tree-sitter-langs--call "npm" "set" "progress=false")
         (dolist (cmd cmds)
-          (with-demoted-errors (concat "Failed to run 'npm install %s': " cmd "%s")
+          (with-demoted-errors (concat "Failed to run 'npm install " cmd "': %s")
             (tree-sitter-langs--call "npm" "install" cmd)))
         (with-demoted-errors "Failed to run 'npm install': %s"
           (tree-sitter-langs--call "npm" "install")))
