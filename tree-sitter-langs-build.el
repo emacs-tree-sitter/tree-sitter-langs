@@ -163,7 +163,7 @@ git checkout."
                 ('ocaml '("ocaml" ("interface" . ocaml-interface)))
                 ('ocaml-interface '("interface" ("interface" . ocaml-interface)))
                 ('typescript '("typescript" ("tsx" . tsx)))
-                ('xml '("tree-sitter-xml" ("tree-sitter-dtd" . dtd)))
+                ('xml '("xml" ("dtd" . dtd)))
                 (_ '("")))))))
 
 (defun tree-sitter-langs--repo-status (lang-symbol)
