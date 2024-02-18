@@ -250,15 +250,21 @@ infrequent (grammar-only changes). It is different from the version of
   "List of suffixes for shared libraries that define tree-sitter languages.")
 
 (defconst tree-sitter-langs--langs-with-deps
-  '((arduino ("tree-sitter-c@0.20.6"))
+  '((arduino)
     (astro)
-    (cpp ("tree-sitter-c@0.20.6"))
+    (cpp)
     (commonlisp)
     (hlsl)
     (glsl)
     (toml)
     (typescript))
-  "Languages that depend on another, thus requiring `npm install'.")
+  "Languages that depend on another, thus requiring `npm install'.
+
+You can use it as an alist to force install certain dependencies. e.g.,
+
+  (cpp (\"tree-sitter-c@0.20.6\"))
+
+This can serve as a temporary workaround in case the upstream parsers encounter issues.")
 
 (defun tree-sitter-langs--bundle-file (&optional ext version os)
   "Return the grammar bundle file's name, with optional EXT.
