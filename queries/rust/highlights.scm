@@ -101,11 +101,6 @@
                            (struct_pattern
                             (field_pattern
                              (shorthand_field_identifier) @variable))])
-(if_let_expression pattern: [(identifier) @variable
-                             (_ (identifier) @variable)
-                             (struct_pattern
-                              (field_pattern
-                               (shorthand_field_identifier) @variable))])
 (for_expression pattern: [(identifier) @variable
                           (_ (identifier) @variable)
                           (struct_pattern
