@@ -368,7 +368,7 @@
 	ignore = dirty
 [submodule "repos/xml"]
 	path = repos/xml
-	url = https://github.com/ObserverOfTime/tree-sitter-xml
+	url = https://github.com/tree-sitter-grammars/tree-sitter-xml
 	branch = master
 	update = none
 	ignore = dirty
