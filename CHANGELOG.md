@@ -1,6 +1,8 @@
 # Changelog
 
 ## Unreleased
+
+## 0.12.150 - 2024-03-04
 - Add `highlights.scm` for `Zig`
 
 ## 0.12.149 - 2024-03-03
