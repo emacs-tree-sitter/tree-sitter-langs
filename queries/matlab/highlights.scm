@@ -149,6 +149,7 @@
 ; Repeats
 
 (for_statement [ "for" "parfor" "end" ] @keyword)
+(for_statement (iterator (identifier) @variable)) 
 (while_statement [ "while" "end" ] @keyword)
 (continue_statement) @keyword
 
