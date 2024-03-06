@@ -2,8 +2,6 @@
 
 ## Unreleased
 
-## 0.12.151 - 2024-03-06
-
 ## 0.12.150 - 2024-03-04
 - Add `highlights.scm` for `Zig`
 
