@@ -137,9 +137,11 @@
 ; Conditionals
 
 (if_statement [ "if" "end" ] @keyword)
+(if_statement (identifier) @variable)
 (elseif_clause "elseif" @keyword)
 (else_clause "else" @keyword)
 (switch_statement [ "switch" "end" ] @keyword)
+(switch_statement (identifier) @variable)
 (case_clause "case" @keyword)
 (otherwise_clause "otherwise" @keyword)
 (break_statement) @keyword
