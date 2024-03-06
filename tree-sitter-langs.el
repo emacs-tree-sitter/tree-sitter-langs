@@ -5,7 +5,7 @@
 ;; Author: Tuấn-Anh Nguyễn <ubolonton@gmail.com>
 ;; Keywords: languages tools parsers tree-sitter
 ;; Homepage: https://github.com/emacs-tree-sitter/tree-sitter-langs
-;; Version: 0.12.91
+;; Version: 0.12.150
 ;; Package-Requires: ((emacs "25.1") (tree-sitter "0.15.0"))
 ;; SPDX-License-Identifier: MIT
 
@@ -145,6 +145,7 @@ See `tree-sitter-langs-repos'."
                 (groovy-mode            . groovy)
                 (jenkinsfile-mode       . groovy)
                 (haskell-mode           . haskell)
+                (haxe-mode              . haxe)
                 (hcl-mode               . hcl)
                 (terraform-mode         . hcl)
                 (heex-mode              . heex)
@@ -184,6 +185,7 @@ See `tree-sitter-langs-repos'."
                 (org-mode               . org)
                 (pascal-mode            . pascal)
                 (perl-mode              . perl)
+                (cperl-mode             . perl)
                 (php-mode               . php)
                 (qss-mode               . css)
                 (prisma-mode            . prisma)
@@ -200,6 +202,7 @@ See `tree-sitter-langs-repos'."
                 (solidity-mode          . solidity)
                 (smithy-mode            . smithy)
                 (sql-mode               . sql)
+                (svelte-mode            . svelte)
                 (swift-mode             . swift)
                 (tablegen-mode          . tablegen)
                 (toml-mode              . toml)

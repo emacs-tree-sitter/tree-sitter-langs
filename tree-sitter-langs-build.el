@@ -163,7 +163,7 @@ git checkout."
                 ('ocaml '("ocaml" ("interface" . ocaml-interface)))
                 ('ocaml-interface '("interface" ("interface" . ocaml-interface)))
                 ('typescript '("typescript" ("tsx" . tsx)))
-                ('xml '("tree-sitter-xml" ("tree-sitter-dtd" . dtd)))
+                ('xml '("xml" ("dtd" . dtd)))
                 (_ '("")))))))
 
 (defun tree-sitter-langs--repo-status (lang-symbol)
@@ -230,7 +230,7 @@ latest commit."
 ;; ---------------------------------------------------------------------------
 ;;; Building language grammars.
 
-(defconst tree-sitter-langs--bundle-version "0.12.91"
+(defconst tree-sitter-langs--bundle-version "0.12.150"
   "Version of the grammar bundle.
 This should be bumped whenever a language submodule is updated, which should be
 infrequent (grammar-only changes). It is different from the version of
@@ -250,15 +250,21 @@ infrequent (grammar-only changes). It is different from the version of
   "List of suffixes for shared libraries that define tree-sitter languages.")
 
 (defconst tree-sitter-langs--langs-with-deps
-  '( arduino
-     astro
-     cpp
-     commonlisp
-     hlsl
-     glsl
-     toml
-     typescript)
-  "Languages that depend on another, thus requiring `npm install'.")
+  '((arduino)
+    (astro)
+    (cpp)
+    (commonlisp)
+    (hlsl)
+    (glsl)
+    (toml)
+    (typescript))
+  "Languages that depend on another, thus requiring `npm install'.
+
+You can use it as an alist to force install certain dependencies. e.g.,
+
+  (cpp (\"tree-sitter-c@0.20.6\"))
+
+This can serve as a temporary workaround in case the upstream parsers encounter issues.")
 
 (defun tree-sitter-langs--bundle-file (&optional ext version os)
   "Return the grammar bundle file's name, with optional EXT.
@@ -333,9 +339,14 @@ from the current state of the grammar repo, without cleanup."
         (:synchronized nil)
         (_
          (error "Weird status from git-submodule '%s'" status))))
-    (let ((default-directory dir))
-      (when (member lang-symbol tree-sitter-langs--langs-with-deps)
+    (let ((default-directory dir)
+          (langs-with-deps (mapcar #'car tree-sitter-langs--langs-with-deps))
+          (cmds (cadr (assoc lang-symbol tree-sitter-langs--langs-with-deps))))
+      (when (member lang-symbol langs-with-deps)
         (tree-sitter-langs--call "npm" "set" "progress=false")
+        (dolist (cmd cmds)
+          (with-demoted-errors "Failed to run 'npm install XXX': %s"
+            (tree-sitter-langs--call "npm" "install" cmd)))
         (with-demoted-errors "Failed to run 'npm install': %s"
           (tree-sitter-langs--call "npm" "install")))
       ;; A repo can have multiple grammars (e.g. typescript + tsx).
