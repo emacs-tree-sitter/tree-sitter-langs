@@ -47,69 +47,6 @@
 
 "~" @constant.builtin
 
-; Fields/Properties
-
-(field_expression field: (identifier) @property)
-(superclass "." (identifier) @property)
-(property_name "." (identifier) @property)
-(property name: (identifier) @property)
-
-; Types
-
-(class_definition name: (identifier) @type)
-(attributes (identifier) @constant)
-(enum . (identifier) @type)
-
-; Functions
-
-(function_definition
-  "function" @keyword
-  name: (identifier) @function
-  [ "end" "endfunction" ]? @keyword)
-
-(function_signature name: (identifier) @function)
-
-(function_call name: (identifier) @function.call)
-
-(handle_operator (identifier) @function)
-(validation_functions (identifier) @function)
-
-(command (command_name) @function.macro)
-(command_argument) @string
-
-(return_statement) @keyword
-
-; Parameters
-
-(lambda (arguments (identifier) @variable.parameter))
-(function_arguments (identifier) @variable.parameter)
-
-; Conditionals
-
-(if_statement [ "if" "end" ] @keyword)
-(elseif_clause "elseif" @keyword)
-(else_clause "else" @keyword)
-(switch_statement [ "switch" "end" ] @keyword)
-(case_clause "case" @keyword)
-(otherwise_clause "otherwise" @keyword)
-(break_statement) @keyword
-
-; Repeats
-
-(for_statement [ "for" "parfor" "end" ] @keyword)
-(while_statement [ "while" "end" ] @keyword)
-(continue_statement) @keyword
-
-; Exceptions
-
-(try_statement [ "try" "end" ] @keyword)
-(catch_clause "catch" @keyword)
-
-; Punctuation
-
-[ ";" "," "." ] @punctuation.delimiter
-[ "(" ")" "[" "]" "{" "}" ] @punctuation.bracket
-
 ; Literals
 
 (escape_sequence) @escape
@@ -118,9 +55,10 @@
 (number) @number
 (boolean) @constant.builtin
 
-; Comments
+; Punctuation
 
-[ (comment) (line_continuation) ] @comment @spell
+[ ";" "," "." ] @punctuation.delimiter
+[ "(" ")" "[" "]" "{" "}" ] @punctuation.bracket
 
 ; Operators
 
@@ -157,13 +95,80 @@
   ":"
 ] @operator
 
+; Fields/Properties
+
+(field_expression object: (identifier) @variable)
+(field_expression field: (identifier) @variable.parameter)
+(superclass "." (identifier) @property)
+(property_name "." (identifier) @property)
+(property name: (identifier) @property)
+
+; Types
+
+(class_definition name: (identifier) @type)
+(attributes (identifier) @constant)
+(enum . (identifier) @type)
+
+; Functions
+
+(function_definition
+  "function" @keyword
+  name: (identifier) @function
+  [ "end" "endfunction" ]? @keyword)
+
+(function_signature name: (identifier) @function)
+
+(function_call name: (identifier) @function.call)
+(function_call (arguments) @variable.parameter)
+
+(handle_operator (identifier) @function)
+(validation_functions (identifier) @function)
+
+(command (command_name) @function.macro)
+(command_argument) @string
+
+(return_statement) @keyword
+
+; Parameters
+
+(lambda (arguments (identifier) @variable.parameter))
+(function_arguments (identifier) @variable.parameter)
+
+; Conditionals
+
+(if_statement [ "if" "end" ] @keyword)
+(if_statement (identifier) @variable)
+(elseif_clause "elseif" @keyword)
+(else_clause "else" @keyword)
+(switch_statement [ "switch" "end" ] @keyword)
+(switch_statement (identifier) @variable)
+(case_clause "case" @keyword)
+(otherwise_clause "otherwise" @keyword)
+(break_statement) @keyword
+
+; Repeats
+
+(for_statement [ "for" "parfor" "end" ] @keyword)
+(for_statement (iterator (identifier) @variable)) 
+(while_statement [ "while" "end" ] @keyword)
+(continue_statement) @keyword
+
+; Exceptions
+
+(try_statement [ "try" "end" ] @keyword)
+(catch_clause "catch" @keyword)
+
+; Comments
+
+[ (comment) (line_continuation) ] @comment @spell
+
 ; Assignments
 
 (assignment left: (_) @variable)
+(assignment right: (_) @variable)
 (multioutput_variable (_) @variable)
 
 ; Keywords
-
 [
   "arguments"
   "classdef"
@@ -176,3 +181,5 @@
   "properties"
 ] @keyword
 
+; Binary operation
+(binary_operator) @variable

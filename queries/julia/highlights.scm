@@ -1,6 +1,6 @@
 ;;; Identifiers
 
-(identifier) @variable
+(identifier) @variable.parameter
 
 					; ;; If you want type highlighting based on Julia naming conventions (this might collide with mathematical notation)
 					; ((identifier) @type
@@ -410,7 +410,7 @@
 (do_clause
  ["do" "end"] @keyword.function)
 (return_statement
- "return" @keyword.return)
+ "return" @keyword)
 
 [
  "const"
@@ -494,3 +494,5 @@
 ;;  (block_comment)
 ;;  ] @comment @spell
 (comment) @comment
+(triple_string) @comment
+(block_comment) @comment
