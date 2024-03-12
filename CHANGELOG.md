@@ -1,6 +1,8 @@
 # Changelog
 
 ## Unreleased
+
+## 0.12.153 - 2024-03-12
 - Improve `Zig` highlighting
 
 ## 0.12.152 - 2024-03-10
