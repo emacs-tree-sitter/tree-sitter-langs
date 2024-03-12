@@ -14,8 +14,8 @@ parameter: (IDENTIFIER) @parameter
 
 [
  field_member: (IDENTIFIER)
- field_access: (IDENTIFIER)
-] @field
+               field_access: (IDENTIFIER)
+               ] @field
 
 ;; assume TitleCase is a type
 (
@@ -24,7 +24,7 @@ parameter: (IDENTIFIER) @parameter
                           field_access: (IDENTIFIER)
                           parameter: (IDENTIFIER)
                           ] @type
-                            (#match? @type "^[A-Z]([a-z]+[A-Za-z0-9]*)*$")
+                            (#match? @type "^[A-Z]+([a-z]+[A-Za-z0-9]*)*$")
                             )
 
 ;; assume camelCase is a function
@@ -34,7 +34,7 @@ parameter: (IDENTIFIER) @parameter
                           field_access: (IDENTIFIER)
                           parameter: (IDENTIFIER)
                           ] @function
-                            (#match? @function "^[a-z]+([A-Z][a-z0-9]*)+$")
+                            (#match? @function "^[a-z]+([A-Z]+[a-z0-9]*)+$")
                             )
 
 ;; assume all CAPS_1 is a constant
@@ -43,7 +43,7 @@ parameter: (IDENTIFIER) @parameter
   variable_type_function: (IDENTIFIER)
                           field_access: (IDENTIFIER)
                           ] @constant
-                            (#match? @constant "^[A-Z][A-Z_0-9]+$")
+                            (#match? @constant "^[A-Z]+[A-Z_0-9]+$")
                             )
 
 function: (IDENTIFIER) @function
