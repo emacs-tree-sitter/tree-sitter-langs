@@ -588,3 +588,9 @@
 	update = none
 	ignore = dirty
 	branch = main
+[submodule "repos/cobol"]
+	path = repos/cobol
+	url = https://github.com/yutaro-sakamoto/tree-sitter-cobol
+	update = none
+	ignore = dirty
+	branch = main
