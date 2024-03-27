@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Add `COBOL` support
 
 ## 0.12.163 - 2024-03-24
 
