@@ -264,7 +264,8 @@ You can use it as an alist to force install certain dependencies. e.g.,
 
   (cpp (\"tree-sitter-c@0.20.6\"))
 
-This can serve as a temporary workaround in case the upstream parsers encounter issues.")
+This can serve as a temporary workaround in case the upstream parsers
+encounter issues.")
 
 (defun tree-sitter-langs--bundle-file (&optional ext version os)
   "Return the grammar bundle file's name, with optional EXT.
@@ -582,10 +583,10 @@ In case of retrieval or parsing error, logs an error message and returns nil."
 ;;;###autoload
 (defun tree-sitter-langs-install-latest-grammar (&optional skip-if-installed os keep-bundle)
   "Install the latest version of the tree-sitter-langs grammar bundle.
-Automatically retrieves the latest version tag from GitHub.
-If SKIP-IF-INSTALLED is non-nil, skips if the latest version is already installed.
-OS specifies the operating system.
-If KEEP-BUNDLE is non-nil, the downloaded bundle file is not deleted after installation."
+Automatically retrieves the latest version tag from GitHub.  If
+SKIP-IF-INSTALLED is non-nil, skips if the latest version is already installed.
+OS specifies the operating system.  If KEEP-BUNDLE is non-nil, the downloaded
+bundle file is not deleted after installation."
   (interactive (list 't tree-sitter-langs--os nil))
   (message "Fetching the latest version of tree-sitter-langs...")
   (let ((latest-tag (tree-sitter-langs-get-latest-tag)))
