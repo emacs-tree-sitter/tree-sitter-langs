@@ -1,7 +1,7 @@
 # Changelog
 
 ## Unreleased
-- feat(queries): Extra `ecma` rules
+- feat(queries): Extract `ecma` rules
 
 ## 0.12.165 - 2024-03-31
 
