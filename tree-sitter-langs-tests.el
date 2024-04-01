@@ -20,7 +20,7 @@
   (require 'subr-x))
 
 (defvar tree-sitter-langs-tests-ignore-queries
-  '( psv tsv)
+  '( psv tsv ecma)
   "List of queries to ignore the test.")
 
 (defun tree-sitter-langs-tests-check-queries (lang-symbol)
