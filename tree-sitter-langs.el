@@ -252,8 +252,9 @@ Return nil if there are no bundled patterns."
                              ('cpp        '(c))
                              ('csv        '(tsv))
                              ('hlsl       '(cpp c))
-                             ('typescript '(javascript))
-                             ('tsx        '(typescript javascript))
+                             ('javascript '(ecma))
+                             ('typescript '(ecma))
+                             ('tsx        '(ecma typescript))
                              (_           nil))))
           (when mode
             (ignore-error 'file-missing
