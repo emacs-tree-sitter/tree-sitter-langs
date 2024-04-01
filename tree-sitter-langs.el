@@ -254,8 +254,9 @@ Return nil if there are no bundled patterns."
                              ('hlsl       '(cpp c))
                              ('html       '(html_tags))
                              ('svelte     '(html_tags))
-                             ('typescript '(javascript))
-                             ('tsx        '(typescript javascript))
+                             ('javascript '(ecma))
+                             ('typescript '(ecma))
+                             ('tsx        '(ecma typescript))
                              (_           nil))))
           (when mode
             (ignore-error 'file-missing
