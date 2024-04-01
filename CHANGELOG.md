@@ -1,6 +1,8 @@
 # Changelog
 
 ## Unreleased
+
+## 0.12.166 - 2024-04-01
 - feat(queries): Extract `html_tags` rules
 - feat(queries): Extract `ecma` rules
 
