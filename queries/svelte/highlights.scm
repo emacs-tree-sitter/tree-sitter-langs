@@ -1,4 +1,4 @@
-; inherits: html_tags
+;; inherits: html_tags
 (raw_text_expr) @none
 
 [
