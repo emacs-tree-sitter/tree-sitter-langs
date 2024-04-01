@@ -248,10 +248,12 @@ Return nil if there are no bundled patterns."
         (dolist (sym (cons lang-symbol
                            (pcase lang-symbol
                              ('arduino    '(cpp c))
-                             ('astro      '(html))
+                             ('astro      '(html_tags html))
                              ('cpp        '(c))
                              ('csv        '(tsv))
                              ('hlsl       '(cpp c))
+                             ('html       '(html_tags))
+                             ('svelte     '(html_tags))
                              ('javascript '(ecma))
                              ('typescript '(ecma))
                              ('tsx        '(ecma typescript))
