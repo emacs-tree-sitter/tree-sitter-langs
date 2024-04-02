@@ -242,8 +242,14 @@
 	ignore = dirty
 [submodule "repos/markdown"]
 	path = repos/markdown
-	url = https://github.com/ikatyang/tree-sitter-markdown
-	branch = master
+	url = https://github.com/tree-sitter-grammars/tree-sitter-markdown.git
+	branch = split_parser
+	update = none
+	ignore = dirty
+[submodule "repos/markdown-inline"]
+	path = repos/markdown-inline
+	url = https://github.com/tree-sitter-grammars/tree-sitter-markdown.git
+	branch = split_parser
 	update = none
 	ignore = dirty
 [submodule "repos/scheme"]
