@@ -164,6 +164,8 @@ git checkout."
                 ('ocaml-interface '("interface" ("interface" . ocaml-interface)))
                 ('typescript '("typescript" ("tsx" . tsx)))
                 ('xml '("xml" ("dtd" . dtd)))
+                ('markdown '("tree-sitter-markdown" ("tree-sitter-markdown" . markdown)))
+                ('markdown-inline '("tree-sitter-markdown-inline" ("tree-sitter-markdown-inline" . markdown)))
                 (_ '("")))))))
 
 (defun tree-sitter-langs--repo-status (lang-symbol)
