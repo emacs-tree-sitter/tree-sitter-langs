@@ -1,5 +1,5 @@
 (package "tree-sitter-langs"
-         "0.12.18"
+         "0.12.165"
          "Grammar bundle for tree-sitter")
 
 (website-url "https://github.com/emacs-tree-sitter/tree-sitter-langs")

@@ -104,8 +104,8 @@
 (for_expression pattern: [(identifier) @variable
                           (_ (identifier) @variable)
                           (struct_pattern
-                            (field_pattern
-                             (shorthand_field_identifier) @variable))])
+                           (field_pattern
+                            (shorthand_field_identifier) @variable))])
 
 (assignment_expression
  left: [(identifier) @variable
@@ -171,9 +171,10 @@
  (string_literal)
  (raw_string_literal)] @string
 
-[(boolean_literal)
- (integer_literal)
- (float_literal)] @constant.builtin
+(boolean_literal) @constant.builtin
+
+[(integer_literal)
+ (float_literal)] @number
 
 (escape_sequence) @escape
 

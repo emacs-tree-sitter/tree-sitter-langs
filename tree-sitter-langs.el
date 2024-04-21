@@ -5,14 +5,14 @@
 ;; Author: Tuấn-Anh Nguyễn <ubolonton@gmail.com>
 ;; Keywords: languages tools parsers tree-sitter
 ;; Homepage: https://github.com/emacs-tree-sitter/tree-sitter-langs
-;; Version: 0.12.150
+;; Version: 0.12.178
 ;; Package-Requires: ((emacs "25.1") (tree-sitter "0.15.0"))
 ;; SPDX-License-Identifier: MIT
 
 ;;; Commentary:
 
-;; This is a convenient language bundle for the Emacs package `tree-sitter'. It
-;; serves as an interim distribution mechanism, until `tree-sitter' is
+;; This is a convenient language bundle for the Emacs package `tree-sitter'.
+;; It serves as an interim distribution mechanism, until `tree-sitter' is
 ;; widespread enough for language-specific major modes to incorporate its
 ;; functionalities.
 ;;
@@ -22,8 +22,8 @@
 ;;    Windows, on x86_64. In the future, `tree-sitter-langs' may provide tooling
 ;;    for major modes to do this on their own.
 ;;
-;; 2. Optional highlighting patterns. This is mainly intended for major modes
-;;    that are not aware of `tree-sitter'. A language major mode that wants to
+;; 2. Optional highlighting patterns.  This is mainly intended for major modes
+;;    that are not aware of `tree-sitter'.  A language major mode that wants to
 ;;    use `tree-sitter' for syntax highlighting should instead provide the query
 ;;    patterns on its own, using the mechanisms defined by `tree-sitter-hl'.
 ;;
@@ -231,7 +231,7 @@ See `tree-sitter-langs-repos'."
 (defun tree-sitter-langs--hl-query-path (lang-symbol &optional mode)
   "Return the highlighting query file for LANG-SYMBOL.
 If MODE is non-nil, return the file containing additional MODE-specfic patterns
-instead. An example is `terraform-mode'-specific highlighting patterns for HCL."
+instead.  An example is `terraform-mode'-specific highlighting patterns for HCL."
   (concat (file-name-as-directory
            (concat tree-sitter-langs--queries-dir
                    (symbol-name lang-symbol)))
@@ -248,12 +248,15 @@ Return nil if there are no bundled patterns."
         (dolist (sym (cons lang-symbol
                            (pcase lang-symbol
                              ('arduino    '(cpp c))
-                             ('astro      '(html))
+                             ('astro      '(html_tags html))
                              ('cpp        '(c))
                              ('csv        '(tsv))
                              ('hlsl       '(cpp c))
-                             ('typescript '(javascript))
-                             ('tsx        '(typescript javascript))
+                             ('html       '(html_tags))
+                             ('svelte     '(html_tags))
+                             ('javascript '(ecma))
+                             ('typescript '(ecma))
+                             ('tsx        '(ecma typescript))
                              (_           nil))))
           (when mode
             (ignore-error 'file-missing
