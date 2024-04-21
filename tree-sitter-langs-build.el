@@ -203,7 +203,7 @@ git checkout."
 
 (defun tree-sitter-langs--get-latest (type)
   "Return the latest tags/commits of the language repositories.
-TYPE should be either `:commits' or `:tags'. If there's no tag, return the
+TYPE should be either `:commits' or `:tags'.  If there's no tag, return the
 latest commit."
   (require 'magit)
   (tree-sitter-langs--map-repos
@@ -235,7 +235,7 @@ latest commit."
 (defconst tree-sitter-langs--bundle-version "0.12.178"
   "Version of the grammar bundle.
 This should be bumped whenever a language submodule is updated, which should be
-infrequent (grammar-only changes). It is different from the version of
+infrequent (grammar-only changes).  It is different from the version of
 `tree-sitter-langs', which can change frequently (when queries change).")
 
 (defconst tree-sitter-langs--bundle-version-file "BUNDLE-VERSION")
@@ -262,7 +262,7 @@ infrequent (grammar-only changes). It is different from the version of
     (typescript))
   "Languages that depend on another, thus requiring `npm install'.
 
-You can use it as an alist to force install certain dependencies. e.g.,
+You can use it as an alist to force install certain dependencies.  e.g.,
 
   (cpp (\"tree-sitter-c@0.20.6\"))
 
@@ -303,7 +303,7 @@ If VERSION and OS are not spcified, use the defaults of
 This function requires git and tree-sitter CLI.
 
 If the optional arg CLEAN is non-nil, compile from the revision recorded in this
-project (through git submodules), and clean up afterwards. Otherwise, compile
+project (through git submodules), and clean up afterwards.  Otherwise, compile
 from the current state of the grammar repo, without cleanup."
   (message "[tree-sitter-langs] Processing %s" lang-symbol)
   (unless (executable-find "git")
@@ -443,7 +443,7 @@ from the current state of the grammar repo, without cleanup."
 The bundle includes all languages tracked in git submodules.
 
 If the optional arg CLEAN is non-nil, compile from the revisions recorded in
-this project (through git submodules), and clean up afterwards. Otherwise,
+this project (through git submodules), and clean up afterwards.  Otherwise,
 compile from the current state of the grammar repos, without cleanup."
   (unless (executable-find "tar")
     (error "Could not find tar executable (needed to bundle compiled grammars)"))
@@ -472,7 +472,7 @@ compile from the current state of the grammar repos, without cleanup."
                ;; Disk names in Windows can confuse tar, so we need this option. BSD
                ;; tar (macOS) doesn't have it, so we don't set it everywhere.
                ;; https://unix.stackexchange.com/questions/13377/tar/13381#13381.
-               (tar-opts ))
+               (tar-opts nil))
           (with-temp-file tree-sitter-langs--bundle-version-file
             (let ((coding-system-for-write 'utf-8))
               (insert tree-sitter-langs--bundle-version)))
