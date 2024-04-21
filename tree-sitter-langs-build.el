@@ -472,8 +472,7 @@ compile from the current state of the grammar repos, without cleanup."
                ;; Disk names in Windows can confuse tar, so we need this option. BSD
                ;; tar (macOS) doesn't have it, so we don't set it everywhere.
                ;; https://unix.stackexchange.com/questions/13377/tar/13381#13381.
-               (tar-opts (pcase system-type
-                           ('windows-nt '("--force-local")))))
+               (tar-opts ))
           (with-temp-file tree-sitter-langs--bundle-version-file
             (let ((coding-system-for-write 'utf-8))
               (insert tree-sitter-langs--bundle-version)))
