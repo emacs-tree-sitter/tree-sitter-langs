@@ -232,7 +232,7 @@ latest commit."
 ;; ---------------------------------------------------------------------------
 ;;; Building language grammars.
 
-(defconst tree-sitter-langs--bundle-version "0.12.179"
+(defconst tree-sitter-langs--bundle-version "0.12.180"
   "Version of the grammar bundle.
 This should be bumped whenever a language submodule is updated, which should be
 infrequent (grammar-only changes).  It is different from the version of
