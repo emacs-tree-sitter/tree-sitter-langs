@@ -232,7 +232,7 @@ latest commit."
 ;; ---------------------------------------------------------------------------
 ;;; Building language grammars.
 
-(defconst tree-sitter-langs--bundle-version "0.12.179"
+(defconst tree-sitter-langs--bundle-version "0.12.182"
   "Version of the grammar bundle.
 This should be bumped whenever a language submodule is updated, which should be
 infrequent (grammar-only changes).  It is different from the version of
@@ -244,6 +244,7 @@ infrequent (grammar-only changes).  It is different from the version of
   (pcase system-type
     ('darwin "macos")
     ('gnu/linux "linux")
+    ('android "linux")
     ('berkeley-unix "freebsd")
     ('windows-nt "windows")
     (_ (error "Unsupported system-type %s" system-type))))
