@@ -166,6 +166,7 @@ See `tree-sitter-langs-repos'."
                 (julia-mode             . julia)
                 (kotlin-mode            . kotlin)
                 (latex-mode             . latex)
+                (LaTeX-mode             . latex)
                 (llvm-mode              . llvm)
                 (llvm-mir-mode          . llvm-mir)
                 (lua-mode               . lua)
