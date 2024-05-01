@@ -24,6 +24,9 @@
 (column_definition
  name: (identifier) @variable)
 
+(column
+ (identifier) @variable)
+
 (term
  alias: (identifier) @variable)
 
