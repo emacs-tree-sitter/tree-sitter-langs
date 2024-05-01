@@ -1,14 +1,14 @@
 ;; keys
 (block_mapping_pair
- key: (flow_node [(double_quote_scalar) (single_quote_scalar)] @variable))
+ key: (flow_node [(double_quote_scalar) (single_quote_scalar)] @property))
 (block_mapping_pair
- key: (flow_node (plain_scalar (string_scalar) @variable)))
+ key: (flow_node (plain_scalar (string_scalar) @property)))
 
 ;; keys within inline {} blocks
 (flow_mapping
- (_ key: (flow_node [(double_quote_scalar) (single_quote_scalar)] @variable)))
+ (_ key: (flow_node [(double_quote_scalar) (single_quote_scalar)] @property)))
 (flow_mapping
- (_ key: (flow_node (plain_scalar (string_scalar) @variable))))
+ (_ key: (flow_node (plain_scalar (string_scalar) @property))))
 
 ["[" "]" "{" "}"] @punctuation.bracket
 ["," "-" ":" "?" ">" "|"] @punctuation.delimiter

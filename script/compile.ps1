@@ -11,7 +11,11 @@ try {
             if (!$base) {
                 $base = "origin/master"
             }
-            $code = "(tree-sitter-langs-compile-changed-or-all \`"$base\`")"
+            if ($Env:GITHUB_WORKSPACE) {
+                $code = "(tree-sitter-langs-compile-changed-or-all `"$base`")"
+            } else {
+                $code = "(tree-sitter-langs-compile-changed-or-all \`"$base\`")"
+            }
         }
         default { $code = "(tree-sitter-langs-compile '$lang)" }
     }
