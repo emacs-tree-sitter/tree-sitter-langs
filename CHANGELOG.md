@@ -2,6 +2,8 @@
 
 ## Unreleased
 - Add `Doxygen` support
+
+## 0.12.186 - 2024-05-02
 - Add `comment` support
 
 ## 0.12.185 - 2024-05-01
