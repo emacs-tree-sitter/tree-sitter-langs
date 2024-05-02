@@ -600,3 +600,9 @@
 	update = none
 	ignore = dirty
 	branch = main
+[submodule "repos/doxygen"]
+	path = repos/doxygen
+	url = https://github.com/tree-sitter-grammars/tree-sitter-doxygen
+	update = none
+	ignore = dirty
+	branch = master
