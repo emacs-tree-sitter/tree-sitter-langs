@@ -1,6 +1,8 @@
 # Changelog
 
 ## Unreleased
+
+## 0.12.187 - 2024-05-02
 - Add `Doxygen` support
 
 ## 0.12.186 - 2024-05-02
