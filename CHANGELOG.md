@@ -2,6 +2,7 @@
 
 ## Unreleased
 - Add `Doxygen` support
+- Add `comment` support
 
 ## 0.12.185 - 2024-05-01
 
