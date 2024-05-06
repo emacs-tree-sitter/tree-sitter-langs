@@ -1,7 +1,7 @@
 # Changelog
 
-# Unreleased
-#- Add `Purescript` support
+## Unreleased
+- Add `Purescript` support
 
 ## 0.12.190 - 2024-05-06
 
