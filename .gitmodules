@@ -606,3 +606,9 @@
 	update = none
 	ignore = dirty
 	branch = master
+[submodule "repos/purescript"]
+	path = repos/purescript
+	url = https://github.com/postsolar/tree-sitter-purescript
+	update = none
+	ignore = dirty
+	branch = main
