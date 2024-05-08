@@ -33,7 +33,6 @@
 [
   (comma)
   ";"
-  (qualified_module) ; grabs the `.` (dot), ex: import System.IO
   "."
 ] @punctuation.delimiter
 
@@ -47,12 +46,12 @@
   "else"
   "case"
   "of"
-] @conditional
+] @keyword
 
 [
   "import"
   "module"
-] @include
+] @keyword
 
 [
   (operator)
@@ -76,19 +75,8 @@
   "@"
 ] @operator
 
-(qualified_module
-  (module) @constructor)
 
-(module) @namespace
-
-(qualified_type
-  (module) @namespace)
-
-(qualified_variable
-  (module) @namespace)
-
-(import
-  (module) @namespace)
+(module) @type.builtin
 
 [
   (where)
@@ -105,8 +93,6 @@
   "hiding"
   "do"
   "ado"
-  "forall"
-  "∀"
   "infix"
   "infixl"
   "infixr"
@@ -132,43 +118,51 @@
 (exp_apply
   .
   (exp_name
-    (variable) @function))
+    (variable) @function.call))
 
 (exp_apply
   .
   (exp_name
     (qualified_variable
-      (variable) @function)))
+      (variable) @function.call)))
 
 (row_field
-  (field_name) @field)
+  (field_name) @constant)
 
 (record_field
-  (field_name) @field)
+  (field_name) @constant)
 
 (record_field
-  (field_pun) @field)
+  (field_pun) @constant)
 
 (record_accessor
   field: [ (variable)
            (string)
            (triple_quote_string)
-         ] @variable.other.member)
+         ] @variable)
 
 (exp_record_access
   field: [ (variable)
            (string)
            (triple_quote_string)
-         ] @variable.other.member)
+         ] @variable)
+
+(pat_wildcard) @operator
+
+(field_wildcard) @operator
+
+(pat_field (field_name) @constant)
+
+(record_update (field_name) @constant)
 
 (signature
-  name: (variable) @type)
+  name: (variable) @function)
 
 (kind_declaration
   (class_name) @type)
 
 (function
-  name: (variable) @function)
+  name: (variable) @function.call)
 
 (foreign_import
   (variable) @function)
@@ -182,9 +176,6 @@
 ((variable) @boolean
   (#any-of? @boolean "true" "false"))
 
-; The former one works for `tree-sitter highlight` but not in Helix/Kakoune.
-; The latter two work in Helix (but not Kakoune) and are a good compromise between not highlighting anything at all
-; as an operator and leaving it to the child nodes, and highlighting everything as an operator.
 (exp_ticked
   (_) @operator)
 
@@ -201,5 +192,6 @@
 ; Types
 
 (type) @type
+(type_variable) @type.argument
 
 (constructor) @constructor
