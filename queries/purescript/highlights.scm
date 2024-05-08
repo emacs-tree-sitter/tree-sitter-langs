@@ -93,6 +93,8 @@
   "hiding"
   "do"
   "ado"
+  "forall"
+  "∀"
   "infix"
   "infixl"
   "infixr"
