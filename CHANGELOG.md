@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 0.12.193 - 2024-05-12
+
 ## 0.12.192 - 2024-05-12
 - Update `CSS` highlights.scm
 
