@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Update `CSS` highlights.scm
 
 ## 0.12.191 - 2024-05-06
 - Add `Purescript` support
