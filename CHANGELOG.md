@@ -1,6 +1,8 @@
 # Changelog
 
 ## Unreleased
+
+## 0.12.192 - 2024-05-12
 - Update `CSS` highlights.scm
 
 ## 0.12.191 - 2024-05-06
