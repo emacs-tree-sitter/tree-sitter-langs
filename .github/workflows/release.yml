@@ -117,7 +117,7 @@ jobs:
           cat RELEASE-NOTES
 
       - name: Download binaries
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v4
         with:
           name: tree-sitter-grammars
       - run: ls -R
