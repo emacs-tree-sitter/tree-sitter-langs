@@ -199,12 +199,6 @@
 	branch = master
 	update = none
 	ignore = dirty
-[submodule "repos/zig"]
-	path = repos/zig
-	url = https://github.com/maxxnino/tree-sitter-zig
-	branch = main
-	update = none
-	ignore = dirty
 [submodule "repos/verilog"]
 	path = repos/verilog
 	url = https://github.com/tree-sitter/tree-sitter-verilog.git
@@ -612,3 +606,9 @@
 	update = none
 	ignore = dirty
 	branch = main
+[submodule "repos/zig"]
+	path = repos/zig
+	url = https://github.com/GrayJack/tree-sitter-zig.git
+        update = none
+        ignore = dirty
+        branch = master
