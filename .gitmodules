@@ -614,7 +614,7 @@
 	branch = main
 [submodule "repos/vim"]
 	path = repos/vim
-	url = https://github.com/neovim/tree-sitter-vim
-	branch = master
+	url = https://github.com/tree-sitter-grammars/tree-sitter-vim
 	update = none
 	ignore = dirty
+	branch = master
