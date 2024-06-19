@@ -55,6 +55,12 @@
 	update = none
 	ignore = dirty
 	branch = master
+[submodule "repos/gleam"]
+	path = repos/gleam
+	url = https://github.com/gleam-lang/tree-sitter-gleam
+	update = none
+	ignore = dirty
+	branch = main
 [submodule "repos/go"]
 	path = repos/go
 	url = https://github.com/tree-sitter/tree-sitter-go
@@ -162,7 +168,7 @@
 	url = https://github.com/MichaHoffmann/tree-sitter-hcl
 	update = none
 	ignore = dirty
-	branch = master
+	branch = main
 [submodule "repos/elixir"]
 	path = repos/elixir
 	url = https://github.com/elixir-lang/tree-sitter-elixir
@@ -177,8 +183,8 @@
 	ignore = dirty
 [submodule "repos/nix"]
 	path = repos/nix
-	url = https://github.com/cstrahan/tree-sitter-nix
-	branch = main
+	url = https://github.com/nix-community/tree-sitter-nix
+	branch = master
 	update = none
 	ignore = dirty
 [submodule "repos/prisma"]
@@ -220,7 +226,7 @@
 [submodule "repos/r"]
 	path = repos/r
 	url = https://github.com/r-lib/tree-sitter-r.git
-	branch = master
+	branch = main
 	update = none
 	ignore = dirty
 [submodule "repos/lua"]
@@ -236,14 +242,22 @@
 	ignore = dirty
 [submodule "repos/markdown"]
 	path = repos/markdown
-	url = https://github.com/ikatyang/tree-sitter-markdown
-	branch = master
+	url = https://github.com/tree-sitter-grammars/tree-sitter-markdown.git
+	branch = split_parser
+	update = none
+	ignore = dirty
+[submodule "repos/markdown-inline"]
+	path = repos/markdown-inline
+	url = https://github.com/tree-sitter-grammars/tree-sitter-markdown.git
+	branch = split_parser
 	update = none
 	ignore = dirty
 [submodule "repos/scheme"]
 	path = repos/scheme
 	url = https://github.com/6cdh/tree-sitter-scheme
 	branch = main
+	update = none
+	ignore = dirty
 [submodule "repos/smithy"]
 	path = repos/smithy
 	url = https://github.com/indoorvivants/tree-sitter-smithy
@@ -260,6 +274,12 @@
 	path = repos/clojure
 	url = https://github.com/sogaiu/tree-sitter-clojure
 	branch = master
+	update = none
+	ignore = dirty
+[submodule "repos/magik"]
+	path = repos/magik
+	url = https://github.com/krn-robin/tree-sitter-magik
+	branch = main
 	update = none
 	ignore = dirty
 [submodule "repos/meson"]
@@ -354,7 +374,7 @@
 	ignore = dirty
 [submodule "repos/xml"]
 	path = repos/xml
-	url = https://github.com/ObserverOfTime/tree-sitter-xml
+	url = https://github.com/tree-sitter-grammars/tree-sitter-xml
 	branch = master
 	update = none
 	ignore = dirty
@@ -376,12 +396,222 @@
 	branch = master
 	update = none
 	ignore = dirty
+[submodule "repos/comment"]
+	path = repos/comment
+	url = https://github.com/stsewd/tree-sitter-comment
+	branch = master
+	update = none
+	ignore = dirty
 [submodule "repos/cmake"]
 	path = repos/cmake
 	url = https://github.com/uyha/tree-sitter-cmake
 	branch = master
 	update = none
 	ignore = dirty
+[submodule "repos/asm"]
+	path = repos/asm
+	url = https://github.com/rush-rs/tree-sitter-asm
+	branch = main
+	update = none
+	ignore = dirty
+[submodule "repos/mermaid"]
+	path = repos/mermaid
+	url = https://github.com/monaqa/tree-sitter-mermaid
+	branch = master
+	update = none
+	ignore = dirty
+[submodule "repos/rst"]
+	path = repos/rst
+	url = https://github.com/stsewd/tree-sitter-rst/
+	branch = master
+	update = none
+	ignore = dirty
+[submodule "repos/ocaml-interface"]
+	path = repos/ocaml-interface
+	url = https://github.com/tree-sitter/tree-sitter-ocaml
+	branch = master
+	update = none
+	ignore = dirty
+[submodule "repos/make"]
+	path = repos/make
+	url = https://github.com/alemuller/tree-sitter-make
+	branch = main
+	update = none
+	ignore = dirty
+[submodule "repos/sql"]
+	path = repos/sql
+	url = https://github.com/DerekStride/tree-sitter-sql
+	branch = main
+	update = none
+	ignore = dirty
+[submodule "repos/gitattributes"]
+	path = repos/gitattributes
+	url = https://github.com/ObserverOfTime/tree-sitter-gitattributes
+	branch = master
+	update = none
+	ignore = dirty
+[submodule "repos/gitignore"]
+	path = repos/gitignore
+	url = https://github.com/shunsambongi/tree-sitter-gitignore
+	branch = main
+	update = none
+	ignore = dirty
+[submodule "repos/gitcommit"]
+	path = repos/gitcommit
+	url = https://github.com/gbprod/tree-sitter-gitcommit
+	branch = main
+	update = none
+	ignore = dirty
+[submodule "repos/git-rebase"]
+	path = repos/git-rebase
+	url = https://github.com/the-mikedavis/tree-sitter-git-rebase
+	branch = main
+	update = none
+	ignore = dirty
+[submodule "repos/solidity"]
+	path = repos/solidity
+	url = https://github.com/JoranHonig/tree-sitter-solidity
+	branch = master
+	update = none
+	ignore = dirty
+[submodule "repos/glsl"]
+	path = repos/glsl
+	url = https://github.com/theHamsta/tree-sitter-glsl
+	branch = master
+	update = none
+	ignore = dirty
+[submodule "repos/hlsl"]
+	path = repos/hlsl
+	url = https://github.com/theHamsta/tree-sitter-hlsl
+	branch = master
+	update = none
+	ignore = dirty
+[submodule "repos/commonlisp"]
+	path = repos/commonlisp
+	url = https://github.com/theHamsta/tree-sitter-commonlisp
+	branch = master
+	update = none
+	ignore = dirty
+[submodule "repos/arduino"]
+	path = repos/arduino
+	url = https://github.com/ObserverOfTime/tree-sitter-arduino
+	branch = master
+	update = none
+	ignore = dirty
+[submodule "repos/astro"]
+	path = repos/astro
+	url = https://github.com/virchau13/tree-sitter-astro
+	branch = master
+	update = none
+	ignore = dirty
+[submodule "repos/heex"]
+	path = repos/heex
+	url = https://github.com/phoenixframework/tree-sitter-heex
+	branch = main
+	update = none
+	ignore = dirty
+[submodule "repos/tcl"]
+	path = repos/tcl
+	url = https://github.com/lewis6991/tree-sitter-tcl
+	branch = main
+	update = none
+	ignore = dirty
+[submodule "repos/fish"]
+	path = repos/fish
+	url = https://github.com/ram02z/tree-sitter-fish
+	branch = master
+	update = none
+	ignore = dirty
+[submodule "repos/csv"]
+	path = repos/csv
+	url = https://github.com/amaanq/tree-sitter-csv
+	branch = master
+	update = none
+	ignore = dirty
+[submodule "repos/groovy"]
+	path = repos/groovy
+	url = https://github.com/Decodetalkers/tree-sitter-groovy
+	update = none
+	ignore = dirty
+	branch = master
+[submodule "repos/typst"]
+	path = repos/typst
+	url = https://github.com/uben0/tree-sitter-typst
+	update = none
+	ignore = dirty
+	branch = master
+[submodule "repos/org"]
+	path = repos/org
+	url = https://github.com/milisims/tree-sitter-org
+	update = none
+	ignore = dirty
+	branch = main
+[submodule "repos/twig"]
+	path = repos/twig
+	url = https://github.com/gbprod/tree-sitter-twig
+	update = none
+	ignore = dirty
+	branch = main
+[submodule "repos/llvm"]
+	path = repos/llvm
+	url = https://github.com/benwilliamgraham/tree-sitter-llvm
+	update = none
+	ignore = dirty
+	branch = main
+[submodule "repos/racket"]
+	path = repos/racket
+	url = https://github.com/6cdh/tree-sitter-racket
+	update = none
+	ignore = dirty
+	branch = main
+[submodule "repos/tablegen"]
+	path = repos/tablegen
+	url = https://github.com/Flakebi/tree-sitter-tablegen
+	update = none
+	ignore = dirty
+	branch = master
+[submodule "repos/llvm-mir"]
+	path = repos/llvm-mir
+	url = https://github.com/Flakebi/tree-sitter-llvm-mir
+	update = none
+	ignore = dirty
+	branch = master
+[submodule "repos/actionscript"]
+	path = repos/actionscript
+	url = https://github.com/Rileran/tree-sitter-actionscript
+	update = none
+	ignore = dirty
+	branch = main
+[submodule "repos/ninja"]
+	path = repos/ninja
+	url = https://github.com/alemuller/tree-sitter-ninja
+	update = none
+	ignore = dirty
+	branch = main
+[submodule "repos/svelte"]
+	path = repos/svelte
+	url = https://github.com/Himujjal/tree-sitter-svelte
+	update = none
+	ignore = dirty
+	branch = master
+[submodule "repos/haxe"]
+	path = repos/haxe
+	url = https://github.com/vantreeseba/tree-sitter-haxe
+	update = none
+	ignore = dirty
+	branch = main
+[submodule "repos/doxygen"]
+	path = repos/doxygen
+	url = https://github.com/tree-sitter-grammars/tree-sitter-doxygen
+	update = none
+	ignore = dirty
+	branch = master
+[submodule "repos/purescript"]
+	path = repos/purescript
+	url = https://github.com/postsolar/tree-sitter-purescript
+	update = none
+	ignore = dirty
+	branch = main
 [submodule "repos/vim"]
 	path = repos/vim
 	url = https://github.com/neovim/tree-sitter-vim

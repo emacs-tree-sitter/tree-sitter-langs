@@ -1,0 +1,135 @@
+name: Update Grammars
+
+on:
+  schedule:
+    - cron:  '0 0 * * 0'
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        target:
+          - agda
+          - bash
+          - c
+          - c-sharp
+          - cpp
+          - css
+          - elm
+          - fluent
+          - gleam
+          - go
+          - html
+          - janet-simple
+          - java
+          - javascript
+          - jsdoc
+          - json
+          - julia
+          - ocaml
+          - php
+          - python
+          - ruby
+          - rust
+          - scala
+          - swift
+          - typescript
+          - pgn
+          - hcl
+          - elixir
+          - d
+          - nix
+          - prisma
+          - haskell
+          - zig
+          - verilog
+          - yaml
+          - erlang
+          - r
+          - lua
+          - toml
+          - markdown
+          - scheme
+          - smithy
+          - fennel
+          - clojure
+          - magik
+          - meson
+          - noir
+          - dart
+          - elisp
+          - beancount
+          - bibtex
+          - kotlin
+          - jai
+          - gdscript
+          - perl
+          - dockerfile
+          - latex
+          - ada
+          - vhdl
+          - xml
+          - jsonnet
+          - pascal
+          - fortran
+          - comment
+          - cmake
+          - asm
+          - mermaid
+          - rst
+          - ocaml-interface
+          - make
+          - sql
+          - gitattributes
+          - gitignore
+          - gitcommit
+          - git-rebase
+          - solidity
+          - glsl
+          - hlsl
+          - commonlisp
+          - arduino
+          - astro
+          - heex
+          - tcl
+          - fish
+          - csv
+          - groovy
+          - typst
+          - org
+          - twig
+          - llvm
+          - racket
+          - tablegen
+          - llvm-mir
+          - actionscript
+          - ninja
+          - svelte
+          - haxe
+    steps:
+    - uses: actions/checkout@v4
+      with:
+        persist-credentials: false
+        fetch-depth: 0
+
+    - name: Update ${{ matrix.target }} submodule
+      run: |
+        git submodule init repos/${{ matrix.target }}
+        git submodule update --checkout repos/${{ matrix.target }}
+        git submodule update --remote --merge repos/${{ matrix.target }}
+
+    - name: Create Pull Request
+      uses: peter-evans/create-pull-request@v6
+      with:
+        title: 'chore: Bump ${{ matrix.target }} grammar'
+        body: ''
+        commit-message: 'chore: Bump ${{ matrix.target }} grammar'
+        branch: bump-${{ matrix.target }}
+        delete-branch: true

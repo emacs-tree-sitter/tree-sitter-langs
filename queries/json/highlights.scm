@@ -2,7 +2,7 @@
 
 (pair
  ;; @constant is better, but we stick to json-mode's conventions.
-  key: (_) @keyword)
+ key: (_) @keyword)
 
 (number) @number
 
@@ -11,3 +11,5 @@
 (escape_sequence) @escape
 
 (string) @string
+
+(comment) @comment
