@@ -1,228 +1,239 @@
 (line_comment) @comment @spell
 
 [
- (container_doc_comment)
- (doc_comment)
- ] @doc @spell
-
-;; [
-;;  variable: (IDENTIFIER)
-;;            variable_type_function: (IDENTIFIER)
-;;            ] @variable
-
-parameter: (IDENTIFIER) @parameter
+  (container_doc_comment)
+  (doc_comment)
+] @comment.documentation @spell
 
 [
- field_member: (IDENTIFIER)
-               field_access: (IDENTIFIER)
-               ] @field
-
-;; assume TitleCase is a type
-(
- [
+  variable: (IDENTIFIER)
   variable_type_function: (IDENTIFIER)
-                          field_access: (IDENTIFIER)
-                          parameter: (IDENTIFIER)
-                          ] @type
-                            (#match? @type "^[A-Z]+([a-z]+[A-Za-z0-9]*)*$")
-                            )
+] @variable
 
-;; assume camelCase is a function
-(
- [
-  variable_type_function: (IDENTIFIER)
-                          field_access: (IDENTIFIER)
-                          parameter: (IDENTIFIER)
-                          ] @function
-                            (#match? @function "^[a-z]+([A-Z]+[a-z0-9]*)+$")
-                            )
+parameter: (IDENTIFIER) @variable.parameter
 
-;; assume all CAPS_1 is a constant
-(
- [
+[
+  field_member: (IDENTIFIER)
+  field_access: (IDENTIFIER)
+] @variable.member
+
+; assume TitleCase is a type
+([
   variable_type_function: (IDENTIFIER)
-                          field_access: (IDENTIFIER)
-                          ] @constant
-                            (#match? @constant "^[A-Z]+[A-Z_0-9]+$")
-                            )
+  field_access: (IDENTIFIER)
+  parameter: (IDENTIFIER)
+] @type
+  (#lua-match? @type "^%u([%l]+[%u%l%d]*)*$"))
+
+; assume camelCase is a function
+([
+  variable_type_function: (IDENTIFIER)
+  field_access: (IDENTIFIER)
+  parameter: (IDENTIFIER)
+] @function
+  (#lua-match? @function "^%l+([%u][%l%d]*)+$"))
+
+; assume all CAPS_1 is a constant
+([
+  variable_type_function: (IDENTIFIER)
+  field_access: (IDENTIFIER)
+] @constant
+  (#lua-match? @constant "^%u[%u%d_]+$"))
 
 function: (IDENTIFIER) @function
 
 function_call: (IDENTIFIER) @function.call
 
-exception: "!" @punctuation
+exception: "!" @keyword.exception
 
 ((IDENTIFIER) @variable.builtin
- (#eq? @variable.builtin "_"))
+  (#eq? @variable.builtin "_"))
 
-(PtrTypeStart "c" @variable.builtin)
+(PtrTypeStart
+  "c" @variable.builtin)
 
-((ContainerDeclType
-  [
-   (ErrorUnionExpr)
-   "enum"
-   ])
- (ContainerField (IDENTIFIER) @constant))
+(ContainerDecl
+  (ContainerDeclType
+    "enum")
+  (ContainerField
+    (ErrorUnionExpr
+      (SuffixExpr
+        (IDENTIFIER) @constant))))
 
 field_constant: (IDENTIFIER) @constant
 
 (BUILTINIDENTIFIER) @function.builtin
 
-((BUILTINIDENTIFIER) @include
- (#any-of? @include "@import" "@cImport"))
+((BUILTINIDENTIFIER) @keyword.import
+  (#any-of? @keyword.import "@import" "@cImport"))
 
 (INTEGER) @number
-(FLOAT) @number
+
+(FLOAT) @number.float
 
 [
- "true"
- "false"
- ] @boolean
+  "true"
+  "false"
+] @boolean
 
 [
- (LINESTRING)
- (STRINGLITERALSINGLE)
- ] @string @spell
+  (LINESTRING)
+  (STRINGLITERALSINGLE)
+] @string @spell
 
-(CHAR_LITERAL) @string
+(CHAR_LITERAL) @character
+
 (EscapeSequence) @string.escape
+
 (FormatSequence) @string.special
 
-(BreakLabel (IDENTIFIER) @label)
-(BlockLabel (IDENTIFIER) @label)
+(BreakLabel
+  (IDENTIFIER) @label)
+
+(BlockLabel
+  (IDENTIFIER) @label)
 
 [
- "asm"
- "defer"
- "errdefer"
- "test"
- "struct"
- "union"
- "enum"
- "opaque"
- "error"
- ] @keyword
+  "asm"
+  "defer"
+  "errdefer"
+  "test"
+  "opaque"
+  "error"
+  "const"
+  "var"
+] @keyword
 
 [
- "async"
- "await"
- "suspend"
- "nosuspend"
- "resume"
- ] @keyword
+  "struct"
+  "union"
+  "enum"
+] @keyword.type
 
 [
- "fn"
- ] @keyword
+  "async"
+  "await"
+  "suspend"
+  "nosuspend"
+  "resume"
+] @keyword.coroutine
+
+"fn" @keyword.function
 
 [
- "and"
- "or"
- "orelse"
- ] @keyword
+  "and"
+  "or"
+  "orelse"
+] @keyword.operator
+
+"return" @keyword.return
 
 [
- "return"
- ] @keyword
+  "if"
+  "else"
+  "switch"
+] @keyword.conditional
 
 [
- "if"
- "else"
- "switch"
- ] @conditional
+  "for"
+  "while"
+  "break"
+  "continue"
+] @keyword.repeat
 
 [
- "for"
- "while"
- "break"
- "continue"
- ] @repeat
+  "usingnamespace"
+  "export"
+] @keyword.import
 
 [
- "usingnamespace"
- ] @include
+  "try"
+  "catch"
+] @keyword.exception
 
 [
- "try"
- "catch"
- ] @exception
+  "anytype"
+  (BuildinTypeExpr)
+] @type.builtin
 
 [
- "anytype"
- (BuildinTypeExpr)
- ] @keyword
+  "volatile"
+  "allowzero"
+  "noalias"
+  "addrspace"
+  "align"
+  "callconv"
+  "linksection"
+  "pub"
+  "inline"
+  "noinline"
+  "extern"
+] @keyword.modifier
 
 [
- "const"
- "var"
- "volatile"
- "allowzero"
- "noalias"
- ] @keyword
+  "comptime"
+  "packed"
+  "threadlocal"
+] @attribute
 
 [
- "addrspace"
- "align"
- "callconv"
- "linksection"
- ] @keyword
+  "null"
+  "unreachable"
+  "undefined"
+] @constant.builtin
 
 [
- "comptime"
- "export"
- "extern"
- "inline"
- "noinline"
- "packed"
- "pub"
- "threadlocal"
- ] @keyword
+  (CompareOp)
+  (BitwiseOp)
+  (BitShiftOp)
+  (AdditionOp)
+  (AssignOp)
+  (MultiplyOp)
+  (PrefixOp)
+  "="
+  "*"
+  "**"
+  "->"
+  ".?"
+  ".*"
+  "?"
+] @operator
 
 [
- "null"
- "unreachable"
- "undefined"
- ] @constant.builtin
+  ";"
+  "."
+  ","
+  ":"
+  "=>"
+] @punctuation.delimiter
 
 [
- (CompareOp)
- (BitwiseOp)
- (BitShiftOp)
- (AdditionOp)
- (AssignOp)
- (MultiplyOp)
- (PrefixOp)
- "*"
- "**"
- "->"
- ".?"
- ".*"
- "?"
- ] @operator
+  ".."
+  "..."
+] @punctuation.special
 
 [
- ";"
- "."
- ","
- ":"
- ] @punctuation.delimiter
+  "["
+  "]"
+  "("
+  ")"
+  "{"
+  "}"
+] @punctuation.bracket
 
-[
- ".."
- "..."
- ] @punctuation.special
+(Payload
+  "|" @punctuation.bracket)
 
-[
- "["
- "]"
- "("
- ")"
- "{"
- "}"
- (Payload "|")
- (PtrPayload "|")
- (PtrIndexPayload "|")
- ] @punctuation.bracket
+(PtrPayload
+  "|" @punctuation.bracket)
 
-;; Error
-(ERROR) @error
+(PtrIndexPayload
+  "|" @punctuation.bracket)
+
+(PtrListPayload
+  "|" @punctuation.bracket)
+
+(ParamType
+  (ErrorUnionExpr
+    (SuffixExpr
+      variable_type_function: (IDENTIFIER) @type)))
