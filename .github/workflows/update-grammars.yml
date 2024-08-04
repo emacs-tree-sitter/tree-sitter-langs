@@ -113,6 +113,7 @@ jobs:
           - ninja
           - svelte
           - haxe
+          - gpr
     steps:
     - uses: actions/checkout@v4
       with:

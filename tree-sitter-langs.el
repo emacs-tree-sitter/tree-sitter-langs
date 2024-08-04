@@ -140,6 +140,7 @@ See `tree-sitter-langs-repos'."
                  (gleam-mode             . gleam)
                  (glsl-mode              . glsl)
                  (go-mode                . go)
+                 (gpr-mode               . gpr)
                  (groovy-mode            . groovy)
                  (jenkinsfile-mode       . groovy)
                  (haskell-mode           . haskell)

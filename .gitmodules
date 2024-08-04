@@ -612,3 +612,9 @@
 	update = none
 	ignore = dirty
 	branch = main
+[submodule "repos/gpr"]
+	path = repos/gpr
+	url = https://github.com/brownts/tree-sitter-gpr
+	update = none
+	ignore = dirty
+	branch = main
