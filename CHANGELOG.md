@@ -1,6 +1,8 @@
 # Changelog
 
 ## Unreleased
+
+## 0.12.210 - 2024-08-05
 - Add `GNAT Project` support
 
 ## 0.12.209 - 2024-08-04
