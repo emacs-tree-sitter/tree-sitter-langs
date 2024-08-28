@@ -159,8 +159,6 @@
 
 ;; "Contexts" may have internal highlighting -> low priority.
 
-(comment) @comment
-(string) @string
 (escape_sequence) @escape
 
 (interpolation
@@ -168,7 +166,9 @@
  (_) @embedded
  "}" @punctuation.special)
 
+(comment) @comment
 ((string) @doc
  (.match? @doc "^(\"\"\"|r\"\"\")"))
+(string) @string
 
 (decorator) @function.special
