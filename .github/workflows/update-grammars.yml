@@ -79,6 +79,7 @@ jobs:
           - jsonnet
           - pascal
           - fortran
+          - comment
           - cmake
           - asm
           - mermaid
@@ -112,11 +113,12 @@ jobs:
           - ninja
           - svelte
           - haxe
+          - gpr
     steps:
     - uses: actions/checkout@v4
       with:
         persist-credentials: false
-        fetch-depth: 0 
+        fetch-depth: 0
 
     - name: Update ${{ matrix.target }} submodule
       run: |

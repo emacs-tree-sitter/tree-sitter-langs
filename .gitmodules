@@ -396,6 +396,12 @@
 	branch = master
 	update = none
 	ignore = dirty
+[submodule "repos/comment"]
+	path = repos/comment
+	url = https://github.com/stsewd/tree-sitter-comment
+	branch = master
+	update = none
+	ignore = dirty
 [submodule "repos/cmake"]
 	path = repos/cmake
 	url = https://github.com/uyha/tree-sitter-cmake
@@ -591,6 +597,24 @@
 [submodule "repos/haxe"]
 	path = repos/haxe
 	url = https://github.com/vantreeseba/tree-sitter-haxe
+	update = none
+	ignore = dirty
+	branch = main
+[submodule "repos/doxygen"]
+	path = repos/doxygen
+	url = https://github.com/tree-sitter-grammars/tree-sitter-doxygen
+	update = none
+	ignore = dirty
+	branch = master
+[submodule "repos/purescript"]
+	path = repos/purescript
+	url = https://github.com/postsolar/tree-sitter-purescript
+	update = none
+	ignore = dirty
+	branch = main
+[submodule "repos/gpr"]
+	path = repos/gpr
+	url = https://github.com/brownts/tree-sitter-gpr
 	update = none
 	ignore = dirty
 	branch = main
