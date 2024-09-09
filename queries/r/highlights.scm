@@ -35,10 +35,6 @@
 
 (comma) @punctuation.delimiter
 
-; Variables
-
-(identifier) @variable
-
 ; Functions
 
 (binary_operator
@@ -61,6 +57,20 @@
 
 (parameters (parameter name: (identifier) @variable.parameter))
 (arguments (argument name: (identifier) @variable.parameter))
+
+; Variables
+
+(binary_operator
+    lhs: (identifier) @variable
+    operator: "="
+    rhs: (_)
+)
+
+(binary_operator
+    lhs: (identifier) @variable
+    operator: "<-"
+    rhs: (_)
+)
 
 ; Namespace
 
