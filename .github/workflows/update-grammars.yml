@@ -16,104 +16,105 @@ jobs:
       fail-fast: false
       matrix:
         target:
+          - actionscript
+          - ada
           - agda
+          - arduino
+          - asm
+          - astro
           - bash
+          - beancount
+          - bibtex
           - c
           - c-sharp
+          - clojure
+          - cmake
+          - comment
+          - commonlisp
           - cpp
           - css
+          - csv
+          - d
+          - dart
+          - dockerfile
+          - elisp
+          - elixir
           - elm
+          - erlang
+          - fennel
+          - fish
           - fluent
+          - fortran
+          - gdscript
+          - git-rebase
+          - gitattributes
+          - gitcommit
+          - gitignore
           - gleam
+          - glsl
           - go
+          - gpr
+          - groovy
+          - haskell
+          - haxe
+          - hcl
+          - heex
+          - hlsl
           - html
+          - jai
           - janet-simple
           - java
           - javascript
           - jsdoc
           - json
+          - jsonnet
           - julia
+          - kotlin
+          - latex
+          - llvm
+          - llvm-mir
+          - lua
+          - magik
+          - make
+          - markdown
+          - markdown-inline
+          - mermaid
+          - meson
+          - ninja
+          - nix
+          - noir
           - ocaml
+          - ocaml-interface
+          - org
+          - pascal
+          - perl
+          - pgn
           - php
+          - prisma
           - python
+          - r
+          - racket
+          - rst
           - ruby
           - rust
           - scala
-          - swift
-          - typescript
-          - pgn
-          - hcl
-          - elixir
-          - d
-          - nix
-          - prisma
-          - haskell
-          - zig
-          - verilog
-          - yaml
-          - erlang
-          - r
-          - lua
-          - toml
-          - markdown
           - scheme
           - smithy
-          - fennel
-          - clojure
-          - magik
-          - meson
-          - noir
-          - dart
-          - elisp
-          - beancount
-          - bibtex
-          - kotlin
-          - jai
-          - gdscript
-          - perl
-          - dockerfile
-          - latex
-          - ada
+          - solidity
+          - sql
+          - svelte
+          - swift
+          - tablegen
+          - tcl
+          - toml
+          - twig
+          - typescript
+          - typst
+          - verilog
           - vhdl
           - xml
-          - jsonnet
-          - pascal
-          - fortran
-          - comment
-          - cmake
-          - asm
-          - mermaid
-          - rst
-          - ocaml-interface
-          - make
-          - sql
-          - gitattributes
-          - gitignore
-          - gitcommit
-          - git-rebase
-          - solidity
-          - glsl
-          - hlsl
-          - commonlisp
-          - arduino
-          - astro
-          - heex
-          - tcl
-          - fish
-          - csv
-          - groovy
-          - typst
-          - org
-          - twig
-          - llvm
-          - racket
-          - tablegen
-          - llvm-mir
-          - actionscript
-          - ninja
-          - svelte
-          - haxe
-          - gpr
+          - yaml
+          - zig
     steps:
     - uses: actions/checkout@v4
       with:
