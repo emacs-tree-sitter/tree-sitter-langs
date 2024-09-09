@@ -114,6 +114,8 @@ jobs:
           - svelte
           - haxe
           - gpr
+          - markdown
+          - markdown-inline
     steps:
     - uses: actions/checkout@v4
       with:
