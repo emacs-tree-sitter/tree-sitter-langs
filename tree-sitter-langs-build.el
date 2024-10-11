@@ -257,6 +257,7 @@ infrequent (grammar-only changes).  It is different from the version of
     (astro)
     (cpp)
     (commonlisp)
+    (editorconfig)
     (hlsl)
     (glsl)
     (toml)
