@@ -37,6 +37,7 @@ jobs:
           - d
           - dart
           - dockerfile
+          - editorconfig
           - elisp
           - elixir
           - elm
