@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Add `EditorConfig` support
 
 ## 0.12.234 - 2024-11-18
 

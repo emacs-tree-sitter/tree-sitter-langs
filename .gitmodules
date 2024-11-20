@@ -617,4 +617,10 @@
 	url = https://github.com/tree-sitter-grammars/tree-sitter-zig.git
 	update = none
 	ignore = dirty
-	branch = master 
+	branch = master
+[submodule "repos/editorconfig"]
+	path = repos/editorconfig
+	url = https://github.com/ValdezFOmar/tree-sitter-editorconfig
+	update = none
+	ignore = dirty
+	branch = main
