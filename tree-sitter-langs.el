@@ -155,6 +155,7 @@ See `tree-sitter-langs-repos'."
                  (mhtml-mode             . html)
                  (nix-mode               . nix)
                  (jai-mode               . jai)
+                 (janet-mode             . janet-simple)
                  (java-mode              . java)
                  (javascript-mode        . javascript)
                  (js-mode                . javascript)
