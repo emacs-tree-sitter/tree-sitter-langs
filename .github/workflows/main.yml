@@ -27,7 +27,7 @@ jobs:
       fail-fast: false
       matrix:
         os:
-          - macos-15
+          - macos-13
           - ubuntu-20.04
         emacs-version:
           - '28.2'
@@ -38,7 +38,7 @@ jobs:
           - os: windows-2019
             emacs-version: '27.2'
             target: ""
-          - os: macos-15
+          - os: macos-13
             emacs-version: '28.2'
             # Cross build
             target: aarch64-apple-darwin
