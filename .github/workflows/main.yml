@@ -27,19 +27,19 @@ jobs:
       fail-fast: false
       matrix:
         os:
-          - macos-12
+          - macos-13
           - ubuntu-20.04
         emacs-version:
-          - '27.2'
           - '28.2'
+          - '29.4'
         target:
           - ""
         include:
           - os: windows-2019
             emacs-version: '27.2'
             target: ""
-          - os: macos-12
-            emacs-version: '27.2'
+          - os: macos-13
+            emacs-version: '28.2'
             # Cross build
             target: aarch64-apple-darwin
     runs-on: ${{ matrix.os }}
