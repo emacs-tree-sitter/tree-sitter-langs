@@ -30,8 +30,8 @@ jobs:
           - macos-15
           - ubuntu-20.04
         emacs-version:
-          - '27.2'
           - '28.2'
+          - '29.4'
         target:
           - ""
         include:
@@ -39,7 +39,7 @@ jobs:
             emacs-version: '27.2'
             target: ""
           - os: macos-15
-            emacs-version: '27.2'
+            emacs-version: '28.2'
             # Cross build
             target: aarch64-apple-darwin
     runs-on: ${{ matrix.os }}

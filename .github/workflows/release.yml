@@ -21,12 +21,12 @@ jobs:
           # TODO: Get host platform from somewher instead of specifying it explicitly here.
           - os: macos-15
             bundle_os: macos
-            emacs-version: '27.2'
+            emacs-version: '28.2'
             ext: dylib
             host: x86_64-apple-darwin
           - os: macos-15
             bundle_os: macos
-            emacs-version: '27.2'
+            emacs-version: '28.2'
             ext: dylib
             target: aarch64-apple-darwin
           - os: ubuntu-20.04
