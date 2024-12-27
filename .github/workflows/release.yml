@@ -34,6 +34,11 @@ jobs:
             emacs-version: '27.2'
             ext: so
             host: x86_64-unknown-linux-gnu
+          - os: ubuntu-20.04
+            bundle_os: linux
+            emacs-version: '27.2'
+            ext: so
+            target: aarch64-unknown-linux-gnu
           - os: windows-2019
             bundle_os: windows
             emacs-version: '27.2'
@@ -43,6 +48,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: .github/script/setup
+
+      # Cross build
+      - uses: mlugg/setup-zig@v1
+        if: matrix.target == 'aarch64-unknown-linux-gnu'
+        with:
+          version: 0.13.0
 
       - uses: actions/setup-python@v4
         with:
