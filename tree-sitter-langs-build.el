@@ -285,7 +285,9 @@ If VERSION and OS are not spcified, use the defaults of
                 ("linux" (if (string-prefix-p "aarch64" system-configuration)
                              "aarch64-unknown-linux-gnu"
                            "x86_64-unknown-linux-gnu"))
-                ("freebsd" "x86_64-unknown-freebsd")
+                ("freebsd" (if (string-prefix-p "aarch64" system-configuration)
+                             "aarch64-unknown-freebsd"
+                           "x86_64-unknown-freebsd"))
                 ("macos" (if (string-prefix-p "aarch64" system-configuration)
                              "aarch64-apple-darwin"
                            "x86_64-apple-darwin")))
@@ -318,6 +320,7 @@ from the current state of the grammar repo, without cleanup."
           ;; Rust's triple -> system toolchain's triple
           ("aarch64-unknown-linux-gnu" "aarch64-linux-gnu")
           ("aarch64-apple-darwin" "arm64-apple-macos11")
+          ("aarch64-unknown-freebsd" "aarch64-freebsd")
           ("nil" nil)
           (_ (error "Unsupported cross-compilation target %s" target))))
   (let* ((source (tree-sitter-langs--source lang-symbol))
