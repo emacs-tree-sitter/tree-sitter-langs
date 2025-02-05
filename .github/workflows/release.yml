@@ -45,6 +45,8 @@ jobs:
             ext: dll
             host: x86_64-pc-windows-msvc
     runs-on: ${{ matrix.os }}
+    outputs:
+      bin-name: ${{ steps.pass-vars.outputs.BIN_NAME }}
     steps:
       - uses: actions/checkout@v4
       - run: .github/script/setup
@@ -108,9 +110,14 @@ jobs:
       - name: Upload binary
         uses: actions/upload-artifact@v4
         with:
-          name: tree-sitter-grammars
+          name: ${{ matrix.host }}.v${{ env.BUNDLE_VERSION }}
           path: tree-sitter-grammars*.tar.gz
           if-no-files-found: error
+
+      - name: Pass variables
+        id: pass-vars
+        run: |
+           echo "BIN_NAME=$${{ matrix.host }}.v${{ env.BUNDLE_VERSION }}" >> $GITHUB_OUTPUT
 
   publish:
     needs: build
@@ -130,7 +137,8 @@ jobs:
       - name: Download binaries
         uses: actions/download-artifact@v3
         with:
-          name: tree-sitter-grammars
+          name: ${{ needs.build.outputs.bin-name }}
+
       - run: ls -R
 
       - name: Create GitHub Release
