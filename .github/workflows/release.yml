@@ -110,14 +110,14 @@ jobs:
       - name: Upload binary
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ matrix.host }}.v${{ env.BUNDLE_VERSION }}
+          name: ${{ matrix.host }}.${{ matrix.bundle_os }}
           path: tree-sitter-grammars*.tar.gz
           if-no-files-found: error
 
       - name: Pass variables
         id: pass-vars
         run: |
-           echo "BIN_NAME=$${{ matrix.host }}.v${{ env.BUNDLE_VERSION }}" >> $GITHUB_OUTPUT
+           echo "BIN_NAME=$${{ matrix.host }}.${{ matrix.bundle_os }}" >> $GITHUB_OUTPUT
 
   publish:
     needs: build
