@@ -45,8 +45,6 @@ jobs:
             ext: dll
             host: x86_64-pc-windows-msvc
     runs-on: ${{ matrix.os }}
-    outputs:
-      bin-name: ${{ steps.pass-vars.outputs.BIN_NAME }}
     steps:
       - uses: actions/checkout@v4
       - run: .github/script/setup
@@ -114,11 +112,6 @@ jobs:
           path: tree-sitter-grammars*.tar.gz
           if-no-files-found: error
 
-      - name: Pass variables
-        id: pass-vars
-        run: |
-           echo "BIN_NAME=$${{ matrix.host }}.${{ matrix.bundle_os }}" >> $GITHUB_OUTPUT
-
   publish:
     needs: build
     runs-on: ubuntu-20.04
@@ -134,10 +127,30 @@ jobs:
           echo RELEASE_VERSION=$RELEASE_VERSION >> $GITHUB_ENV
           cat RELEASE-NOTES
 
-      - name: Download binaries
+      - name: Download binaries (x86_64-apple-darwin.macos)
         uses: actions/download-artifact@v4
         with:
-          name: ${{ needs.build.outputs.bin-name }}
+          name: x86_64-apple-darwin.macos
+
+      - name: Download binaries (.macos)
+        uses: actions/download-artifact@v4
+        with:
+          name: .macos
+
+      - name: Download binaries (x86_64-unknown-linux-gnu.linux)
+        uses: actions/download-artifact@v4
+        with:
+          name: x86_64-unknown-linux-gnu.linux
+
+      - name: Download binaries (.linux)
+        uses: actions/download-artifact@v4
+        with:
+          name: .linux
+
+      - name: Download binaries (x86_64-pc-windows-msvc.windows)
+        uses: actions/download-artifact@v4
+        with:
+          name: x86_64-pc-windows-msvc.windows
 
       - run: ls -R
 
