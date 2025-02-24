@@ -54,7 +54,7 @@ jobs:
           git push
 
       - name: Create the release tag
-        uses: actions/github-script@v5
+        uses: actions/github-script@v7
         with:
           # Use personal access token to trigger the release workflow.
           github-token: ${{ secrets.PAT }}
