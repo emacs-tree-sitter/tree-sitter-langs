@@ -1,8 +1,9 @@
 ;;; tree-sitter-langs.el --- Grammar bundle for tree-sitter -*- lexical-binding: t; coding: utf-8 -*-
 
-;; Copyright (C) 2021 Tuấn-Anh Nguyễn
+;; Copyright (C) 2021-2025 emacs-tree-sitter maintainers
 ;;
 ;; Author: Tuấn-Anh Nguyễn <ubolonton@gmail.com>
+;; Maintainer: Jen-Chieh Shen <jcs090218@gmail.com>
 ;; Keywords: languages tools parsers tree-sitter
 ;; Homepage: https://github.com/emacs-tree-sitter/tree-sitter-langs
 ;; Version: 0.12.262
