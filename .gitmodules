@@ -624,3 +624,9 @@
 	update = none
 	ignore = dirty
 	branch = main
+[submodule "repos/go-mod"]
+	path = repos/go-mod
+	url = https://github.com/camdencheek/tree-sitter-go-mod
+	update = none
+	ignore = dirty
+	branch = main

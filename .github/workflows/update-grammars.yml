@@ -54,6 +54,7 @@ jobs:
           - gleam
           - glsl
           - go
+          - go-mod
           - gpr
           - groovy
           - haskell
