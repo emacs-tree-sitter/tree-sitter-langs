@@ -19,14 +19,14 @@ jobs:
       matrix:
         include:
           # TODO: Get host platform from somewher instead of specifying it explicitly here.
-          - os: macos-12
+          - os: macos-13
             bundle_os: macos
-            emacs-version: '27.2'
+            emacs-version: '28.2'
             ext: dylib
             host: x86_64-apple-darwin
-          - os: macos-12
+          - os: macos-13
             bundle_os: macos
-            emacs-version: '27.2'
+            emacs-version: '28.2'
             ext: dylib
             target: aarch64-apple-darwin
           - os: ubuntu-20.04
@@ -34,6 +34,11 @@ jobs:
             emacs-version: '27.2'
             ext: so
             host: x86_64-unknown-linux-gnu
+          - os: ubuntu-20.04
+            bundle_os: linux
+            emacs-version: '27.2'
+            ext: so
+            target: aarch64-unknown-linux-gnu
           - os: windows-2019
             bundle_os: windows
             emacs-version: '27.2'
@@ -43,6 +48,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: .github/script/setup
+
+      # Cross build
+      - uses: mlugg/setup-zig@v1
+        if: matrix.target == 'aarch64-unknown-linux-gnu'
+        with:
+          version: 0.13.0
 
       - uses: actions/setup-python@v4
         with:
@@ -95,9 +106,9 @@ jobs:
           cp tree-sitter-grammars-${{ matrix.bundle_os }}-${{ env.BUNDLE_VERSION }}.tar.gz tree-sitter-grammars.${{ matrix.host }}.v${{ env.BUNDLE_VERSION }}.tar.gz
 
       - name: Upload binary
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
-          name: tree-sitter-grammars
+          name: ${{ matrix.host }}.${{ matrix.bundle_os }}
           path: tree-sitter-grammars*.tar.gz
           if-no-files-found: error
 
@@ -116,10 +127,31 @@ jobs:
           echo RELEASE_VERSION=$RELEASE_VERSION >> $GITHUB_ENV
           cat RELEASE-NOTES
 
-      - name: Download binaries
-        uses: actions/download-artifact@v2
+      - name: Download binaries (x86_64-apple-darwin.macos)
+        uses: actions/download-artifact@v4
         with:
-          name: tree-sitter-grammars
+          name: x86_64-apple-darwin.macos
+
+      - name: Download binaries (.macos)
+        uses: actions/download-artifact@v4
+        with:
+          name: .macos
+
+      - name: Download binaries (x86_64-unknown-linux-gnu.linux)
+        uses: actions/download-artifact@v4
+        with:
+          name: x86_64-unknown-linux-gnu.linux
+
+      - name: Download binaries (.linux)
+        uses: actions/download-artifact@v4
+        with:
+          name: .linux
+
+      - name: Download binaries (x86_64-pc-windows-msvc.windows)
+        uses: actions/download-artifact@v4
+        with:
+          name: x86_64-pc-windows-msvc.windows
+
       - run: ls -R
 
       - name: Create GitHub Release

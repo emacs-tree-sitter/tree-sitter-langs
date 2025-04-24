@@ -1,15 +1,12 @@
 ;;; tree-sitter-langs.el --- Grammar bundle for tree-sitter -*- lexical-binding: t; coding: utf-8 -*-
 
-;; Copyright (C) 2021 Tuấn-Anh Nguyễn
+;; Copyright (C) 2021-2025 emacs-tree-sitter maintainers
 ;;
 ;; Author: Tuấn-Anh Nguyễn <ubolonton@gmail.com>
+;; Maintainer: Jen-Chieh Shen <jcs090218@gmail.com>
 ;; Keywords: languages tools parsers tree-sitter
 ;; Homepage: https://github.com/emacs-tree-sitter/tree-sitter-langs
-<<<<<<< HEAD
-;; Version: 0.12.182
-=======
-;; Version: 0.12.215
->>>>>>> 7007cbcd5ab16d01aada410bfbe6ecc626ae838f
+;; Version: 0.12.267
 ;; Package-Requires: ((emacs "25.1") (tree-sitter "0.15.0"))
 ;; SPDX-License-Identifier: MIT
 
@@ -128,6 +125,7 @@ See `tree-sitter-langs-repos'."
                  (dockerfile-mode        . dockerfile)
                  (css-mode               . css)
                  (csv-mode               . csv)
+                 (editorconfig-conf-mode . editorconfig)
                  (elm-mode               . elm)
                  (elixir-mode            . elixir)
                  (emacs-lisp-mode        . elisp)
@@ -158,6 +156,7 @@ See `tree-sitter-langs-repos'."
                  (mhtml-mode             . html)
                  (nix-mode               . nix)
                  (jai-mode               . jai)
+                 (janet-mode             . janet-simple)
                  (java-mode              . java)
                  (javascript-mode        . javascript)
                  (js-mode                . javascript)

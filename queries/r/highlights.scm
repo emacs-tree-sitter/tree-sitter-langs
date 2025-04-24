@@ -1,106 +1,100 @@
 ; highlights.scm
 
-
 ; Literals
 
 (integer) @number
-
-(float) @float
-
+(float) @number
 (complex) @number
 
 (string) @string
-(string (escape_sequence) @string.escape)
+(string (string_content (escape_sequence) @string.escape))
+
+; Comments
 
 (comment) @comment
 
-;; tune for tree-sitter-langs as it make all as variable
-;; (identifier) @variable
-(left_assignment name: (identifier) @variable)
-(equals_assignment name: (identifier) @variable)
-(right_assignment name: (identifier) @variable)
-
-(formal_parameters (identifier) @parameter)
-(formal_parameters (default_parameter (identifier) @parameter))
-
 ; Operators
+
 [
- "="
- "<-"
- "<<-"
- "->>"
- "->"
+  "?" ":=" "=" "<-" "<<-" "->" "->>"
+  "~" "|>" "||" "|" "&&" "&"
+  "<" "<=" ">" ">=" "==" "!="
+  "+" "-" "*" "/" "::" ":::"
+  "**" "^" "$" "@" ":"
+  "special"
 ] @operator
 
-(unary operator: [
-  "-"
-  "+"
-  "!"
-  "~"
-] @operator)
-
-(binary operator: [
-  "-"
-  "+"
-  "*"
-  "/"
-  "^"
-  "<"
-  ">"
-  "<="
-  ">="
-  "=="
-  "!="
-  "||"
-  "|"
-  "&&"
-  "&"
-  ":"
-  "~"
-] @operator)
+; Punctuation
 
 [
-  "|>"
-  (special)
-] @operator
-
-(lambda_function "\\" @operator)
-
-[
- "("
- ")"
- "["
- "]"
- "{"
- "}"
+  "("  ")"
+  "{"  "}"
+  "["  "]"
+  "[[" "]]"
 ] @punctuation.bracket
 
-(dollar "$" @operator)
+(comma) @punctuation.delimiter
 
-(subset2
- [
-  "[["
-  "]]"
- ] @punctuation.bracket)
+; Functions
+
+(binary_operator
+    lhs: (identifier) @function
+    operator: "<-"
+    rhs: (function_definition)
+)
+
+(binary_operator
+    lhs: (identifier) @function
+    operator: "="
+    rhs: (function_definition)
+)
+
+; Calls
+
+(call function: (identifier) @function)
+
+; Parameters
+
+(parameters (parameter name: (identifier) @variable.parameter))
+(arguments (argument name: (identifier) @variable.parameter))
+
+; Variables
+
+(binary_operator
+    lhs: (identifier) @variable
+    operator: "="
+    rhs: (_)
+)
+
+(binary_operator
+    lhs: (identifier) @variable
+    operator: "<-"
+    rhs: (_)
+)
+
+; Namespace
+
+(namespace_operator lhs: (identifier) @namespace)
+
+(call
+    function: (namespace_operator rhs: (identifier) @function)
+)
+
+; Keywords
+
+(function_definition name: "function" @keyword.function)
+(function_definition name: "\\" @operator)
 
 [
- "in"
- (dots)
- (break)
- (next)
- (inf)
+  "in"
+  (return)
+  (next)
+  (break)
 ] @keyword
-
-[
-  (nan)
-  (na)
-  (null)
-] @type.builtin
 
 [
   "if"
   "else"
-  "switch"
 ] @conditional
 
 [
@@ -114,19 +108,15 @@
   (false)
 ] @boolean
 
-"function" @keyword.function
-
-(call function: (identifier) @function)
-(default_argument name: (identifier) @parameter)
-
-
-(namespace_get function: (identifier) @method)
-(namespace_get_internal function: (identifier) @method)
-
-(namespace_get namespace: (identifier) @namespace
- "::" @operator)
-(namespace_get_internal namespace: (identifier) @namespace
- ":::" @operator)
+[
+  (null)
+  (inf)
+  (nan)
+  (na)
+  (dots)
+  (dot_dot_i)
+] @constant.builtin
 
 ; Error
+
 (ERROR) @error

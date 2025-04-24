@@ -6,3 +6,5 @@
 *.tar.gz
 *.elc
 *~
+
+.DS_Store

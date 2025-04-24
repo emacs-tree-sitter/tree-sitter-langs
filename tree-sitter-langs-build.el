@@ -1,8 +1,9 @@
 ;;; tree-sitter-langs-build.el --- Building grammar bundle -*- lexical-binding: t; coding: utf-8 -*-
 
-;; Copyright (C) 2021 Tuấn-Anh Nguyễn
+;; Copyright (C) 2021-2025 emacs-tree-sitter maintainers
 ;;
 ;; Author: Tuấn-Anh Nguyễn <ubolonton@gmail.com>
+;; Maintainer: Jen-Chieh Shen <jcs090218@gmail.com>
 ;; SPDX-License-Identifier: MIT
 
 ;;; Commentary:
@@ -232,11 +233,7 @@ latest commit."
 ;; ---------------------------------------------------------------------------
 ;;; Building language grammars.
 
-<<<<<<< HEAD
-(defconst tree-sitter-langs--bundle-version "0.12.182"
-=======
-(defconst tree-sitter-langs--bundle-version "0.12.215"
->>>>>>> 7007cbcd5ab16d01aada410bfbe6ecc626ae838f
+(defconst tree-sitter-langs--bundle-version "0.12.267"
   "Version of the grammar bundle.
 This should be bumped whenever a language submodule is updated, which should be
 infrequent (grammar-only changes).  It is different from the version of
@@ -286,8 +283,12 @@ If VERSION and OS are not spcified, use the defaults of
               ;; FIX: Implement this correctly, refactoring 'OS' -> 'platform'.
               (pcase os
                 ("windows" "x86_64-pc-windows-msvc")
-                ("linux" "x86_64-unknown-linux-gnu")
-                ("freebsd" "x86_64-unknown-freebsd")
+                ("linux" (if (string-prefix-p "aarch64" system-configuration)
+                             "aarch64-unknown-linux-gnu"
+                           "x86_64-unknown-linux-gnu"))
+                ("freebsd" (if (string-prefix-p "aarch64" system-configuration)
+                             "aarch64-unknown-freebsd"
+                           "x86_64-unknown-freebsd"))
                 ("macos" (if (string-prefix-p "aarch64" system-configuration)
                              "aarch64-apple-darwin"
                            "x86_64-apple-darwin")))
@@ -318,7 +319,9 @@ from the current state of the grammar repo, without cleanup."
   (setq target
         (pcase (format "%s" target)
           ;; Rust's triple -> system toolchain's triple
+          ("aarch64-unknown-linux-gnu" "aarch64-linux-gnu")
           ("aarch64-apple-darwin" "arm64-apple-macos11")
+          ("aarch64-unknown-freebsd" "aarch64-freebsd")
           ("nil" nil)
           (_ (error "Unsupported cross-compilation target %s" target))))
   (let* ((source (tree-sitter-langs--source lang-symbol))
@@ -364,6 +367,55 @@ from the current state of the grammar repo, without cleanup."
                (default-directory (file-name-as-directory (concat dir path))))
           (tree-sitter-langs--call "tree-sitter" "generate")
           (cond
+           (target (cond
+                    ;; XXX: This is a hack for cross compilation on Linux.
+                    ((string-suffix-p "-linux-gnu" target)
+                     (cond
+                      ((file-exists-p "src/scanner.cc")
+                       (tree-sitter-langs--call
+                        "zig" "c++" "-shared" "-fPIC" "-fno-exceptions" "-g" "-O2"
+                        "-I" "src"
+                        "src/scanner.cc" "-xc" "src/parser.c"
+                        "-o" (format "%sbin/%s.so" tree-sitter-langs-grammar-dir lang-symbol)
+                        "-target" target))
+                      ((file-exists-p "src/scanner.c")
+                       (tree-sitter-langs--call
+                        "zig" "cc" "-shared" "-fPIC" "-g" "-O2"
+                        "-I" "src"
+                        "src/scanner.c" "src/parser.c"
+                        "-o" (format "%sbin/%s.so" tree-sitter-langs-grammar-dir lang-symbol)
+                        "-target" target))
+                      (:default
+                       (tree-sitter-langs--call
+                        "zig" "cc" "-shared" "-fPIC" "-g" "-O2"
+                        "-I" "src"
+                        "src/parser.c"
+                        "-o" (format "%sbin/%s.so" tree-sitter-langs-grammar-dir lang-symbol)
+                        "-target" target))))
+                    ;; XXX: This is a hack for cross compilation for Apple Silicon.
+                    ((string-match-p "macos" target)
+                     (cond
+                      ((file-exists-p "src/scanner.cc")
+                       (tree-sitter-langs--call
+                        "c++" "-shared" "-fPIC" "-fno-exceptions" "-g" "-O2"
+                        "-I" "src"
+                        "src/scanner.cc" "-xc" "src/parser.c"
+                        "-o" (format "%sbin/%s.so" tree-sitter-langs-grammar-dir lang-symbol)
+                        "-target" target))
+                      ((file-exists-p "src/scanner.c")
+                       (tree-sitter-langs--call
+                        "cc" "-shared" "-fPIC" "-g" "-O2"
+                        "-I" "src"
+                        "src/scanner.c" "src/parser.c"
+                        "-o" (format "%sbin/%s.so" tree-sitter-langs-grammar-dir lang-symbol)
+                        "-target" target))
+                      (:default
+                       (tree-sitter-langs--call
+                        "cc" "-shared" "-fPIC" "-g" "-O2"
+                        "-I" "src"
+                        "src/parser.c"
+                        "-o" (format "%sbin/%s.so" tree-sitter-langs-grammar-dir lang-symbol)
+                        "-target" target))))))
            ((and (memq system-type '(gnu/linux))
                  (file-exists-p "src/scanner.cc"))
             ;; XXX: Modified from
@@ -374,29 +426,6 @@ from the current state of the grammar repo, without cleanup."
              "-I" "src"
              "src/scanner.cc" "-xc" "src/parser.c"
              "-o" (format "%sbin/%s.so" tree-sitter-langs-grammar-dir lang-symbol)))
-           ;; XXX: This is a hack for cross compilation (mainly for Apple Silicon).
-           (target (cond
-                    ((file-exists-p "src/scanner.cc")
-                     (tree-sitter-langs--call
-                      "c++" "-shared" "-fPIC" "-fno-exceptions" "-g" "-O2"
-                      "-I" "src"
-                      "src/scanner.cc" "-xc" "src/parser.c"
-                      "-o" (format "%sbin/%s.so" tree-sitter-langs-grammar-dir lang-symbol)
-                      "-target" target))
-                    ((file-exists-p "src/scanner.c")
-                     (tree-sitter-langs--call
-                      "cc" "-shared" "-fPIC" "-g" "-O2"
-                      "-I" "src"
-                      "src/scanner.c" "src/parser.c"
-                      "-o" (format "%sbin/%s.so" tree-sitter-langs-grammar-dir lang-symbol)
-                      "-target" target))
-                    (:default
-                     (tree-sitter-langs--call
-                      "cc" "-shared" "-fPIC" "-g" "-O2"
-                      "-I" "src"
-                      "src/parser.c"
-                      "-o" (format "%sbin/%s.so" tree-sitter-langs-grammar-dir lang-symbol)
-                      "-target" target))))
            ((memq system-type '(berkeley-unix))
             (cond
              ((file-exists-p "src/scanner.cc")
