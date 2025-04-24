@@ -1,3 +1,5 @@
+;; -*- mode: eask; lexical-binding: t -*-
+
 (package "tree-sitter-langs"
          "0.12.165"
          "Grammar bundle for tree-sitter")

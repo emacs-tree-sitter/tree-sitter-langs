@@ -28,7 +28,7 @@ jobs:
       matrix:
         os:
           - macos-13
-          - ubuntu-20.04
+          - ubuntu-24.04
         emacs-version:
           - '28.2'
           - '29.4'
@@ -38,7 +38,7 @@ jobs:
           - os: windows-2019
             emacs-version: '27.2'
             target: ""
-          - os: ubuntu-20.04
+          - os: ubuntu-24.04
             emacs-version: '28.2'
             # Cross build
             target: aarch64-unknown-linux-gnu
