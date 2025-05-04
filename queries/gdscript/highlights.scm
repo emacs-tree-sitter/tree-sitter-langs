@@ -83,7 +83,6 @@
 
 ;; Match Pattern
 
-(underscore) @constant          ; The "_" pattern.
 (pattern_open_ending) @operator ; The ".." pattern.
 
 ;; Alternations
