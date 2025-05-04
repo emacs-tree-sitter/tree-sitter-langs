@@ -278,7 +278,7 @@ Return nil if there are no bundled patterns."
                              ('tsx        '(ecma typescript))
                              (_           nil))))
           (when mode
-            (ignore-error 'file-missing
+            (ignore-error file-missing
               (insert-file-contents (tree-sitter-langs--hl-query-path sym mode))
               (goto-char (point-max))
               (insert "\n")))

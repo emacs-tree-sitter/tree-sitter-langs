@@ -566,8 +566,8 @@ non-nil."
                 tree-sitter-langs--os
                 nil))
   (let* ((bin-dir (tree-sitter-langs--bin-dir))
-         (_ (unless (unless (file-directory-p bin-dir)
-                      (make-directory bin-dir))))
+         (_ (unless (file-directory-p bin-dir)
+              (make-directory bin-dir)))
          (version (or version tree-sitter-langs--bundle-version))
          (default-directory bin-dir)
          (bundle-file (tree-sitter-langs--bundle-file ".gz" version os))
