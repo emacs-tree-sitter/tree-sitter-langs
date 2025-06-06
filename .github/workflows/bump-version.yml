@@ -14,7 +14,7 @@ concurrency:
 
 jobs:
   bump-version:
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-22.04
     steps:
       - uses: jcs090218/setup-emacs@master
         with:

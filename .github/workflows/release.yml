@@ -29,12 +29,12 @@ jobs:
             emacs-version: '28.2'
             ext: dylib
             target: aarch64-apple-darwin
-          - os: ubuntu-24.04
+          - os: ubuntu-22.04
             bundle_os: linux
             emacs-version: '27.2'
             ext: so
             host: x86_64-unknown-linux-gnu
-          - os: ubuntu-24.04
+          - os: ubuntu-22.04
             bundle_os: linux
             emacs-version: '27.2'
             ext: so
@@ -117,7 +117,7 @@ jobs:
 
   publish:
     needs: build
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-22.04
     steps:
       - uses: jcs090218/setup-emacs@master
         with:
