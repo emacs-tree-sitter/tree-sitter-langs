@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Bump `Julia` grammar
 
 ## 0.12.288 - 2025-06-29
 
