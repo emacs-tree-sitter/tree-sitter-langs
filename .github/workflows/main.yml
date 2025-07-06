@@ -35,7 +35,7 @@ jobs:
         target:
           - ""
         include:
-          - os: windows-2019
+          - os: windows-2022
             emacs-version: '27.2'
             target: ""
           - os: ubuntu-22.04

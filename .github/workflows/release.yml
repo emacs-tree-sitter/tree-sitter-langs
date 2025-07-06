@@ -39,7 +39,7 @@ jobs:
             emacs-version: '27.2'
             ext: so
             target: aarch64-unknown-linux-gnu
-          - os: windows-2019
+          - os: windows-2022
             bundle_os: windows
             emacs-version: '27.2'
             ext: dll
