@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Add `Go Mod` support
 
 ## 0.12.291 - 2025-07-13
 
