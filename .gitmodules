@@ -624,3 +624,9 @@
 	update = none
 	ignore = dirty
 	branch = main
+[submodule "repos/slint"]
+	path = repos/slint
+	url = https://github.com/slint-ui/tree-sitter-slint
+	update = none
+	ignore = dirty
+	branch = master
