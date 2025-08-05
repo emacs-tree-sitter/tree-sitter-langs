@@ -100,7 +100,7 @@ jobs:
           - rust
           - scala
           - scheme
-	  - slint
+          - slint
           - smithy
           - solidity
           - sql
