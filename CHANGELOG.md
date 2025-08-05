@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Add slint tree sitter repo. This does not have an associated mode.
 
 ## 0.12.295 - 2025-07-27
 
