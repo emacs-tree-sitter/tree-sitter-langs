@@ -207,7 +207,7 @@
 	ignore = dirty
 [submodule "repos/yaml"]
 	path = repos/yaml
-	url = https://github.com/ikatyang/tree-sitter-yaml
+	url = https://github.com/tree-sitter-grammars/tree-sitter-yaml
 	branch = master
 	update = none
 	ignore = dirty
