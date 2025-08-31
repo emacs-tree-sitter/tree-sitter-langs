@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 0.12.303 - 2025-08-31
+
 ## 0.12.302 - 2025-08-31
 - Add `GraphQL` support
 
