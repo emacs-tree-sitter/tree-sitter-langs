@@ -630,3 +630,9 @@
 	update = none
 	ignore = dirty
 	branch = master
+[submodule "repos/graphql"]
+	path = repos/graphql
+	url = https://github.com/bkegley/tree-sitter-graphql
+	update = none
+	ignore = dirty
+	branch = master
