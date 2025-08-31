@@ -55,6 +55,7 @@ jobs:
           - glsl
           - go
           - gpr
+          - graphql
           - groovy
           - haskell
           - haxe
