@@ -131,27 +131,27 @@ jobs:
           cat RELEASE-NOTES
 
       - name: Download binaries (x86_64-apple-darwin.macos)
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v5
         with:
           name: x86_64-apple-darwin.macos
 
       - name: Download binaries (.macos)
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v5
         with:
           name: .macos
 
       - name: Download binaries (x86_64-unknown-linux-gnu.linux)
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v5
         with:
           name: x86_64-unknown-linux-gnu.linux
 
       - name: Download binaries (.linux)
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v5
         with:
           name: .linux
 
       - name: Download binaries (x86_64-pc-windows-msvc.windows)
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v5
         with:
           name: x86_64-pc-windows-msvc.windows
 
