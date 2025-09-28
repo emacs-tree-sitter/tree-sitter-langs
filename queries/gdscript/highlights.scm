@@ -58,8 +58,8 @@
 ; We'll use @property since that's the term Godot uses.
 ; But, should (source (variable_statement (name))) be @property, too? Since a
 ; script file is a class in gdscript.
-(class_definition
-  (body (variable_statement (name) @property)))
+;(class_definition
+;  (body (variable_statement (name) @property)))
 
 ; Same question but for methods?
 (class_definition
