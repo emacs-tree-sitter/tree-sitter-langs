@@ -62,8 +62,8 @@
 ;  (body (variable_statement (name) @property)))
 
 ; Same question but for methods?
-(class_definition
-  (body (function_definition (name) @method)))
+;(class_definition
+;  (body (function_definition (name) @method)))
 
 (attribute_call (identifier) @method.call)
 (attribute (_) (identifier) @property)
