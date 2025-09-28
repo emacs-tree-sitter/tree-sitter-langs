@@ -15,7 +15,6 @@
 (set_body "set" @keyword)
 (get_body "get" @keyword)
 (static_keyword) @type.qualifier
-(tool_statement) @keyword
 (breakpoint_statement) @debug
 (inferred_type) @operator
 [(true) (false)] @boolean
@@ -188,7 +187,7 @@
   "export_flags_3d_physics" "export_flags_3d_render" "export_global_dir"
   "export_global_file" "export_group" "export_multiline" "export_node_path"
   "export_placeholder" "export_range" "export_subgroup" "icon" "onready"
-  "rpc" "tool" "warning_ignore"
+  "rpc" "warning_ignore"
  ))
 
 ;; Builtin Types
