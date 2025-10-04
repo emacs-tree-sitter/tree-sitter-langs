@@ -1,37 +1,39 @@
 ; Methods
 
-(method_declaration
-  name: (identifier) @function.method)
-(method_invocation
-  name: (identifier) @function.method)
+(package_declaration (scoped_identifier (identifier) @constant))
+
+((identifier) @constant (.match? @constant "^[A-Z_][A-Z_\\d]*$"))
+(scoped_identifier (identifier) @type (.match?  @type "^[A-Z]") )
+(scoped_identifier (scoped_identifier) @constant)
+(scoped_identifier (identifier) @property)
+
+(field_access ( identifier ) @type (.match?  @type "^[A-Z]"))
+(field_access ( identifier ) @property)
+
+(formal_parameter (identifier) @variable.parameter)
+(method_declaration name: (identifier) @function.method)
 (super) @function.builtin
 
 ; Annotations
 
-(annotation
-  name: (identifier) @attribute)
-(marker_annotation
-  name: (identifier) @attribute)
+(annotation (identifier) @constructor)
+(marker_annotation (identifier) @constructor)
 
-"@" @operator
+"@" @constant
+
+(annotation_argument_list (element_value_pair (identifier) @variable.parameter))
 
 ; Types
 
-(interface_declaration
-  name: (identifier) @type)
-(class_declaration
-  name: (identifier) @type)
-(enum_declaration
-  name: (identifier) @type)
+(interface_declaration (identifier) @type)
+(class_declaration (identifier) @type)
+(enum_declaration (identifier) @type)
 
-((scoped_identifier
-  scope: (identifier) @type)
- (.match? @type "^[A-Z]"))
 
-(constructor_declaration
-  name: (identifier) @type)
+(constructor_declaration (identifier) @constructor)
 
 (type_identifier) @type
+(variable_declarator (identifier) @constant)
 (boolean_type) @type.builtin
 (integral_type) @type.builtin
 (floating_point_type) @type.builtin
@@ -39,8 +41,6 @@
 
 ; Variables
 
-((identifier) @constant
- (.match? @constant "^[A-Z_][A-Z_\\d]*$"))
 
 (this) @variable.builtin
 
@@ -53,8 +53,8 @@
 (hex_floating_point_literal) @number
 (character_literal) @string
 (string_literal) @string
-(true) @constant.builtin
-(false) @constant.builtin
+(true) @constant
+(false) @constant
 (null_literal) @constant.builtin
 
 (line_comment) @comment
@@ -109,3 +109,28 @@
 "volatile" @keyword
 "while" @keyword
 "with" @keyword
+"=" @operator
+"==" @operator
+"!" @operator
+"->" @operator
+"?" @operator
+":" @operator
+"::" @operator
+"&&" @operator
+
+[
+ "("
+ ")"
+ "{"
+ "}"
+ "["
+ "]"
+ ] @punctuation.bracket
+
+(lambda_expression (identifier) @variable.parameter)
+(((method_invocation (identifier) @type)) . (.match? @type "^[A-Z]"))
+(method_invocation ( argument_list ( identifier ) @constant))
+
+(method_invocation name: (identifier) @function.call)
+
+((identifier) @constant (.match? @constant "^[A-Z_][A-Z_\\d]*$"))
