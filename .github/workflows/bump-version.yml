@@ -19,7 +19,7 @@ jobs:
       - uses: jcs090218/setup-emacs@master
         with:
           version: '27.2'
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Bump version
         uses: actions/github-script@v5

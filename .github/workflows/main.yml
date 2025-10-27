@@ -48,7 +48,7 @@ jobs:
             target: aarch64-apple-darwin
     runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - run: .github/script/setup
 
       # Cross build
