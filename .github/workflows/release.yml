@@ -50,7 +50,7 @@ jobs:
       - run: .github/script/setup
 
       # Cross build
-      - uses: mlugg/setup-zig@v1
+      - uses: mlugg/setup-zig@v2
         if: matrix.target == 'aarch64-unknown-linux-gnu'
         with:
           version: 0.13.0
