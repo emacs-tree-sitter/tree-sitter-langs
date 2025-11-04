@@ -53,7 +53,6 @@
 (formatting_sequence) @escape
 (string) @string
 (number) @number
-(boolean) @constant.builtin
 
 ; Punctuation
 
@@ -149,7 +148,7 @@
 ; Repeats
 
 (for_statement [ "for" "parfor" "end" ] @keyword)
-(for_statement (iterator (identifier) @variable)) 
+(for_statement (iterator (identifier) @variable))
 (while_statement [ "while" "end" ] @keyword)
 (continue_statement) @keyword
 
