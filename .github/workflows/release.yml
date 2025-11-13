@@ -46,16 +46,16 @@ jobs:
             host: x86_64-pc-windows-msvc
     runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - run: .github/script/setup
 
       # Cross build
-      - uses: mlugg/setup-zig@v1
+      - uses: mlugg/setup-zig@v2
         if: matrix.target == 'aarch64-unknown-linux-gnu'
         with:
           version: 0.13.0
 
-      - uses: actions/setup-python@v4
+      - uses: actions/setup-python@v6
         with:
           python-version: '3.10' 
 
@@ -109,7 +109,7 @@ jobs:
           cp tree-sitter-grammars-${{ matrix.bundle_os }}-${{ env.BUNDLE_VERSION }}.tar.gz tree-sitter-grammars.${{ matrix.host }}.v${{ env.BUNDLE_VERSION }}.tar.gz
 
       - name: Upload binary
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: ${{ matrix.host }}.${{ matrix.bundle_os }}
           path: tree-sitter-grammars*.tar.gz
@@ -122,7 +122,7 @@ jobs:
       - uses: jcs090218/setup-emacs@master
         with:
           version: '27.2'
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: Generate release notes
         run: |
           RELEASE_VERSION=$(git describe --tags --abbrev=0)
@@ -131,41 +131,41 @@ jobs:
           cat RELEASE-NOTES
 
       - name: Download binaries (x86_64-apple-darwin.macos)
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v6
         with:
           name: x86_64-apple-darwin.macos
 
       - name: Download binaries (.macos)
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v6
         with:
           name: .macos
 
       - name: Download binaries (x86_64-unknown-linux-gnu.linux)
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v6
         with:
           name: x86_64-unknown-linux-gnu.linux
 
       - name: Download binaries (.linux)
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v6
         with:
           name: .linux
 
       - name: Download binaries (x86_64-pc-windows-msvc.windows)
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v6
         with:
           name: x86_64-pc-windows-msvc.windows
 
       - run: ls -R
 
       - name: Create GitHub Release
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v2
         with:
           body_path: RELEASE-NOTES
           files: |
             tree-sitter-grammars*.tar.gz
 
       - name: Greenlight releasing to MELPA
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         with:
           github-token: ${{ secrets.PAT_2 }}
           script: |
@@ -178,7 +178,7 @@ jobs:
         continue-on-error: true
 
       - name: Greenlight releasing to MELPA Stable
-        uses: actions/github-script@v7
+        uses: actions/github-script@v8
         with:
           github-token: ${{ secrets.PAT_2 }}
           script: |

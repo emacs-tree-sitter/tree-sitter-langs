@@ -48,16 +48,16 @@ jobs:
             target: aarch64-apple-darwin
     runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - run: .github/script/setup
 
       # Cross build
-      - uses: mlugg/setup-zig@v1
+      - uses: mlugg/setup-zig@v2
         if: matrix.target == 'aarch64-unknown-linux-gnu'
         with:
           version: 0.13.0
 
-      - uses: actions/setup-python@v4
+      - uses: actions/setup-python@v6
         with:
           python-version: '3.10' 
 
