@@ -46,7 +46,7 @@ jobs:
             host: x86_64-pc-windows-msvc
     runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - run: .github/script/setup
 
       # Cross build
@@ -122,7 +122,7 @@ jobs:
       - uses: jcs090218/setup-emacs@master
         with:
           version: '27.2'
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
       - name: Generate release notes
         run: |
           RELEASE_VERSION=$(git describe --tags --abbrev=0)
