@@ -45,7 +45,7 @@
  (#lua-match? @number "^%d+$"))
 
 ((literal) @number.float
- (#lua-match? @number.float "^[-]?%d*\.%d*$"))
+ (#lua-match? @number.float "^[-]?%d*%.%d*$"))
 
 (parameter) @variable.parameter
 
