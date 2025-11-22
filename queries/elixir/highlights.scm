@@ -109,7 +109,7 @@
   (#match? @__name__ "^[rR]$")) @string.regex
 
 (sigil
-  (sigil_name) @__name__
+  (sigil_name)
   quoted_start: _ @string.special
   quoted_end: _ @string.special) @string.special
 
