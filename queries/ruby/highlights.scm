@@ -30,7 +30,6 @@
  "case"
  "else"
  "elsif"
- "if"
  "unless"
  "when"
 
