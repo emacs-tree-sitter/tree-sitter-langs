@@ -8,7 +8,6 @@
 (arrow) @punctuation.delimiter
 
 (subject) @text.title
-(subject (overflow) @text)
 (prefix (type) @keyword)
 (prefix (scope) @parameter)
 (prefix [
