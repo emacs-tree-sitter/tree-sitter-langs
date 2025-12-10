@@ -131,7 +131,7 @@ jobs:
         git submodule update --remote --merge repos/${{ matrix.target }}
 
     - name: Create Pull Request
-      uses: peter-evans/create-pull-request@v6
+      uses: peter-evans/create-pull-request@v8
       with:
         title: 'chore: Bump ${{ matrix.target }} grammar'
         body: ''
