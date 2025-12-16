@@ -1,6 +1,8 @@
 # Changelog
 
 ## Unreleased
+
+## 0.12.329 - 2025-12-16
 - Add `RON` support
 
 ## 0.12.328 - 2025-12-15
