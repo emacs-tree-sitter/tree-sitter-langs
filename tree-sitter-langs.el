@@ -198,6 +198,7 @@ See `tree-sitter-langs-repos'."
                  (pygn-mode              . pgn)
                  (racket-mode            . racket)
                  (rjsx-mode              . javascript)
+                 (ron-mode               . ron)
                  (rst-mode               . rst)
                  (ruby-mode              . ruby)
                  (rust-mode              . rust)

@@ -96,6 +96,7 @@ jobs:
           - python
           - r
           - racket
+          - ron
           - rst
           - ruby
           - rust

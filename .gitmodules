@@ -630,3 +630,9 @@
 	update = none
 	ignore = dirty
 	branch = master
+[submodule "repos/ron"]
+	path = repos/ron
+	url = https://github.com/tree-sitter-grammars/tree-sitter-ron
+	update = none
+	ignore = dirty
+	branch = master
