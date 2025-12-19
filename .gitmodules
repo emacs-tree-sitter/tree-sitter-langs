@@ -229,11 +229,6 @@
 	branch = main
 	update = none
 	ignore = dirty
-[submodule "repos/toml"]
-	path = repos/toml
-	url = https://github.com/ikatyang/tree-sitter-toml.git
-	update = none
-	ignore = dirty
 [submodule "repos/markdown"]
 	path = repos/markdown
 	url = https://github.com/tree-sitter-grammars/tree-sitter-markdown.git
@@ -633,6 +628,12 @@
 [submodule "repos/ron"]
 	path = repos/ron
 	url = https://github.com/tree-sitter-grammars/tree-sitter-ron
+	update = none
+	ignore = dirty
+	branch = master
+[submodule "repos/toml"]
+	path = repos/toml
+	url = https://github.com/tree-sitter-grammars/tree-sitter-toml
 	update = none
 	ignore = dirty
 	branch = master
