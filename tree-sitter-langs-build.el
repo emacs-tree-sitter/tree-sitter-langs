@@ -75,7 +75,7 @@ If BUFFER is nil, `princ' is used to forward its stdout+stderr."
                    `(:filter (lambda (proc string)
                                (princ string)))))
          (proc (let ((process-environment (cons (format "TREE_SITTER_LIBDIR=%s"
-                                                        tree-sitter-langs-grammar-dir)
+                                                        (tree-sitter-langs--bin-dir))
                                                 process-environment)))
                  (apply #'make-process (append base output))))
          (exit-code (progn
