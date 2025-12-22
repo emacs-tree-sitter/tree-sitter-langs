@@ -7,7 +7,7 @@
 ;; Keywords: languages tools parsers tree-sitter
 ;; Homepage: https://github.com/emacs-tree-sitter/tree-sitter-langs
 ;; Version: 0.12.331
-;; Package-Requires: ((emacs "25.1") (tree-sitter "0.15.0"))
+;; Package-Requires: ((emacs "26.1") (tree-sitter "0.15.0"))
 ;; SPDX-License-Identifier: MIT
 
 ;;; Commentary:
