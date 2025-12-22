@@ -163,6 +163,7 @@ git checkout."
                 ('csv '("csv" ("csv" . csv)))
                 ('ocaml '("ocaml" ("interface" . ocaml-interface)))
                 ('ocaml-interface '("interface" ("interface" . ocaml-interface)))
+                ('php '("php" ("php" . php)))
                 ('typescript '("typescript" ("tsx" . tsx)))
                 ('xml '("xml" ("dtd" . dtd)))
                 ('markdown '("tree-sitter-markdown" ("tree-sitter-markdown" . markdown)))
