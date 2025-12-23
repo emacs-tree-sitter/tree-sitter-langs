@@ -21,7 +21,7 @@ jobs:
           - agda
           - arduino
           - asm
-          #- astro
+          - astro
           - bash
           - beancount
           - bibtex

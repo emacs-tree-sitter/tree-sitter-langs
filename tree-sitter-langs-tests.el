@@ -23,8 +23,7 @@
 (defvar tree-sitter-langs-tests-ignore-queries
   '( psv tsv
      ecma
-     html_tags
-     astro)
+     html_tags)
   "List of queries to ignore the test.")
 
 (defun tree-sitter-langs-tests-check-queries (lang-symbol)
