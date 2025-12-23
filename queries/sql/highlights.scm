@@ -200,7 +200,6 @@
  (keyword_current)
  (keyword_ties)
  (keyword_others)
- (keyword_preserve)
  (keyword_zerofill)
  (keyword_format)
  (keyword_fields)

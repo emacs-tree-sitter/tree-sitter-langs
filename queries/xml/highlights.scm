@@ -164,7 +164,7 @@
 
 ;; Misc
 
-[ "INCLUDE" "IGNORE" ] @keyword
+[ "IGNORE" ] @keyword
 
 (Comment) @comment
 
