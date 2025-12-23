@@ -164,8 +164,6 @@
 
 ;; Misc
 
-[ "IGNORE" ] @keyword
-
 (Comment) @comment
 
 (ERROR) @error
