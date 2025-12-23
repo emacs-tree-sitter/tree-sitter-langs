@@ -541,12 +541,6 @@
 	update = none
 	ignore = dirty
 	branch = master
-[submodule "repos/actionscript"]
-	path = repos/actionscript
-	url = https://github.com/Rileran/tree-sitter-actionscript
-	update = none
-	ignore = dirty
-	branch = main
 [submodule "repos/ninja"]
 	path = repos/ninja
 	url = https://github.com/alemuller/tree-sitter-ninja
@@ -640,6 +634,12 @@
 [submodule "repos/astro"]
 	path = repos/astro
 	url = https://github.com/virchau13/tree-sitter-astro
+	update = none
+	ignore = dirty
+	branch = master
+[submodule "repos/actionscript"]
+	path = repos/actionscript
+	url = https://github.com/jcs090218/tree-sitter-actionscript
 	update = none
 	ignore = dirty
 	branch = master
