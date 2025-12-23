@@ -307,12 +307,6 @@
 	branch = main
 	update = none
 	ignore = dirty
-[submodule "repos/jai"]
-	path = repos/jai
-	url = https://github.com/Pyromuffin/tree-sitter-jai
-	branch = master
-	update = none
-	ignore = dirty
 [submodule "repos/gdscript"]
 	path = repos/gdscript
 	url = https://github.com/PrestonKnopp/tree-sitter-gdscript
@@ -634,6 +628,12 @@
 [submodule "repos/actionscript"]
 	path = repos/actionscript
 	url = https://github.com/jcs090218/tree-sitter-actionscript
+	update = none
+	ignore = dirty
+	branch = master
+[submodule "repos/jai"]
+	path = repos/jai
+	url = https://github.com/constantitus/tree-sitter-jai
 	update = none
 	ignore = dirty
 	branch = master
