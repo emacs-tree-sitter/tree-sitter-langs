@@ -1,62 +1,261 @@
-;; highlights.scm
+; Includes
 
 [
- (cast_expression)
- ] @type
+  (import)
+  (load)
+] @include
+
+
+; Keywords
+[
+  ; from modules/Jai_Lexer
+  "if"
+  "xx"
+
+  "ifx"
+  "for"
+
+  "then"
+  "else"
+  "null"
+  "case"
+  "enum"
+  "true"
+  "cast"
+
+  "while"
+  "break"
+  "using"
+  "defer"
+  "false"
+  "union"
+
+  "return"
+  "struct"
+  "inline"
+  "remove"
+
+  ; "size_of"
+  "type_of"
+  ; "code_of"
+  ; "context"
+
+  "continue"
+  "operator"
+
+  ; "type_info"
+  "no_inline"
+  "interface"
+
+  "enum_flags"
+
+  ; "is_constant"
+
+  "push_context"
+
+  ; "initializer_of"
+] @keyword
 
 [
- "if"
- "ifx"
- "then"
- "else"
- "for"
- "while"
- "break"
- "return"
- ] @keyword
-
-(variable_initializer (identifier) @type)
-(operator_definition) @operator
-
-(parameter (identifier) (identifier) @type)
-(trailing_return_types (parameter (identifier) @type))
+  "return"
+] @keyword.return
 
 [
- (expression_like_directive)
- "#assert"
- "#type_info_none"
- "#type_info_procedures_are_void_pointers"
- "#no_padding"
- "#specified"
- "#must"
- "#deprecated"
- (trailing_directive)
- "#code"
- "#complete"
- (operator_like_directive)
- "#foreign"
- "#align"
- "#module_parameters"
- (module_scope_directive)
- "#if"
- "#load"
- "#insert"
- "#program_export"
- ] @function.macro
+  "if"
+  "else"
+  "case"
+  "break"
+] @conditional
 
-(string_literal) @string
-;;(built_in_type) @type
-(number) @number
-;;(function_definition name: (identifier) @function)
-;;(struct_decl name: (identifier) @type.user)
-;;(constant_value_definition name: (identifier) @constant)
-(inline_comment) @comment
-(block_comment) @comment
-;;(cast_expression name: (identifier) @function)
-;;(function_call name: (variable_reference) @function)
-;;(variable_decl name: (identifier) @variable)
-;;(variable_decl names: (identifier) @variable)
-;;(implicit_variable_decl name: (identifier) @variable)
-;;(parameter_decl name: (identifier) @variable)
-;;(for_loop name: (identifier) @variable)
-;;(for_loop names: (identifier) @variable)
+((if_expression
+  [
+    "then"
+    "ifx"
+    "else"
+  ] @conditional.ternary)
+  (#set! "priority" 105))
+
+; Repeats
+
+[
+  "for"
+  "while"
+  "continue"
+] @repeat
+
+; Variables
+
+; (identifier) @variable
+name: (identifier) @variable
+argument: (identifier) @variable
+named_argument: (identifier) @variable
+(member_expression (identifier) @variable)
+(parenthesized_expression (identifier) @variable)
+
+((identifier) @variable.builtin
+  (#any-of? @variable.builtin "context"))
+
+; Namespaces
+
+(import (identifier) @namespace)
+
+; Parameters
+
+(parameter (identifier) @parameter ":" "="? (identifier)? @constant)
+
+; (call_expression argument: (identifier) @parameter "=")
+
+; Functions
+
+; (procedure_declaration (identifier) @function (procedure (block)))
+(procedure_declaration (identifier) @function (block))
+
+(call_expression function: (identifier) @function.call)
+
+; Types
+
+type: (types) @type
+type: (identifier) @type
+((types) @type)
+
+modifier: (identifier) @keyword
+keyword: (identifier) @keyword
+
+((types (identifier) @type.builtin)
+  (#any-of? @type.builtin
+    "bool" "int" "string"
+    "s8" "s16" "s32" "s64"
+    "u8" "u16" "u32" "u64"
+    "Type" "Any"))
+
+(struct_declaration (identifier) @type ":" ":")
+
+(enum_declaration (identifier) @type ":" ":")
+
+; (const_declaration (identifier) @type ":" ":" [(array_type) (pointer_type)])
+
+; ; I don't like this
+; ((identifier) @type
+;   (#lua-match? @type "^[A-Z][a-zA-Z0-9]*$")
+;   (#not-has-parent? @type parameter procedure_declaration call_expression))
+
+; Fields
+
+(member_expression "." (identifier) @field)
+
+(assignment_statement (identifier) @field "="?)
+(update_statement (identifier) @field)
+
+; Constants
+
+((identifier) @constant
+  (#lua-match? @constant "^_*[A-Z][A-Z0-9_]*$")
+  (#not-has-parent? @constant type parameter))
+
+(member_expression . "." (identifier) @constant)
+
+(enum_field (identifier) @constant)
+
+; Literals
+
+(integer) @number
+(float) @number
+
+(string) @string
+
+;(character) @character
+
+(string_contents (escape_sequence) @string.escape)
+
+(boolean) @boolean
+
+[
+  (uninitialized)
+  (null)
+] @constant.builtin
+
+; Operators
+
+[
+  ":"
+  "="
+  "+"
+  "-"
+  "*"
+  "/"
+  "%"
+  ">"
+  ">="
+  "<"
+  "<="
+  "=="
+  "!="
+  "|"
+  "~"
+  "&"
+  "&~"
+  "<<"
+  ">>"
+  "<<<"
+  ">>>"
+  "||"
+  "&&"
+  "!"
+  ".."
+  "+="
+  "-="
+  "*="
+  "/="
+  "%="
+  "&="
+  "|="
+  "^="
+  "<<="
+  ">>="
+  "<<<="
+  ">>>="
+  "||="
+  "&&="
+] @operator
+
+; Punctuation
+
+[ "{" "}" ] @punctuation.bracket
+
+[ "(" ")" ] @punctuation.bracket
+
+[ "[" "]" ] @punctuation.bracket
+
+[
+  "`"
+  "->"
+  "."
+  ","
+  ":"
+  ";"
+] @punctuation.delimiter
+
+; Comments
+
+[
+  (block_comment)
+  (comment)
+] @spell
+
+[
+  (block_comment)
+  (comment)
+] @comment 
+
+; Errors
+
+(ERROR) @error
+
+directive: ("#") @keyword ; #if
+type: ("type_of") @type
+
+(compiler_directive) @keyword
+(heredoc_start) @none
+(heredoc_end) @none
+(heredoc_body) @string
+(note) @string
