@@ -175,12 +175,6 @@
 	branch = main
 	update = none
 	ignore = dirty
-[submodule "repos/d"]
-	path = repos/d
-	url = https://github.com/CyberShadow/tree-sitter-d/
-	branch = master
-	update = none
-	ignore = dirty
 [submodule "repos/nix"]
 	path = repos/nix
 	url = https://github.com/nix-community/tree-sitter-nix
@@ -637,3 +631,9 @@
 	update = none
 	ignore = dirty
 	branch = master
+[submodule "repos/d"]
+	path = repos/d
+	url = https://github.com/gdamore/tree-sitter-d
+	update = none
+	ignore = dirty
+	branch = main
