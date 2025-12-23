@@ -155,7 +155,6 @@
  (keyword_for)
  (keyword_if)
  (keyword_exists)
- (keyword_avg)
  (keyword_column)
  (keyword_columns)
  (keyword_cross)
