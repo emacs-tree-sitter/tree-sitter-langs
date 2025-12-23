@@ -1,5 +1,5 @@
 (php_tag) @tag
-"?>" @tag
+(php_end_tag) @tag
 ; Variables
 
 (variable_name) @variable

@@ -221,10 +221,12 @@
  "async"
  "async*"
  "covariant"
- "dynamic"
  "external"
  "static"
  "sync*"
+ "final"
+ "base"
+ "sealed"
  ] @constant.builtin
 
 ;; when used as an identifier:
