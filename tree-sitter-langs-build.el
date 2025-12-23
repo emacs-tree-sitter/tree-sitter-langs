@@ -259,6 +259,7 @@ infrequent (grammar-only changes).  It is different from the version of
     (astro)
     (cpp)
     (commonlisp)
+    (fennel)
     (hlsl)
     (glsl)
     (toml)
