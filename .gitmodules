@@ -355,12 +355,6 @@
 	branch = main
 	update = none
 	ignore = dirty
-[submodule "repos/xml"]
-	path = repos/xml
-	url = https://github.com/tree-sitter-grammars/tree-sitter-xml
-	branch = master
-	update = none
-	ignore = dirty
 [submodule "repos/jsonnet"]
 	path = repos/jsonnet
 	url = https://github.com/sourcegraph/tree-sitter-jsonnet
@@ -634,6 +628,12 @@
 [submodule "repos/yaml"]
 	path = repos/yaml
 	url = https://github.com/tree-sitter-grammars/tree-sitter-yaml
+	update = none
+	ignore = dirty
+	branch = master
+[submodule "repos/xml"]
+	path = repos/xml
+	url = https://github.com/tree-sitter-grammars/tree-sitter-xml
 	update = none
 	ignore = dirty
 	branch = master
