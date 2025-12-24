@@ -82,6 +82,7 @@ jobs:
           - markdown-inline
           - mermaid
           - meson
+          - nim
           - ninja
           - nix
           - noir
