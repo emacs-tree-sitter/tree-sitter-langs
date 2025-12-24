@@ -104,7 +104,7 @@
 (setter
 	("set") @function.builtin)
 
-;;(primary_constructor) @constructor
+(primary_constructor) @constructor
 (secondary_constructor
 	("constructor") @constructor)
 
@@ -205,7 +205,7 @@
 ] @number
 
 [
-	"null" ; should be highlighted the same as booleans
+	(null_literal) ; should be highlighted the same as booleans
 	(boolean_literal)
 ] @boolean
 
@@ -272,21 +272,21 @@
 ;	"typeof" ; NOTE: It is reserved for future use
 ] @keyword
 
-("fun") @keyword
+("fun") @keyword.function
 
-(jump_expression) @keyword
+(jump_expression) @keyword.return
 
 [
 	"if"
 	"else"
 	"when"
-] @keyword
+] @conditional
 
 [
 	"for"
 	"do"
 	"while"
-] @keyword
+] @repeat
 
 [
 	"try"
