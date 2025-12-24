@@ -1,6 +1,8 @@
 # Changelog
 
 ## Unreleased
+
+## 0.12.348 - 2025-12-24
 - Add `diff` support
 
 ## 0.12.347 - 2025-12-24
