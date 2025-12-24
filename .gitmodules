@@ -637,6 +637,12 @@
 	update = none
 	ignore = dirty
 	branch = main
+[submodule "repos/diff"]
+	path = repos/diff
+	url = https://github.com/tree-sitter-grammars/tree-sitter-diff
+	update = none
+	ignore = dirty
+	branch = main
 [submodule "repos/nim"]
 	path = repos/nim
 	url = https://github.com/alaviss/tree-sitter-nim
