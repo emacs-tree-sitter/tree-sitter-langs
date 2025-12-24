@@ -637,3 +637,9 @@
 	update = none
 	ignore = dirty
 	branch = main
+[submodule "repos/nim"]
+	path = repos/nim
+	url = https://github.com/alaviss/tree-sitter-nim
+	update = none
+	ignore = dirty
+	branch = main
