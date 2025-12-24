@@ -221,6 +221,7 @@ See `tree-sitter-langs-repos'."
                  (typst-mode             . typst)
                  (verilog-mode           . verilog)
                  (vhdl-mode              . vhdl)
+                 (vimrc-mode             . vim)
                  (nxml-mode              . xml)
                  (yaml-mode              . yaml)
                  (k8s-mode               . yaml)
