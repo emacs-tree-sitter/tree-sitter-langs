@@ -29,6 +29,7 @@ jobs:
           - c-sharp
           - clojure
           - cmake
+          - cobol
           - comment
           - commonlisp
           - cpp
