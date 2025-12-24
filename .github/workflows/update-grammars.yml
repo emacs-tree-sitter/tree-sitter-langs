@@ -83,6 +83,7 @@ jobs:
           - markdown-inline
           - mermaid
           - meson
+          - nim
           - ninja
           - nix
           - noir
@@ -117,6 +118,7 @@ jobs:
           - typst
           - verilog
           - vhdl
+          - vim
           - xml
           - yaml
           - zig

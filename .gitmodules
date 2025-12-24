@@ -643,3 +643,15 @@
 	update = none
 	ignore = dirty
 	branch = main
+[submodule "repos/nim"]
+	path = repos/nim
+	url = https://github.com/alaviss/tree-sitter-nim
+	update = none
+	ignore = dirty
+	branch = main
+[submodule "repos/vim"]
+	path = repos/vim
+	url = https://github.com/tree-sitter-grammars/tree-sitter-vim
+	update = none
+	ignore = dirty
+	branch = master
