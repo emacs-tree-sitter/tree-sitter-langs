@@ -130,11 +130,6 @@
 
 ; ----------------------------------------------------------------------------
 ; Functions and variables
-(decl
-  [
-   name: (variable) @function
-   names: (binding_list (variable) @function)
-  ])
 
 (decl/bind
   name: (variable) @variable)
@@ -145,32 +140,12 @@
   name: (variable) @variable
   type: (type))
 
-((decl/signature
-  name: (variable) @_name
-  type: (type))
-  .
-  (decl
-    name: (variable) @variable)
-    match: (_)
-  (#eq? @_name @variable))
-
 ; but consider a type that involves 'IO' a decl/function
 (decl/signature
   name: (variable) @function
   type: (type/apply
     constructor: (name) @_type)
   (#eq? @_type "IO"))
-
-((decl/signature
-  name: (variable) @_name
-  type: (type/apply
-    constructor: (name) @_type)
-  (#eq? @_type "IO"))
-  .
-  (decl
-    name: (variable) @function)
-    match: (_)
-  (#eq? @_name @function))
 
 ((decl/signature) @function
   .
