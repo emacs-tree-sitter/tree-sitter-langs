@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Add `Vim` support
 
 ## 0.12.346 - 2025-12-24
 
