@@ -2,6 +2,8 @@
 
 ## Unreleased
 - Add `diff` support
+
+## 0.12.347 - 2025-12-24
 - Add `Nim` support
 - Add `Vim` support
 
