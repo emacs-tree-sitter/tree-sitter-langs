@@ -6,7 +6,7 @@
 ;; Maintainer: Jen-Chieh Shen <jcs090218@gmail.com>
 ;; Keywords: languages tools parsers tree-sitter
 ;; Homepage: https://github.com/emacs-tree-sitter/tree-sitter-langs
-;; Version: 0.12.345
+;; Version: 0.12.346
 ;; Package-Requires: ((emacs "26.1") (tree-sitter "0.15.0"))
 ;; SPDX-License-Identifier: MIT
 
@@ -222,6 +222,7 @@ See `tree-sitter-langs-repos'."
                  (typst-mode             . typst)
                  (verilog-mode           . verilog)
                  (vhdl-mode              . vhdl)
+                 (vimrc-mode             . vim)
                  (nxml-mode              . xml)
                  (yaml-mode              . yaml)
                  (k8s-mode               . yaml)

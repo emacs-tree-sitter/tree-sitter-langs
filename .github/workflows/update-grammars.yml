@@ -117,6 +117,7 @@ jobs:
           - typst
           - verilog
           - vhdl
+          - vim
           - xml
           - yaml
           - zig
