@@ -122,6 +122,7 @@ See `tree-sitter-langs-repos'."
                  (cmake-mode             . cmake)
                  (d-mode                 . d)
                  (dart-mode              . dart)
+                 (diff-mode              . diff)
                  (dockerfile-mode        . dockerfile)
                  (css-mode               . css)
                  (csv-mode               . csv)

@@ -36,6 +36,7 @@ jobs:
           - csv
           - d
           - dart
+          - diff
           - dockerfile
           - editorconfig
           - elisp
