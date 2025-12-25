@@ -5,14 +5,14 @@
   (not)
   "="
   (blank)
-] @keyword.operator
+] @operator
 
 [
   (if_tok)
   (elif_tok)
   (else_tok)
   (always_tok)
-] @keyword.control
+] @keyword
 
 (comment) @comment
 
