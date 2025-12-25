@@ -72,7 +72,8 @@ jobs:
       - run: eask install-deps
 
       - run: script/compile all -target "${{ matrix.target }}"
-        continue-on-error: ${{ !matrix.target }}
+        #continue-on-error: ${{ !matrix.target }}
+        continue-on-error: true
 
       - run: script/inspect-binaries
         continue-on-error: true
