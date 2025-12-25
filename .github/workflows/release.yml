@@ -84,14 +84,14 @@ jobs:
       - run: eask package
         if: ${{ !matrix.target }}
 
-      - name: Determine version
+      - name: Determine version (Unix)
         if: runner.os != 'Windows'
         run: |
           bundle_version=$(script/bundle-version)
           bundle_version=${bundle_version//$'\n'/}
           echo BUNDLE_VERSION=$bundle_version >> $GITHUB_ENV
 
-      - name: Determine version
+      - name: Determine version (Windows)
         if: runner.os == 'Windows'
         run: |
           $bundle_version = ((script/bundle-version) | Out-String).Trim()
