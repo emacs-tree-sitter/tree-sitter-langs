@@ -655,3 +655,21 @@
 	update = none
 	ignore = dirty
 	branch = master
+[submodule "repos/rtx"]
+	path = repos/rtx
+	url = https://github.com/apertium/tree-sitter-apertium
+	branch = master
+	update = none
+	ignore = dirty
+[submodule "repos/cg"]
+	path = repos/cg
+	url = https://github.com/apertium/tree-sitter-apertium
+	branch = master
+	update = none
+	ignore = dirty
+[submodule "repos/lexc"]
+	path = repos/lexc
+	url = https://github.com/apertium/tree-sitter-apertium
+	branch = master
+	update = none
+	ignore = dirty

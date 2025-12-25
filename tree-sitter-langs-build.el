@@ -168,6 +168,10 @@ git checkout."
                 ('xml '("xml" ("dtd" . dtd)))
                 ('markdown '("tree-sitter-markdown" ("tree-sitter-markdown" . markdown)))
                 ('markdown-inline '("tree-sitter-markdown-inline" ("tree-sitter-markdown-inline" . markdown)))
+                ;; lexd/twolc/xfst don't yet have major modes for Emacs:
+                ('rtx '(("tree-sitter-rtx" . rtx)))
+                ('cg '(("tree-sitter-cg" . cg)))
+                ('lexc '(("tree-sitter-lexc" . lexc)))
                 (_ '("")))))))
 
 (defun tree-sitter-langs--repo-status (lang-symbol)
