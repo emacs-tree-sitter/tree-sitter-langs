@@ -24,17 +24,17 @@ jobs:
             emacs-version: '28.2'
             ext: dylib
             host: x86_64-apple-darwin
-          - os: macos-15-intel
+          - os: macos-15
             bundle_os: macos
             emacs-version: '28.2'
             ext: dylib
             target: aarch64-apple-darwin
-          - os: ubuntu-22.04
+          - os: ubuntu-24.04
             bundle_os: linux
             emacs-version: '27.2'
             ext: so
             host: x86_64-unknown-linux-gnu
-          - os: ubuntu-22.04
+          - os: ubuntu-24.04
             bundle_os: linux
             emacs-version: '27.2'
             ext: so
@@ -60,7 +60,7 @@ jobs:
           python-version: '3.10' 
 
       - name: Install tree-sitter CLI
-        run: npm install -g tree-sitter-cli@0.19.3
+        run: npm install -g tree-sitter-cli@0.26.3
 
       - uses: jcs090218/setup-emacs@master
         with:
@@ -117,7 +117,7 @@ jobs:
 
   publish:
     needs: build
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     steps:
       - uses: jcs090218/setup-emacs@master
         with:
