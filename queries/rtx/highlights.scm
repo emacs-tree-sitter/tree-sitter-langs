@@ -1,32 +1,36 @@
 [
   (arrow)
   (str_op)
-  (bool_op)
+  (and) (or)
   (not)
   "="
   (blank)
-] @keyword
+] @keyword.operator
 
 [
   (if_tok)
   (elif_tok)
   (else_tok)
   (always_tok)
-] @keyword
+] @keyword.control
 
 (comment) @comment
 
-(weight) @constant
-(reduce_rule ":" @constant)
-(num) @constant
+(weight) @constant.numeric
+(reduce_rule ":" @constant.numeric)
+(num) @constant.numeric
 
-(reduce_rule_group (ident) @function)
-(reduce_rule (string) @label)
+(colon) @punctuation.delimiter
 
-(output_var_set (ident) @constant)
-((clip) (str_op) (clip (ident) @string))
-(str_op) @operator
-(blank) @constant
-(ident) @variable
+(string) @constant.string
 
-(string) @string
+(output_rule
+ pos: (ident) @variable)
+(retag_rule
+ src_attr: (ident) @variable
+ trg_attr: (ident) @variable)
+(attr_default
+ src: (ident) @variable
+ trg: (ident) @variable) ; (ND "") highlight trg as string
+(attr_rule
+ name: (ident) @variable)
