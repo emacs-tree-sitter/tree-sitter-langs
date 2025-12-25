@@ -5,7 +5,7 @@
   (not)
   "="
   (blank)
-] @operator
+] @keyword
 
 [
   (if_tok)
@@ -16,9 +16,9 @@
 
 (comment) @comment
 
-(weight) @constant.numeric
-(reduce_rule ":" @constant.numeric)
-(num) @constant.numeric
+(weight) @constant
+(reduce_rule ":" @constant)
+(num) @constant
 
 (colon) @punctuation.delimiter
 
