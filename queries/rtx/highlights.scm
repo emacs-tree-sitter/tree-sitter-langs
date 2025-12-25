@@ -22,7 +22,7 @@
 
 (colon) @punctuation.delimiter
 
-(string) @constant.string
+(string) @string
 
 (output_rule
  pos: (ident) @variable)
