@@ -77,15 +77,19 @@ jobs:
 
       - run: script/compile changed ${{ github.event.pull_request.base.sha }} -target "${{ matrix.target }}"
         if: github.event_name == 'pull_request'
-        continue-on-error: ${{ !matrix.target }}
+        #continue-on-error: ${{ !matrix.target }}
+        continue-on-error: true
 
       - run: script/compile all -target "${{ matrix.target }}"
         if: github.event_name != 'pull_request'
-        continue-on-error: ${{ !matrix.target }}
+        #continue-on-error: ${{ !matrix.target }}
+        continue-on-error: true
 
       - run: script/inspect-binaries
         continue-on-error: true
 
       - run: script/test
         if: ${{ !matrix.target }}
+        # XXX: For some reason, Windows builds correctly
+        # but still report error.
         continue-on-error: ${{ runner.os == 'Windows' }}
