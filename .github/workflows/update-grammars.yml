@@ -27,6 +27,7 @@ jobs:
           - bibtex
           - c
           - c-sharp
+          - cg
           - clojure
           - cmake
           - comment
@@ -74,6 +75,7 @@ jobs:
           - julia
           - kotlin
           - latex
+          - lexc
           - llvm
           - llvm-mir
           - lua
@@ -100,6 +102,7 @@ jobs:
           - racket
           - ron
           - rst
+          - rtx
           - ruby
           - rust
           - scala

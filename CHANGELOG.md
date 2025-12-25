@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Add `Apertium` support
 
 ## 0.12.355 - 2025-12-25
 
