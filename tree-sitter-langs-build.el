@@ -162,7 +162,7 @@ git checkout."
                 ;; XXX
                 ('csv '("csv" ("csv" . csv)))
                 ('ocaml '("ocaml" ("interface" . ocaml-interface)))
-                ('ocaml-interface '("interface" ("interface" . ocaml-interface)))
+                ('ocaml-interface '("grammars/interface" ("ocaml-interface" . ocaml-interface)))
                 ('php '("php" ("php" . php)))
                 ('typescript '("typescript" ("tsx" . tsx)))
                 ('xml '("xml" ("dtd" . dtd)))
