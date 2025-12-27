@@ -23,9 +23,9 @@
 ] @punctuation.delimiter
 
 ((gloss) @number
- (#match? @number "\"weight: *-?[0-9]+(\.[0-9]+)?\""))
+ (#match? @number "\"weight: *-?[0-9]+(\\.[0-9]+)?\""))
 ((gloss) @string
- (#not-match? @string "\"weight: *-?[0-9]+(\.[0-9]+)?\""))
+ (#not-match? @string "\"weight: *-?[0-9]+(\\.[0-9]+)?\""))
 
 (regex "<" @punctuation.bracket)
 (regex ">" @punctuation.bracket)
