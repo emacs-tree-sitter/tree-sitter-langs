@@ -93,3 +93,19 @@ jobs:
         # XXX: For some reason, Windows builds correctly
         # but still report error.
         continue-on-error: ${{ runner.os == 'Windows' }}
+
+  lint:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v6
+
+      - run: .github/script/setup
+
+      - name: Set up ts_query_ls
+        run: curl -fL https://github.com/ribru17/ts_query_ls/releases/latest/download/ts_query_ls-x86_64-unknown-linux-gnu.tar.gz | tar -xz
+
+      - run: ./ts_query_ls format --check queries/
+        name: Check query formatting
+
+      - run: ./ts_query_ls lint queries/
+        name: Lint queries

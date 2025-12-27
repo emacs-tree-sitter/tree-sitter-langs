@@ -1,7 +1,7 @@
 (identifier) @variable
 
 ((identifier) @constant
-  (#match? @constant "^[A-Z][A-Z_0-9]*$"))
+  (.match? @constant "^[A-Z][A-Z_0-9]*$"))
 
 ; Keywords
 [
@@ -269,8 +269,8 @@
   (scope) @_scope
   .
   (identifier) @boolean)
-  (#eq? @_scope "v:")
-  (#any-of? @boolean "true" "false"))
+  (.eq? @_scope "v:")
+  (.any-of? @boolean "true" "false"))
 
 ; Operators
 [
@@ -343,7 +343,7 @@
 
 ; Options
 ((set_value) @number
-  (#match? @number "^[0-9]+([.][0-9]+)?$"))
+  (.match? @number "^[0-9]+([.][0-9]+)?$"))
 
 (inv_option
   "!" @operator)
@@ -354,4 +354,4 @@
 ((set_item
   option: (option_name) @_option
   value: (set_value) @function)
-  (#any-of? @_option "tagfunc" "tfu" "completefunc" "cfu" "omnifunc" "ofu" "operatorfunc" "opfunc"))
+  (.any-of? @_option "tagfunc" "tfu" "completefunc" "cfu" "omnifunc" "ofu" "operatorfunc" "opfunc"))

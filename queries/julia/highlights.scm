@@ -31,7 +31,7 @@
   (_)
   (operator) @_pipe
   (identifier) @function.call
-  (#any-of? @_pipe "|>" ".|>"))
+  (.any-of? @_pipe "|>" ".|>"))
 
 ; Macros
 (macro_identifier
@@ -47,7 +47,7 @@
 ; Built-in functions
 ; print.("\"", filter(name -> getglobal(Core, name) isa Core.Builtin, names(Core)), "\" ")
 ((identifier) @function.builtin
-  (#any-of? @function.builtin
+  (.any-of? @function.builtin
     "applicable" "fieldtype" "getfield" "getglobal" "invoke" "isa" "isdefined" "isdefinedglobal"
     "modifyfield!" "modifyglobal!" "nfields" "replacefield!" "replaceglobal!" "setfield!"
     "setfieldonce!" "setglobal!" "setglobalonce!" "swapfield!" "swapglobal!" "throw" "tuple"
@@ -83,18 +83,18 @@
 (unary_expression
   (operator) @operator
   (_) @type
-  (#any-of? @operator "<:" ">:"))
+  (.any-of? @operator "<:" ">:"))
 
 (binary_expression
   (_) @type
   (operator) @operator
   (_) @type
-  (#any-of? @operator "<:" ">:"))
+  (.any-of? @operator "<:" ">:"))
 
 ; Built-in types
 ; print.("\"", filter(name -> typeof(Base.eval(Core, name)) in [DataType, UnionAll], names(Core)), "\" ")
 ((identifier) @type.builtin
-  (#any-of? @type.builtin
+  (.any-of? @type.builtin
     "AbstractArray" "AbstractChar" "AbstractFloat" "AbstractString" "Any" "ArgumentError" "Array"
     "AssertionError" "AtomicMemory" "AtomicMemoryRef" "Bool" "BoundsError" "Char"
     "ConcurrencyViolationError" "Cvoid" "DataType" "DenseArray" "DivideError" "DomainError"
@@ -312,18 +312,18 @@
 
 ; Keyword operators
 ((operator) @keyword.operator
-  (#any-of? @keyword.operator "in" "isa"))
+  (.any-of? @keyword.operator "in" "isa"))
 
 (where_expression
   "where" @keyword.operator)
 
 ; Built-in constants
 ((identifier) @constant.builtin
-  (#any-of? @constant.builtin "nothing" "missing"))
+  (.any-of? @constant.builtin "nothing" "missing"))
 
 ((identifier) @variable.builtin
-  (#any-of? @variable.builtin "begin" "end")
-  (#has-ancestor? @variable.builtin index_expression))
+  (.any-of? @variable.builtin "begin" "end")
+  (.has-ancestor? @variable.builtin index_expression))
 
 ; Literals
 (boolean_literal) @boolean
@@ -333,7 +333,7 @@
 (float_literal) @number.float
 
 ((identifier) @number.float
-  (#any-of? @number.float "NaN" "NaN16" "NaN32" "Inf" "Inf16" "Inf32"))
+  (.any-of? @number.float "NaN" "NaN16" "NaN32" "Inf" "Inf16" "Inf32"))
 
 (character_literal) @character
 

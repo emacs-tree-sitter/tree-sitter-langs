@@ -1,105 +1,107 @@
 [
- "@media"
- "@charset"
- "@namespace"
- "@supports"
- "@keyframes"
- (at_keyword)
- ] @keyword.directive
+  "@media"
+  "@charset"
+  "@namespace"
+  "@supports"
+  "@keyframes"
+  (at_keyword)
+] @keyword.directive
 
 "@import" @keyword.import
 
 [
- (to)
- (from)
- ] @keyword
+  (to)
+  (from)
+] @keyword
 
 (comment) @comment @spell
 
 (tag_name) @tag
+
 (class_name) @tag
+
 (id_name) @tag
 
 [
- (property_name)
- (feature_name)
- ] @property
+  (property_name)
+  (feature_name)
+] @property
 
 [
- (nesting_selector)
- (universal_selector)
- ] @character.special
+  (nesting_selector)
+  (universal_selector)
+] @character.special
 
 (function_name) @function
 
 [
- "~"
- ">"
- "+"
- "-"
- "*"
- "/"
- "="
- "^="
- "|="
- "~="
- "$="
- "*="
- ] @operator
+  "~"
+  ">"
+  "+"
+  "-"
+  "*"
+  "/"
+  "="
+  "^="
+  "|="
+  "~="
+  "$="
+  "*="
+] @operator
 
 [
- "and"
- "or"
- "not"
- "only"
- ] @keyword.operator
+  "and"
+  "or"
+  "not"
+  "only"
+] @keyword.operator
 
 (important) @keyword.modifier
 
 (attribute_selector
- (plain_value) @string)
+  (plain_value) @string)
 
 (pseudo_element_selector
- "::"
- (tag_name) @attribute)
+  "::"
+  (tag_name) @attribute)
 
 (pseudo_class_selector
- (class_name) @attribute)
+  (class_name) @attribute)
 
 (attribute_name) @tag.attribute
 
 (namespace_name) @module
 
 ((property_name) @variable
- (#lua-match? @variable "^[-][-]"))
+  (.lua-match? @variable "^[-][-]"))
 
 ((plain_value) @variable
- (#lua-match? @variable "^[-][-]"))
+  (.lua-match? @variable "^[-][-]"))
 
 [
- (string_value)
- (color_value)
- (unit)
- ] @string
+  (string_value)
+  (color_value)
+  (unit)
+] @string
 
 (integer_value) @number
 
 (float_value) @number.float
 
 [
- "#"
- ","
- "."
- ":"
- "::"
- ";"
- ] @punctuation.delimiter
+  "#"
+  ","
+  "."
+  ":"
+  "::"
+  ";"
+] @punctuation.delimiter
 
 [
- "{"
- ")"
- "("
- "}"
- "["
- "]"
- ] @punctuation.bracket
+  "{"
+  ")"
+  "("
+  "}"
+  "["
+  "]"
+] @punctuation.bracket

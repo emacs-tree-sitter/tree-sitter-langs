@@ -1,12 +1,15 @@
 (dir_sep) @punctuation.delimiter
 
 (quoted_pattern
-  ("\"" @punctuation.special))
+  "\"" @punctuation.special)
 
 (range_notation) @string.special
 
 (range_notation
-  [ "[" "]" ] @punctuation.bracket)
+  [
+    "["
+    "]"
+  ] @punctuation.bracket)
 
 (wildcard) @character.special
 
@@ -14,7 +17,8 @@
 
 (character_class) @constant
 
-(class_range ("-" @operator))
+(class_range
+  "-" @operator)
 
 [
   (ansi_c_escape)
@@ -51,4 +55,5 @@
 (ERROR) @error
 
 (comment) @comment
+
 (comment) @spell

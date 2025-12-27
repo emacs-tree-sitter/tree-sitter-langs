@@ -1,12 +1,26 @@
 ; SPDX-FileCopyrightText: 2023 Leorize <leorize+oss@disroot.org>
 ; SPDX-License-Identifier: MPL-2.0
-
 ; Punctuations
-[ "." ";" "," ":" ] @punctuation.delimiter
-[ "(" ")" "[" "]" "{" "}" "{." ".}" ] @punctuation.bracket
+[
+  "."
+  ";"
+  ","
+  ":"
+] @punctuation.delimiter
+
+[
+  "("
+  ")"
+  "["
+  "]"
+  "{"
+  "}"
+  "{."
+  ".}"
+] @punctuation.bracket
 
 ; Operator by default, but could be overriden
-[ "=" ] @operator
+"=" @operator
 
 ; Special
 (blank_identifier) @variable.builtin
@@ -18,6 +32,7 @@
     (dot_expression
       right: (identifier) @function.call)
   ])
+
 (generalized_string
   function: [
     (identifier) @function.call
@@ -26,27 +41,57 @@
   ])
 
 ; Declarations
-(exported_symbol "*" @type.qualifier)
-(_ "=" @punctuation.delimiter [body: (_) value: (_)])
-(proc_declaration name: (_) @function)
-(func_declaration name: (_) @function)
-(converter_declaration name: (_) @function)
-(method_declaration name: (_) @method)
-(template_declaration name: (_) @function.macro)
-(macro_declaration name: (_) @function.macro)
-(symbol_declaration name: (_) @variable)
+(exported_symbol
+  "*" @type.qualifier)
+
+(_
+  "=" @punctuation.delimiter
+  [
+    body: (_)
+    value: (_)
+  ])
+
+(proc_declaration
+  name: (_) @function)
+
+(func_declaration
+  name: (_) @function)
+
+(converter_declaration
+  name: (_) @function)
+
+(method_declaration
+  name: (_) @method)
+
+(template_declaration
+  name: (_) @function.macro)
+
+(macro_declaration
+  name: (_) @function.macro)
+
+(symbol_declaration
+  name: (_) @variable)
+
 (parameter_declaration
   (symbol_declaration_list
-    (symbol_declaration name: (_) @parameter)))
+    (symbol_declaration
+      name: (_) @parameter)))
+
 (_
   [
     type: [
-      (type_expression (identifier))
-      (type_expression (accent_quoted (identifier)))
+      (type_expression
+        (identifier))
+      (type_expression
+        (accent_quoted
+          (identifier)))
     ] @type
     return_type: [
-      (type_expression (identifier))
-      (type_expression (accent_quoted (identifier)))
+      (type_expression
+        (identifier))
+      (type_expression
+        (accent_quoted
+          (identifier)))
     ] @type
   ])
 
@@ -58,14 +103,15 @@
   "raise"
 ] @exception
 
-(except_branch values: (expression_list
-  [
-    (identifier) @type
-    (infix_expression
-      left: (identifier) @type
-      operator: "as"
-      right: (identifier) @variable)
-  ]))
+(except_branch
+  values: (expression_list
+    [
+      (identifier) @type
+      (infix_expression
+        left: (identifier) @type
+        operator: "as"
+        right: (identifier) @variable)
+    ]))
 
 ; Expressions
 (dot_expression
@@ -83,14 +129,23 @@
 ] @comment.documentation
 
 (interpreted_string_literal) @string
+
 (long_string_literal) @string
+
 (raw_string_literal) @string
+
 (generalized_string) @string
+
 (char_literal) @character
+
 (escape_sequence) @string.escape
+
 (integer_literal) @number
+
 (float_literal) @float
+
 (custom_numeric_literal) @number
+
 (nil_literal) @constant.builtin
 
 ; Keyword
@@ -102,7 +157,8 @@
   "else"
 ] @conditional
 
-(of_branch "of" @conditional)
+(of_branch
+  "of" @conditional)
 
 [
   "import"
@@ -110,8 +166,11 @@
   "export"
 ] @include
 
-(import_from_statement "from" @include)
-(except_clause "except" @include)
+(import_from_statement
+  "from" @include)
+
+(except_clause
+  "except" @include)
 
 [
   "for"
@@ -120,7 +179,8 @@
   "break"
 ] @repeat
 
-(for "in" @repeat)
+(for
+  "in" @repeat)
 
 [
   "macro"
@@ -181,5 +241,8 @@
 ] @keyword.return
 
 ; Operators
-(infix_expression operator: _ @operator)
-(prefix_expression operator: _ @operator)
+(infix_expression
+  operator: _ @operator)
+
+(prefix_expression
+  operator: _ @operator)

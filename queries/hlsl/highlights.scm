@@ -27,4 +27,9 @@
 ] @type.qualifier
 
 (hlsl_attribute) @attribute
-(hlsl_attribute ["[" "]"] @attribute)
+
+(hlsl_attribute
+  [
+    "["
+    "]"
+  ] @attribute)

@@ -1,45 +1,45 @@
 (comment) @comment
 
 (section
- (section_name) @string.special)
+  (section_name) @string.special)
 
 (character_choice
- (character) @constant)
+  (character) @constant)
 
 (character_range
- start: (character) @constant
- end: (character) @constant)
+  start: (character) @constant
+  end: (character) @constant)
 
 [
- "["
- "]"
- "{"
- "}"
- ] @punctuation.bracket
+  "["
+  "]"
+  "{"
+  "}"
+] @punctuation.bracket
 
 [
- ","
- ".."
- (path_separator)
- ] @punctuation.delimiter
+  ","
+  ".."
+  (path_separator)
+] @punctuation.delimiter
 
 [
- "-"
- "="
- (negation)
- ] @operator
+  "-"
+  "="
+  (negation)
+] @operator
 
 [
- (wildcard_characters)
- (wildcard_any_characters)
- (wildcard_single_character)
- ] @character.special
+  (wildcard_characters)
+  (wildcard_any_characters)
+  (wildcard_single_character)
+] @character.special
 
 (escaped_character) @escape
 
 (pair
- key: (identifier) @property
- value: (_) @string)
+  key: (identifier) @property
+  value: (_) @string)
 
 (boolean) @boolean
 
@@ -48,8 +48,8 @@
 (unset) @constant.builtin
 
 [
- (spelling_language)
- (indent_style)
- (end_of_line)
- (charset)
- ] @string.special
+  (spelling_language)
+  (indent_style)
+  (end_of_line)
+  (charset)
+] @string.special

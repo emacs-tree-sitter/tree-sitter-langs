@@ -1,8 +1,7 @@
-;; Parameters
+; Parameters
+(formal_parameters
+  (identifier) @variable.parameter)
 
 (formal_parameters
- (identifier) @variable.parameter)
-
-(formal_parameters
- (rest_pattern
-  (identifier) @variable.parameter))
+  (rest_pattern
+    (identifier) @variable.parameter))

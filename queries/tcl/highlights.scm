@@ -1,136 +1,98 @@
-
 (comment) @comment @spell
 
-(command name: (simple_word) @function)
+(command
+  name: (simple_word) @function)
 
 "proc" @keyword.function
 
 ((simple_word) @variable.builtin
-               (#any-of? @variable.builtin
-                "argc"
-                "argv"
-                "argv0"
-                "auto_path"
-                "env"
-                "errorCode"
-                "errorInfo"
-                "tcl_interactive"
-                "tcl_library"
-                "tcl_nonwordchars"
-                "tcl_patchLevel"
-                "tcl_pkgPath"
-                "tcl_platform"
-                "tcl_precision"
-                "tcl_rcFileName"
-                "tcl_traceCompile"
-                "tcl_traceExec"
-                "tcl_wordchars"
-                "tcl_version"))
-
+  (.any-of? @variable.builtin
+    "argc" "argv" "argv0" "auto_path" "env" "errorCode" "errorInfo" "tcl_interactive" "tcl_library"
+    "tcl_nonwordchars" "tcl_patchLevel" "tcl_pkgPath" "tcl_platform" "tcl_precision"
+    "tcl_rcFileName" "tcl_traceCompile" "tcl_traceExec" "tcl_wordchars" "tcl_version"))
 
 "expr" @function.builtin
 
 (command
   name: (simple_word) @function.builtin
-  (#any-of? @function.builtin
-   "cd"
-   "exec"
-   "exit"
-   "incr"
-   "info"
-   "join"
-   "puts"
-   "regexp"
-   "regsub"
-   "split"
-   "subst"
-   "trace"
-   "source"))
+  (.any-of? @function.builtin
+    "cd" "exec" "exit" "incr" "info" "join" "puts" "regexp" "regsub" "split" "subst" "trace"
+    "source"))
 
-(command name: (simple_word) @keyword
-         (#any-of? @keyword
-          "append"
-          "break"
-          "catch"
-          "continue"
-          "default"
-          "dict"
-          "error"
-          "eval"
-          "global"
-          "lappend"
-          "lassign"
-          "lindex"
-          "linsert"
-          "list"
-          "llength"
-          "lmap"
-          "lrange"
-          "lrepeat"
-          "lreplace"
-          "lreverse"
-          "lsearch"
-          "lset"
-          "lsort"
-          "package"
-          "return"
-          "switch"
-          "throw"
-          "unset"
-          "variable"))
+(command
+  name: (simple_word) @keyword
+  (.any-of? @keyword
+    "append" "break" "catch" "continue" "default" "dict" "error" "eval" "global" "lappend" "lassign"
+    "lindex" "linsert" "list" "llength" "lmap" "lrange" "lrepeat" "lreplace" "lreverse" "lsearch"
+    "lset" "lsort" "package" "return" "switch" "throw" "unset" "variable"))
 
 [
- "error"
- "namespace"
- "on"
- "set"
- "try"
- ] @keyword
+  "error"
+  "namespace"
+  "on"
+  "set"
+  "try"
+] @keyword
 
 (unpack) @operator
 
 [
- "while"
- "foreach"
- ; "for"
- ] @repeat
+  "while"
+  "foreach"
+  ; "for"
+] @repeat
 
 [
- "if"
- "else"
- "elseif"
- ] @conditional
+  "if"
+  "else"
+  "elseif"
+] @conditional
 
 [
- "**"
- "/" "*" "%" "+" "-"
- "<<" ">>"
- ">" "<" ">=" "<="
- "==" "!="
- "eq" "ne"
- "in" "ni"
- "&"
- "^"
- "|"
- "&&"
- "||"
- ] @operator
+  "**"
+  "/"
+  "*"
+  "%"
+  "+"
+  "-"
+  "<<"
+  ">>"
+  ">"
+  "<"
+  ">="
+  "<="
+  "=="
+  "!="
+  "eq"
+  "ne"
+  "in"
+  "ni"
+  "&"
+  "^"
+  "|"
+  "&&"
+  "||"
+] @operator
 
 (variable_substitution) @parameter
+
 (quoted_word) @string
+
 (escaped_character) @string.escape
 
 [
- "{" "}"
- "[" "]"
- ";"
- ] @punctuation.delimiter
+  "{"
+  "}"
+  "["
+  "]"
+  ";"
+] @punctuation.delimiter
 
 ((simple_word) @number
-               (#lua-match? @number "^[0-9]+$"))
+  (.lua-match? @number "^[0-9]+$"))
 
 ((simple_word) @boolean
-               (#any-of? @boolean "true" "false"))
+  (.any-of? @boolean "true" "false"))
 
 ; after apply array auto_execok auto_import auto_load auto_mkindex auto_qualify
 ; auto_reset bgerror binary chan clock close coroutine dde encoding eof fblocked
