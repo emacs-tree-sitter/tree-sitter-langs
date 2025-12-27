@@ -2,5 +2,8 @@
   "$schema": "https://raw.githubusercontent.com/ribru17/ts_query_ls/refs/heads/master/schemas/config.json",
   "formatting_options": {
     "dot_prefix_predicates": true
-  }
+  },
+  "parser_install_directories": [
+    "./bin"
+  ]
 }
