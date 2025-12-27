@@ -51,15 +51,28 @@
 
 (contextpos) @constant
 
-(inlineset_single ["(" ")"] @punctuation.bracket)
-(compotag ["(" ")"] @punctuation.bracket)
+(inlineset_single
+  [
+    "("
+    ")"
+  ] @punctuation.bracket)
+
+(compotag
+  [
+    "("
+    ")"
+  ] @punctuation.bracket)
 
 (taglist) @constant
 
-((setname) @variable.parameter (#match? @variable.parameter "\\$\\$.*"))
+((setname) @variable.parameter
+  (.match? @variable.parameter "\\$\\$.*"))
 
-(list (setname) @variable)
-(set (setname) @variable)
+(list
+  (setname) @variable)
+
+(set
+  (setname) @variable)
 
 [
   (special_list_name)

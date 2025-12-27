@@ -33,7 +33,7 @@
   "---"
   "----"
 ] @punctuation.special
-  (#set! priority 95))
+  (.set! priority 95))
 
 [
   (binary_change)

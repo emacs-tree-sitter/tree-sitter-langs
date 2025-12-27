@@ -1,12 +1,10 @@
-;; Adapted from nvim-treesitter
-;; Keywords
-
-
+; Adapted from nvim-treesitter
+; Keywords
 [
- "goto"
- "in"
- "local"
- "return"
+  "goto"
+  "in"
+  "local"
+  "return"
 ] @keyword
 
 (label_statement) @label
@@ -14,71 +12,70 @@
 (break_statement) @keyword
 
 (do_statement
-[
-  "do"
-  "end"
-] @keyword)
+  [
+    "do"
+    "end"
+  ] @keyword)
 
 (while_statement
-[
-  "while"
-  "do"
-  "end"
-] @keyword)
+  [
+    "while"
+    "do"
+    "end"
+  ] @keyword)
 
 (repeat_statement
-[
-  "repeat"
-  "until"
-] @keyword)
+  [
+    "repeat"
+    "until"
+  ] @keyword)
 
 (if_statement
-[
-  "if"
-  "elseif"
-  "else"
-  "then"
-  "end"
-] @keyword)
+  [
+    "if"
+    "elseif"
+    "else"
+    "then"
+    "end"
+  ] @keyword)
 
 (elseif_statement
-[
-  "elseif"
-  "then"
-  "end"
-] @keyword)
+  [
+    "elseif"
+    "then"
+    "end"
+  ] @keyword)
 
 (else_statement
-[
-  "else"
-  "end"
-] @keyword)
+  [
+    "else"
+    "end"
+  ] @keyword)
 
 (for_statement
-[
-  "for"
-  "do"
-  "end"
-] @keyword)
+  [
+    "for"
+    "do"
+    "end"
+  ] @keyword)
 
 (function_declaration
-[
-  "function"
-  "end"
-] @keyword)
+  [
+    "function"
+    "end"
+  ] @keyword)
 
 (function_definition
-[
-  "function"
-  "end"
-] @keyword)
+  [
+    "function"
+    "end"
+  ] @keyword)
 
-;; Operators
-
+; Operators
 [
- "and"
- "not"
- "or"
+  "and"
+  "not"
+  "or"
 ] @operator
 
 [
@@ -105,8 +102,7 @@
   ".."
 ] @operator
 
-;; Punctuations
-
+; Punctuations
 [
   ";"
   ":"
@@ -114,32 +110,37 @@
   "."
 ] @punctuation.delimiter
 
-;; Brackets
-
+; Brackets
 [
- "("
- ")"
- "["
- "]"
- "{"
- "}"
+  "("
+  ")"
+  "["
+  "]"
+  "{"
+  "}"
 ] @punctuation.bracket
 
-;; Variables
+; Variables
+(assignment_statement
+  (variable_list
+    [
+      (identifier) @variable
+      (dot_index_expression
+        table: (identifier) @variable)
+      (bracket_index_expression
+        table: (identifier) @variable)
+    ]))
 
-(assignment_statement (variable_list
-                       [(identifier) @variable
-                        (dot_index_expression table: (identifier) @variable)
-                        (bracket_index_expression table: (identifier) @variable)]))
-(variable_declaration (variable_list (identifier) @variable))
+(variable_declaration
+  (variable_list
+    (identifier) @variable))
 
 ((identifier) @variable.builtin
- (#eq? @variable.builtin "self"))
+  (.eq? @variable.builtin "self"))
 
-;; Constants
-
+; Constants
 ((identifier) @constant
- (#match? @constant "^[A-Z][A-Z_0-9]*$"))
+  (.match? @constant "^[A-Z][A-Z_0-9]*$"))
 
 (vararg_expression) @constant
 
@@ -150,41 +151,50 @@
   (true)
 ] @constant.builtin
 
-;; Tables
+; Tables
+(field
+  name: (identifier) @label)
 
-(field name: (identifier) @label)
-
-(dot_index_expression field: (identifier) @property)
+(dot_index_expression
+  field: (identifier) @property)
 
 (table_constructor
-[
-  "{"
-  "}"
-] @constructor)
+  [
+    "{"
+    "}"
+  ] @constructor)
 
-;; Functions
+; Functions
+(parameters
+  (identifier) @variable.parameter)
 
-(parameters (identifier) @variable.parameter)
+(function_call
+  name: (identifier) @function.call)
 
-(function_call name: (identifier) @function.call)
-(function_declaration name: (identifier) @function)
+(function_declaration
+  name: (identifier) @function)
 
-(function_call name: (dot_index_expression field: (identifier) @function.call))
-(function_declaration name: (dot_index_expression field: (identifier) @function))
-(function_call name: (method_index_expression method: (identifier) @method.call))
+(function_call
+  name: (dot_index_expression
+    field: (identifier) @function.call))
 
+(function_declaration
+  name: (dot_index_expression
+    field: (identifier) @function))
+
+(function_call
+  name: (method_index_expression
+    method: (identifier) @method.call))
 
 (function_call
   (identifier) @function.builtin
-  (#any-of? @function.builtin
-    ;; built-in functions in Lua 5.1
-    "assert" "collectgarbage" "dofile" "error" "getfenv" "getmetatable" "ipairs"
-    "load" "loadfile" "loadstring" "module" "next" "pairs" "pcall" "print"
-    "rawequal" "rawget" "rawset" "require" "select" "setfenv" "setmetatable"
-    "tonumber" "tostring" "type" "unpack" "xpcall"))
+  (.any-of? @function.builtin
+    ; built-in functions in Lua 5.1
+    "assert" "collectgarbage" "dofile" "error" "getfenv" "getmetatable" "ipairs" "load" "loadfile"
+    "loadstring" "module" "next" "pairs" "pcall" "print" "rawequal" "rawget" "rawset" "require"
+    "select" "setfenv" "setmetatable" "tonumber" "tostring" "type" "unpack" "xpcall"))
 
-;; Others
-
+; Others
 (comment) @comment
 
 (hash_bang_line) @comment
@@ -193,5 +203,5 @@
 
 (string) @string
 
-;; Error TODO
-;;(ERROR) @error
+; Error TODO
+;(ERROR) @error
