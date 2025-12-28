@@ -1,5 +1,6 @@
 (unit
   (identifier) @variable)
+
 (string
   (identifier) @variable)
 
@@ -15,61 +16,32 @@
 (number) @number
 
 ((identifier) @boolean
-  (#any-of? @boolean "true" "false" "True" "False"))
+  (.any-of? @boolean "true" "false" "True" "False"))
 
 ((identifier) @constant
-  (#lua-match? @constant "^[A-Z][A-Z%d_]*$"))
+  (.lua-match? @constant "^[A-Z][A-Z%d_]*$"))
 
 ((identifier) @constant.builtin
-  (#eq? @constant.builtin "null"))
+  (.eq? @constant.builtin "null"))
 
 ((identifier) @type
-  (#any-of? @type
-    "String"
-    "Map"
-    "Object"
-    "Boolean"
-    "Integer"
-    "List"))
+  (.any-of? @type "String" "Map" "Object" "Boolean" "Integer" "List"))
 
 ((identifier) @function.builtin
-  (#any-of? @function.builtin
-    "void"
-    "id"
-    "version"
-    "apply"
-    "implementation"
-    "testImplementation"
-    "androidTestImplementation"
+  (.any-of? @function.builtin
+    "void" "id" "version" "apply" "implementation" "testImplementation" "androidTestImplementation"
     "debugImplementation"))
 
 ((identifier) @keyword
-  (#any-of? @keyword
-    "static"
-    "class"
-    "def"
-    "import"
-    "package"
-    "assert"
-    "extends"
-    "implements"
-    "instanceof"
-    "interface"
-    "new"))
+  (.any-of? @keyword
+    "static" "class" "def" "import" "package" "assert" "extends" "implements" "instanceof"
+    "interface" "new"))
 
 ((identifier) @type.qualifier
-  (#any-of? @type.qualifier
-    "abstract"
-    "protected"
-    "private"
-    "public"))
+  (.any-of? @type.qualifier "abstract" "protected" "private" "public"))
 
 ((identifier) @exception
-  (#any-of? @exception
-    "throw"
-    "finally"
-    "try"
-    "catch"))
+  (.any-of? @exception "throw" "finally" "try" "catch"))
 
 (string) @string
 
@@ -79,17 +51,24 @@
 ] @comment @spell
 
 ((block_comment) @comment.documentation
-  (#lua-match? @comment.documentation "^/[*][*][^*].*[*]/$"))
+  (.lua-match? @comment.documentation "^/[*][*][^*].*[*]/$"))
 
 ((line_comment) @comment.documentation
-  (#lua-match? @comment.documentation "^///[^/]"))
+  (.lua-match? @comment.documentation "^///[^/]"))
 
 ((line_comment) @comment.documentation
-  (#lua-match? @comment.documentation "^///$"))
+  (.lua-match? @comment.documentation "^///$"))
 
 [
   (operators)
   (leading_key)
 ] @operator
 
-["(" ")" "[" "]" "{" "}"]  @punctuation.bracket
+[
+  "("
+  ")"
+  "["
+  "]"
+  "{"
+  "}"
+] @punctuation.bracket

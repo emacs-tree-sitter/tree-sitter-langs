@@ -35,7 +35,7 @@
 
 (comment) @comment
 
-((haddock) @comment.documentation)
+(haddock) @comment.documentation
 
 ; ----------------------------------------------------------------------------
 ; Punctuation
@@ -99,7 +99,6 @@
 ;   (module) @constructor)
 ;   .
 ;   (module))
-
 (module
   (module_id) @module)
 
@@ -130,7 +129,6 @@
 
 ; ----------------------------------------------------------------------------
 ; Functions and variables
-
 (decl/bind
   name: (variable) @variable)
 
@@ -145,7 +143,7 @@
   name: (variable) @function
   type: (type/apply
     constructor: (name) @_type)
-  (#eq? @_type "IO"))
+  (.eq? @_type "IO"))
 
 ((decl/signature) @function
   .
@@ -200,19 +198,20 @@
 
 ; decl/function calls with infix operators
 ([
-    (expression/variable) @function.call
-    (expression/qualified
-      (variable) @function.call)
-  ]
+  (expression/variable) @function.call
+  (expression/qualified
+    (variable) @function.call)
+]
   .
   (operator) @_op
-  (#any-of? @_op "$" "<$>" ">>=" "=<<"))
+  (.any-of? @_op "$" "<$>" ">>=" "=<<"))
 
 ; right hand side of infix operator
 ((infix
   [
     (operator)
-    (infix_id (variable))
+    (infix_id
+      (variable))
   ] ; infix or `func`
   .
   [
@@ -222,24 +221,24 @@
   ])
   .
   (operator) @_op
-  (#any-of? @_op "$" "<$>" "=<<"))
+  (.any-of? @_op "$" "<$>" "=<<"))
 
 ; decl/function composition, arrows, monadic composition (lhs)
-(
-  [
-    (expression/variable) @function
-    (expression/qualified
-      (variable) @function)
-  ]
+([
+  (expression/variable) @function
+  (expression/qualified
+    (variable) @function)
+]
   .
   (operator) @_op
-  (#any-of? @_op "." ">>>" "***" ">=>" "<=<"))
+  (.any-of? @_op "." ">>>" "***" ">=>" "<=<"))
 
 ; right hand side of infix operator
 ((infix
   [
     (operator)
-    (infix_id (variable))
+    (infix_id
+      (variable))
   ] ; infix or `func`
   .
   [
@@ -249,7 +248,7 @@
   ])
   .
   (operator) @_op
-  (#any-of? @_op "." ">>>" "***" ">=>" "<=<"))
+  (.any-of? @_op "." ">>>" "***" ">=>" "<=<"))
 
 ; function composition, arrows, monadic composition (rhs)
 ((operator) @_op
@@ -259,7 +258,7 @@
     (expression/qualified
       (variable) @function)
   ]
-  (#any-of? @_op "." ">>>" "***" ">=>" "<=<"))
+  (.any-of? @_op "." ">>>" "***" ">=>" "<=<"))
 
 ; function defined in terms of a function composition
 (decl/function
@@ -267,7 +266,7 @@
   (match
     expression: (infix
       operator: (operator) @_op
-      (#any-of? @_op "." ">>>" "***" ">=>" "<=<"))))
+      (.any-of? @_op "." ">>>" "***" ">=>" "<=<"))))
 
 (apply
   [
@@ -317,7 +316,7 @@
 ; (this prevents `main = undefined` from being highlighted as a variable)
 (decl/bind
   name: (variable) @function
-  (#eq? @function "main"))
+  (.eq? @function "main"))
 
 ; scoped function types (func :: a -> b)
 (signature
@@ -336,7 +335,7 @@
   .
   (decl/bind
     (variable) @function)
-  (#eq? @function @_name))
+  (.eq? @function @_name))
 
 ; ----------------------------------------------------------------------------
 ; Types
@@ -350,11 +349,11 @@
 
 ; True or False
 ((constructor) @boolean
-  (#any-of? @boolean "True" "False"))
+  (.any-of? @boolean "True" "False"))
 
 ; otherwise (= True)
 ((variable) @boolean
-  (#eq? @boolean "otherwise"))
+  (.eq? @boolean "otherwise"))
 
 ; ----------------------------------------------------------------------------
 ; Quasi-quotes
@@ -366,13 +365,13 @@
     (_
       (variable) @_name)
   ]
-  (#eq? @_name "qq")
+  (.eq? @_name "qq")
   (quasiquote_body) @string)
 
 (quasiquote
   (_
     (variable) @_name)
-  (#eq? @_name "qq")
+  (.eq? @_name "qq")
   (quasiquote_body) @string)
 
 ; namespaced quasi-quoter
@@ -386,7 +385,7 @@
 ; ----------------------------------------------------------------------------
 ; Exceptions/error handling
 ((variable) @keyword.exception
-  (#any-of? @keyword.exception
+  (.any-of? @keyword.exception
     "error" "undefined" "try" "tryJust" "tryAny" "catch" "catches" "catchJust" "handle" "handleJust"
     "throw" "throwIO" "throwTo" "throwError" "ioError" "mask" "mask_" "uninterruptibleMask"
     "uninterruptibleMask_" "bracket" "bracket_" "bracketOnErrorSource" "finally" "fail"
@@ -395,14 +394,13 @@
 ; ----------------------------------------------------------------------------
 ; Debugging
 ((variable) @keyword.debug
-  (#any-of? @keyword.debug
+  (.any-of? @keyword.debug
     "trace" "traceId" "traceShow" "traceShowId" "traceWith" "traceShowWith" "traceStack" "traceIO"
     "traceM" "traceShowM" "traceEvent" "traceEventWith" "traceEventIO" "flushEventLog" "traceMarker"
     "traceMarkerIO"))
 
 ; ----------------------------------------------------------------------------
 ; Fields
-
 (field_name
   (variable) @variable.member)
 
@@ -411,7 +409,6 @@
   .
   (children
     (variable) @variable.member))
-
 
 ; ----------------------------------------------------------------------------
 ; Spell checking

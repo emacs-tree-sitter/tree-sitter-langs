@@ -1,14 +1,17 @@
 (type) @type
+
 (type_keyword) @type.builtin
 
-(type [
+(type
+  [
     (local_var)
     (global_var)
   ] @type)
 
 (argument) @variable.parameter
 
-(_ inst_name: _ @keyword)
+(_
+  inst_name: _ @keyword)
 
 [
   "catch"
@@ -28,18 +31,24 @@
   "inbounds"
   "inrange"
 ] @keyword
+
 (icmp_cond) @keyword
+
 (fcmp_cond) @keyword
 
 (fast_math) @keyword
 
-(_ callee: _ @function)
-(function_header name: _ @function)
+(_
+  callee: _ @function)
+
+(function_header
+  name: _ @function)
 
 [
   "declare"
   "define"
 ] @keyword.function
+
 (calling_conv) @keyword
 
 [
@@ -84,24 +93,37 @@
 ] @keyword
 
 (linkage_aux) @keyword
+
 (dso_local) @keyword
+
 (visibility) @keyword
+
 (dll_storage_class) @keyword
+
 (unnamed_addr) @keyword
+
 (attribute_name) @keyword
 
-(function_header [
+(function_header
+  [
     (linkage)
     (calling_conv)
     (unnamed_addr)
   ] @keyword)
 
 (number) @cnumber
+
 (comment) @comment
+
 (string) @string
+
 (cstring) @string
+
 (label) @label
-(_ inst_name: "ret" @keyword)
+
+(_
+  inst_name: "ret" @keyword)
+
 (float) @number
 
 [

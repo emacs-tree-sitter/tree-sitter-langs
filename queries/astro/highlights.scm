@@ -1,5 +1,8 @@
 ; inherits: html
 
-[ "---" ] @punctuation.delimiter
+"---" @punctuation.delimiter
 
-[ "{" "}" ] @punctuation.special
+[
+  "{"
+  "}"
+] @punctuation.special

@@ -1,8 +1,8 @@
 ; Function calls
-
 (call_expression
   function: (identifier) @function.builtin
-  (.match? @function.builtin "^(append|cap|close|complex|copy|delete|imag|len|make|new|panic|print|println|real|recover)$"))
+  (.match? @function.builtin
+    "^(append|cap|close|complex|copy|delete|imag|len|make|new|panic|print|println|real|recover)$"))
 
 (call_expression
   function: (identifier) @function.call)
@@ -12,7 +12,6 @@
     field: (field_identifier) @function.method.call))
 
 ; Function definitions
-
 (function_declaration
   name: (identifier) @function)
 
@@ -20,14 +19,16 @@
   name: (field_identifier) @function.method)
 
 ; Identifiers
-
 (type_identifier) @type
+
 (field_identifier) @property
-(parameter_declaration (identifier) @variable.parameter)
+
+(parameter_declaration
+  (identifier) @variable.parameter)
+
 (identifier) @variable
 
 ; Operators
-
 [
   "--"
   "-"
@@ -68,7 +69,6 @@
 ] @operator
 
 ; Keywords
-
 [
   "break"
   "case"
@@ -98,7 +98,6 @@
 ] @keyword
 
 ; Literals
-
 [
   (interpreted_string_literal)
   (raw_string_literal)

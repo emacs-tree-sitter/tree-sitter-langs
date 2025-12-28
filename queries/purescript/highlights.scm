@@ -1,6 +1,5 @@
 ; ------------------------------------------------------------------------------
 ; Literals and comments
-
 [
   (integer)
   (exp_negation)
@@ -20,7 +19,6 @@
 
 ; ------------------------------------------------------------------------------
 ; Punctuation
-
 [
   "("
   ")"
@@ -36,10 +34,8 @@
   "."
 ] @punctuation.delimiter
 
-
 ; ------------------------------------------------------------------------------
 ; Keywords, operators, includes
-
 [
   "if"
   "then"
@@ -74,7 +70,6 @@
   "`"
   "@"
 ] @operator
-
 
 (module) @type.builtin
 
@@ -115,8 +110,8 @@
 
 ; ------------------------------------------------------------------------------
 ; Functions and variables
-
 (variable) @variable
+
 (exp_apply
   .
   (exp_name
@@ -138,24 +133,28 @@
   (field_pun) @constant)
 
 (record_accessor
-  field: [ (variable)
-           (string)
-           (triple_quote_string)
-         ] @variable)
+  field: [
+    (variable)
+    (string)
+    (triple_quote_string)
+  ] @variable)
 
 (exp_record_access
-  field: [ (variable)
-           (string)
-           (triple_quote_string)
-         ] @variable)
+  field: [
+    (variable)
+    (string)
+    (triple_quote_string)
+  ] @variable)
 
 (pat_wildcard) @operator
 
 (field_wildcard) @operator
 
-(pat_field (field_name) @constant)
+(pat_field
+  (field_name) @constant)
 
-(record_update (field_name) @constant)
+(record_update
+  (field_name) @constant)
 
 (signature
   name: (variable) @function)
@@ -176,7 +175,7 @@
   (instance_name) @function)
 
 ((variable) @boolean
-  (#any-of? @boolean "true" "false"))
+  (.any-of? @boolean "true" "false"))
 
 (exp_ticked
   (_) @operator)
@@ -192,8 +191,8 @@
 
 ; ------------------------------------------------------------------------------
 ; Types
-
 (type) @type
+
 (type_variable) @type.argument
 
 (constructor) @constructor
