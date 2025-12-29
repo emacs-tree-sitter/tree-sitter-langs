@@ -161,6 +161,7 @@ git checkout."
        :paths (pcase lang-symbol
                 ;; XXX
                 ('csv '("csv" ("csv" . csv)))
+                ('fsharp '("fsharp" ("fsharp" . fsharp)))
                 ('ocaml '("grammars/ocaml" ("ocaml" . ocaml)))
                 ('ocaml-interface '("grammars/interface" ("ocaml-interface" . ocaml-interface)))
                 ('php '("php" ("php" . php)))
