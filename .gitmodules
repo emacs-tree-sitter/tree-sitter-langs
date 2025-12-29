@@ -673,3 +673,9 @@
 	branch = main
 	update = none
 	ignore = dirty
+[submodule "repos/fsharp"]
+	path = repos/fsharp
+	url = https://github.com/ionide/tree-sitter-fsharp
+	branch = main
+	update = none
+	ignore = dirty

@@ -136,6 +136,7 @@ See `tree-sitter-langs-repos'."
                  (fennel-mode            . fennel)
                  (f90-mode               . fortran)
                  (fortran-mode           . fortran)
+                 (fsharp-mode            . fsharp)
                  (gdscript-mode          . gdscript)
                  (git-commit-mode        . gitcommit)
                  (git-rebase-mode        . git-rebase)
