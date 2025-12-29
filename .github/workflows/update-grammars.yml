@@ -48,6 +48,7 @@ jobs:
           - fish
           - fluent
           - fortran
+          - fsharp
           - gdscript
           - git-rebase
           - gitattributes
