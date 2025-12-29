@@ -259,12 +259,6 @@
 	branch = master
 	update = none
 	ignore = dirty
-[submodule "repos/matlab"]
-	path = repos/matlab
-	url = https://github.com/acristoffers/tree-sitter-matlab
-	branch = main
-	update = none
-	ignore = dirty
 [submodule "repos/noir"]
 	path = repos/noir
 	url = https://github.com/hhamud/tree-sitter-noir
@@ -671,5 +665,11 @@
 	path = repos/lexc
 	url = https://github.com/apertium/tree-sitter-apertium
 	branch = master
+	update = none
+	ignore = dirty
+[submodule "repos/matlab"]
+	path = repos/matlab
+	url = https://github.com/acristoffers/tree-sitter-matlab
+	branch = main
 	update = none
 	ignore = dirty
