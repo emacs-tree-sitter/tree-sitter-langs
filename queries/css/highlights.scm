@@ -73,10 +73,10 @@
 (namespace_name) @module
 
 ((property_name) @variable
-  (.lua-match? @variable "^[-][-]"))
+  (#lua-match? @variable "^[-][-]"))
 
 ((plain_value) @variable
-  (.lua-match? @variable "^[-][-]"))
+  (#lua-match? @variable "^[-][-]"))
 
 [
   (string_value)

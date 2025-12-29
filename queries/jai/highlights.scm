@@ -58,7 +58,7 @@
     "ifx"
     "else"
   ] @conditional.ternary)
-  (.set! "priority" 105))
+  (#set! "priority" 105))
 
 ; Repeats
 [
@@ -82,7 +82,7 @@ named_argument: (identifier) @variable
   (identifier) @variable)
 
 ((identifier) @variable.builtin
-  (.any-of? @variable.builtin "context"))
+  (#any-of? @variable.builtin "context"))
 
 ; Namespaces
 (import
@@ -118,7 +118,7 @@ keyword: (identifier) @keyword
 
 ((types
   (identifier) @type.builtin)
-  (.any-of? @type.builtin
+  (#any-of? @type.builtin
     "bool" "int" "string" "s8" "s16" "s32" "s64" "u8" "u16" "u32" "u64" "Type" "Any"))
 
 (struct_declaration
@@ -150,8 +150,8 @@ keyword: (identifier) @keyword
 
 ; Constants
 ((identifier) @constant
-  (.lua-match? @constant "^_*[A-Z][A-Z0-9_]*$")
-  (.not-has-parent? @constant type parameter))
+  (#lua-match? @constant "^_*[A-Z][A-Z0-9_]*$")
+  (#not-has-parent? @constant type parameter))
 
 (member_expression
   .

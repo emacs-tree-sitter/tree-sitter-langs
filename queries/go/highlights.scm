@@ -1,7 +1,7 @@
 ; Function calls
 (call_expression
   function: (identifier) @function.builtin
-  (.match? @function.builtin
+  (#match? @function.builtin
     "^(append|cap|close|complex|copy|delete|imag|len|make|new|panic|print|println|real|recover)$"))
 
 (call_expression

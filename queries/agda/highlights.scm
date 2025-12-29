@@ -34,7 +34,7 @@
   (atom) @function)
 
 ((atom) @boolean
-  (.any-of? @boolean "true" "false" "True" "False"))
+  (#any-of? @boolean "true" "false" "True" "False"))
 
 ; Imports and Module Declarations
 "import" @include

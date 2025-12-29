@@ -66,7 +66,7 @@
 (taglist) @constant
 
 ((setname) @variable.parameter
-  (.match? @variable.parameter "\\$\\$.*"))
+  (#match? @variable.parameter "\\$\\$.*"))
 
 (list
   (setname) @variable)

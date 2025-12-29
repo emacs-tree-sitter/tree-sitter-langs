@@ -4,7 +4,7 @@
 ] @comment @spell
 
 ((line_comment) @comment.documentation @spell
-  (.lua-match? @comment.documentation "^///"))
+  (#lua-match? @comment.documentation "^///"))
 
 (const
   [
@@ -123,7 +123,7 @@
 ((argument_patterns
   (long_identifier
     (identifier) @character.special))
-  (.lua-match? @character.special "^_.*"))
+  (#lua-match? @character.special "^_.*"))
 
 (member_defn
   (method_or_prop_defn
@@ -154,7 +154,7 @@
   (infix_op) @operator
   .
   (_) @function.call)
-  (.eq? @operator "|>"))
+  (#eq? @operator "|>"))
 
 ((infix_expression
   .
@@ -163,7 +163,7 @@
   (infix_op) @operator
   .
   (_))
-  (.eq? @operator "<|"))
+  (#eq? @operator "<|"))
 
 [
   (xint)
@@ -331,7 +331,7 @@
 ] @keyword
 
 ((identifier) @keyword
-  (.any-of? @keyword "failwith" "failwithf" "raise" "reraise"))
+  (#any-of? @keyword "failwith" "failwithf" "raise" "reraise"))
 
 [
   "as"
@@ -379,7 +379,7 @@
   (simple_type
     (long_identifier
       (identifier) @type.builtin)))
-  (.any-of? @type.builtin
+  (#any-of? @type.builtin
     "bool" "byte" "sbyte" "int16" "uint16" "int" "uint" "int64" "uint64" "nativeint" "unativeint"
     "decimal" "float" "double" "float32" "single" "char" "string" "unit"))
 
@@ -394,7 +394,7 @@
   "#else" @keyword)
 
 ((identifier) @module.builtin
-  (.any-of? @module.builtin
+  (#any-of? @module.builtin
     "Array" "Async" "Directory" "File" "List" "Option" "Path" "Map" "Set" "Lazy" "Seq" "Task"
     "String" "Result"))
 
@@ -409,4 +409,4 @@
     (value_declaration_left
       .
       (_) @constant)))
-  (.eq? @attribute "Literal"))
+  (#eq? @attribute "Literal"))

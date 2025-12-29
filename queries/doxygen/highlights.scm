@@ -1,5 +1,5 @@
 ((tag_name) @keyword
-  (.set! "priority" 105))
+  (#set! "priority" 105))
 
 [
   "@code"
@@ -11,7 +11,7 @@
 ((tag
   (tag_name) @_param
   (identifier) @parameter)
-  (.any-of? @_param "@param" "\\param"))
+  (#any-of? @_param "@param" "\\param"))
 
 (function
   (identifier) @function)

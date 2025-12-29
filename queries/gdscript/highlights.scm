@@ -57,10 +57,10 @@
 
 ; Identifier naming conventions
 ((identifier) @type
-  (.lua-match? @type "^[A-Z]"))
+  (#lua-match? @type "^[A-Z]"))
 
 ((identifier) @constant
-  (.lua-match? @constant "^[A-Z][A-Z_0-9]*$"))
+  (#lua-match? @constant "^[A-Z][A-Z_0-9]*$"))
 
 ; Functions
 (constructor_definition) @constructor
@@ -81,7 +81,7 @@
 
 (call
   (identifier) @include
-  (.any-of? @include "preload" "load"))
+  (#any-of? @include "preload" "load"))
 
 ; Properties and Methods
 ; We'll use @property since that's the term Godot uses.
@@ -105,11 +105,11 @@
 
 ; Special Builtins
 ((identifier) @variable.builtin
-  (.any-of? @variable.builtin "self" "super"))
+  (#any-of? @variable.builtin "self" "super"))
 
 (attribute_call
   (identifier) @keyword.operator
-  (.eq? @keyword.operator "new"))
+  (#eq? @keyword.operator "new"))
 
 ; Match Pattern
 (pattern_open_ending) @operator ; The ".." pattern.
@@ -212,7 +212,7 @@
 
 (call
   (identifier) @keyword.coroutine
-  (.eq? @keyword.coroutine "yield"))
+  (#eq? @keyword.coroutine "yield"))
 
 ; Builtins
 ; generated from
@@ -224,7 +224,7 @@
 ((annotation
   "@" @attribute
   (identifier) @attribute)
-  (.any-of? @attribute
+  (#any-of? @attribute
     ; @GDScript
     "export" "export_category" "export_color_no_alpha" "export_dir" "export_enum"
     "export_exp_easing" "export_file" "export_flags" "export_flags_2d_navigation"
@@ -238,7 +238,7 @@
   (identifier)
   (type)
 ] @type.builtin
-  (.any-of? @type.builtin
+  (#any-of? @type.builtin
     ; from godot-vscode-plugin
     "Vector2" "Vector2i" "Vector3" "Vector3i" "Color" "Rect2" "Rect2i" "Array" "Basis" "Dictionary"
     "Plane" "Quat" "RID" "Rect3" "Transform" "Transform2D" "Transform3D" "AABB" "String" "NodePath"
@@ -259,7 +259,7 @@
 ; Builtin Funcs
 (call
   (identifier) @function.builtin
-  (.any-of? @function.builtin
+  (#any-of? @function.builtin
     ; @GlobalScope
     "abs" "absf" "absi" "acos" "asin" "atan" "atan2" "bezier_derivative" "bezier_interpolate"
     "bytes_to_var" "bytes_to_var_with_objects" "ceil" "ceilf" "ceili" "clamp" "clampf" "clampi"
@@ -281,7 +281,7 @@
 
 ; Builtin Constants
 ((identifier) @constant.builtin
-  (.any-of? @constant.builtin
+  (#any-of? @constant.builtin
     ; @GDScript
     "PI" "TAU" "INF" "NAN"
     ; @GlobalScope

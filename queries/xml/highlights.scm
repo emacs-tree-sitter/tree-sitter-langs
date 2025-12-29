@@ -110,7 +110,7 @@
 (EntityRef) @constant
 
 ((EntityRef) @constant.builtin
-  (.any-of? @constant.builtin "&amp;" "&lt;" "&gt;" "&quot;" "&apos;"))
+  (#any-of? @constant.builtin "&amp;" "&lt;" "&gt;" "&quot;" "&apos;"))
 
 (CharRef) @constant
 

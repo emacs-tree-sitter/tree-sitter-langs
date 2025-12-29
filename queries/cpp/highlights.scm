@@ -58,7 +58,7 @@
 (namespace_identifier) @namespace
 
 ((namespace_identifier) @type
-  (.match? @type "^[A-Za-z]"))
+  (#match? @type "^[A-Za-z]"))
 
 (using_declaration
   .

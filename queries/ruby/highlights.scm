@@ -44,10 +44,10 @@
   ] @keyword)
 
 ((identifier) @keyword
-  (.match? @keyword "^(private|protected|public)$"))
+  (#match? @keyword "^(private|protected|public)$"))
 
 ((identifier) @keyword
-  (.match? @keyword "^(fail|raise)$"))
+  (#match? @keyword "^(fail|raise)$"))
 
 [
   "="
@@ -70,7 +70,7 @@
     method: (identifier) @keyword
     arguments: (argument_list
       (identifier) @constant))
-  (.match? @keyword "^(require|require_relative|load)$"))
+  (#match? @keyword "^(require|require_relative|load)$"))
 
 (call
   receiver: [
@@ -119,7 +119,7 @@
   (constant) @type.super)
 
 ((constant) @constant
-  (.match? @constant "^[A-Z\\d_]+$"))
+  (#match? @constant "^[A-Z\\d_]+$"))
 
 (constant) @type
 
@@ -131,7 +131,7 @@
 ] @variable.builtin
 
 ((identifier) @constant.builtin
-  (.match? @constant.builtin "^__(callee|dir|id|method|send|ENCODING|FILE|LINE)__$"))
+  (#match? @constant.builtin "^__(callee|dir|id|method|send|ENCODING|FILE|LINE)__$"))
 
 (file) @constant.builtin
 

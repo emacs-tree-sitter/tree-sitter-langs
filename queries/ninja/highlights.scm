@@ -55,18 +55,18 @@
 ; ========
 (pool
   name: (identifier) @type.builtin
-  (.any-of? @type.builtin "console"))
+  (#any-of? @type.builtin "console"))
 
 (build
   rule: (identifier) @function.builtin
-  (.any-of? @function.builtin "phony" "dyndep"))
+  (#any-of? @function.builtin "phony" "dyndep"))
 
 ; Top level bindings
 ; ------------------
 (manifest
   (let
     name: ((identifier) @constant.builtin
-      (.any-of? @constant.builtin "builddir" "ninja_required_version"))))
+      (#any-of? @constant.builtin "builddir" "ninja_required_version"))))
 
 ; Rules bindings
 ; -----------------
@@ -74,7 +74,7 @@
   (body
     (let
       name: (identifier) @constant.builtin
-      (.not-any-of? @constant.builtin
+      (#not-any-of? @constant.builtin
         "command" "depfile" "deps" "msvc_deps_prefix" "description" "dyndep" "generator" "in"
         "in_newline" "out" "restat" "rspfile" "rspfile_content" "pool"))))
 
@@ -83,7 +83,7 @@
 ; ---------
 (expansion
   (identifier) @constant.macro
-  (.any-of? @constant.macro "in" "out"))
+  (#any-of? @constant.macro "in" "out"))
 
 ;
 ; Escape sequences

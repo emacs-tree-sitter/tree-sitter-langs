@@ -136,11 +136,11 @@
     (identifier) @variable))
 
 ((identifier) @variable.builtin
-  (.eq? @variable.builtin "self"))
+  (#eq? @variable.builtin "self"))
 
 ; Constants
 ((identifier) @constant
-  (.match? @constant "^[A-Z][A-Z_0-9]*$"))
+  (#match? @constant "^[A-Z][A-Z_0-9]*$"))
 
 (vararg_expression) @constant
 
@@ -188,7 +188,7 @@
 
 (function_call
   (identifier) @function.builtin
-  (.any-of? @function.builtin
+  (#any-of? @function.builtin
     ; built-in functions in Lua 5.1
     "assert" "collectgarbage" "dofile" "error" "getfenv" "getmetatable" "ipairs" "load" "loadfile"
     "loadstring" "module" "next" "pairs" "pcall" "print" "rawequal" "rawget" "rawset" "require"

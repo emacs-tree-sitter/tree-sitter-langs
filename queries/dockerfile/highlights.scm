@@ -44,7 +44,7 @@
   ] @punctuation.special)
 
 ((variable) @constant
-  (.match? @constant "^[A-Z][A-Z_0-9]*$"))
+  (#match? @constant "^[A-Z][A-Z_0-9]*$"))
 
 (arg_instruction
   .
@@ -59,7 +59,7 @@
   (expose_port) @number)
 
 ((stopsignal_instruction) @number
-  (.match? @number "[0-9][0-9]?$"))
+  (#match? @number "[0-9][0-9]?$"))
 
 ((stopsignal_instruction) @constant.builtin
-  (.match? @constant.builtin "SIG(ABRT|HUP|INT|KILL|QUIT|STOP|TERM|TSTP)$"))
+  (#match? @constant.builtin "SIG(ABRT|HUP|INT|KILL|QUIT|STOP|TERM|TSTP)$"))
