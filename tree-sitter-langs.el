@@ -144,6 +144,7 @@ See `tree-sitter-langs-repos'."
                  (gleam-mode             . gleam)
                  (glsl-mode              . glsl)
                  (go-mode                . go)
+                 (go-dot-mod-mode        . go-mod)
                  (gpr-mode               . gpr)
                  (graphql-mode           . graphql)
                  (groovy-mode            . groovy)
