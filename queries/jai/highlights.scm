@@ -134,7 +134,7 @@ keyword: (identifier) @keyword
 ; (const_declaration (identifier) @type ":" ":" [(array_type) (pointer_type)])
 ; ; I don't like this
 ; ((identifier) @type
-;   (#lua-match? @type "^[A-Z][a-zA-Z0-9]*$")
+;   (.lua-match? @type "^[A-Z][a-zA-Z0-9]*$")
 ;   (#not-has-parent? @type parameter procedure_declaration call_expression))
 ; Fields
 (member_expression
