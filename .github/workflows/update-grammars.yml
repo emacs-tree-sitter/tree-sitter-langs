@@ -30,6 +30,7 @@ jobs:
           - cg
           - clojure
           - cmake
+          - cobol
           - comment
           - commonlisp
           - cpp
