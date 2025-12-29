@@ -1,7 +1,7 @@
 ;; -*- mode: eask; lexical-binding: t -*-
 
 (package "tree-sitter-langs"
-         "0.12.342"
+         "0.13.0"
          "Grammar bundle for tree-sitter")
 
 (website-url "https://github.com/emacs-tree-sitter/tree-sitter-langs")
