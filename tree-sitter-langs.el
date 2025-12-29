@@ -116,6 +116,7 @@ See `tree-sitter-langs-repos'."
                  (caml-mode              . ocaml)
                  (cg-mode                . cg)
                  (clojure-mode           . clojure)
+                 (cobol-mode             . cobol)
                  (lisp-mode              . commonlisp)
                  (lisp-interaction-mode  . commonlisp)
                  (csharp-mode            . c-sharp)
