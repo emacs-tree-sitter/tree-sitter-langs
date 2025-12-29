@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 0.12.357 - 2025-12-29
+
 ## 0.12.356 - 2025-12-25
 - Add `Apertium` support
 
