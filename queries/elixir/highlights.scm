@@ -36,7 +36,7 @@
           quoted_end: _ @doc) @doc
         (boolean) @doc
       ]))
-  (.match? @doc.__attribute__ "^(moduledoc|typedoc|doc)$"))
+  (#match? @doc.__attribute__ "^(moduledoc|typedoc|doc)$"))
 
 ; * module attribute
 (unary_operator
@@ -107,13 +107,13 @@
   (sigil_name) @__name__
   quoted_start: _ @string
   quoted_end: _ @string
-  (.match? @__name__ "^[sS]$")) @string
+  (#match? @__name__ "^[sS]$")) @string
 
 (sigil
   (sigil_name) @__name__
   quoted_start: _ @string.regex
   quoted_end: _ @string.regex
-  (.match? @__name__ "^[rR]$")) @string.regex
+  (#match? @__name__ "^[rR]$")) @string.regex
 
 (sigil
   (sigil_name)
@@ -124,13 +124,13 @@
 ; * definition keyword
 (call
   target: (identifier) @keyword
-  (.match? @keyword
+  (#match? @keyword
     "^(def|defdelegate|defexception|defguard|defguardp|defimpl|defmacro|defmacrop|defmodule|defn|defnp|defoverridable|defp|defprotocol|defstruct)$"))
 
 ; * kernel or special forms keyword
 (call
   target: (identifier) @keyword
-  (.match? @keyword
+  (#match? @keyword
     "^(alias|case|cond|else|for|if|import|quote|raise|receive|require|reraise|super|throw|try|unless|unquote|unquote_splicing|use|with)$"))
 
 ; * just identifier in function definition
@@ -145,7 +145,7 @@
           target: (identifier) @function)
         operator: "when")
     ])
-  (.match? @keyword "^(def|defdelegate|defguard|defguardp|defmacro|defmacrop|defn|defnp|defp)$"))
+  (#match? @keyword "^(def|defdelegate|defguard|defguardp|defmacro|defmacrop|defn|defnp|defp)$"))
 
 ; * function call
 (call
@@ -164,7 +164,7 @@
     (binary_operator
       operator: "|>"
       right: (identifier) @variable))
-  (.match? @keyword "^(def|defdelegate|defguard|defguardp|defmacro|defmacrop|defn|defnp|defp)$"))
+  (#match? @keyword "^(def|defdelegate|defguard|defguardp|defmacro|defmacrop|defn|defnp|defp)$"))
 
 ; * pipe into identifier (function call)
 (binary_operator
@@ -174,11 +174,11 @@
 ; Identifiers
 ; * special
 ((identifier) @constant.builtin
-  (.match? @constant.builtin "^(__MODULE__|__DIR__|__ENV__|__CALLER__|__STACKTRACE__)$"))
+  (#match? @constant.builtin "^(__MODULE__|__DIR__|__ENV__|__CALLER__|__STACKTRACE__)$"))
 
 ; * unused
 ((identifier) @comment
-  (.match? @comment "^_"))
+  (#match? @comment "^_"))
 
 ; * regular
 (identifier) @variable

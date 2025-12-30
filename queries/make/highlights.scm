@@ -14,7 +14,7 @@
 (rule
   (targets
     (word) @function.builtin
-    (.any-of? @function.builtin
+    (#any-of? @function.builtin
       ".DEFAULT" ".SUFFIXES" ".DELETE_ON_ERROR" ".EXPORT_ALL_VARIABLES" ".IGNORE" ".INTERMEDIATE"
       ".LOW_RESOLUTION_TIME" ".NOTPARALLEL" ".ONESHELL" ".PHONY" ".POSIX" ".PRECIOUS" ".SECONDARY"
       ".SECONDEXPANSION" ".SILENT" ".SUFFIXES")))
@@ -51,7 +51,7 @@
 
 (variable_assignment
   (word) @variable.builtin
-  (.any-of? @variable.builtin
+  (#any-of? @variable.builtin
     ".DEFAULT_GOAL" ".EXTRA_PREREQS" ".FEATURES" ".INCLUDE_DIRS" ".RECIPEPREFIX" ".SHELLFLAGS"
     ".VARIABLES" "MAKEARGS" "MAKEFILE_LIST" "MAKEFLAGS" "MAKE_RESTARTS" "MAKE_TERMERR"
     "MAKE_TERMOUT" "SHELL"))

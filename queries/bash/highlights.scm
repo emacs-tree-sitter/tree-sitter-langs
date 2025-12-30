@@ -1,5 +1,5 @@
 ((variable_name) @variable.special
-  (.match? @variable.special "^(PATH)$"))
+  (#match? @variable.special "^(PATH)$"))
 
 (special_variable_name) @variable.special
 
@@ -18,11 +18,11 @@
 
 ((command_name
   (word) @keyword)
-  (.match? @keyword "^(do|trap|type)"))
+  (#match? @keyword "^(do|trap|type)"))
 
 ((command_name
   (word) @function.builtin)
-  (.match? @function.builtin
+  (#match? @function.builtin
     "^(alias|bg|bind|builtin|cd|command|compgen|complete|declare|dirs|disown|echo|enable|eval|export|fc|fg|getopts|hash|help|history|jobs|kill|let|local|popd|printf|pushd|pwd|read|readonly|set|shift|shopt|source|suspend|test|times|type|typeset|ulimit|umask|unalias|unset|wait)$"))
 
 (command_name
@@ -30,11 +30,11 @@
 
 ((command
   argument: (_) @label)
-  (.match? @label "^-.*="))
+  (#match? @label "^-.*="))
 
 ((command
   argument: (_) @constant)
-  (.match? @constant "^-"))
+  (#match? @constant "^-"))
 
 (function_definition
   name: (word) @function)

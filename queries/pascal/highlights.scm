@@ -424,59 +424,59 @@
 ; identifiers are shadowed by a local variable)
 (statement
   ((identifier) @keyword
-    (.match? @keyword "^[eE][xX][iI][tT]$")))
+    (#match? @keyword "^[eE][xX][iI][tT]$")))
 
 (statement
   (exprCall
     entity: ((identifier) @keyword
-      (.match? @keyword "^[eE][xX][iI][tT]$"))))
+      (#match? @keyword "^[eE][xX][iI][tT]$"))))
 
 (statement
   ((identifier) @keyword
-    (.match? @keyword "^[bB][rR][eE][aA][kK]$")))
+    (#match? @keyword "^[bB][rR][eE][aA][kK]$")))
 
 (statement
   ((identifier) @keyword
-    (.match? @keyword "^[cC][oO][nN][tT][iI][nN][uU][eE]$")))
+    (#match? @keyword "^[cC][oO][nN][tT][iI][nN][uU][eE]$")))
 
 ; -- Identifier type inferrence
 ; VERY QUESTIONABLE: Highlighting of identifiers based on spelling
 (exprBinary
   ((identifier) @constant
-    (.match? @constant "^[A-Z][A-Z0-9_]+$|^[a-z]{2,3}[A-Z].+$")))
+    (#match? @constant "^[A-Z][A-Z0-9_]+$|^[a-z]{2,3}[A-Z].+$")))
 
 (exprUnary
   ((identifier) @constant
-    (.match? @constant "^[A-Z][A-Z0-9_]+$|^[a-z]{2,3}[A-Z].+$")))
+    (#match? @constant "^[A-Z][A-Z0-9_]+$|^[a-z]{2,3}[A-Z].+$")))
 
 (assignment
   rhs: ((identifier) @constant
-    (.match? @constant "^[A-Z][A-Z0-9_]+$|^[a-z]{2,3}[A-Z].+$")))
+    (#match? @constant "^[A-Z][A-Z0-9_]+$|^[a-z]{2,3}[A-Z].+$")))
 
 (exprBrackets
   ((identifier) @constant
-    (.match? @constant "^[A-Z][A-Z0-9_]+$|^[a-z]{2,3}[A-Z].+$")))
+    (#match? @constant "^[A-Z][A-Z0-9_]+$|^[a-z]{2,3}[A-Z].+$")))
 
 (exprParens
   ((identifier) @constant
-    (.match? @constant "^[A-Z][A-Z0-9_]+$|^[a-z]{2,3}[A-Z].+$")))
+    (#match? @constant "^[A-Z][A-Z0-9_]+$|^[a-z]{2,3}[A-Z].+$")))
 
 (exprDot
   rhs: ((identifier) @constant
-    (.match? @constant "^[A-Z][A-Z0-9_]+$|^[a-z]{2,3}[A-Z].+$")))
+    (#match? @constant "^[A-Z][A-Z0-9_]+$|^[a-z]{2,3}[A-Z].+$")))
 
 (exprTpl
   args: ((identifier) @constant
-    (.match? @constant "^[A-Z][A-Z0-9_]+$|^[a-z]{2,3}[A-Z].+$")))
+    (#match? @constant "^[A-Z][A-Z0-9_]+$|^[a-z]{2,3}[A-Z].+$")))
 
 (exprArgs
   ((identifier) @constant
-    (.match? @constant "^[A-Z][A-Z0-9_]+$|^[a-z]{2,3}[A-Z].+$")))
+    (#match? @constant "^[A-Z][A-Z0-9_]+$|^[a-z]{2,3}[A-Z].+$")))
 
 (declEnumValue
   ((identifier) @constant
-    (.match? @constant "^[A-Z][A-Z0-9_]+$|^[a-z]{2,3}[A-Z].+$")))
+    (#match? @constant "^[A-Z][A-Z0-9_]+$|^[a-z]{2,3}[A-Z].+$")))
 
 (defaultValue
   ((identifier) @constant
-    (.match? @constant "^[A-Z][A-Z0-9_]+$|^[a-z]{2,3}[A-Z].+$")))
+    (#match? @constant "^[A-Z][A-Z0-9_]+$|^[a-z]{2,3}[A-Z].+$")))

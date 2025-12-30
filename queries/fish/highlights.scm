@@ -107,7 +107,7 @@
 (command
   name: [
     (word) @function.builtin
-    (.any-of? @function.builtin
+    (#any-of? @function.builtin
       "." ":" "_" "alias" "argparse" "bg" "bind" "block" "breakpoint" "builtin" "cd" "command"
       "commandline" "complete" "contains" "count" "disown" "echo" "emit" "eval" "exec" "exit" "fg"
       "functions" "history" "isatty" "jobs" "math" "printf" "pwd" "random" "read" "realpath" "set"
@@ -157,7 +157,7 @@
 (comment) @spell
 
 ((word) @boolean
-  (.any-of? @boolean "true" "false"))
+  (#any-of? @boolean "true" "false"))
 
 ;((program . (comment) @preproc)
 ;  (.lua-match? @preproc "^#!/"))

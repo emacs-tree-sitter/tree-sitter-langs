@@ -1,7 +1,7 @@
 ; inherits: cpp
 
 ((identifier) @function.builtin
-  (.any-of? @function.builtin
+  (#any-of? @function.builtin
     ; Digital I/O
     "digitalRead" "digitalWrite" "pinMode"
     ; Analog I/O
@@ -29,25 +29,25 @@
     "interrupts" "noInterrupts"))
 
 ((identifier) @type.builtin
-  (.any-of? @type.builtin "Serial" "SPI" "Stream" "Wire" "Keyboard" "Mouse" "String"))
+  (#any-of? @type.builtin "Serial" "SPI" "Stream" "Wire" "Keyboard" "Mouse" "String"))
 
 ((identifier) @constant.builtin
-  (.any-of? @constant.builtin "HIGH" "LOW" "INPUT" "OUTPUT" "INPUT_PULLUP" "LED_BUILTIN"))
+  (#any-of? @constant.builtin "HIGH" "LOW" "INPUT" "OUTPUT" "INPUT_PULLUP" "LED_BUILTIN"))
 
 (function_definition
   (function_declarator
     declarator: (identifier) @function.builtin)
-  (.any-of? @function.builtin "loop" "setup"))
+  (#any-of? @function.builtin "loop" "setup"))
 
 (call_expression
   function: (primitive_type) @function.builtin)
 
 (call_expression
   function: (identifier) @constructor
-  (.any-of? @constructor "SPISettings" "String"))
+  (#any-of? @constructor "SPISettings" "String"))
 
 (declaration
   (type_identifier) @type.builtin
   (function_declarator
     declarator: (identifier) @constructor)
-  (.eq? @type.builtin "SPISettings"))
+  (#eq? @type.builtin "SPISettings"))

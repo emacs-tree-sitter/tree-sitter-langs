@@ -13,7 +13,7 @@
   type: (identifier) @type)
 
 ((identifier) @type
-  (.lua-match? @type "^[A-Z_][a-zA-Z0-9_]*"))
+  (#lua-match? @type "^[A-Z_][a-zA-Z0-9_]*"))
 
 (variable_declaration
   (identifier) @type
@@ -32,7 +32,7 @@
 
 ; Constants
 ((identifier) @constant
-  (.lua-match? @constant "^[A-Z][A-Z_0-9]+$"))
+  (#lua-match? @constant "^[A-Z][A-Z_0-9]+$"))
 
 [
   "null"
@@ -91,7 +91,7 @@
   (identifier) @module
   (builtin_function
     (builtin_identifier) @keyword.import
-    (.any-of? @keyword.import "@import" "@cImport")))
+    (#any-of? @keyword.import "@import" "@cImport")))
 
 ; Builtins
 [
@@ -100,7 +100,7 @@
 ] @variable.builtin
 
 ((identifier) @variable.builtin
-  (.eq? @variable.builtin "_"))
+  (#eq? @variable.builtin "_"))
 
 (calling_convention
   (identifier) @variable.builtin)
@@ -242,7 +242,7 @@
   (string)
   (multiline_string)
 ] @string
-  (.set! "priority" 95))
+  (#set! "priority" 95))
 
 (integer) @number
 
@@ -278,4 +278,4 @@
 (comment) @comment @spell
 
 ((comment) @comment.documentation
-  (.lua-match? @comment.documentation "^//!"))
+  (#lua-match? @comment.documentation "^//!"))

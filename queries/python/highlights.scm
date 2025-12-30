@@ -1,10 +1,10 @@
 ; Built-ins.
 ((identifier) @constant.builtin
-  (.match? @constant.builtin "^(__all__|__doc__|__name__|__package__|NotImplemented|Ellipsis)$"))
+  (#match? @constant.builtin "^(__all__|__doc__|__name__|__package__|NotImplemented|Ellipsis)$"))
 
 ; XXX: Not really a keyword, but it's sort of a tradition.
 ((identifier) @keyword
-  (.eq? @keyword "self"))
+  (#eq? @keyword "self"))
 
 ; Function definitions.
 (class_definition
@@ -34,7 +34,7 @@
       (identifier) @type.builtin))
 ]
   ; TODO: Include built-in exception types.
-  (.match? @type.builtin "^(bool|bytearray|bytes|dict|float|int|list|object|set|str|tuple|unicode)$"))
+  (#match? @type.builtin "^(bool|bytearray|bytes|dict|float|int|list|object|set|str|tuple|unicode)$"))
 
 (type
   [
@@ -108,15 +108,15 @@
 
 ; Identifier naming conventions.
 ((identifier) @constant
-  (.match? @constant "^[A-Z_][A-Z_\\d]*$"))
+  (#match? @constant "^[A-Z_][A-Z_\\d]*$"))
 
 ((identifier) @constructor
-  (.match? @constructor "^[A-Z]"))
+  (#match? @constructor "^[A-Z]"))
 
 ; Function calls.
 ((call
   function: (identifier) @function.builtin)
-  (.match? @function.builtin
+  (#match? @function.builtin
     "^(abs|all|any|ascii|bin|bool|breakpoint|bytearray|bytes|callable|chr|classmethod|compile|complex|delattr|dict|dir|divmod|enumerate|eval|exec|filter|float|format|frozenset|getattr|globals|hasattr|hash|help|hex|id|input|int|isinstance|issubclass|iter|len|list|locals|map|max|memoryview|min|next|object|oct|open|ord|pow|print|property|range|repr|reversed|round|set|setattr|slice|sorted|staticmethod|str|sum|super|tuple|type|vars|zip|__import__)$"))
 
 (call
@@ -219,7 +219,7 @@
 (comment) @comment
 
 ((string) @doc
-  (.match? @doc "^(\"\"\"|r\"\"\")"))
+  (#match? @doc "^(\"\"\"|r\"\"\")"))
 
 (string) @string
 

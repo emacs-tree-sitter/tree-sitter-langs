@@ -10,13 +10,13 @@
 ; FIXME: This will highlight the keyword outside of lambdas since tree-sitter
 ;        does not allow us to check for arbitrary nestation
 ((simple_identifier) @variable.builtin
-  (.eq? @variable.builtin "it"))
+  (#eq? @variable.builtin "it"))
 
 ; `field` keyword inside property getter/setter
 ; FIXME: This will highlight the keyword outside of getters and setters
 ;        since tree-sitter does not allow us to check for arbitrary nestation
 ((simple_identifier) @variable.builtin
-  (.eq? @variable.builtin "field"))
+  (#eq? @variable.builtin "field"))
 
 ; `this` this keyword inside classes
 (this_expression) @variable.builtin
@@ -43,7 +43,7 @@
 (type_identifier) @type
 
 ((type_identifier) @type.builtin
-  (.any-of? @type.builtin
+  (#any-of? @type.builtin
     "Byte" "Short" "Int" "Long" "UByte" "UShort" "UInt" "ULong" "Float" "Double" "Boolean" "Char"
     "String" "Array" "ByteArray" "ShortArray" "IntArray" "LongArray" "UByteArray" "UShortArray"
     "UIntArray" "ULongArray" "FloatArray" "DoubleArray" "BooleanArray" "CharArray" "Map" "Set"
@@ -110,7 +110,7 @@
 (call_expression
   .
   (simple_identifier) @function.builtin
-  (.any-of? @function.builtin
+  (#any-of? @function.builtin
     "arrayOf" "arrayOfNulls" "byteArrayOf" "shortArrayOf" "intArrayOf" "longArrayOf" "ubyteArrayOf"
     "ushortArrayOf" "uintArrayOf" "ulongArrayOf" "floatArrayOf" "doubleArrayOf" "booleanArrayOf"
     "charArrayOf" "emptyArray" "mapOf" "setOf" "listOf" "emptyMap" "emptySet" "emptyList"
@@ -153,12 +153,12 @@
     (string_literal) @string.regex
     (navigation_suffix
       ((simple_identifier) @_function
-        (.eq? @_function "toRegex")))))
+        (#eq? @_function "toRegex")))))
 
 ;    - Regex("[abc]?")
 (call_expression
   ((simple_identifier) @_function
-    (.eq? @_function "Regex"))
+    (#eq? @_function "Regex"))
   (call_suffix
     (value_arguments
       (value_argument
@@ -168,10 +168,10 @@
 (call_expression
   (navigation_expression
     ((simple_identifier) @_class
-      (.eq? @_class "Regex"))
+      (#eq? @_class "Regex"))
     (navigation_suffix
       ((simple_identifier) @_function
-        (.eq? @_function "fromLiteral"))))
+        (#eq? @_function "fromLiteral"))))
   (call_suffix
     (value_arguments
       (value_argument

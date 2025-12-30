@@ -8,7 +8,7 @@
 ; Types
 ;------
 ((type_constructor) @type.builtin
-  (.match? @type.builtin
+  (#match? @type.builtin
     "^(int|char|bytes|string|float|bool|unit|exn|array|list|option|int32|int64|nativeint|format6|lazy_t)$"))
 
 [
@@ -46,19 +46,19 @@
 ; Application
 ;------------
 ((value_name) @function.builtin
-  (.match? @function.builtin "^(raise(_notrace)?|failwith|invalid_arg)$"))
+  (#match? @function.builtin "^(raise(_notrace)?|failwith|invalid_arg)$"))
 
 (infix_expression
   left: (value_path
     (value_name) @function)
   operator: (concat_operator) @operator
-  (.eq? @operator "@@"))
+  (#eq? @operator "@@"))
 
 (infix_expression
   operator: (rel_operator) @operator
   right: (value_path
     (value_name) @function)
-  (.eq? @operator "|>"))
+  (#eq? @operator "|>"))
 
 (application_expression
   function: (value_path

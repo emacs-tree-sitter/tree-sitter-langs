@@ -14,7 +14,7 @@
 
 ((object_reference
   name: (identifier) @type) @_obj_ref
-  (.not-has-parent? @_obj_ref invocation))
+  (#not-has-parent? @_obj_ref invocation))
 
 (cte
   (identifier) @type)
@@ -43,10 +43,10 @@
 (marginalia) @comment
 
 ((literal) @number
-  (.lua-match? @number "^%d+$"))
+  (#lua-match? @number "^%d+$"))
 
 ((literal) @number.float
-  (.lua-match? @number.float "^[-]?%d*%.%d*$"))
+  (#lua-match? @number.float "^[-]?%d*%.%d*$"))
 
 (parameter) @variable.parameter
 

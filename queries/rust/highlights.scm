@@ -1,13 +1,13 @@
 ; Identifier conventions
 ((identifier) @keyword
-  (.eq? @keyword "Self"))
+  (#eq? @keyword "Self"))
 
 ((type_identifier) @keyword
-  (.eq? @keyword "Self"))
+  (#eq? @keyword "Self"))
 
 ; Assume all-cap names are constants.
 ((identifier) @constant
-  (.match? @constant "^[A-Z_][A-Z_\\d]*$"))
+  (#match? @constant "^[A-Z_][A-Z_\\d]*$"))
 
 ; Assume that uppercase names in paths are types.
 ((scoped_identifier
@@ -16,11 +16,11 @@
     (scoped_identifier
       name: (identifier) @type)
   ])
-  (.match? @type "^[A-Z]"))
+  (#match? @type "^[A-Z]"))
 
 ; Assume other uppercase names are enum constructors
 ((identifier) @constructor
-  (.match? @constructor "^[A-Z]"))
+  (#match? @constructor "^[A-Z]"))
 
 ; Function calls.
 (call_expression
@@ -103,7 +103,7 @@
 
 ; Comments and docstrings.
 ((line_comment) @doc
-  (.match? @doc "^//[!/]"))
+  (#match? @doc "^//[!/]"))
 
 [
   (line_comment)
@@ -164,7 +164,7 @@
 ; Lifetime.
 ((lifetime
   (identifier) @type.builtin)
-  (.eq? @type.builtin "static"))
+  (#eq? @type.builtin "static"))
 
 (lifetime
   (identifier) @label)

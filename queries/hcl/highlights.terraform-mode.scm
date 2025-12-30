@@ -2,7 +2,7 @@
 (expression
   ((variable_expr
     (identifier)) @keyword
-    (.eq? @keyword "data"))
+    (#eq? @keyword "data"))
   .
   (get_attr
     (identifier) @type)
@@ -17,14 +17,14 @@
 (expression
   ((variable_expr
     (identifier)) @keyword
-    (.eq? @keyword "module"))
+    (#eq? @keyword "module"))
   .
   (get_attr) @type)
 
 (expression
   ((variable_expr
     (identifier)) @keyword
-    (.match? @keyword "^(var|local|count|each|path)$"))
+    (#match? @keyword "^(var|local|count|each|path)$"))
   .
   (get_attr)? @property)
 
@@ -44,7 +44,7 @@
     (quoted_template_start) @noise
     (template_literal) @variable
     (quoted_template_end) @noise))
-  (.eq? @keyword "dynamic"))
+  (#eq? @keyword "dynamic"))
 
 ; ((block (identifier) @keyword
 ;         [(string_lit (template_literal) @variable)]
@@ -61,7 +61,7 @@
       (quoted_template_end) @noise)
     (identifier) @function
   ])
-  (.eq? @keyword "output"))
+  (#eq? @keyword "output"))
 
 ((block
   (identifier) @keyword
@@ -72,7 +72,7 @@
       (quoted_template_end) @noise)
     (identifier) @variable.special
   ])
-  (.eq? @keyword "variable"))
+  (#eq? @keyword "variable"))
 
 ((block
   (identifier) @keyword
@@ -83,7 +83,7 @@
       (quoted_template_end) @noise)
     (identifier) @type
   ])
-  (.eq? @keyword "module"))
+  (#eq? @keyword "module"))
 
 ; resource "aws_launch_template" "default"
 (block
@@ -108,11 +108,11 @@
 
 ((block
   (identifier) @keyword)
-  (.match? @keyword "(resource|data|output|locals|lifecycle)"))
+  (#match? @keyword "(resource|data|output|locals|lifecycle)"))
 
 ((attribute
   (identifier) @keyword)
-  (.match? @keyword "^(count|depends_on|for_each)$"))
+  (#match? @keyword "^(count|depends_on|for_each)$"))
 
 (attribute
   (identifier) @variable)

@@ -13,7 +13,7 @@
 ; NOTE: This query is a bit of a work around for the fact that the dart grammar doesn't
 ; specifically identify a node as a function call
 (((identifier) @function
-  (.match? @function "^_?[a-z]"))
+  (#match? @function "^_?[a-z]"))
   .
   (selector
     .
@@ -109,7 +109,7 @@
 ((scoped_identifier
   scope: (identifier) @type
   name: (identifier) @type)
-  (.match? @type "^[a-zA-Z]"))
+  (#match? @type "^[a-zA-Z]"))
 
 (type_identifier) @type
 
@@ -122,7 +122,7 @@
 (inferred_type) @keyword
 
 ((identifier) @type
-  (.match? @type "^_?[A-Z].*[a-z]")) ; catch Classes or IClasses not CLASSES
+  (#match? @type "^_?[A-Z].*[a-z]")) ; catch Classes or IClasses not CLASSES
 
 "Function" @type
 
@@ -247,7 +247,7 @@
 
 ; when used as an identifier:
 ((identifier) @variable.builtin
-  (.any-of? @variable.builtin
+  (#any-of? @variable.builtin
     "abstract" "as" "covariant" "deferred" "dynamic" "export" "external" "factory" "Function" "get"
     "implements" "import" "interface" "library" "operator" "mixin" "part" "set" "static" "typedef"))
 

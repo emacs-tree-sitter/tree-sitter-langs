@@ -175,7 +175,7 @@
   (instance_name) @function)
 
 ((variable) @boolean
-  (.any-of? @boolean "true" "false"))
+  (#any-of? @boolean "true" "false"))
 
 (exp_ticked
   (_) @operator)
