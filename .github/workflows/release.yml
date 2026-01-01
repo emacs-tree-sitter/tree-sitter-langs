@@ -12,6 +12,9 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
+env:
+  TS_VERSION: 0.26.3
+
 jobs:
   build:
     strategy:
@@ -60,7 +63,7 @@ jobs:
           python-version: '3.10' 
 
       - name: Install tree-sitter CLI
-        run: npm install -g tree-sitter-cli@0.26.3
+        run: npm install -g tree-sitter-cli@${{ env.TS_VERSION }}
 
       - uses: jcs090218/setup-emacs@master
         with:
