@@ -1,6 +1,8 @@
 # Changelog
 
 ## Unreleased
+
+## 0.13.4 - 2026-01-03
 - Add `Git-Config` support
 
 ## 0.13.3 - 2025-12-30
