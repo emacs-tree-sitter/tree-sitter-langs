@@ -679,3 +679,9 @@
 	branch = main
 	update = none
 	ignore = dirty
+[submodule "repos/git-config"]
+	path = repos/git-config
+	url = https://github.com/the-mikedavis/tree-sitter-git-config
+	branch = main
+	update = none
+	ignore = dirty

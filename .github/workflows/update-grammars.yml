@@ -50,6 +50,7 @@ jobs:
           - fortran
           - fsharp
           - gdscript
+          - git-config
           - git-rebase
           - gitattributes
           - gitcommit
