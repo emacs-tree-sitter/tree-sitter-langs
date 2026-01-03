@@ -141,6 +141,7 @@ See `tree-sitter-langs-repos'."
                  (git-commit-mode        . gitcommit)
                  (git-rebase-mode        . git-rebase)
                  (gitattributes-mode     . gitattributes)
+                 (gitconfig-mode         . git-config)
                  (gitignore-mode         . gitignore)
                  (gleam-mode             . gleam)
                  (glsl-mode              . glsl)
