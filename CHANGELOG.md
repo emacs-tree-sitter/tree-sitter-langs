@@ -1,6 +1,8 @@
 # Changelog
 
 ## Unreleased
+
+## 0.13.9 - 2026-01-12
 - Add `WGSL` support
 
 ## 0.13.8 - 2026-01-12
