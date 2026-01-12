@@ -231,6 +231,7 @@ See `tree-sitter-langs-repos'."
                  (vimrc-mode             . vim)
                  (wat-mode               . wat)
                  (nxml-mode              . xml)
+                 (wgsl-mode              . wgsl)
                  (yaml-mode              . yaml)
                  (k8s-mode               . yaml)
                  (zig-mode               . zig))))

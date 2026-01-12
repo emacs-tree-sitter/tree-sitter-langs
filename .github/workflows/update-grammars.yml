@@ -127,6 +127,7 @@ jobs:
           - vim
           - wat
           - xml
+          - wgsl
           - yaml
           - zig
     steps:

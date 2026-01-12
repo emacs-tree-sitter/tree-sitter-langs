@@ -685,6 +685,12 @@
 	branch = main
 	update = none
 	ignore = dirty
+[submodule "repos/wgsl"]
+	path = repos/wgsl
+	url = https://github.com/szebniok/tree-sitter-wgsl
+	branch = master
+	update = none
+	ignore = dirty
 [submodule "repos/wat"]
 	path = repos/wat
 	url = https://github.com/g-plane/tree-sitter-wat
