@@ -3,6 +3,9 @@
 ## Unreleased
 - Add `WGSL` support
 
+## 0.13.8 - 2026-01-12
+- Add `WAT` support
+
 ## 0.13.7 - 2026-01-11
 
 ## 0.13.6 - 2026-01-11

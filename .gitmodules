@@ -691,3 +691,9 @@
 	branch = master
 	update = none
 	ignore = dirty
+[submodule "repos/wat"]
+	path = repos/wat
+	url = https://github.com/g-plane/tree-sitter-wat
+	branch = main
+	update = none
+	ignore = dirty
