@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Add `WAT` support
 
 ## 0.13.7 - 2026-01-11
 
