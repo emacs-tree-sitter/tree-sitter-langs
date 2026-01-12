@@ -126,6 +126,7 @@ jobs:
           - vhdl
           - vim
           - xml
+          - wgsl
           - yaml
           - zig
     steps:
