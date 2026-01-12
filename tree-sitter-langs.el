@@ -229,6 +229,7 @@ See `tree-sitter-langs-repos'."
                  (verilog-mode           . verilog)
                  (vhdl-mode              . vhdl)
                  (vimrc-mode             . vim)
+                 (wat-mode               . wat)
                  (nxml-mode              . xml)
                  (yaml-mode              . yaml)
                  (k8s-mode               . yaml)
