@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Add `GDShader` support
 
 ## 0.13.10 - 2026-01-12
 

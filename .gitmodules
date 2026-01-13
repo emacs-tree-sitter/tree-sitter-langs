@@ -697,3 +697,9 @@
 	branch = main
 	update = none
 	ignore = dirty
+[submodule "repos/gdshader"]
+	path = repos/gdshader
+	url = https://github.com/airblast-dev/tree-sitter-gdshader
+	update = none
+	ignore = dirty
+	branch = master
