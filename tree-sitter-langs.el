@@ -138,6 +138,7 @@ See `tree-sitter-langs-repos'."
                  (fortran-mode           . fortran)
                  (fsharp-mode            . fsharp)
                  (gdscript-mode          . gdscript)
+                 (gdshader-mode          . gdshader)
                  (git-commit-mode        . gitcommit)
                  (git-rebase-mode        . git-rebase)
                  (gitattributes-mode     . gitattributes)
