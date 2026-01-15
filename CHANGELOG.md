@@ -1,6 +1,8 @@
 # Changelog
 
 ## Unreleased
+
+## 0.13.12 - 2026-01-15
 - perf: Use hash table instead of alist
 
 ## 0.13.11 - 2026-01-13
