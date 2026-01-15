@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- perf: Use hash table instead of alist
 
 ## 0.13.11 - 2026-01-13
 - Add `GDShader` support
