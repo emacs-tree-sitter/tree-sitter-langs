@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 0.13.13 - 2026-01-15
+
 ## 0.13.12 - 2026-01-15
 - perf: Use hash table instead of alist
 
