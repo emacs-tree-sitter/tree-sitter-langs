@@ -1,6 +1,7 @@
 # Changelog
 
 ## Unreleased
+- Add `Crystal` support
 
 ## 0.13.13 - 2026-01-15
 

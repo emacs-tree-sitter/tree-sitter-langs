@@ -121,6 +121,7 @@ See `tree-sitter-langs-repos'."
                  (csharp-mode            . c-sharp)
                  (c++-mode               . cpp)
                  (cmake-mode             . cmake)
+                 (crystal-mode           . crystal)
                  (d-mode                 . d)
                  (dart-mode              . dart)
                  (diff-mode              . diff)
