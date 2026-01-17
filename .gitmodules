@@ -703,3 +703,9 @@
 	update = none
 	ignore = dirty
 	branch = master
+[submodule "repos/crystal"]
+	path = repos/crystal
+	url = https://github.com/crystal-lang-tools/tree-sitter-crystal
+	update = none
+	ignore = dirty
+	branch = main

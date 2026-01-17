@@ -33,6 +33,7 @@ jobs:
           - comment
           - commonlisp
           - cpp
+          - crystal
           - css
           - csv
           - d
