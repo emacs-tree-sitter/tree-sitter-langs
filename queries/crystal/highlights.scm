@@ -33,7 +33,7 @@
   "def"
   "fun"
   "macro"
-] @keyword.function
+] @keyword
 
 [
   "class"
@@ -43,41 +43,41 @@
   "struct"
   "type"
   "union"
-] @keyword.type
+] @keyword
 
-"require" @keyword.import
+"require" @keyword
 
 [
   "return"
   "yield"
-] @keyword.return
+] @keyword
 
 [
   "if"
   "else"
   "elsif"
   "unless"
-] @keyword.conditional
+] @keyword
 
 (conditional
   [
     "?"
     ":"
-  ] @keyword.conditional.ternary)
+  ] @keyword)
 
 [
   "for"
   "until"
   "while"
-] @keyword.repeat
+] @keyword
 
-"rescue" @keyword.exception
+"rescue" @keyword
 
 [
   (private)
   (protected)
   "abstract"
-] @keyword.modifier
+] @keyword
 
 (pseudo_constant) @constant.builtin
 
