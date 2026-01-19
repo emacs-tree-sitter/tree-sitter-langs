@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 0.13.16 - 2026-01-19
+
 ## 0.13.15 - 2026-01-17
 - Fix `Crystal` highlighting for keywords
 
