@@ -113,7 +113,7 @@ jobs:
           cp tree-sitter-grammars-${{ matrix.bundle_os }}-${{ env.BUNDLE_VERSION }}.tar.gz tree-sitter-grammars.${{ matrix.host }}.v${{ env.BUNDLE_VERSION }}.tar.gz
 
       - name: Upload binary
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: ${{ matrix.host }}.${{ matrix.bundle_os }}
           path: tree-sitter-grammars*.tar.gz
