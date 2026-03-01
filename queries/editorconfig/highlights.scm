@@ -1,7 +1,7 @@
 (comment) @comment
 
-(section
-  (section_name) @string.special)
+(header
+  (glob) @string.special)
 
 (character_choice
   (character) @constant)
