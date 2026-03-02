@@ -1,14 +1,31 @@
 (comment) @comment
 
-(section
-  (section_name) @string.special)
+(property) @property
 
-(character_choice
-  (character) @constant)
+(string) @string
 
-(character_range
-  start: (character) @constant
-  end: (character) @constant)
+(header
+  (glob) @string.special)
+
+(character) @character
+
+(character_escape) @string.escape
+
+(integer) @number
+
+(wildcard) @character.special
+
+[
+  "="
+  "!"
+] @operator
+
+[
+  ","
+  "-"
+  "/"
+  ".."
+] @punctuation.delimiter
 
 [
   "["
@@ -17,39 +34,36 @@
   "}"
 ] @punctuation.bracket
 
-[
-  ","
-  ".."
-  (path_separator)
-] @punctuation.delimiter
+; Extra captures for special editorconfig values
+((pair
+  key: (property) @_key
+  value: (string) @string.special)
+  (#eq? @_key "indent_style")
+  (#any-of? @string.special "space" "tab"))
 
-[
-  "-"
-  "="
-  (negation)
-] @operator
+((pair
+  key: (property) @_key
+  value: (string) @string.special)
+  (#eq? @_key "indent_size")
+  (#eq? @string.special "tab"))
 
-[
-  (wildcard_characters)
-  (wildcard_any_characters)
-  (wildcard_single_character)
-] @character.special
+((pair
+  key: (property) @_key
+  value: (string) @string.special)
+  (#eq? @_key "end_of_line")
+  (#any-of? @string.special "lf" "cr" "crlf"))
 
-(escaped_character) @escape
+((pair
+  key: (property) @_key
+  value: (string) @string.special)
+  (#eq? @_key "charset")
+  (#any-of? @string.special "latin1" "utf-8" "utf-8-bom" "utf-16be" "utf-16le"))
 
-(pair
-  key: (identifier) @property
-  value: (_) @string)
+((string) @boolean
+  (#any-of? @boolean "true" "false" "off"))
 
-(boolean) @boolean
+((string) @number
+  (#lua-match? @number "^[0-9]+$"))
 
-(integer) @number
-
-(unset) @constant.builtin
-
-[
-  (spelling_language)
-  (indent_style)
-  (end_of_line)
-  (charset)
-] @string.special
+((string) @string.special
+  (#eq? @string.special "unset"))
