@@ -310,10 +310,8 @@
 
 ; NOTE: `interpolated_identifier`s can be highlighted in any way
 (string_literal
-  "$" @punctuation.special
   (interpolated_identifier) @none)
 
 (string_literal
-  "${" @punctuation.special
   (interpolated_expression) @none
   "}" @punctuation.special)
