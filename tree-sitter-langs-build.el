@@ -168,7 +168,7 @@ git checkout."
                 ('typescript '("typescript" ("tsx" . tsx)))
                 ('xml '("xml" ("dtd" . dtd)))
                 ('markdown '("tree-sitter-markdown" ("tree-sitter-markdown" . markdown)))
-                ('markdown-inline '("tree-sitter-markdown-inline" ("tree-sitter-markdown-inline" . markdown)))
+                ('markdown-inline '("tree-sitter-markdown-inline" ("tree-sitter-markdown-inline" . markdown-inline)))
                 ;; lexd/twolc/xfst don't yet have major modes for Emacs:
                 ('rtx '(("tree-sitter-rtx" . rtx)))
                 ('cg '(("tree-sitter-cg" . cg)))
