@@ -310,9 +310,9 @@
 
 ; NOTE: `interpolated_identifier`s can be highlighted in any way
 (string_literal
-	(interpolation_identifier_start) @punctuation.special
-	(interpolated_identifier) @none)
+ (interpolation_identifier_start) @punctuation.special
+ (interpolated_identifier) @none)
 (string_literal
-	(interpolation_expression_start) @punctuation.special
-	(interpolated_expression) @none
-	(interpolation_expression_end) @punctuation.special)
+ (interpolation_expression_start) @punctuation.special
+ (interpolated_expression) @none
+ (interpolation_expression_end) @punctuation.special)
