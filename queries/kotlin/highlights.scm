@@ -312,6 +312,7 @@
 (string_literal
   (interpolation_identifier_start) @punctuation.special
   (interpolated_identifier) @none)
+
 (string_literal
   (interpolation_expression_start) @punctuation.special
   (interpolated_expression) @none
