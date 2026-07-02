@@ -1,4 +1,4 @@
-(comment) @comment @spell
+(line_comment) @comment @spell
 
 ; Different types:
 (string_value) @string @spell
