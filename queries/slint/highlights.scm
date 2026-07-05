@@ -1,4 +1,4 @@
-(comment) @comment @spell
+(line_comment) @comment @spell
 
 ; Different types:
 (string_value) @string @spell
@@ -92,7 +92,6 @@
   (comparison_operator)
   (mult_prec_operator)
   (add_prec_operator)
-  (unary_prec_operator)
   (assignment_prec_operator)
 ] @operator
 
@@ -134,9 +133,6 @@
   name: (simple_identifier) @property)
 
 (binding_alias
-  name: (simple_identifier) @property)
-
-(binding
   name: (simple_identifier) @property)
 
 (struct_block
