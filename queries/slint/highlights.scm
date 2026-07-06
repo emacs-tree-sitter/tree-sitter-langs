@@ -85,9 +85,6 @@
 (binary_expression
   op: (_) @operator)
 
-(unary_expression
-  op: (_) @operator)
-
 [
   (comparison_operator)
   (mult_prec_operator)
