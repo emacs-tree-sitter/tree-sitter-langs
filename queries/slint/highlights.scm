@@ -132,9 +132,6 @@
 (binding_alias
   name: (simple_identifier) @property)
 
-(struct_block
-  (simple_identifier) @variable.member)
-
 (anon_struct_block
   (simple_identifier) @variable.member)
 
