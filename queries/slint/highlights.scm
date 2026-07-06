@@ -183,8 +183,6 @@
 ; Keywords:
 (animate_option_identifier) @keyword
 
-(export) @keyword.import
-
 (if_statement
   "if" @keyword.conditional)
 
