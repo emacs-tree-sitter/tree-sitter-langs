@@ -135,9 +135,6 @@
 (property_assignment
   property: (simple_identifier) @property)
 
-(states_definition
-  name: (simple_identifier) @variable)
-
 (callback
   name: (simple_identifier) @variable)
 
