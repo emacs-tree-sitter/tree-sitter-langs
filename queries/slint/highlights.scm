@@ -152,9 +152,6 @@
   member: (expression
     (simple_identifier) @property))
 
-(states_definition
-  name: (simple_identifier) @constant)
-
 ; Attributes:
 [
   (linear_gradient_identifier)
