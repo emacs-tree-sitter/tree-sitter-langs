@@ -210,9 +210,6 @@
 (global_definition
   "global" @keyword)
 
-(imperative_block
-  "return" @keyword.return)
-
 (import_statement
   [
     "import"
