@@ -1,4 +1,4 @@
-(comment) @comment @spell
+(line_comment) @comment @spell
 
 ; Different types:
 (string_value) @string @spell
@@ -85,14 +85,10 @@
 (binary_expression
   op: (_) @operator)
 
-(unary_expression
-  op: (_) @operator)
-
 [
   (comparison_operator)
   (mult_prec_operator)
   (add_prec_operator)
-  (unary_prec_operator)
   (assignment_prec_operator)
 ] @operator
 
@@ -136,20 +132,8 @@
 (binding_alias
   name: (simple_identifier) @property)
 
-(binding
-  name: (simple_identifier) @property)
-
-(struct_block
-  (simple_identifier) @variable.member)
-
-(anon_struct_block
-  (simple_identifier) @variable.member)
-
 (property_assignment
   property: (simple_identifier) @property)
-
-(states_definition
-  name: (simple_identifier) @variable)
 
 (callback
   name: (simple_identifier) @variable)
@@ -168,9 +152,6 @@
   member: (expression
     (simple_identifier) @property))
 
-(states_definition
-  name: (simple_identifier) @constant)
-
 ; Attributes:
 [
   (linear_gradient_identifier)
@@ -186,8 +167,6 @@
 
 ; Keywords:
 (animate_option_identifier) @keyword
-
-(export) @keyword.import
 
 (if_statement
   "if" @keyword.conditional)
@@ -230,9 +209,6 @@
 
 (global_definition
   "global" @keyword)
-
-(imperative_block
-  "return" @keyword.return)
 
 (import_statement
   [
