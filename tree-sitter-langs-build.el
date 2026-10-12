@@ -239,7 +239,7 @@ latest commit."
 ;; ---------------------------------------------------------------------------
 ;;; Building language grammars.
 
-(defconst tree-sitter-langs--bundle-version "0.13.75"
+(defconst tree-sitter-langs--bundle-version "0.13.76"
   "Version of the grammar bundle.
 This should be bumped whenever a language submodule is updated, which should be
 infrequent (grammar-only changes).  It is different from the version of
@@ -280,7 +280,7 @@ encounter issues.")
 
 (defun tree-sitter-langs--bundle-file (&optional ext version os)
   "Return the grammar bundle file's name, with optional EXT.
-If VERSION and OS are not spcified, use the defaults of
+If VERSION and OS are not specified, use the defaults of
 `tree-sitter-langs--bundle-version' and `tree-sitter-langs--os'."
   (setq os (or os tree-sitter-langs--os)
         version (or version tree-sitter-langs--bundle-version)
